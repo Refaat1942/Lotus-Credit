@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ImageIcon, CreditCard, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { CompanyMedia } from '../types';
+import { galleryMedia } from '../utils/mediaFilters';
 
 interface MediaGalleryProps {
   media: CompanyMedia[];
@@ -12,18 +13,20 @@ interface MediaGalleryProps {
 type Filter = 'all' | 'card' | 'photo';
 
 export default function MediaGallery({ media, companyName, accentColor = '#14b8a6' }: MediaGalleryProps) {
-  const [filter, setFilter] = useState<Filter>('all');
+  const [filter, setFilter] = useState<Filter>('card');
   const [lightbox, setLightbox] = useState<number | null>(null);
 
+  const visible = useMemo(() => galleryMedia(media), [media]);
+
   const filtered = useMemo(() => {
-    if (filter === 'all') return media;
-    return media.filter((m) => m.type === filter);
-  }, [media, filter]);
+    if (filter === 'all') return visible;
+    return visible.filter((m) => m.type === filter);
+  }, [visible, filter]);
 
-  const cards = media.filter((m) => m.type === 'card');
-  const photos = media.filter((m) => m.type === 'photo');
+  const cards = visible.filter((m) => m.type === 'card');
+  const photos = visible.filter((m) => m.type === 'photo');
 
-  if (!media.length) return null;
+  if (!visible.length) return null;
 
   const open = (index: number) => setLightbox(index);
   const close = () => setLightbox(null);
@@ -41,12 +44,12 @@ export default function MediaGallery({ media, companyName, accentColor = '#14b8a
         <h2 className="flex items-center gap-2 text-xl font-bold">
           <ImageIcon className="w-6 h-6 text-lotus-400" />
           البطاقات والصور
-          <span className="text-sm font-normal text-slate-400">({media.length})</span>
+          <span className="text-sm font-normal text-slate-400">({visible.length})</span>
         </h2>
         <div className="flex gap-2">
           {(
             [
-              ['all', `الكل (${media.length})`],
+              ['all', `الكل (${visible.length})`],
               ['card', `بطاقات (${cards.length})`],
               ['photo', `صور (${photos.length})`],
             ] as const

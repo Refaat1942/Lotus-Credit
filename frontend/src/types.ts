@@ -49,6 +49,7 @@ export interface Company {
   approvalSystem?: string;
   color?: string;
   icon?: string;
+  logoUrl?: string;
   contacts?: Contact[];
   forms?: string[];
   rules?: CompanyRules;

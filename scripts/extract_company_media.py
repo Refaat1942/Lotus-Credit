@@ -1,4 +1,4 @@
-"""Extract company cards/photos from PDF and merge into rules.json."""
+"""Extract company cards/photos and logos from PDF; merge into rules.json."""
 import json
 import os
 import re
@@ -33,6 +33,52 @@ PAGE_RANGES = {
     "sehatech": (101, 102),
 }
 
+# Slide master images repeated on many pages (Lotus branding / nav / sample card)
+GLOBAL_TEMPLATE_XREFS = {5, 8, 10, 198}
+GLOBAL_TEMPLATE_SIZES = {
+    (318, 285),
+    (877, 88),
+    (1825, 171),
+    (301, 109),
+    (301, 98),
+    (301, 60),
+    (301, 58),
+    (258, 109),
+    (360, 88),
+    (360, 115),
+    (360, 228),
+    (299, 123),
+    (242, 244),
+    (242, 243),
+    (243, 244),
+    (301, 269),
+    (301, 216),
+    (300, 168),
+    (137, 4),
+}
+
+# Company logos on PDF index pages (page 1–4), by embedded image xref
+COMPANY_LOGO_XREF = {
+    "axa": 19,
+    "metlife": 42,
+    "globemed": 84,
+    "nextcare": 99,
+    "mednet": 195,
+    "misr-healthcare": 197,
+    "amc": 200,
+    "medright": 215,
+    "medmark": 281,
+    "bupa": 283,
+    "unicare": 285,
+    "atomic-energy": 288,
+    "egycare": 301,
+    "sehatech": 344,
+    "care-plus": 349,
+    "sesco-care": 348,
+    "petroshad": 346,
+    "sumed": 348,
+}
+
 
 def page_title(text: str, page: int) -> str:
     lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
@@ -44,7 +90,90 @@ def page_title(text: str, page: int) -> str:
     return f"صفحة {page}"
 
 
+def is_template_image(w: int, h: int, xref: int, global_xref_counts: dict[int, int]) -> bool:
+    if xref in GLOBAL_TEMPLATE_XREFS:
+        return True
+    if (w, h) in GLOBAL_TEMPLATE_SIZES:
+        return True
+    # Lotus header strips and slide chrome
+    if h <= 120 and w >= 500:
+        return True
+    if h <= 180 and w >= 900:
+        return True
+    # Same image on 3+ pages = template
+    if global_xref_counts.get(xref, 0) >= 3:
+        return True
+    # Wide form chrome blocks from slide layout
+    if w >= 900 and 200 <= h <= 280:
+        return True
+    if w >= 500 and 260 <= h <= 280:
+        return True
+    return False
+
+
+def is_gallery_photo(w: int, h: int, xref: int, global_xref_counts: dict[int, int]) -> bool:
+    if is_template_image(w, h, xref, global_xref_counts):
+        return False
+    if w < 140 or h < 100:
+        return False
+    return True
+
+
+def collect_global_xrefs(doc) -> dict[int, int]:
+    counts: dict[int, int] = {}
+    for page_num in range(1, len(doc) + 1):
+        for img in doc[page_num - 1].get_images(full=True):
+            counts[img[0]] = counts.get(img[0], 0) + 1
+    return counts
+
+
+def is_logo_candidate(w: int, h: int, xref: int) -> bool:
+    if xref in GLOBAL_TEMPLATE_XREFS:
+        return False
+    if (w, h) in GLOBAL_TEMPLATE_SIZES:
+        return False
+    if h <= 120 and w >= 500:
+        return False
+    return w >= 100 and h >= 80
+
+
+def extract_logos(doc, global_xref_counts: dict[int, int]) -> dict[str, str]:
+    logos: dict[str, str] = {}
+    for cid, xref in COMPANY_LOGO_XREF.items():
+        try:
+            base = doc.extract_image(xref)
+        except Exception as exc:
+            print(f"  logo {cid}: skip xref {xref} ({exc})")
+            continue
+        w, h = base.get("width", 0), base.get("height", 0)
+        ext = base.get("ext", "png")
+        if not is_logo_candidate(w, h, xref):
+            print(f"  logo {cid}: skip template {w}x{h}")
+            continue
+        folder = os.path.join(ASSETS, cid)
+        os.makedirs(folder, exist_ok=True)
+        logo_name = f"logo.{ext if ext != 'jpg' else 'jpeg'}"
+        logo_path = os.path.join(folder, logo_name)
+        with open(logo_path, "wb") as out:
+            out.write(base["image"])
+        logos[cid] = f"/assets/companies/{cid}/{logo_name}"
+        print(f"  logo {cid}: {w}x{h} -> {logo_name}")
+    return logos
+
+
+def crop_page_card(page, clip_ratio_top=0.14, clip_ratio_bottom=0.06):
+    rect = page.rect
+    top = rect.y0 + rect.height * clip_ratio_top
+    bottom = rect.y1 - rect.height * clip_ratio_bottom
+    clip = pymupdf.Rect(rect.x0, top, rect.x1, bottom)
+    pix = page.get_pixmap(matrix=pymupdf.Matrix(1.6, 1.6), clip=clip, alpha=False)
+    return pix
+
+
 def extract():
+    if not os.path.exists(PDF):
+        raise FileNotFoundError(f"PDF not found: {PDF}")
+
     if os.path.exists(ASSETS):
         shutil.rmtree(ASSETS)
     os.makedirs(ASSETS, exist_ok=True)
@@ -53,23 +182,27 @@ def extract():
         page_texts = {p["page"]: p["text"] for p in json.load(f)["pdf_text"]}
 
     doc = pymupdf.open(PDF)
+    global_xref_counts = collect_global_xrefs(doc)
+
+    print("Extracting company logos from index pages...")
+    logos = extract_logos(doc, global_xref_counts)
+
     company_media: dict[str, list] = {k: [] for k in PAGE_RANGES}
+    company_xrefs: dict[str, set] = {k: set() for k in PAGE_RANGES}
+    logo_xrefs = set(COMPANY_LOGO_XREF.values())
 
     for cid, (start, end) in PAGE_RANGES.items():
         folder = os.path.join(ASSETS, cid)
         os.makedirs(folder, exist_ok=True)
-        seen_xrefs = set()
 
         for page_num in range(start, end + 1):
             page = doc[page_num - 1]
             text = page_texts.get(page_num, "")
             title = page_title(text, page_num)
 
-            # Full page card (slide snapshot)
             card_name = f"page{page_num:03d}_card.png"
             card_path = os.path.join(folder, card_name)
-            pix = page.get_pixmap(matrix=pymupdf.Matrix(1.8, 1.8), alpha=False)
-            pix.save(card_path)
+            crop_page_card(page).save(card_path)
             company_media[cid].append(
                 {
                     "id": f"{cid}-p{page_num}-card",
@@ -80,22 +213,19 @@ def extract():
                 }
             )
 
-            # Embedded photos (insurance cards, forms, screenshots)
             for img_idx, img in enumerate(page.get_images(full=True)):
                 xref = img[0]
-                if xref in seen_xrefs:
+                if xref in company_xrefs[cid] or xref in logo_xrefs:
                     continue
-                seen_xrefs.add(xref)
                 try:
                     base = doc.extract_image(xref)
                 except Exception:
                     continue
                 w, h = base.get("width", 0), base.get("height", 0)
                 ext = base.get("ext", "png")
-                if w < 140 or h < 100:
+                if not is_gallery_photo(w, h, xref, global_xref_counts):
                     continue
-                if ext not in ("jpeg", "jpg", "png", "webp"):
-                    continue
+                company_xrefs[cid].add(xref)
                 photo_name = f"page{page_num:03d}_photo{img_idx + 1}.{ext}"
                 photo_path = os.path.join(folder, photo_name)
                 with open(photo_path, "wb") as out:
@@ -118,12 +248,14 @@ def extract():
     for company in rules["companies"]:
         cid = company["id"]
         company["media"] = company_media.get(cid, [])
+        if cid in logos:
+            company["logoUrl"] = logos[cid]
 
     with open(RULES, "w", encoding="utf-8") as f:
         json.dump(rules, f, ensure_ascii=False, indent=2)
 
     total = sum(len(v) for v in company_media.values())
-    print(f"Updated {len(rules['companies'])} companies with {total} media items")
+    print(f"Updated {len(rules['companies'])} companies with {total} media items, {len(logos)} logos")
 
 
 if __name__ == "__main__":

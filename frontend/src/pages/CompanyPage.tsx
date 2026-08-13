@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import Header from '../components/Header';
-import LotusLogo from '../components/LotusLogo';
+import CompanyLogo from '../components/CompanyLogo';
 import MediaGallery from '../components/MediaGallery';
 import CompanyLinks from '../components/CompanyLinks';
 import { RuleItem, NotesList, StepWizard } from '../components/RuleDisplay';
@@ -71,9 +71,9 @@ export default function CompanyPage() {
               />
               <div className="relative">
                 <div className="flex flex-wrap items-center gap-4 mb-4">
-                  <LotusLogo size="sm" className="opacity-90" />
+                  <CompanyLogo company={company} size="lg" />
                   <div className="flex-1 min-w-[200px]">
-                    <h1 className="text-3xl font-bold text-white mb-1">{company.nameAr}</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-1">{company.nameAr}</h1>
                     <p className="text-slate-400">{company.nameEn}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">

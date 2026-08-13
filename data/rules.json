@@ -123,96 +123,6 @@
           "page": 7
         },
         {
-          "id": "axa-p7-photo1",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 1",
-          "url": "/assets/companies/axa/page007_photo1.png",
-          "page": 7,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "axa-p7-photo2",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 2",
-          "url": "/assets/companies/axa/page007_photo2.png",
-          "page": 7,
-          "width": 301,
-          "height": 269
-        },
-        {
-          "id": "axa-p7-photo3",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 3",
-          "url": "/assets/companies/axa/page007_photo3.png",
-          "page": 7,
-          "width": 945,
-          "height": 269
-        },
-        {
-          "id": "axa-p7-photo4",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 4",
-          "url": "/assets/companies/axa/page007_photo4.png",
-          "page": 7,
-          "width": 518,
-          "height": 269
-        },
-        {
-          "id": "axa-p7-photo5",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 5",
-          "url": "/assets/companies/axa/page007_photo5.png",
-          "page": 7,
-          "width": 837,
-          "height": 269
-        },
-        {
-          "id": "axa-p7-photo6",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 6",
-          "url": "/assets/companies/axa/page007_photo6.png",
-          "page": 7,
-          "width": 301,
-          "height": 216
-        },
-        {
-          "id": "axa-p7-photo7",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 7",
-          "url": "/assets/companies/axa/page007_photo7.png",
-          "page": 7,
-          "width": 301,
-          "height": 109
-        },
-        {
-          "id": "axa-p7-photo9",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 9",
-          "url": "/assets/companies/axa/page007_photo9.png",
-          "page": 7,
-          "width": 301,
-          "height": 109
-        },
-        {
-          "id": "axa-p7-photo12",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 12",
-          "url": "/assets/companies/axa/page007_photo12.png",
-          "page": 7,
-          "width": 300,
-          "height": 168
-        },
-        {
-          "id": "axa-p7-photo13",
-          "type": "photo",
-          "title": "نموذج أصفر بالكربون — صورة 13",
-          "url": "/assets/companies/axa/page007_photo13.jpeg",
-          "page": 7,
-          "width": 243,
-          "height": 244
-        },
-        {
           "id": "axa-p8-card",
           "type": "card",
           "title": "تعليمات الصرف",
@@ -220,65 +130,11 @@
           "page": 8
         },
         {
-          "id": "axa-p8-photo5",
-          "type": "photo",
-          "title": "تعليمات الصرف — صورة 5",
-          "url": "/assets/companies/axa/page008_photo5.png",
-          "page": 8,
-          "width": 360,
-          "height": 228
-        },
-        {
-          "id": "axa-p8-photo8",
-          "type": "photo",
-          "title": "تعليمات الصرف — صورة 8",
-          "url": "/assets/companies/axa/page008_photo8.png",
-          "page": 8,
-          "width": 360,
-          "height": 115
-        },
-        {
-          "id": "axa-p8-photo10",
-          "type": "photo",
-          "title": "تعليمات الصرف — صورة 10",
-          "url": "/assets/companies/axa/page008_photo10.jpeg",
-          "page": 8,
-          "width": 242,
-          "height": 243
-        },
-        {
-          "id": "axa-p8-photo12",
-          "type": "photo",
-          "title": "تعليمات الصرف — صورة 12",
-          "url": "/assets/companies/axa/page008_photo12.png",
-          "page": 8,
-          "width": 299,
-          "height": 123
-        },
-        {
-          "id": "axa-p8-photo13",
-          "type": "photo",
-          "title": "تعليمات الصرف — صورة 13",
-          "url": "/assets/companies/axa/page008_photo13.png",
-          "page": 8,
-          "width": 2546,
-          "height": 106
-        },
-        {
           "id": "axa-p9-card",
           "type": "card",
           "title": "الموافقات:",
           "url": "/assets/companies/axa/page009_card.png",
           "page": 9
-        },
-        {
-          "id": "axa-p9-photo2",
-          "type": "photo",
-          "title": "الموافقات: — صورة 2",
-          "url": "/assets/companies/axa/page009_photo2.png",
-          "page": 9,
-          "width": 300,
-          "height": 168
         },
         {
           "id": "axa-p9-photo3",
@@ -396,15 +252,6 @@
           "height": 647
         },
         {
-          "id": "axa-p10-photo7",
-          "type": "photo",
-          "title": "انواع الموافقات : — صورة 7",
-          "url": "/assets/companies/axa/page010_photo7.jpeg",
-          "page": 10,
-          "width": 242,
-          "height": 243
-        },
-        {
           "id": "axa-p11-card",
           "type": "card",
           "title": "الرقم الشخصى و",
@@ -430,15 +277,6 @@
           "height": 574
         },
         {
-          "id": "axa-p11-photo4",
-          "type": "photo",
-          "title": "الرقم الشخصى و — صورة 4",
-          "url": "/assets/companies/axa/page011_photo4.jpeg",
-          "page": 11,
-          "width": 288,
-          "height": 288
-        },
-        {
           "id": "axa-p11-photo5",
           "type": "photo",
           "title": "الرقم الشخصى و — صورة 5",
@@ -446,15 +284,6 @@
           "page": 11,
           "width": 1121,
           "height": 501
-        },
-        {
-          "id": "axa-p11-photo6",
-          "type": "photo",
-          "title": "الرقم الشخصى و — صورة 6",
-          "url": "/assets/companies/axa/page011_photo6.jpeg",
-          "page": 11,
-          "width": 243,
-          "height": 244
         }
       ],
       "links": [
@@ -507,7 +336,8 @@
           "type": "email",
           "page": 8
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/axa/logo.png"
     },
     {
       "id": "metlife",
@@ -574,24 +404,6 @@
           "page": 12
         },
         {
-          "id": "metlife-p12-photo1",
-          "type": "photo",
-          "title": "نموذج بدون روشتة — صورة 1",
-          "url": "/assets/companies/metlife/page012_photo1.png",
-          "page": 12,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "metlife-p12-photo2",
-          "type": "photo",
-          "title": "نموذج بدون روشتة — صورة 2",
-          "url": "/assets/companies/metlife/page012_photo2.jpeg",
-          "page": 12,
-          "width": 288,
-          "height": 288
-        },
-        {
           "id": "metlife-p12-photo3",
           "type": "photo",
           "title": "نموذج بدون روشتة — صورة 3",
@@ -626,15 +438,6 @@
           "page": 12,
           "width": 712,
           "height": 318
-        },
-        {
-          "id": "metlife-p12-photo7",
-          "type": "photo",
-          "title": "نموذج بدون روشتة — صورة 7",
-          "url": "/assets/companies/metlife/page012_photo7.png",
-          "page": 12,
-          "width": 563,
-          "height": 263
         },
         {
           "id": "metlife-p12-photo8",
@@ -680,15 +483,6 @@
           "height": 1324
         },
         {
-          "id": "metlife-p13-photo5",
-          "type": "photo",
-          "title": "موافقة مسبقة= — صورة 5",
-          "url": "/assets/companies/metlife/page013_photo5.jpeg",
-          "page": 13,
-          "width": 242,
-          "height": 243
-        },
-        {
           "id": "metlife-p14-card",
           "type": "card",
           "title": "نموذج أزرق بالكربون او روشتة يداوى اوصورة روشتة او نموذج مرفوعة على يوداوى العال",
@@ -703,24 +497,6 @@
           "page": 14,
           "width": 232,
           "height": 107
-        },
-        {
-          "id": "metlife-p14-photo3",
-          "type": "photo",
-          "title": "نموذج أزرق بالكربون او روشتة يداوى اوصورة روشتة او نموذج مرفوعة على يوداوى العال — صورة 3",
-          "url": "/assets/companies/metlife/page014_photo3.png",
-          "page": 14,
-          "width": 1355,
-          "height": 108
-        },
-        {
-          "id": "metlife-p14-photo4",
-          "type": "photo",
-          "title": "نموذج أزرق بالكربون او روشتة يداوى اوصورة روشتة او نموذج مرفوعة على يوداوى العال — صورة 4",
-          "url": "/assets/companies/metlife/page014_photo4.png",
-          "page": 14,
-          "width": 880,
-          "height": 108
         },
         {
           "id": "metlife-p14-photo5",
@@ -820,15 +596,6 @@
           "height": 123
         },
         {
-          "id": "metlife-p15-photo3",
-          "type": "photo",
-          "title": "نموذج أزرق بالكربون او روشتة يداوى اوصورة روشتة مرفوعة على يوداوى — صورة 3",
-          "url": "/assets/companies/metlife/page015_photo3.png",
-          "page": 15,
-          "width": 1512,
-          "height": 123
-        },
-        {
           "id": "metlife-p15-photo4",
           "type": "photo",
           "title": "نموذج أزرق بالكربون او روشتة يداوى اوصورة روشتة مرفوعة على يوداوى — صورة 4",
@@ -888,15 +655,6 @@
           "page": 16,
           "width": 216,
           "height": 183
-        },
-        {
-          "id": "metlife-p16-photo4",
-          "type": "photo",
-          "title": "محظورات صرف — صورة 4",
-          "url": "/assets/companies/metlife/page016_photo4.png",
-          "page": 16,
-          "width": 2359,
-          "height": 100
         },
         {
           "id": "metlife-p16-photo5",
@@ -997,15 +755,6 @@
           "title": "عند االدخال على ريسيت البيع يتم اختيار اسم جلوب ميد+",
           "url": "/assets/companies/metlife/page020_card.png",
           "page": 20
-        },
-        {
-          "id": "metlife-p20-photo2",
-          "type": "photo",
-          "title": "عند االدخال على ريسيت البيع يتم اختيار اسم جلوب ميد+ — صورة 2",
-          "url": "/assets/companies/metlife/page020_photo2.jpeg",
-          "page": 20,
-          "width": 258,
-          "height": 109
         },
         {
           "id": "metlife-p20-photo3",
@@ -1130,7 +879,8 @@
           "type": "email",
           "page": 1
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/metlife/logo.png"
     },
     {
       "id": "globemed",
@@ -1195,24 +945,6 @@
           "page": 21
         },
         {
-          "id": "globemed-p21-photo1",
-          "type": "photo",
-          "title": "نموذجGlobemed االزرق عليه األدوية كاربون — صورة 1",
-          "url": "/assets/companies/globemed/page021_photo1.png",
-          "page": 21,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "globemed-p21-photo2",
-          "type": "photo",
-          "title": "نموذجGlobemed االزرق عليه األدوية كاربون — صورة 2",
-          "url": "/assets/companies/globemed/page021_photo2.jpeg",
-          "page": 21,
-          "width": 258,
-          "height": 109
-        },
-        {
           "id": "globemed-p21-photo3",
           "type": "photo",
           "title": "نموذجGlobemed االزرق عليه األدوية كاربون — صورة 3",
@@ -1240,15 +972,6 @@
           "height": 938
         },
         {
-          "id": "globemed-p21-photo6",
-          "type": "photo",
-          "title": "نموذجGlobemed االزرق عليه األدوية كاربون — صورة 6",
-          "url": "/assets/companies/globemed/page021_photo6.jpeg",
-          "page": 21,
-          "width": 242,
-          "height": 243
-        },
-        {
           "id": "globemed-p22-card",
           "type": "card",
           "title": "النموذج النموذج األزرق عليه األدوية كاربون",
@@ -1263,24 +986,6 @@
           "page": 22,
           "width": 274,
           "height": 109
-        },
-        {
-          "id": "globemed-p22-photo3",
-          "type": "photo",
-          "title": "النموذج النموذج األزرق عليه األدوية كاربون — صورة 3",
-          "url": "/assets/companies/globemed/page022_photo3.png",
-          "page": 22,
-          "width": 1657,
-          "height": 110
-        },
-        {
-          "id": "globemed-p22-photo4",
-          "type": "photo",
-          "title": "النموذج النموذج األزرق عليه األدوية كاربون — صورة 4",
-          "url": "/assets/companies/globemed/page022_photo4.png",
-          "page": 22,
-          "width": 509,
-          "height": 110
         },
         {
           "id": "globemed-p22-photo6",
@@ -1341,15 +1046,6 @@
           "url": "/assets/companies/globemed/page023_photo2.png",
           "page": 23,
           "width": 292,
-          "height": 163
-        },
-        {
-          "id": "globemed-p23-photo3",
-          "type": "photo",
-          "title": "النموذج األزرق عليه األدوية كاربون — صورة 3",
-          "url": "/assets/companies/globemed/page023_photo3.png",
-          "page": 23,
-          "width": 1431,
           "height": 163
         },
         {
@@ -1439,7 +1135,8 @@
           "type": "email",
           "page": 1
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/globemed/logo.jpeg"
     },
     {
       "id": "nextcare",
@@ -1495,15 +1192,6 @@
           "page": 24
         },
         {
-          "id": "nextcare-p24-photo1",
-          "type": "photo",
-          "title": "ملحوظة هامه جد ا :يجب مُراجعة وتطبيق التعليمات — صورة 1",
-          "url": "/assets/companies/nextcare/page024_photo1.png",
-          "page": 24,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "nextcare-p24-photo2",
           "type": "photo",
           "title": "ملحوظة هامه جد ا :يجب مُراجعة وتطبيق التعليمات — صورة 2",
@@ -1511,15 +1199,6 @@
           "page": 24,
           "width": 737,
           "height": 810
-        },
-        {
-          "id": "nextcare-p24-photo4",
-          "type": "photo",
-          "title": "ملحوظة هامه جد ا :يجب مُراجعة وتطبيق التعليمات — صورة 4",
-          "url": "/assets/companies/nextcare/page024_photo4.jpeg",
-          "page": 24,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "nextcare-p25-card",
@@ -1742,15 +1421,6 @@
           "page": 31
         },
         {
-          "id": "nextcare-p31-photo2",
-          "type": "photo",
-          "title": "الرجوع اىل قائمة الشر كات — صورة 2",
-          "url": "/assets/companies/nextcare/page031_photo2.png",
-          "page": 31,
-          "width": 290,
-          "height": 104
-        },
-        {
           "id": "nextcare-p31-photo4",
           "type": "photo",
           "title": "الرجوع اىل قائمة الشر كات — صورة 4",
@@ -1805,7 +1475,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/nextcare/logo.png"
     },
     {
       "id": "mednet",
@@ -1852,15 +1523,6 @@
           "page": 32
         },
         {
-          "id": "mednet-p32-photo1",
-          "type": "photo",
-          "title": "نموذج ازرق +روشتة خارجية — صورة 1",
-          "url": "/assets/companies/mednet/page032_photo1.png",
-          "page": 32,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "mednet-p32-photo2",
           "type": "photo",
           "title": "نموذج ازرق +روشتة خارجية — صورة 2",
@@ -1886,15 +1548,6 @@
           "page": 32,
           "width": 469,
           "height": 617
-        },
-        {
-          "id": "mednet-p32-photo6",
-          "type": "photo",
-          "title": "نموذج ازرق +روشتة خارجية — صورة 6",
-          "url": "/assets/companies/mednet/page032_photo6.png",
-          "page": 32,
-          "width": 290,
-          "height": 104
         },
         {
           "id": "mednet-p32-photo8",
@@ -1931,15 +1584,6 @@
           "page": 32,
           "width": 715,
           "height": 952
-        },
-        {
-          "id": "mednet-p32-photo12",
-          "type": "photo",
-          "title": "نموذج ازرق +روشتة خارجية — صورة 12",
-          "url": "/assets/companies/mednet/page032_photo12.jpeg",
-          "page": 32,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "mednet-p33-card",
@@ -2019,15 +1663,6 @@
           "height": 608
         },
         {
-          "id": "mednet-p34-photo6",
-          "type": "photo",
-          "title": "اجراءات صرف — صورة 6",
-          "url": "/assets/companies/mednet/page034_photo6.png",
-          "page": 34,
-          "width": 513,
-          "height": 106
-        },
-        {
           "id": "mednet-p34-photo9",
           "type": "photo",
           "title": "اجراءات صرف — صورة 9",
@@ -2060,15 +1695,6 @@
           "title": "الموافقات الطبية",
           "url": "/assets/companies/mednet/page035_card.png",
           "page": 35
-        },
-        {
-          "id": "mednet-p35-photo2",
-          "type": "photo",
-          "title": "الموافقات الطبية — صورة 2",
-          "url": "/assets/companies/mednet/page035_photo2.png",
-          "page": 35,
-          "width": 2149,
-          "height": 115
         },
         {
           "id": "mednet-p35-photo3",
@@ -2116,7 +1742,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/mednet/logo.png"
     },
     {
       "id": "misr-healthcare",
@@ -2166,24 +1793,6 @@
           "page": 36
         },
         {
-          "id": "misr-healthcare-p36-photo1",
-          "type": "photo",
-          "title": "Misr health care — صورة 1",
-          "url": "/assets/companies/misr-healthcare/page036_photo1.png",
-          "page": 36,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "misr-healthcare-p36-photo2",
-          "type": "photo",
-          "title": "Misr health care — صورة 2",
-          "url": "/assets/companies/misr-healthcare/page036_photo2.jpeg",
-          "page": 36,
-          "width": 746,
-          "height": 268
-        },
-        {
           "id": "misr-healthcare-p36-photo3",
           "type": "photo",
           "title": "Misr health care — صورة 3",
@@ -2218,15 +1827,6 @@
           "page": 36,
           "width": 1053,
           "height": 667
-        },
-        {
-          "id": "misr-healthcare-p36-photo7",
-          "type": "photo",
-          "title": "Misr health care — صورة 7",
-          "url": "/assets/companies/misr-healthcare/page036_photo7.jpeg",
-          "page": 36,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "misr-healthcare-p37-card",
@@ -2273,15 +1873,6 @@
           "title": "Misr health care",
           "url": "/assets/companies/misr-healthcare/page040_card.png",
           "page": 40
-        },
-        {
-          "id": "misr-healthcare-p40-photo2",
-          "type": "photo",
-          "title": "Misr health care — صورة 2",
-          "url": "/assets/companies/misr-healthcare/page040_photo2.png",
-          "page": 40,
-          "width": 2261,
-          "height": 126
         },
         {
           "id": "misr-healthcare-p40-photo3",
@@ -2338,7 +1929,8 @@
           "type": "email",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/misr-healthcare/logo.jpeg"
     },
     {
       "id": "amc",
@@ -2390,24 +1982,6 @@
           "page": 41
         },
         {
-          "id": "amc-p41-photo1",
-          "type": "photo",
-          "title": "االهلى للخدمات الطبيةAMC — صورة 1",
-          "url": "/assets/companies/amc/page041_photo1.png",
-          "page": 41,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "amc-p41-photo2",
-          "type": "photo",
-          "title": "االهلى للخدمات الطبيةAMC — صورة 2",
-          "url": "/assets/companies/amc/page041_photo2.jpeg",
-          "page": 41,
-          "width": 162,
-          "height": 229
-        },
-        {
           "id": "amc-p41-photo3",
           "type": "photo",
           "title": "االهلى للخدمات الطبيةAMC — صورة 3",
@@ -2424,15 +1998,6 @@
           "page": 41,
           "width": 1104,
           "height": 692
-        },
-        {
-          "id": "amc-p41-photo5",
-          "type": "photo",
-          "title": "االهلى للخدمات الطبيةAMC — صورة 5",
-          "url": "/assets/companies/amc/page041_photo5.jpeg",
-          "page": 41,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "amc-p42-card",
@@ -2535,7 +2100,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/amc/logo.png"
     },
     {
       "id": "medright",
@@ -2585,15 +2151,6 @@
           "page": 48
         },
         {
-          "id": "medright-p48-photo1",
-          "type": "photo",
-          "title": "النموذج االبيض — صورة 1",
-          "url": "/assets/companies/medright/page048_photo1.png",
-          "page": 48,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "medright-p48-photo2",
           "type": "photo",
           "title": "النموذج االبيض — صورة 2",
@@ -2612,15 +2169,6 @@
           "height": 1044
         },
         {
-          "id": "medright-p48-photo5",
-          "type": "photo",
-          "title": "النموذج االبيض — صورة 5",
-          "url": "/assets/companies/medright/page048_photo5.png",
-          "page": 48,
-          "width": 300,
-          "height": 120
-        },
-        {
           "id": "medright-p48-photo6",
           "type": "photo",
           "title": "النموذج االبيض — صورة 6",
@@ -2637,15 +2185,6 @@
           "page": 48,
           "width": 418,
           "height": 541
-        },
-        {
-          "id": "medright-p48-photo8",
-          "type": "photo",
-          "title": "النموذج االبيض — صورة 8",
-          "url": "/assets/companies/medright/page048_photo8.jpeg",
-          "page": 48,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "medright-p49-card",
@@ -2877,7 +2416,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/medright/logo.png"
     },
     {
       "id": "medmark",
@@ -2942,15 +2482,6 @@
           "page": 55
         },
         {
-          "id": "medmark-p55-photo1",
-          "type": "photo",
-          "title": "Allianz(EDS) — صورة 1",
-          "url": "/assets/companies/medmark/page055_photo1.png",
-          "page": 55,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "medmark-p55-photo2",
           "type": "photo",
           "title": "Allianz(EDS) — صورة 2",
@@ -2976,15 +2507,6 @@
           "page": 55,
           "width": 1115,
           "height": 377
-        },
-        {
-          "id": "medmark-p55-photo5",
-          "type": "photo",
-          "title": "Allianz(EDS) — صورة 5",
-          "url": "/assets/companies/medmark/page055_photo5.jpeg",
-          "page": 55,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "medmark-p56-card",
@@ -3024,15 +2546,6 @@
           "title": "اجراءات صرف",
           "url": "/assets/companies/medmark/page058_card.png",
           "page": 58
-        },
-        {
-          "id": "medmark-p58-photo2",
-          "type": "photo",
-          "title": "اجراءات صرف — صورة 2",
-          "url": "/assets/companies/medmark/page058_photo2.jpeg",
-          "page": 58,
-          "width": 195,
-          "height": 195
         },
         {
           "id": "medmark-p59-card",
@@ -3127,7 +2640,8 @@
           "type": "email",
           "page": 56
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/medmark/logo.jpeg"
     },
     {
       "id": "bupa",
@@ -3179,15 +2693,6 @@
           "page": 65
         },
         {
-          "id": "bupa-p65-photo1",
-          "type": "photo",
-          "title": "رقم الموافقةاذا كان يبدأ — صورة 1",
-          "url": "/assets/companies/bupa/page065_photo1.png",
-          "page": 65,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "bupa-p65-photo2",
           "type": "photo",
           "title": "رقم الموافقةاذا كان يبدأ — صورة 2",
@@ -3204,24 +2709,6 @@
           "page": 65,
           "width": 975,
           "height": 1380
-        },
-        {
-          "id": "bupa-p65-photo4",
-          "type": "photo",
-          "title": "رقم الموافقةاذا كان يبدأ — صورة 4",
-          "url": "/assets/companies/bupa/page065_photo4.png",
-          "page": 65,
-          "width": 224,
-          "height": 225
-        },
-        {
-          "id": "bupa-p65-photo5",
-          "type": "photo",
-          "title": "رقم الموافقةاذا كان يبدأ — صورة 5",
-          "url": "/assets/companies/bupa/page065_photo5.jpeg",
-          "page": 65,
-          "width": 243,
-          "height": 244
         },
         {
           "id": "bupa-p66-card",
@@ -3281,15 +2768,6 @@
           "page": 67,
           "width": 664,
           "height": 930
-        },
-        {
-          "id": "bupa-p67-photo4",
-          "type": "photo",
-          "title": "ثالثا:يجب امضاء المريض — صورة 4",
-          "url": "/assets/companies/bupa/page067_photo4.jpeg",
-          "page": 67,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "bupa-p68-card",
@@ -3367,7 +2845,8 @@
           "type": "email",
           "page": 68
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/bupa/logo.jpeg"
     },
     {
       "id": "unicare",
@@ -3416,15 +2895,6 @@
           "page": 83
         },
         {
-          "id": "unicare-p83-photo1",
-          "type": "photo",
-          "title": "النموذج االصفر صرف ادوية يجب ان يرفق معه روشتة — صورة 1",
-          "url": "/assets/companies/unicare/page083_photo1.png",
-          "page": 83,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "unicare-p83-photo2",
           "type": "photo",
           "title": "النموذج االصفر صرف ادوية يجب ان يرفق معه روشتة — صورة 2",
@@ -3443,15 +2913,6 @@
           "height": 1008
         },
         {
-          "id": "unicare-p83-photo4",
-          "type": "photo",
-          "title": "النموذج االصفر صرف ادوية يجب ان يرفق معه روشتة — صورة 4",
-          "url": "/assets/companies/unicare/page083_photo4.jpeg",
-          "page": 83,
-          "width": 281,
-          "height": 207
-        },
-        {
           "id": "unicare-p83-photo5",
           "type": "photo",
           "title": "النموذج االصفر صرف ادوية يجب ان يرفق معه روشتة — صورة 5",
@@ -3468,15 +2929,6 @@
           "page": 83,
           "width": 588,
           "height": 819
-        },
-        {
-          "id": "unicare-p83-photo7",
-          "type": "photo",
-          "title": "النموذج االصفر صرف ادوية يجب ان يرفق معه روشتة — صورة 7",
-          "url": "/assets/companies/unicare/page083_photo7.jpeg",
-          "page": 83,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "unicare-p84-card",
@@ -3662,7 +3114,8 @@
           "type": "email",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/unicare/logo.jpeg"
     },
     {
       "id": "atomic-energy",
@@ -3701,24 +3154,6 @@
           "page": 86
         },
         {
-          "id": "atomic-energy-p86-photo1",
-          "type": "photo",
-          "title": "هيئة الطاقة الذرية — صورة 1",
-          "url": "/assets/companies/atomic-energy/page086_photo1.png",
-          "page": 86,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "atomic-energy-p86-photo2",
-          "type": "photo",
-          "title": "هيئة الطاقة الذرية — صورة 2",
-          "url": "/assets/companies/atomic-energy/page086_photo2.jpeg",
-          "page": 86,
-          "width": 304,
-          "height": 166
-        },
-        {
           "id": "atomic-energy-p86-photo3",
           "type": "photo",
           "title": "هيئة الطاقة الذرية — صورة 3",
@@ -3753,15 +3188,6 @@
           "page": 86,
           "width": 663,
           "height": 952
-        },
-        {
-          "id": "atomic-energy-p86-photo7",
-          "type": "photo",
-          "title": "هيئة الطاقة الذرية — صورة 7",
-          "url": "/assets/companies/atomic-energy/page086_photo7.jpeg",
-          "page": 86,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "atomic-energy-p87-card",
@@ -3825,7 +3251,8 @@
           "type": "portal",
           "page": 3
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/atomic-energy/logo.png"
     },
     {
       "id": "egycare",
@@ -3874,15 +3301,6 @@
           "title": "نموذج مباشر",
           "url": "/assets/companies/egycare/page071_card.png",
           "page": 71
-        },
-        {
-          "id": "egycare-p71-photo1",
-          "type": "photo",
-          "title": "نموذج مباشر — صورة 1",
-          "url": "/assets/companies/egycare/page071_photo1.png",
-          "page": 71,
-          "width": 318,
-          "height": 285
         },
         {
           "id": "egycare-p71-photo3",
@@ -3955,15 +3373,6 @@
           "page": 71,
           "width": 629,
           "height": 878
-        },
-        {
-          "id": "egycare-p71-photo11",
-          "type": "photo",
-          "title": "نموذج مباشر — صورة 11",
-          "url": "/assets/companies/egycare/page071_photo11.jpeg",
-          "page": 71,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "egycare-p72-card",
@@ -4208,15 +3617,6 @@
           "page": 76
         },
         {
-          "id": "egycare-p76-photo2",
-          "type": "photo",
-          "title": "الرجوع اىل قائمة الشر كات — صورة 2",
-          "url": "/assets/companies/egycare/page076_photo2.png",
-          "page": 76,
-          "width": 265,
-          "height": 159
-        },
-        {
           "id": "egycare-p76-photo3",
           "type": "photo",
           "title": "الرجوع اىل قائمة الشر كات — صورة 3",
@@ -4271,7 +3671,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/egycare/logo.png"
     },
     {
       "id": "sehatech",
@@ -4305,33 +3706,6 @@
           "title": "اجراءات صرف",
           "url": "/assets/companies/sehatech/page101_card.png",
           "page": 101
-        },
-        {
-          "id": "sehatech-p101-photo1",
-          "type": "photo",
-          "title": "اجراءات صرف — صورة 1",
-          "url": "/assets/companies/sehatech/page101_photo1.png",
-          "page": 101,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "sehatech-p101-photo2",
-          "type": "photo",
-          "title": "اجراءات صرف — صورة 2",
-          "url": "/assets/companies/sehatech/page101_photo2.jpeg",
-          "page": 101,
-          "width": 199,
-          "height": 148
-        },
-        {
-          "id": "sehatech-p101-photo3",
-          "type": "photo",
-          "title": "اجراءات صرف — صورة 3",
-          "url": "/assets/companies/sehatech/page101_photo3.jpeg",
-          "page": 101,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "sehatech-p102-card",
@@ -4370,7 +3744,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/sehatech/logo.png"
     },
     {
       "id": "care-plus",
@@ -4421,24 +3796,6 @@
           "title": "نموذج صرف نسخة الصيدلية يلزم وجود ختم",
           "url": "/assets/companies/care-plus/page077_card.png",
           "page": 77
-        },
-        {
-          "id": "care-plus-p77-photo1",
-          "type": "photo",
-          "title": "نموذج صرف نسخة الصيدلية يلزم وجود ختم — صورة 1",
-          "url": "/assets/companies/care-plus/page077_photo1.png",
-          "page": 77,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "care-plus-p77-photo2",
-          "type": "photo",
-          "title": "نموذج صرف نسخة الصيدلية يلزم وجود ختم — صورة 2",
-          "url": "/assets/companies/care-plus/page077_photo2.png",
-          "page": 77,
-          "width": 265,
-          "height": 159
         },
         {
           "id": "care-plus-p77-photo3",
@@ -4495,15 +3852,6 @@
           "height": 443
         },
         {
-          "id": "care-plus-p77-photo9",
-          "type": "photo",
-          "title": "نموذج صرف نسخة الصيدلية يلزم وجود ختم — صورة 9",
-          "url": "/assets/companies/care-plus/page077_photo9.jpeg",
-          "page": 77,
-          "width": 242,
-          "height": 243
-        },
-        {
           "id": "care-plus-p78-card",
           "type": "card",
           "title": "نسخة الصيدلية",
@@ -4517,33 +3865,6 @@
           "url": "/assets/companies/care-plus/page078_photo4.png",
           "page": 78,
           "width": 345,
-          "height": 117
-        },
-        {
-          "id": "care-plus-p78-photo5",
-          "type": "photo",
-          "title": "نسخة الصيدلية — صورة 5",
-          "url": "/assets/companies/care-plus/page078_photo5.png",
-          "page": 78,
-          "width": 778,
-          "height": 117
-        },
-        {
-          "id": "care-plus-p78-photo6",
-          "type": "photo",
-          "title": "نسخة الصيدلية — صورة 6",
-          "url": "/assets/companies/care-plus/page078_photo6.png",
-          "page": 78,
-          "width": 754,
-          "height": 117
-        },
-        {
-          "id": "care-plus-p78-photo7",
-          "type": "photo",
-          "title": "نسخة الصيدلية — صورة 7",
-          "url": "/assets/companies/care-plus/page078_photo7.png",
-          "page": 78,
-          "width": 632,
           "height": 117
         },
         {
@@ -4597,15 +3918,6 @@
           "title": "الموافقات",
           "url": "/assets/companies/care-plus/page079_card.png",
           "page": 79
-        },
-        {
-          "id": "care-plus-p79-photo2",
-          "type": "photo",
-          "title": "الموافقات — صورة 2",
-          "url": "/assets/companies/care-plus/page079_photo2.png",
-          "page": 79,
-          "width": 2261,
-          "height": 126
         },
         {
           "id": "care-plus-p79-photo3",
@@ -4710,15 +4022,6 @@
           "height": 698
         },
         {
-          "id": "care-plus-p82-photo4",
-          "type": "photo",
-          "title": "التحمل المريض — صورة 4",
-          "url": "/assets/companies/care-plus/page082_photo4.jpeg",
-          "page": 82,
-          "width": 281,
-          "height": 207
-        },
-        {
           "id": "care-plus-p82-photo5",
           "type": "photo",
           "title": "التحمل المريض — صورة 5",
@@ -4771,7 +4074,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/care-plus/logo.jpeg"
     },
     {
       "id": "sesco-care",
@@ -4806,24 +4110,6 @@
           "page": 90
         },
         {
-          "id": "sesco-care-p90-photo1",
-          "type": "photo",
-          "title": "Sesco Care — صورة 1",
-          "url": "/assets/companies/sesco-care/page090_photo1.png",
-          "page": 90,
-          "width": 318,
-          "height": 285
-        },
-        {
-          "id": "sesco-care-p90-photo2",
-          "type": "photo",
-          "title": "Sesco Care — صورة 2",
-          "url": "/assets/companies/sesco-care/page090_photo2.jpeg",
-          "page": 90,
-          "width": 305,
-          "height": 131
-        },
-        {
           "id": "sesco-care-p90-photo3",
           "type": "photo",
           "title": "Sesco Care — صورة 3",
@@ -4840,15 +4126,6 @@
           "page": 90,
           "width": 838,
           "height": 1188
-        },
-        {
-          "id": "sesco-care-p90-photo5",
-          "type": "photo",
-          "title": "Sesco Care — صورة 5",
-          "url": "/assets/companies/sesco-care/page090_photo5.jpeg",
-          "page": 90,
-          "width": 242,
-          "height": 243
         },
         {
           "id": "sesco-care-p91-card",
@@ -4976,7 +4253,8 @@
           "type": "phone",
           "page": 0
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/sesco-care/logo.png"
     },
     {
       "id": "petroshad",
@@ -5005,15 +4283,6 @@
           "page": 97
         },
         {
-          "id": "petroshad-p97-photo1",
-          "type": "photo",
-          "title": "Petroshahd — صورة 1",
-          "url": "/assets/companies/petroshad/page097_photo1.png",
-          "page": 97,
-          "width": 318,
-          "height": 285
-        },
-        {
           "id": "petroshad-p97-photo2",
           "type": "photo",
           "title": "Petroshahd — صورة 2",
@@ -5032,15 +4301,6 @@
           "height": 166
         },
         {
-          "id": "petroshad-p97-photo4",
-          "type": "photo",
-          "title": "Petroshahd — صورة 4",
-          "url": "/assets/companies/petroshad/page097_photo4.jpeg",
-          "page": 97,
-          "width": 242,
-          "height": 243
-        },
-        {
           "id": "petroshad-p98-card",
           "type": "card",
           "title": "مالحظات يجب تطبيقها وقت الصرف",
@@ -5055,15 +4315,6 @@
           "page": 98,
           "width": 421,
           "height": 610
-        },
-        {
-          "id": "petroshad-p98-photo3",
-          "type": "photo",
-          "title": "مالحظات يجب تطبيقها وقت الصرف — صورة 3",
-          "url": "/assets/companies/petroshad/page098_photo3.jpeg",
-          "page": 98,
-          "width": 199,
-          "height": 148
         },
         {
           "id": "petroshad-p99-card",
@@ -5131,7 +4382,8 @@
           "type": "portal",
           "page": 4
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/petroshad/logo.jpeg"
     },
     {
       "id": "sumed",
@@ -5158,15 +4410,6 @@
           "title": "•هذه موافقه مبدائيه تتطلب سحب الموافقه النهائيه من السيستم الخاص بصحه وان يكون م",
           "url": "/assets/companies/sumed/page100_card.png",
           "page": 100
-        },
-        {
-          "id": "sumed-p100-photo1",
-          "type": "photo",
-          "title": "•هذه موافقه مبدائيه تتطلب سحب الموافقه النهائيه من السيستم الخاص بصحه وان يكون م — صورة 1",
-          "url": "/assets/companies/sumed/page100_photo1.png",
-          "page": 100,
-          "width": 318,
-          "height": 285
         },
         {
           "id": "sumed-p100-photo2",
@@ -5205,15 +4448,6 @@
           "height": 705
         },
         {
-          "id": "sumed-p100-photo6",
-          "type": "photo",
-          "title": "•هذه موافقه مبدائيه تتطلب سحب الموافقه النهائيه من السيستم الخاص بصحه وان يكون م — صورة 6",
-          "url": "/assets/companies/sumed/page100_photo6.jpeg",
-          "page": 100,
-          "width": 199,
-          "height": 148
-        },
-        {
           "id": "sumed-p100-photo7",
           "type": "photo",
           "title": "•هذه موافقه مبدائيه تتطلب سحب الموافقه النهائيه من السيستم الخاص بصحه وان يكون م — صورة 7",
@@ -5230,15 +4464,6 @@
           "page": 100,
           "width": 1050,
           "height": 637
-        },
-        {
-          "id": "sumed-p100-photo9",
-          "type": "photo",
-          "title": "•هذه موافقه مبدائيه تتطلب سحب الموافقه النهائيه من السيستم الخاص بصحه وان يكون م — صورة 9",
-          "url": "/assets/companies/sumed/page100_photo9.jpeg",
-          "page": 100,
-          "width": 242,
-          "height": 243
         }
       ],
       "links": [
@@ -5263,7 +4488,8 @@
           "type": "portal",
           "page": 4
         }
-      ]
+      ],
+      "logoUrl": "/assets/companies/sumed/logo.png"
     }
   ]
 }
