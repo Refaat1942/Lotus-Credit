@@ -60,8 +60,10 @@ export interface Company {
 export interface Branding {
   logoUrl: string;
   titleAr: string;
+  departmentAr: string;
   titleEn: string;
   subtitleAr: string;
+  heroBadgeAr?: string;
   heroTitleAr: string;
   heroSubtitleAr: string;
   footerText: string;
@@ -69,9 +71,11 @@ export interface Branding {
 
 export const DEFAULT_BRANDING: Branding = {
   logoUrl: '/lotus-logo.png',
-  titleAr: 'صيدليات لوتس قسم الاجل',
+  titleAr: 'صيدليات لوتس',
+  departmentAr: 'قسم الاجل',
   titleEn: 'Lotus Credit',
   subtitleAr: 'شروط صرف التعاقدات',
+  heroBadgeAr: 'قسم الاجل · شروط صرف التعاقدات',
   heroTitleAr: 'دليل صرف التعاقدات',
   heroSubtitleAr: 'كل ما تحتاجه لصرف روشتات التأمين بسرعة ودقة — بدون تسجيل دخول',
   footerText: '© 2026 Lotus Pharmacies',

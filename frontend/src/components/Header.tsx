@@ -19,17 +19,20 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="sticky top-0 z-50 glass border-b border-white/10"
+      className="sticky top-0 z-50 glass border-b border-theme"
     >
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 group min-w-0">
           <LotusLogo size="sm" animate />
-          <div className="min-w-0">
-            <h1 className="text-lg sm:text-xl font-bold gradient-text truncate">
+          <div className="min-w-0 leading-tight">
+            <h1 className="text-lg sm:text-xl font-bold gradient-text">
               {branding.titleAr}
             </h1>
-            <p className="text-xs text-slate-400 truncate">
-              {branding.titleEn} · {branding.subtitleAr}
+            <p className="text-sm font-semibold text-primary">
+              {branding.departmentAr}
+            </p>
+            <p className="text-[11px] text-muted hidden sm:block">
+              {branding.subtitleAr}
             </p>
           </div>
         </Link>
@@ -82,7 +85,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
               className="p-2 rounded-xl glass hover:bg-white/10 transition-colors"
               title="لوحة الإدارة"
             >
-              <Settings className="w-5 h-5 text-slate-300" />
+              <Settings className="w-5 h-5 text-muted" />
             </motion.button>
           </Link>
         </div>

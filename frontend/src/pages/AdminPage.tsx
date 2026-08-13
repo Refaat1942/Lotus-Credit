@@ -260,7 +260,8 @@ export default function AdminPage() {
               </div>
               <div className="flex-1 text-center sm:text-right">
                 <p className="text-2xl font-bold gradient-text">{branding.titleAr}</p>
-                <p className="text-slate-400 mt-1">{branding.titleEn} · {branding.subtitleAr}</p>
+                <p className="text-lg font-semibold text-primary">{branding.departmentAr}</p>
+                <p className="text-muted mt-1">{branding.subtitleAr}</p>
               </div>
             </div>
             <BrandingEditor branding={branding} onChange={updateBranding} />
@@ -337,9 +338,11 @@ function BrandingEditor({
   return (
     <div className="grid sm:grid-cols-2 gap-4">
       <Field label="رابط الشعار (مثال: /lotus-logo.png)" value={branding.logoUrl} onChange={(v) => set('logoUrl', v)} className="sm:col-span-2" />
-      <Field label="الاسم بالعربية" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
+      <Field label="الاسم بالعربية (السطر الأول)" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
+      <Field label="قسم / فرع (السطر الثاني)" value={branding.departmentAr} onChange={(v) => set('departmentAr', v)} />
       <Field label="الاسم بالإنجليزية" value={branding.titleEn} onChange={(v) => set('titleEn', v)} />
       <Field label="العنوان الفرعي" value={branding.subtitleAr} onChange={(v) => set('subtitleAr', v)} />
+      <Field label="شارة تحت اللوجو" value={branding.heroBadgeAr || ''} onChange={(v) => set('heroBadgeAr', v)} className="sm:col-span-2" />
       <Field label="عنوان الصفحة الرئيسية" value={branding.heroTitleAr} onChange={(v) => set('heroTitleAr', v)} />
       <Field label="وصف الصفحة الرئيسية" value={branding.heroSubtitleAr} onChange={(v) => set('heroSubtitleAr', v)} multiline className="sm:col-span-2" />
       <Field label="نص التذييل" value={branding.footerText} onChange={(v) => set('footerText', v)} className="sm:col-span-2" />

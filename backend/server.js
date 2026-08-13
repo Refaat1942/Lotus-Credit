@@ -18,6 +18,8 @@ if (fs.existsSync(assetsPath)) {
   app.use('/assets', express.static(assetsPath));
 }
 
+const { chat } = require('./assistant');
+
 function readRules() {
   return JSON.parse(fs.readFileSync(RULES_PATH, 'utf-8'));
 }
@@ -66,6 +68,17 @@ app.get('/api/companies/:id', (req, res) => {
     res.json(company);
   } catch {
     res.status(500).json({ error: 'Failed to load company' });
+  }
+});
+
+app.post('/api/assistant/chat', async (req, res) => {
+  try {
+    const { message } = req.body;
+    const rules = readRules();
+    const result = await chat(message, rules);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: 'Assistant failed', answer: 'معلش حصل خطأ، جرب تاني.' });
   }
 });
 

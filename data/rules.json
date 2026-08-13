@@ -2,15 +2,17 @@
   "version": "1.0.0",
   "branding": {
     "logoUrl": "/lotus-logo.png",
-    "titleAr": "صيدليات لوتس قسم الاجل",
+    "titleAr": "صيدليات لوتس",
+    "departmentAr": "قسم الاجل",
     "titleEn": "Lotus Credit",
     "subtitleAr": "شروط صرف التعاقدات",
+    "heroBadgeAr": "قسم الاجل · شروط صرف التعاقدات",
     "heroTitleAr": "دليل صرف التعاقدات",
     "heroSubtitleAr": "كل ما تحتاجه لصرف روشتات التأمين بسرعة ودقة — بدون تسجيل دخول",
     "footerText": "© 2026 Lotus Pharmacies"
   },
   "meta": {
-    "titleAr": "صيدليات لوتس قسم الاجل - شروط صرف التعاقدات",
+    "titleAr": "صيدليات لوتس - قسم الاجل - شروط صرف التعاقدات",
     "titleEn": "Lotus Credit - Insurance Dispensing Rules",
     "organization": "Lotus Pharmacies",
     "lastUpdated": "2026-08-01",
