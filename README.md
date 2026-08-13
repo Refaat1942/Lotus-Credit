@@ -44,7 +44,7 @@ chmod +x deploy/deploy.sh
 ./deploy/deploy.sh 187.124.15.14
 ```
 
-Access: **http://187.124.15.14**
+Access: **http://187.124.15.14:16346**
 
 ## Insurance Companies Included
 

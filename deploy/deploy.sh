@@ -41,6 +41,6 @@ EOF
 
 echo ""
 echo "=== Deployment complete ==="
-echo "Access at: http://$SERVER_IP"
-echo "Admin panel: http://$SERVER_IP/admin"
+echo "Access at: http://$SERVER_IP:16346"
+echo "Admin panel: http://$SERVER_IP:16346/admin"
 echo "Default admin password: lotus-admin-2026 (change via ADMIN_PASSWORD env)"
