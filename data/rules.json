@@ -1,0 +1,763 @@
+{
+  "version": "1.0.0",
+  "meta": {
+    "titleAr": "لوتس كريدت - شروط صرف التعاقدات",
+    "titleEn": "Lotus Credit - Insurance Dispensing Rules",
+    "organization": "Lotus Pharmacies",
+    "lastUpdated": "2026-08-01",
+    "sourceDocument": "شروط صرف التعاقدات اغسطس 2026.pdf"
+  },
+  "general": {
+    "cardChecklist": [
+      "صورة المستفيد",
+      "اسم المستفيد",
+      "رقم وثيقة التأمين",
+      "رقم العضوية",
+      "رقم الهوية",
+      "اسم جهة التعاقد",
+      "المزايا (إقامة-حمل-أسنان-بصريات-تحمل)",
+      "تاريخ بدء التغطية",
+      "تاريخ انتهاء التغطية",
+      "أي تعليمات"
+    ],
+    "electronicCardRules": [
+      "التأكد الصورة من التطبيق وليست مسجلة",
+      "التأكد من التاريخ والتوقيت = يوم صرف الروشتة",
+      "عدم تطابق التاريخ: طلب الخروج والدخول مرة أخرى"
+    ],
+    "approvalLinks": [
+      "mailto:PBM@AXA-EGYPT.COM",
+      "https://etpa.med-right.com/Login",
+      "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+      "https://online.mednet-egypt.com/MedNeXtOnline/faces/pages/login.jspx;MEDNEXT_ONLINE=LEJqhSnets3hN-NBJ92rSMDu2sLvzQG-dI-W05GgNtv7KOZfNfp_M0Nux-OsEerJ6rjWsmbpYAd6S-mC4J_E2nDIjyq7QRblhLsG-p46KAbhxIac7xOe_RcTmcuzxKj_!1293113076?_adf.ctrl-state=1a4y9bp5ca_4",
+      "https://accounts.zoho.com/signin?servicename=ZohoCRM&signupurl=https://www.zoho.com/crm/lp/signup.html",
+      "https://provider.sehatech.xyz/login",
+      "https://i-care.globemedegypt.com:8034/Index.cfm",
+      "mailto:Approval.Requests@metlife.com",
+      "mailto:approvals@globemedegypt.com",
+      "mailto:Prescription@lotuspharmacies.com",
+      "mailto:provider@medmark.eg",
+      "https://app.uni-act.org/ords/r/mis/erx105/login?session=6619767873795",
+      "https://pulsepp-egp.nextcarehealth.com/claims",
+      "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+      "http://www.med-right.com/"
+    ],
+    "lastUpdated": "2026-08-01",
+    "sourceDocument": "شروط صرف التعاقدات اغسطس 2026.pdf"
+  },
+  "companies": [
+    {
+      "id": "axa",
+      "nameAr": "AXA",
+      "nameEn": "AXA",
+      "order": 1,
+      "hotline": "16363",
+      "approvalPortal": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+      "approvalSystem": "Yodawy",
+      "color": "#00008F",
+      "icon": "shield",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16363"
+        },
+        {
+          "type": "yodawy",
+          "value": "15005"
+        },
+        {
+          "type": "email",
+          "value": "PBM@AXA-EGYPT.COM"
+        }
+      ],
+      "forms": [
+        "نموذج أصفر بالكربون",
+        "روشتة One Health",
+        "روشتة خارجية",
+        "E-Form على يوداوي",
+        "علاج مسجل على البرنامج"
+      ],
+      "rules": {
+        "prescriptionValidity": "15 يوم من تاريخ كتابة النموذج",
+        "maxDispensePeriod": "30 يوم",
+        "approvalValidity": "7 أيام",
+        "copay": "كما مدون على الكارنية وفي الموافقة",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "externalRxAllowed": "إذا كان مدون على الكارنية out of network",
+        "diagnosisRequired": true,
+        "alternativesPolicy": "في حدود سعر الدواء ونفس التركيز",
+        "importantNotes": [
+          "يلزم أن تاريخ البيع نفس تاريخ الموافقة على Yodawy",
+          "يجب إدخال جميع الجرعات والمدة المحددة في الروشتة",
+          "الالتزام بإدخال جميع التشخيصات خصوصاً الحمل والأسنان",
+          "إلغاء الموافقات: revert خلال 3 أيام ثم PBM@AXA-EGYPT.COM"
+        ],
+        "prohibitions": [
+          "الأدوية المحظورة - يتم صرف ما يتم الموافقة عليه فقط"
+        ]
+      },
+      "cardInstructions": [
+        "التأكد أن الصورة من التطبيق وليست screenshot",
+        "التأكد من التاريخ والتوقيت أسفل الكارنية = يوم الصرف",
+        "في حالة عدم تطابق التاريخ: طلب الخروج والدخول مرة أخرى"
+      ]
+    },
+    {
+      "id": "metlife",
+      "nameAr": "MetLife",
+      "nameEn": "MetLife",
+      "order": 2,
+      "hotline": "19097",
+      "approvalPortal": "https://i-care.globemedegypt.com:8034/Index.cfm",
+      "approvalSystem": "i*care",
+      "color": "#0066B3",
+      "icon": "heart",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "19097"
+        },
+        {
+          "type": "icare",
+          "value": "0233086255"
+        },
+        {
+          "type": "email",
+          "value": "Approval.Requests@metlife.com"
+        },
+        {
+          "type": "whatsapp",
+          "value": "01016660199"
+        }
+      ],
+      "forms": [
+        "نموذج أزرق بالكربون",
+        "روشتة يوداوي",
+        "صورة روشتة مرفوعة",
+        "علاج مسجل i*care/yodawy"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام من تاريخ كتابة النموذج",
+        "maxDispensePeriod": "30 يوم",
+        "financialLimit": "1500 ج من صافي الروشتة",
+        "priorApprovalRequired": "عند تجاوز 1500 ج أو عدم تغطية الحمل/الأسنان",
+        "copay": "20% ما لم ينص الكارنية غير ذلك",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "في حدود سعر الدواء ونفس التركيز",
+        "importantNotes": [
+          "تاريخ الموافقة والنموذج لا يتعدى 7 أيام لإدخاله على i*care",
+          "تاريخ الموافقة المسبقة قبل أو في نفس تاريخ SSNBR",
+          "مراجعة public Notes وحالة الموافقة (approved/suspended/rejected)",
+          "للحمل والأسنان: الرجوع لخدمة عملاء MetLife"
+        ],
+        "prohibitions": [
+          "علاج متابعة الحمل غير مغطى إلا إذا مدون",
+          "علاج الأسنان غير مغطى إلا إذا مدون"
+        ]
+      }
+    },
+    {
+      "id": "globemed",
+      "nameAr": "GlobeMed",
+      "nameEn": "GlobeMed",
+      "order": 3,
+      "hotline": "16784",
+      "approvalPortal": "https://i-care.globemedegypt.com:8034/Index.cfm",
+      "approvalSystem": "i*care",
+      "color": "#00A651",
+      "icon": "globe",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16784"
+        },
+        {
+          "type": "email",
+          "value": "approvals@globemedegypt.com"
+        },
+        {
+          "type": "email",
+          "value": "psu@globemedegypt.com"
+        },
+        {
+          "type": "email",
+          "value": "pbmegypt@globemedegypt.com"
+        }
+      ],
+      "forms": [
+        "نموذج أزرق بالكربون",
+        "روشتة خارجية",
+        "روشتة إلكترونية",
+        "Within network (no)"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "maxDispensePeriod": "60 يوم",
+        "copay": "كما مدون بالكارنية مطابق للموافقة",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "diagnosisHelp": "WhatsApp 01016660199 عند عدم معرفة التشخيص",
+        "alternativesPolicy": "في حدود سعر الدواء نفس التركيز",
+        "importantNotes": [
+          "لا يتم الصرف عند ظهور exceeding limitation",
+          "اختيار الشركة الفرعية مطابق للـ risk carrier",
+          "تاريخ البيع = تاريخ الموافقة على i*care",
+          "إرفاق EOB أو SSNBR مع ريسيت البيع"
+        ],
+        "prohibitions": [
+          "تعديلات على الأدوية: pbmegypt@globemedegypt.com"
+        ]
+      }
+    },
+    {
+      "id": "nextcare",
+      "nameAr": "Nextcare",
+      "nameEn": "Nextcare / Allianz",
+      "order": 4,
+      "hotline": "19154",
+      "approvalPortal": "https://pulsepp-egp.nextcarehealth.com/claims",
+      "approvalSystem": "Pulse",
+      "color": "#E31837",
+      "icon": "pulse",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "19154"
+        },
+        {
+          "type": "whatsapp",
+          "value": "01149992051"
+        }
+      ],
+      "forms": [
+        "نموذج أصفر بالكربون",
+        "روشتة خارجية",
+        "روشتة إلكترونية مطبوعة"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "maxDispensePeriod": "30 يوم",
+        "approvalValidity": "7 أيام",
+        "copay": "كما مدون بالكارنية والموافقة",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "نفس المادة الفعالة والسعر +10 ج كحد أقصى",
+        "importantNotes": [
+          "اختيار type صحيح: out patient / dental / maternity",
+          "كتابة استثناءات في notes ورفع صورة النموذج",
+          "عطل Pulse: الخط الساخن 19154",
+          "مراجعة التعليمات بأسفل الكارت (xxxxxxxx) - تلغي أي تعليمات أخرى"
+        ],
+        "prohibitions": [
+          "أمراض مزمنة محددة - يجب إدخال التشخيص بنفس المصطلح"
+        ]
+      }
+    },
+    {
+      "id": "mednet",
+      "nameAr": "Mednet",
+      "nameEn": "Mednet",
+      "order": 5,
+      "hotline": "17011",
+      "approvalPortal": "https://online.mednet-egypt.com/MedNeXtOnline/faces/pages/login.jspx",
+      "approvalSystem": "MedNeXt",
+      "color": "#003DA5",
+      "icon": "network",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "17011"
+        }
+      ],
+      "forms": [
+        "النموذج الأزرق + روشتة خارجية",
+        "موافقة مسبقة",
+        "علاج مزمن"
+      ],
+      "rules": {
+        "prescriptionValidity": "10 أيام",
+        "maxDispensePeriod": "شهر",
+        "copay": "كما مدون بالكارنية",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "في حدود سعر الدواء ونفس التركيز ونفس المادة الفعالة",
+        "importantNotes": [
+          "اختيار استثناء في procedure notes ورفع صورة الروشتة",
+          "موافقة preapproval: سحب من حساب الصيدلية",
+          "صالحية الموافقة 10 أيام"
+        ]
+      }
+    },
+    {
+      "id": "misr-healthcare",
+      "nameAr": "Misr Healthcare",
+      "nameEn": "Misr Healthcare",
+      "order": 6,
+      "hotline": "19114",
+      "approvalPortal": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+      "approvalSystem": "Nice Deer",
+      "color": "#C8102E",
+      "icon": "hospital",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "19114"
+        },
+        {
+          "type": "email",
+          "value": "amt@misrins.com.eg"
+        }
+      ],
+      "forms": [
+        "موافقات مسجلة Nice Deer",
+        "روشتة خارجية VIP",
+        "علاج شهري مزمن"
+      ],
+      "rules": {
+        "prescriptionValidity": "7-10 أيام",
+        "maxDispensePeriod": "شهر",
+        "copay": "كما مدون بالكارنية وNice Deer",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "نفس السعر أو أقل - replace على Nice Deer",
+        "importantNotes": [
+          "تعديل الأسعار وقت الصرف على Nice Deer",
+          "عدم شطب أو تعديل في الروشتة بدون ختم",
+          "صرف الحجم الأصغر عند وجود أكثر من حجم"
+        ]
+      }
+    },
+    {
+      "id": "amc",
+      "nameAr": "الأهلي للخدمات الطبية AMC",
+      "nameEn": "AMC",
+      "order": 7,
+      "hotline": "19462",
+      "approvalPortal": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+      "approvalSystem": "Nice Deer",
+      "color": "#00843D",
+      "icon": "medical",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "19462"
+        },
+        {
+          "type": "help",
+          "value": "17109"
+        }
+      ],
+      "forms": [
+        "نموذج نسخة الصيدلية بالكربون",
+        "روشتة إلكترونية E-PRESCRIPTION",
+        "علاج شهري مزمن"
+      ],
+      "rules": {
+        "prescriptionValidity": "14 يوم",
+        "maxDispensePeriod": "28 يوم",
+        "copay": "كما مدون بالكارنية وNice Deer",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "REPLACE على Nice Deer - نفس المادة الفعالة",
+        "importantNotes": [
+          "تطابق اسم المستشفى في الموافقة مع ختم النموذج",
+          "إدخال رقم المسلسل H0274775 كاملاً",
+          "لا صرف بصورة ضوئية من الكارنية",
+          "جرعة القطرة 0.05 مل = 1 DROP"
+        ]
+      }
+    },
+    {
+      "id": "medright",
+      "nameAr": "Medright",
+      "nameEn": "Medright",
+      "order": 8,
+      "hotline": "16380",
+      "approvalPortal": "https://etpa.med-right.com/Login",
+      "approvalSystem": "ETPA",
+      "color": "#582C83",
+      "icon": "check",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16380"
+        },
+        {
+          "type": "hotline",
+          "value": "16830"
+        }
+      ],
+      "forms": [
+        "النموذج الأبيض",
+        "موافقة مسبقة",
+        "علاج مزمن"
+      ],
+      "rules": {
+        "prescriptionValidity": "14 يوم",
+        "maxDispensePeriod": "شهر",
+        "copay": "كما مدون بالكارنية",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "في حدود سعر الدواء ونفس التركيز",
+        "importantNotes": [
+          "استفسارات: 16830",
+          "صرف كمية تكفي يوم واحد قبل انتهاء الكارنية"
+        ]
+      }
+    },
+    {
+      "id": "medmark",
+      "nameAr": "Medmark",
+      "nameEn": "Medmark",
+      "order": 9,
+      "hotline": "16816",
+      "approvalPortal": "https://accounts.zoho.com/signin?servicename=ZohoCRM",
+      "approvalSystem": "Zoho CRM",
+      "color": "#FF6900",
+      "icon": "file",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16816"
+        },
+        {
+          "type": "mobile",
+          "value": "01222109494"
+        },
+        {
+          "type": "email",
+          "value": "preauthorization@medmak.eg"
+        },
+        {
+          "type": "email",
+          "value": "provider@medmark.eg"
+        }
+      ],
+      "forms": [
+        "روشتة خارجية + نموذج Horizon/Allianz",
+        "علاج مزمن"
+      ],
+      "rules": {
+        "prescriptionValidity": "12 شهر للمزمن",
+        "maxDispensePeriod": "1-3 أشهر حسب الشركة",
+        "financialLimit": "4000 ج - موافقة عند تجاوز 2000-4000 ج",
+        "copay": "كما مدون بالكارنية",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "diagnosisRequired": true,
+        "importantNotes": [
+          "التحقق من سريان العضوية على Zoho قبل كل صرف",
+          "Horizon: شهر واحد للمزمن | Allianz EDS: 3 أشهر",
+          "تجديد روشتة المزمن كل 12 شهر"
+        ],
+        "prohibitions": [
+          "فيتامينات",
+          "مستحضرات تجميل",
+          "منع حمل",
+          "عقم",
+          "أسنان",
+          "تطعيمات"
+        ]
+      }
+    },
+    {
+      "id": "bupa",
+      "nameAr": "Bupa",
+      "nameEn": "Bupa",
+      "order": 10,
+      "hotline": "16816",
+      "approvalPortal": null,
+      "approvalSystem": "Call Center + Email",
+      "color": "#0079C1",
+      "icon": "mail",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16816"
+        },
+        {
+          "type": "email",
+          "value": "Prescription@lotuspharmacies.com"
+        }
+      ],
+      "forms": [
+        "روشتة خارجية",
+        "نموذج Bupa",
+        "موافقة Call Center"
+      ],
+      "rules": {
+        "prescriptionValidity": "6 أشهر",
+        "copay": "20% co-insurance أو covered in full",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "diagnosisRequired": true,
+        "importantNotes": [
+          "Provider ID: 745060",
+          "GK: insurance number = Bupa card-approval number",
+          "فصل الحقن outpatient surgical في ريسيت منفصل",
+          "الرد على العميل خلال ساعتين"
+        ],
+        "prohibitions": [
+          "لا صرف إذا الموافقة موجهة لصيدلية أخرى"
+        ]
+      }
+    },
+    {
+      "id": "unicare",
+      "nameAr": "Unicare",
+      "nameEn": "Unicare",
+      "order": 11,
+      "hotline": "19389",
+      "approvalPortal": "https://app.uni-act.org/ords/r/mis/erx105/login",
+      "approvalSystem": "Uni-Act",
+      "color": "#00B5E2",
+      "icon": "user",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "19389"
+        },
+        {
+          "type": "email",
+          "value": "Hotline@unicare-egypt.com"
+        }
+      ],
+      "forms": [
+        "النموذج الأصفر + روشتة خارجية",
+        "DOS/علاج مزمن مسجل",
+        "طبيب موقع"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "maxDispensePeriod": "10 أيام بدون تحديد مدة",
+        "copay": "كما مدون بالكارنية",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "في حدود سعر الدواء",
+        "importantNotes": [
+          "النموذج الأصفر يجب إرفاق روشتة خارجية - لا يصرف بالنموذج فقط",
+          "مراجعة Remaining amount, limit surpass & by patient"
+        ]
+      }
+    },
+    {
+      "id": "atomic-energy",
+      "nameAr": "هيئة الطاقة الذرية",
+      "nameEn": "Atomic Energy Authority",
+      "order": 12,
+      "hotline": null,
+      "approvalPortal": null,
+      "approvalSystem": "نموذج مباشر",
+      "color": "#FFD700",
+      "icon": "atom",
+      "forms": [
+        "نموذج الهيئة موجه لصيدليات اللوتس"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "maxDispensePeriod": "شهر",
+        "financialLimit": "1800 جنيه",
+        "copay": "فئة A أو فئة B",
+        "cardRequired": true,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": false,
+        "alternativesPolicy": "حد 50 ج من سعر الدواء الأصلي - نفس التركيز",
+        "importantNotes": [
+          "ختم هيئة الطاقة الذرية + ختم/امضاء الطبيب",
+          "صرف جزئي: صورة الروشتة + كتابة لم يصرف + ختم الصيدلية"
+        ]
+      }
+    },
+    {
+      "id": "egycare",
+      "nameAr": "Egycare",
+      "nameEn": "Egycare",
+      "order": 13,
+      "hotline": "16426",
+      "approvalPortal": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+      "approvalSystem": "Nice Deer",
+      "color": "#4A90D9",
+      "icon": "care",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16426"
+        },
+        {
+          "type": "whatsapp",
+          "value": "01099990952"
+        }
+      ],
+      "forms": [
+        "نموذج Egycare",
+        "روشتة إلكترونية E-FORM",
+        "نموذج طوارئ",
+        "preapproval"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "maxDispensePeriod": "شهر",
+        "copay": "كما مدون بالكارنية وNice Deer",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "alternativesPolicy": "في حدود سعر الدواء ونفس التركيز",
+        "importantNotes": [
+          "نموذج طوارئ: 48 ساعة - أسبوع فقط - لا فيتامينات",
+          "benefit: acute/chronic/maternity"
+        ]
+      }
+    },
+    {
+      "id": "sehatech",
+      "nameAr": "SehaOne",
+      "nameEn": "SehaOne",
+      "order": 14,
+      "hotline": "16300",
+      "approvalPortal": "https://provider.sehatech.xyz/login",
+      "approvalSystem": "SehaOne Tech",
+      "color": "#26A69A",
+      "icon": "tech",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "16300"
+        }
+      ],
+      "forms": [
+        "نموذج SehaOne",
+        "روشتة خارجية"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "copay": "كما مدون بالكارنية",
+        "diagnosisRequired": true
+      }
+    },
+    {
+      "id": "care-plus",
+      "nameAr": "Care Plus",
+      "nameEn": "Care Plus",
+      "order": 15,
+      "hotline": "17144",
+      "approvalPortal": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+      "approvalSystem": "Yodawy",
+      "color": "#9C27B0",
+      "icon": "plus",
+      "contacts": [
+        {
+          "type": "hotline",
+          "value": "17144"
+        },
+        {
+          "type": "whatsapp",
+          "value": "01003027300"
+        },
+        {
+          "type": "mobile",
+          "value": "01027405500"
+        }
+      ],
+      "forms": [
+        "نسخة الصيدلية",
+        "روشتة خارجية",
+        "DOS Yodawy",
+        "علاج شهري"
+      ],
+      "rules": {
+        "prescriptionValidity": "7 أيام",
+        "copay": "كما مدون بالكارنية",
+        "cardRequired": false,
+        "signatureRequired": true,
+        "stampRequired": true,
+        "diagnosisRequired": true,
+        "importantNotes": [
+          "المشترك غير المفعل أونلاين لا يصرف",
+          "المفعل يصرف حتى لو الكارنية يدق التجديد"
+        ]
+      }
+    },
+    {
+      "id": "sesco-care",
+      "nameAr": "Sesco Care",
+      "nameEn": "Sesco Care",
+      "order": 16,
+      "hotline": null,
+      "approvalPortal": null,
+      "approvalSystem": "مباشر",
+      "color": "#795548",
+      "icon": "direct",
+      "contacts": [
+        {
+          "type": "whatsapp",
+          "value": "01202842022"
+        }
+      ],
+      "forms": [
+        "صرف مباشر بعد تطبيق تعليمات الصرف"
+      ],
+      "rules": {
+        "importantNotes": [
+          "صرف مباشر - موافقات عند تجاوز الحد الأقصى والبدائل ومحظورات الصرف"
+        ]
+      }
+    },
+    {
+      "id": "petroshad",
+      "nameAr": "Petroshad",
+      "nameEn": "Petroshad",
+      "order": 17,
+      "hotline": null,
+      "approvalPortal": null,
+      "approvalSystem": "مباشر",
+      "color": "#37474F",
+      "icon": "oil",
+      "forms": [
+        "نموذج Petroshad"
+      ],
+      "rules": {
+        "importantNotes": [
+          "صرف مباشر بالكميات المحددة في النموذج"
+        ]
+      }
+    },
+    {
+      "id": "sumed",
+      "nameAr": "Sumed",
+      "nameEn": "Sumed",
+      "order": 18,
+      "hotline": null,
+      "approvalPortal": null,
+      "approvalSystem": "مباشر",
+      "color": "#455A64",
+      "icon": "group",
+      "forms": [
+        "جروب الشركة"
+      ],
+      "rules": {
+        "importantNotes": [
+          "صرف مباشر بالكميات المحددة في جروب الشركة"
+        ]
+      }
+    }
+  ]
+}
