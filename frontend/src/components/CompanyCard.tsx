@@ -19,7 +19,7 @@ export default function CompanyCard({ company, index }: CompanyCardProps) {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.4 }}
-      whileHover={{ y: -6, transition: { duration: 0.2 } }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
     >
       <Link to={`/company/${company.id}`} className="block">
         <div className="glass-card p-5 h-full relative overflow-hidden group">
@@ -27,57 +27,51 @@ export default function CompanyCard({ company, index }: CompanyCardProps) {
             className="absolute top-0 left-0 w-full h-1 rounded-t-2xl"
             style={{ background: `linear-gradient(90deg, ${color}, ${color}88)` }}
           />
-          <div
-            className="absolute -top-10 -left-10 w-32 h-32 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity"
-            style={{ backgroundColor: color }}
-          />
 
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex items-start justify-between gap-2 mb-4">
             <CompanyLogo company={company} size="md" />
             {company.hotline && (
-              <span className="flex items-center gap-1 text-xs text-slate-400 bg-white/5 px-2 py-1 rounded-lg">
-                <Phone className="w-3 h-3" />
+              <span className="flex items-center gap-1 text-sm text-muted bg-surface px-2.5 py-1 rounded-lg shrink-0">
+                <Phone className="w-3.5 h-3.5" />
                 {company.hotline}
               </span>
             )}
           </div>
 
-          <h3 className="text-lg font-bold text-white mb-1">{company.nameAr}</h3>
-          <p className="text-sm text-slate-400 mb-3">{company.nameEn}</p>
+          <h3 className="text-lg sm:text-xl font-bold text-primary mb-0.5">{company.nameAr}</h3>
+          <p className="text-sm text-muted mb-3">{company.nameEn}</p>
 
-          {company.approvalSystem && (
-            <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-white/10 text-lotus-300 mb-3">
-              {company.approvalSystem}
-            </span>
-          )}
+          <div className="flex flex-wrap gap-2 mb-3">
+            {company.approvalSystem && (
+              <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-lotus-500/15 text-lotus-600 dark:text-lotus-300">
+                {company.approvalSystem}
+              </span>
+            )}
+            {mediaCount > 0 && (
+              <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-surface text-muted">
+                {mediaCount} بطاقة/صورة
+              </span>
+            )}
+            {company.links && company.links.length > 0 && (
+              <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-surface text-muted">
+                {company.links.length} رابط
+              </span>
+            )}
+          </div>
 
-          {mediaCount > 0 && (
-            <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-white/5 text-slate-400 mb-3 mr-2">
-              {mediaCount} بطاقة/صورة
-            </span>
-          )}
-          {company.links && company.links.length > 0 && (
-            <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-white/5 text-slate-400 mb-3">
-              {company.links.length} رابط
-            </span>
-          )}
-
-          <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/10">
-            <span className="text-xs text-slate-500">
+          <div className="flex items-center justify-between mt-auto pt-3 border-t border-theme">
+            <span className="text-sm text-muted">
               {company.forms?.length || 0} طرق صرف
             </span>
-            <motion.span
-              className="flex items-center gap-1 text-sm text-lotus-400 group-hover:text-lotus-300"
-              whileHover={{ x: -4 }}
-            >
+            <span className="flex items-center gap-1 text-sm text-lotus-600 dark:text-lotus-400 group-hover:text-lotus-500">
               التفاصيل
               <ChevronLeft className="w-4 h-4" />
-            </motion.span>
+            </span>
           </div>
 
           {company.approvalPortal && (
-            <div className="mt-2 flex items-center gap-1 text-xs text-slate-500 truncate">
-              <ExternalLink className="w-3 h-3 flex-shrink-0" />
+            <div className="mt-2 flex items-center gap-1 text-xs text-muted truncate">
+              <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
               <span className="truncate">{company.approvalPortal.replace('https://', '')}</span>
             </div>
           )}

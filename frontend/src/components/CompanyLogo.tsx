@@ -8,9 +8,9 @@ interface CompanyLogoProps {
 }
 
 const sizes = {
-  sm: 'w-10 h-10 rounded-lg',
-  md: 'w-14 h-14 rounded-xl',
-  lg: 'w-16 h-16 rounded-xl',
+  sm: 'w-11 h-11 rounded-lg',
+  md: 'w-16 h-16 rounded-xl',
+  lg: 'w-[4.5rem] h-[4.5rem] rounded-xl',
 };
 
 export default function CompanyLogo({ company, size = 'md', className = '' }: CompanyLogoProps) {

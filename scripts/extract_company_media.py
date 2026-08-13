@@ -33,7 +33,34 @@ PAGE_RANGES = {
     "sehatech": (101, 102),
 }
 
-# Slide master images repeated on many pages (Lotus branding / nav / sample card)
+# Verified logo xrefs from PDF index pages (override proximity when set)
+MANUAL_LOGO_XREF: dict[str, int] = {
+    "axa": 42,
+    "metlife": 86,
+    "globemed": 84,
+    "nextcare": 99,
+    "mednet": 193,
+    "misr-healthcare": 200,
+    "amc": 197,
+    "medright": 215,
+    "medmark": 287,
+    "bupa": 283,
+    "unicare": 285,
+    "atomic-energy": 288,
+    "egycare": 344,
+    "sehatech": 349,
+    "care-plus": 348,
+    "sesco-care": 301,
+    "petroshad": 346,
+}
+
+INDEX_PAGE_COMPANIES = {
+    1: ["axa", "metlife", "globemed"],
+    2: ["nextcare", "mednet", "misr-healthcare", "amc"],
+    3: ["medright", "medmark", "bupa", "unicare", "atomic-energy"],
+    4: ["egycare", "sehatech", "care-plus", "sesco-care", "petroshad", "sumed"],
+}
+
 GLOBAL_TEMPLATE_XREFS = {5, 8, 10, 198}
 GLOBAL_TEMPLATE_SIZES = {
     (318, 285),
@@ -57,28 +84,6 @@ GLOBAL_TEMPLATE_SIZES = {
     (137, 4),
 }
 
-# Company logos on PDF index pages (page 1–4), by embedded image xref
-COMPANY_LOGO_XREF = {
-    "axa": 19,
-    "metlife": 42,
-    "globemed": 84,
-    "nextcare": 99,
-    "mednet": 195,
-    "misr-healthcare": 197,
-    "amc": 200,
-    "medright": 215,
-    "medmark": 281,
-    "bupa": 283,
-    "unicare": 285,
-    "atomic-energy": 288,
-    "egycare": 301,
-    "sehatech": 344,
-    "care-plus": 349,
-    "sesco-care": 348,
-    "petroshad": 346,
-    "sumed": 348,
-}
-
 
 def page_title(text: str, page: int) -> str:
     lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
@@ -95,15 +100,12 @@ def is_template_image(w: int, h: int, xref: int, global_xref_counts: dict[int, i
         return True
     if (w, h) in GLOBAL_TEMPLATE_SIZES:
         return True
-    # Lotus header strips and slide chrome
     if h <= 120 and w >= 500:
         return True
     if h <= 180 and w >= 900:
         return True
-    # Same image on 3+ pages = template
     if global_xref_counts.get(xref, 0) >= 3:
         return True
-    # Wide form chrome blocks from slide layout
     if w >= 900 and 200 <= h <= 280:
         return True
     if w >= 500 and 260 <= h <= 280:
@@ -119,6 +121,18 @@ def is_gallery_photo(w: int, h: int, xref: int, global_xref_counts: dict[int, in
     return True
 
 
+def is_logo_candidate(w: int, h: int, xref: int) -> bool:
+    if xref in GLOBAL_TEMPLATE_XREFS or (w, h) in GLOBAL_TEMPLATE_SIZES:
+        return False
+    if w < 100 or h < 70 or w > 480 or h > 260:
+        return False
+    if h <= 130 and w >= 500:
+        return False
+    if w / max(h, 1) > 3.5:
+        return False
+    return True
+
+
 def collect_global_xrefs(doc) -> dict[int, int]:
     counts: dict[int, int] = {}
     for page_num in range(1, len(doc) + 1):
@@ -127,38 +141,111 @@ def collect_global_xrefs(doc) -> dict[int, int]:
     return counts
 
 
-def is_logo_candidate(w: int, h: int, xref: int) -> bool:
-    if xref in GLOBAL_TEMPLATE_XREFS:
-        return False
-    if (w, h) in GLOBAL_TEMPLATE_SIZES:
-        return False
-    if h <= 120 and w >= 500:
-        return False
-    return w >= 100 and h >= 80
+def page_logo_candidates(page, doc) -> list[dict]:
+    items = []
+    for img in page.get_images(full=True):
+        xref = img[0]
+        try:
+            base = doc.extract_image(xref)
+        except Exception:
+            continue
+        w, h = base["width"], base["height"]
+        if not is_logo_candidate(w, h, xref):
+            continue
+        rects = page.get_image_rects(xref)
+        if not rects:
+            continue
+        r = rects[0]
+        if r.y0 > 520 or r.y0 < -5:
+            continue
+        items.append({"xref": xref, "w": w, "h": h, "x": r.x0, "y": r.y0, "ext": base.get("ext", "png")})
+    return items
 
 
-def extract_logos(doc, global_xref_counts: dict[int, int]) -> dict[str, str]:
+def hotline_anchors(page) -> list[dict]:
+    anchors = []
+    for block in page.get_text("dict").get("blocks", []):
+        for line in block.get("lines", []):
+            text = "".join(span.get("text", "") for span in line.get("spans", []))
+            digits = re.findall(r"\d{4,5}", text)
+            if not digits:
+                continue
+            if not re.search(r"hot|line|whats|tel", text, re.I) and "@" not in text:
+                continue
+            y = line["bbox"][1]
+            anchors.append({"y": y, "digits": digits[0], "text": text.strip()[:50]})
+    anchors.sort(key=lambda a: a["y"])
+    return anchors
+
+
+def find_anchor_y(page, hotline: str | None) -> float | None:
+    if not hotline:
+        return None
+    needle = re.sub(r"\D", "", hotline)[:5]
+    if not needle:
+        return None
+    for anchor in hotline_anchors(page):
+        if needle in re.sub(r"\D", "", anchor["text"]):
+            return anchor["y"]
+    return None
+
+
+def match_logos_on_index_pages(doc, companies_by_id: dict) -> tuple[dict[str, str], set[int]]:
     logos: dict[str, str] = {}
-    for cid, xref in COMPANY_LOGO_XREF.items():
+    used_xrefs: set[int] = set()
+
+    def save_logo(cid: str, xref: int, page_num: int, manual: bool = False) -> bool:
         try:
             base = doc.extract_image(xref)
         except Exception as exc:
             print(f"  logo {cid}: skip xref {xref} ({exc})")
-            continue
-        w, h = base.get("width", 0), base.get("height", 0)
-        ext = base.get("ext", "png")
-        if not is_logo_candidate(w, h, xref):
+            return False
+        w, h = base["width"], base["height"]
+        if not manual and not is_logo_candidate(w, h, xref):
             print(f"  logo {cid}: skip template {w}x{h}")
-            continue
+            return False
         folder = os.path.join(ASSETS, cid)
         os.makedirs(folder, exist_ok=True)
-        logo_name = f"logo.{ext if ext != 'jpg' else 'jpeg'}"
-        logo_path = os.path.join(folder, logo_name)
-        with open(logo_path, "wb") as out:
+        ext = base.get("ext", "png")
+        ext = ext if ext != "jpg" else "jpeg"
+        logo_name = f"logo.{ext}"
+        with open(os.path.join(folder, logo_name), "wb") as out:
             out.write(base["image"])
         logos[cid] = f"/assets/companies/{cid}/{logo_name}"
-        print(f"  logo {cid}: {w}x{h} -> {logo_name}")
-    return logos
+        used_xrefs.add(xref)
+        print(f"  logo {cid}: xref={xref} {w}x{h} (page {page_num}) -> {logo_name}")
+        return True
+
+    for cid, xref in MANUAL_LOGO_XREF.items():
+        page_num = next(p for p, ids in INDEX_PAGE_COMPANIES.items() if cid in ids)
+        save_logo(cid, xref, page_num, manual=True)
+
+    for page_num, company_ids in INDEX_PAGE_COMPANIES.items():
+        page = doc[page_num - 1]
+        candidates = page_logo_candidates(page, doc)
+
+        for cid in company_ids:
+            if cid in logos:
+                continue
+            company = companies_by_id[cid]
+            anchor_y = find_anchor_y(page, company.get("hotline"))
+
+            best = None
+            best_score = float("inf")
+            for cand in candidates:
+                if cand["xref"] in used_xrefs or cand["x"] < 400:
+                    continue
+                score = abs(cand["y"] - anchor_y) if anchor_y is not None else cand["y"]
+                if score < best_score:
+                    best_score = score
+                    best = cand
+
+            if best is None:
+                print(f"  logo {cid}: not found on page {page_num}")
+                continue
+            save_logo(cid, best["xref"], page_num)
+
+    return logos, used_xrefs
 
 
 def crop_page_card(page, clip_ratio_top=0.14, clip_ratio_bottom=0.06):
@@ -166,8 +253,7 @@ def crop_page_card(page, clip_ratio_top=0.14, clip_ratio_bottom=0.06):
     top = rect.y0 + rect.height * clip_ratio_top
     bottom = rect.y1 - rect.height * clip_ratio_bottom
     clip = pymupdf.Rect(rect.x0, top, rect.x1, bottom)
-    pix = page.get_pixmap(matrix=pymupdf.Matrix(1.6, 1.6), clip=clip, alpha=False)
-    return pix
+    return page.get_pixmap(matrix=pymupdf.Matrix(1.6, 1.6), clip=clip, alpha=False)
 
 
 def extract():
@@ -181,15 +267,18 @@ def extract():
     with open(RAW, encoding="utf-8") as f:
         page_texts = {p["page"]: p["text"] for p in json.load(f)["pdf_text"]}
 
+    with open(RULES, encoding="utf-8") as f:
+        rules = json.load(f)
+
+    companies_by_id = {c["id"]: c for c in rules["companies"]}
     doc = pymupdf.open(PDF)
     global_xref_counts = collect_global_xrefs(doc)
 
     print("Extracting company logos from index pages...")
-    logos = extract_logos(doc, global_xref_counts)
+    logos, logo_xrefs = match_logos_on_index_pages(doc, companies_by_id)
 
     company_media: dict[str, list] = {k: [] for k in PAGE_RANGES}
     company_xrefs: dict[str, set] = {k: set() for k in PAGE_RANGES}
-    logo_xrefs = set(COMPANY_LOGO_XREF.values())
 
     for cid, (start, end) in PAGE_RANGES.items():
         folder = os.path.join(ASSETS, cid)
@@ -241,9 +330,6 @@ def extract():
                         "height": h,
                     }
                 )
-
-    with open(RULES, encoding="utf-8") as f:
-        rules = json.load(f)
 
     for company in rules["companies"]:
         cid = company["id"]

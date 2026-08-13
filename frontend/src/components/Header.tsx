@@ -25,10 +25,10 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
         <Link to="/" className="flex items-center gap-2.5 group min-w-0">
           <LotusLogo size="sm" />
           <div className="min-w-0 leading-snug border-r border-theme pr-2.5">
-            <p className="text-sm sm:text-[15px] font-bold text-primary truncate">
+            <p className="text-base sm:text-lg font-bold text-primary truncate">
               {branding.titleAr}
             </p>
-            <p className="text-xs font-medium text-lotus-600 dark:text-lotus-400 truncate">
+            <p className="text-sm font-medium text-lotus-600 dark:text-lotus-400 truncate">
               {branding.departmentAr}
             </p>
           </div>
