@@ -5,9 +5,11 @@ import Header from '../components/Header';
 import CompanyCard from '../components/CompanyCard';
 import LotusLogo from '../components/LotusLogo';
 import { useRules } from '../hooks/useRules';
+import { useBranding } from '../hooks/useBranding';
 
 export default function HomePage() {
   const { data, loading, online, error, refetch } = useRules();
+  const branding = useBranding();
   const [search, setSearch] = useState('');
 
   const filtered = useMemo(() => {
@@ -48,14 +50,14 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-lotus-300 mb-6"
           >
             <Sparkles className="w-4 h-4" />
-            أغسطس 2026 · Lotus Pharmacies
+            {branding.titleEn} · {data?.meta.lastUpdated || '2026-08'}
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">دليل صرف التعاقدات</span>
+            <span className="gradient-text">{branding.heroTitleAr}</span>
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            كل ما تحتاجه لصرف روشتات التأمين بسرعة ودقة — بدون تسجيل دخول
+            {branding.heroSubtitleAr}
           </p>
 
           {error === 'offline' && (
@@ -153,7 +155,7 @@ export default function HomePage() {
         <div className="flex justify-center mb-3">
           <LotusLogo size="sm" />
         </div>
-        <p>© 2026 Lotus Pharmacies · آخر تحديث: {data?.meta.lastUpdated || '2026-08'}</p>
+        <p>{branding.footerText} · آخر تحديث: {data?.meta.lastUpdated || '2026-08'}</p>
       </footer>
     </div>
   );

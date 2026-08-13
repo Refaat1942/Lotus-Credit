@@ -1,21 +1,37 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus } from 'lucide-react';
+import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette } from 'lucide-react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import { useRules } from '../hooks/useRules';
-import type { Company, RulesData } from '../types';
+import type { Branding, Company, RulesData } from '../types';
+import { DEFAULT_BRANDING } from '../types';
+
+type AdminTab = 'companies' | 'branding';
 
 export default function AdminPage() {
   const { data, online, refetch, loading } = useRules();
-  const [token, setToken] = useState(localStorage.getItem('admin-token') || '');
+  const [token, setToken] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [editData, setEditData] = useState<RulesData | null>(null);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  const [activeTab, setActiveTab] = useState<AdminTab>('branding');
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
+
+  // Always require password when opening admin — never restore saved session
+  useEffect(() => {
+    localStorage.removeItem('admin-token');
+    sessionStorage.removeItem('admin-token');
+    setToken('');
+    setPassword('');
+  }, []);
+
+  useEffect(() => {
+    if (data && token && !editData) setEditData(data);
+  }, [data, token, editData]);
 
   const isLoggedIn = !!token;
 
@@ -30,19 +46,19 @@ export default function AdminPage() {
       });
       if (!res.ok) throw new Error('Invalid');
       const { token: t } = await res.json();
-      localStorage.setItem('admin-token', t);
       setToken(t);
-      setEditData(data);
+      setPassword('');
+      setEditData(data || null);
     } catch {
       setLoginError('كلمة المرور غير صحيحة');
     }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('admin-token');
     setToken('');
     setEditData(null);
     setSelectedCompany(null);
+    setPassword('');
   };
 
   const handleSave = async () => {
@@ -79,6 +95,11 @@ export default function AdminPage() {
     setSelectedCompany(updated);
   };
 
+  const updateBranding = (branding: Branding) => {
+    if (!editData) return;
+    setEditData({ ...editData, branding });
+  };
+
   const deleteCompany = (id: string) => {
     if (!editData || !confirm('حذف هذه الشركة؟')) return;
     setEditData({
@@ -101,6 +122,7 @@ export default function AdminPage() {
     };
     setEditData({ ...editData, companies: [...editData.companies, newCo] });
     setSelectedCompany(newCo);
+    setActiveTab('companies');
   };
 
   if (!isLoggedIn) {
@@ -120,7 +142,7 @@ export default function AdminPage() {
               <Lock className="w-6 h-6 text-lotus-400" />
             </div>
             <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
-            <p className="text-slate-400 text-sm mt-1">تعديل شروط صرف التعاقدات</p>
+            <p className="text-slate-400 text-sm mt-1">أدخل كلمة المرور للمتابعة</p>
           </div>
 
           <input
@@ -128,6 +150,7 @@ export default function AdminPage() {
             placeholder="كلمة المرور"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoFocus
             className="w-full py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
           />
           {loginError && <p className="text-red-400 text-sm mb-4">{loginError}</p>}
@@ -149,19 +172,17 @@ export default function AdminPage() {
     );
   }
 
-  useEffect(() => {
-    if (data && !editData) setEditData(data);
-  }, [data, editData]);
+  const branding = { ...DEFAULT_BRANDING, ...editData?.branding };
 
   return (
     <div className="min-h-screen">
       <Header online={online} />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-bold">إدارة الشروط</h1>
-            <p className="text-slate-400 text-sm">تعديل بيانات شركات التأمين</p>
+            <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
+            <p className="text-slate-400 text-sm">تعديل الشروط والهوية البصرية</p>
           </div>
           <div className="flex gap-2">
             <motion.button
@@ -193,49 +214,90 @@ export default function AdminPage() {
           </motion.p>
         )}
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          <div className="glass-card p-4">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold">الشركات</h2>
-              <button
-                onClick={addCompany}
-                className="p-2 rounded-lg bg-lotus-500/20 text-lotus-300 hover:bg-lotus-500/30"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="space-y-1 max-h-[60vh] overflow-y-auto">
-              {editData?.companies.map((c) => (
-                <button
-                  key={c.id}
-                  onClick={() => setSelectedCompany(c)}
-                  className={`w-full text-right p-3 rounded-xl transition-colors flex items-center justify-between ${
-                    selectedCompany?.id === c.id
-                      ? 'bg-lotus-500/20 text-lotus-300'
-                      : 'hover:bg-white/5'
-                  }`}
-                >
-                  <span>{c.nameAr}</span>
-                  <Edit3 className="w-4 h-4 opacity-50" />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-2 glass-card p-6">
-            {selectedCompany ? (
-              <CompanyEditor
-                company={selectedCompany}
-                onChange={updateCompany}
-                onDelete={() => deleteCompany(selectedCompany.id)}
-              />
-            ) : (
-              <p className="text-slate-400 text-center py-12">
-                اختر شركة للتعديل
-              </p>
-            )}
-          </div>
+        <div className="flex gap-2 mb-6">
+          <button
+            onClick={() => setActiveTab('branding')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+              activeTab === 'branding'
+                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
+                : 'glass hover:bg-white/10'
+            }`}
+          >
+            <Palette className="w-4 h-4" />
+            الهوية والشعار
+          </button>
+          <button
+            onClick={() => setActiveTab('companies')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+              activeTab === 'companies'
+                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
+                : 'glass hover:bg-white/10'
+            }`}
+          >
+            <Edit3 className="w-4 h-4" />
+            شركات التأمين
+          </button>
         </div>
+
+        {activeTab === 'branding' && (
+          <div className="glass-card p-6">
+            <h2 className="text-xl font-bold mb-6">الهوية البصرية</h2>
+            <div className="flex flex-col sm:flex-row gap-6 mb-6 p-4 rounded-xl bg-white/5">
+              <div className="flex justify-center">
+                <LotusLogo size="lg" logoUrl={branding.logoUrl} />
+              </div>
+              <div className="flex-1 text-center sm:text-right">
+                <p className="text-2xl font-bold gradient-text">{branding.titleAr}</p>
+                <p className="text-slate-400 mt-1">{branding.titleEn} · {branding.subtitleAr}</p>
+              </div>
+            </div>
+            <BrandingEditor branding={branding} onChange={updateBranding} />
+          </div>
+        )}
+
+        {activeTab === 'companies' && (
+          <div className="grid lg:grid-cols-3 gap-6">
+            <div className="glass-card p-4">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-bold">الشركات</h2>
+                <button
+                  onClick={addCompany}
+                  className="p-2 rounded-lg bg-lotus-500/20 text-lotus-300 hover:bg-lotus-500/30"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="space-y-1 max-h-[60vh] overflow-y-auto">
+                {editData?.companies.map((c) => (
+                  <button
+                    key={c.id}
+                    onClick={() => setSelectedCompany(c)}
+                    className={`w-full text-right p-3 rounded-xl transition-colors flex items-center justify-between ${
+                      selectedCompany?.id === c.id
+                        ? 'bg-lotus-500/20 text-lotus-300'
+                        : 'hover:bg-white/5'
+                    }`}
+                  >
+                    <span>{c.nameAr}</span>
+                    <Edit3 className="w-4 h-4 opacity-50" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-2 glass-card p-6">
+              {selectedCompany ? (
+                <CompanyEditor
+                  company={selectedCompany}
+                  onChange={updateCompany}
+                  onDelete={() => deleteCompany(selectedCompany.id)}
+                />
+              ) : (
+                <p className="text-slate-400 text-center py-12">اختر شركة للتعديل</p>
+              )}
+            </div>
+          </div>
+        )}
 
         <Link
           to="/"
@@ -245,6 +307,33 @@ export default function AdminPage() {
           العودة للتطبيق
         </Link>
       </main>
+    </div>
+  );
+}
+
+function BrandingEditor({
+  branding,
+  onChange,
+}: {
+  branding: Branding;
+  onChange: (b: Branding) => void;
+}) {
+  const set = (field: keyof Branding, value: string) => {
+    onChange({ ...branding, [field]: value });
+  };
+
+  return (
+    <div className="grid sm:grid-cols-2 gap-4">
+      <Field label="رابط الشعار (مثال: /lotus-logo.png)" value={branding.logoUrl} onChange={(v) => set('logoUrl', v)} className="sm:col-span-2" />
+      <Field label="الاسم بالعربية" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
+      <Field label="الاسم بالإنجليزية" value={branding.titleEn} onChange={(v) => set('titleEn', v)} />
+      <Field label="العنوان الفرعي" value={branding.subtitleAr} onChange={(v) => set('subtitleAr', v)} />
+      <Field label="عنوان الصفحة الرئيسية" value={branding.heroTitleAr} onChange={(v) => set('heroTitleAr', v)} />
+      <Field label="وصف الصفحة الرئيسية" value={branding.heroSubtitleAr} onChange={(v) => set('heroSubtitleAr', v)} multiline className="sm:col-span-2" />
+      <Field label="نص التذييل" value={branding.footerText} onChange={(v) => set('footerText', v)} className="sm:col-span-2" />
+      <p className="sm:col-span-2 text-xs text-slate-500">
+        لاستبدال ملف الشعار: ضع الصورة في مجلد public باسم lotus-logo.png أو أدخل رابط خارجي.
+      </p>
     </div>
   );
 }
@@ -338,7 +427,7 @@ function Field({
     <div>
       <label className="block text-xs text-slate-400 mb-1">{label}</label>
       {multiline ? (
-        <textarea rows={4} value={value} onChange={(e) => onChange(e.target.value)} className={cls} />
+        <textarea rows={3} value={value} onChange={(e) => onChange(e.target.value)} className={cls} />
       ) : (
         <input value={value} onChange={(e) => onChange(e.target.value)} className={cls} />
       )}

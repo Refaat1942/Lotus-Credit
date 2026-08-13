@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Wifi, WifiOff, RefreshCw, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LotusLogo from './LotusLogo';
+import { useBranding } from '../hooks/useBranding';
 
 interface HeaderProps {
   online: boolean;
@@ -10,6 +11,8 @@ interface HeaderProps {
 }
 
 export default function Header({ online, onRefresh, loading }: HeaderProps) {
+  const branding = useBranding();
+
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
@@ -17,15 +20,19 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
       className="sticky top-0 z-50 glass border-b border-white/10"
     >
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group min-w-0">
           <LotusLogo size="sm" animate />
-          <div>
-            <h1 className="text-xl font-bold gradient-text">لوتس كريدت</h1>
-            <p className="text-xs text-slate-400">Lotus Credit · شروط صرف التعاقدات</p>
+          <div className="min-w-0">
+            <h1 className="text-lg sm:text-xl font-bold gradient-text truncate">
+              {branding.titleAr}
+            </h1>
+            <p className="text-xs text-slate-400 truncate">
+              {branding.titleEn} · {branding.subtitleAr}
+            </p>
           </div>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <motion.div
             animate={{ scale: online ? [1, 1.05, 1] : 1 }}
             transition={{ repeat: online ? Infinity : 0, duration: 2 }}
@@ -36,7 +43,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
             }`}
           >
             {online ? <Wifi className="w-3.5 h-3.5" /> : <WifiOff className="w-3.5 h-3.5" />}
-            {online ? 'متصل' : 'بدون إنترنت'}
+            <span className="hidden sm:inline">{online ? 'متصل' : 'بدون إنترنت'}</span>
           </motion.div>
 
           {onRefresh && (
@@ -52,7 +59,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
             </motion.button>
           )}
 
-          <Link to="/admin">
+          <Link to="/admin" state={{ requireLogin: true }}>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

@@ -37,8 +37,29 @@ export interface Company {
   cardInstructions?: string[];
 }
 
+export interface Branding {
+  logoUrl: string;
+  titleAr: string;
+  titleEn: string;
+  subtitleAr: string;
+  heroTitleAr: string;
+  heroSubtitleAr: string;
+  footerText: string;
+}
+
+export const DEFAULT_BRANDING: Branding = {
+  logoUrl: '/lotus-logo.png',
+  titleAr: 'صيدليات لوتس قسم الاجل',
+  titleEn: 'Lotus Credit',
+  subtitleAr: 'شروط صرف التعاقدات',
+  heroTitleAr: 'دليل صرف التعاقدات',
+  heroSubtitleAr: 'كل ما تحتاجه لصرف روشتات التأمين بسرعة ودقة — بدون تسجيل دخول',
+  footerText: '© 2026 Lotus Pharmacies',
+};
+
 export interface RulesData {
   version: string;
+  branding?: Branding;
   meta: {
     titleAr: string;
     titleEn: string;
