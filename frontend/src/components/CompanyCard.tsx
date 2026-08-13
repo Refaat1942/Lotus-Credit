@@ -68,6 +68,12 @@ export default function CompanyCard({ company, index }: CompanyCardProps) {
             </span>
           )}
 
+          {company.media && company.media.length > 0 && (
+            <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-white/5 text-slate-400 mb-3 mr-2">
+              {company.media.length} بطاقة/صورة
+            </span>
+          )}
+
           <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/10">
             <span className="text-xs text-slate-500">
               {company.forms?.length || 0} طرق صرف

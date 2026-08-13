@@ -21,6 +21,16 @@ export interface CompanyRules {
   prohibitions?: string[];
 }
 
+export interface CompanyMedia {
+  id: string;
+  type: 'card' | 'photo';
+  title: string;
+  url: string;
+  page: number;
+  width?: number;
+  height?: number;
+}
+
 export interface Company {
   id: string;
   nameAr: string;
@@ -35,6 +45,7 @@ export interface Company {
   forms?: string[];
   rules?: CompanyRules;
   cardInstructions?: string[];
+  media?: CompanyMedia[];
 }
 
 export interface Branding {

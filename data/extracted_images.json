@@ -1,0 +1,6066 @@
+{
+  "images": [
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img2.png",
+      "width": 877,
+      "height": 88,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img3.png",
+      "width": 1825,
+      "height": 171,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img4.png",
+      "width": 701,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img5.png",
+      "width": 820,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img6.png",
+      "width": 713,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img7.png",
+      "width": 124,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img8.png",
+      "width": 197,
+      "height": 141,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img10.jpeg",
+      "width": 220,
+      "height": 220,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img11.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img12.jpeg",
+      "width": 258,
+      "height": 109,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001_img13.jpeg",
+      "width": 242,
+      "height": 244,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img2.png",
+      "width": 877,
+      "height": 88,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img3.png",
+      "width": 1825,
+      "height": 171,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img4.png",
+      "width": 506,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img5.png",
+      "width": 1043,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img6.png",
+      "width": 726,
+      "height": 111,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img7.png",
+      "width": 127,
+      "height": 111,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img8.jpeg",
+      "width": 435,
+      "height": 157,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img9.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img10.jpeg",
+      "width": 160,
+      "height": 225,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img11.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002_img12.png",
+      "width": 362,
+      "height": 139,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img2.png",
+      "width": 1611,
+      "height": 219,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img3.png",
+      "width": 744,
+      "height": 111,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img4.png",
+      "width": 663,
+      "height": 111,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img5.png",
+      "width": 860,
+      "height": 110,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img6.png",
+      "width": 135,
+      "height": 110,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img7.jpeg",
+      "width": 264,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img8.jpeg",
+      "width": 200,
+      "height": 200,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img9.jpeg",
+      "width": 304,
+      "height": 166,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img10.png",
+      "width": 224,
+      "height": 225,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img11.png",
+      "width": 212,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img12.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003_img13.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img2.png",
+      "width": 877,
+      "height": 88,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img3.png",
+      "width": 1825,
+      "height": 171,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img4.png",
+      "width": 747,
+      "height": 101,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img5.png",
+      "width": 816,
+      "height": 101,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img6.png",
+      "width": 722,
+      "height": 101,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img7.png",
+      "width": 136,
+      "height": 101,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img8.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img9.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img10.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img11.jpeg",
+      "width": 199,
+      "height": 148,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004_img12.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 5,
+      "file": "/assets/companies/general/page005_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 5,
+      "file": "/assets/companies/general/page005_img2.jpeg",
+      "width": 941,
+      "height": 549,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 5,
+      "file": "/assets/companies/general/page005_img3.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 5,
+      "file": "/assets/companies/general/page005_img4.png",
+      "width": 128,
+      "height": 128,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 5,
+      "file": "/assets/companies/general/page005_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 5,
+      "file": "/assets/companies/general/page005_img6.jpeg",
+      "width": 1283,
+      "height": 632,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img2.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img3.jpeg",
+      "width": 329,
+      "height": 496,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img4.png",
+      "width": 575,
+      "height": 884,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img5.jpeg",
+      "width": 295,
+      "height": 413,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img6.png",
+      "width": 620,
+      "height": 884,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img8.jpeg",
+      "width": 435,
+      "height": 613,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img9.png",
+      "width": 653,
+      "height": 861,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img10.jpeg",
+      "width": 486,
+      "height": 697,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 6,
+      "file": "/assets/companies/general/page006_img11.png",
+      "width": 610,
+      "height": 875,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img2.png",
+      "width": 301,
+      "height": 269,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img3.png",
+      "width": 945,
+      "height": 269,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img4.png",
+      "width": 518,
+      "height": 269,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img5.png",
+      "width": 837,
+      "height": 269,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img6.png",
+      "width": 301,
+      "height": 216,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img7.png",
+      "width": 301,
+      "height": 109,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img9.png",
+      "width": 301,
+      "height": 109,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img10.png",
+      "width": 301,
+      "height": 98,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img12.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007_img13.jpeg",
+      "width": 243,
+      "height": 244,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img5.png",
+      "width": 360,
+      "height": 228,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img7.png",
+      "width": 360,
+      "height": 88,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img8.png",
+      "width": 360,
+      "height": 115,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img9.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img10.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img12.png",
+      "width": 299,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008_img13.png",
+      "width": 2546,
+      "height": 106,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img2.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img3.png",
+      "width": 704,
+      "height": 394,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img4.png",
+      "width": 1169,
+      "height": 700,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img5.png",
+      "width": 1050,
+      "height": 698,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img6.png",
+      "width": 1086,
+      "height": 722,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img7.png",
+      "width": 1052,
+      "height": 740,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img8.png",
+      "width": 1116,
+      "height": 655,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img9.png",
+      "width": 1405,
+      "height": 799,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 9,
+      "file": "/assets/companies/general/page009_img10.png",
+      "width": 1085,
+      "height": 617,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img2.png",
+      "width": 300,
+      "height": 168,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img3.png",
+      "width": 935,
+      "height": 819,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img4.png",
+      "width": 1282,
+      "height": 887,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img5.png",
+      "width": 1058,
+      "height": 545,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img6.png",
+      "width": 1239,
+      "height": 647,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 10,
+      "file": "/assets/companies/general/page010_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 11,
+      "file": "/assets/companies/general/page011_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 11,
+      "file": "/assets/companies/general/page011_img2.jpeg",
+      "width": 683,
+      "height": 413,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 11,
+      "file": "/assets/companies/general/page011_img3.png",
+      "width": 851,
+      "height": 574,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 11,
+      "file": "/assets/companies/general/page011_img4.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 11,
+      "file": "/assets/companies/general/page011_img5.jpeg",
+      "width": 1121,
+      "height": 501,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 11,
+      "file": "/assets/companies/general/page011_img6.jpeg",
+      "width": 243,
+      "height": 244,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img2.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img3.jpeg",
+      "width": 624,
+      "height": 1008,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img4.png",
+      "width": 683,
+      "height": 1102,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img5.jpeg",
+      "width": 486,
+      "height": 697,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img6.jpeg",
+      "width": 712,
+      "height": 318,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img7.png",
+      "width": 563,
+      "height": 263,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img8.jpeg",
+      "width": 889,
+      "height": 502,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 12,
+      "file": "/assets/companies/general/page012_img9.png",
+      "width": 891,
+      "height": 503,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 13,
+      "file": "/assets/companies/general/page013_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 13,
+      "file": "/assets/companies/general/page013_img2.jpeg",
+      "width": 492,
+      "height": 703,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 13,
+      "file": "/assets/companies/general/page013_img3.png",
+      "width": 927,
+      "height": 1324,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 13,
+      "file": "/assets/companies/general/page013_img4.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 13,
+      "file": "/assets/companies/general/page013_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img2.png",
+      "width": 232,
+      "height": 107,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img3.png",
+      "width": 1355,
+      "height": 108,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img4.png",
+      "width": 880,
+      "height": 108,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img5.png",
+      "width": 232,
+      "height": 109,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img6.png",
+      "width": 232,
+      "height": 109,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img7.png",
+      "width": 232,
+      "height": 162,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img8.png",
+      "width": 232,
+      "height": 101,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img9.png",
+      "width": 232,
+      "height": 112,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img10.png",
+      "width": 232,
+      "height": 212,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img11.png",
+      "width": 232,
+      "height": 204,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img12.jpeg",
+      "width": 241,
+      "height": 241,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014_img13.jpeg",
+      "width": 942,
+      "height": 421,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img2.png",
+      "width": 219,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img3.png",
+      "width": 1512,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img4.png",
+      "width": 601,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img5.png",
+      "width": 219,
+      "height": 115,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img6.png",
+      "width": 219,
+      "height": 116,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img7.png",
+      "width": 219,
+      "height": 269,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img8.png",
+      "width": 219,
+      "height": 116,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 15,
+      "file": "/assets/companies/general/page015_img9.jpeg",
+      "width": 241,
+      "height": 241,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img2.png",
+      "width": 2359,
+      "height": 83,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img3.png",
+      "width": 216,
+      "height": 183,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img4.png",
+      "width": 2359,
+      "height": 100,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img5.png",
+      "width": 216,
+      "height": 254,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img6.png",
+      "width": 216,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img7.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016_img8.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 17,
+      "file": "/assets/companies/general/page017_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 17,
+      "file": "/assets/companies/general/page017_img2.png",
+      "width": 168,
+      "height": 144,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 17,
+      "file": "/assets/companies/general/page017_img3.png",
+      "width": 1303,
+      "height": 853,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 17,
+      "file": "/assets/companies/general/page017_img4.png",
+      "width": 1744,
+      "height": 1089,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 17,
+      "file": "/assets/companies/general/page017_img5.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 17,
+      "file": "/assets/companies/general/page017_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 18,
+      "file": "/assets/companies/general/page018_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 18,
+      "file": "/assets/companies/general/page018_img2.png",
+      "width": 1563,
+      "height": 509,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 18,
+      "file": "/assets/companies/general/page018_img3.png",
+      "width": 2301,
+      "height": 750,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 18,
+      "file": "/assets/companies/general/page018_img4.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 18,
+      "file": "/assets/companies/general/page018_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 19,
+      "file": "/assets/companies/general/page019_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 19,
+      "file": "/assets/companies/general/page019_img2.jpeg",
+      "width": 1141,
+      "height": 603,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 19,
+      "file": "/assets/companies/general/page019_img3.jpeg",
+      "width": 288,
+      "height": 288,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 19,
+      "file": "/assets/companies/general/page019_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img2.jpeg",
+      "width": 258,
+      "height": 109,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img3.jpeg",
+      "width": 511,
+      "height": 323,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img4.png",
+      "width": 683,
+      "height": 432,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img5.jpeg",
+      "width": 524,
+      "height": 308,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img6.png",
+      "width": 743,
+      "height": 437,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img7.jpeg",
+      "width": 701,
+      "height": 449,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img8.png",
+      "width": 700,
+      "height": 449,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img9.jpeg",
+      "width": 793,
+      "height": 495,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img10.png",
+      "width": 722,
+      "height": 450,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020_img11.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021_img2.jpeg",
+      "width": 258,
+      "height": 109,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021_img3.jpeg",
+      "width": 836,
+      "height": 1158,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021_img4.png",
+      "width": 762,
+      "height": 1055,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021_img5.jpeg",
+      "width": 1648,
+      "height": 938,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img2.png",
+      "width": 274,
+      "height": 109,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img3.png",
+      "width": 1657,
+      "height": 110,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img4.png",
+      "width": 509,
+      "height": 110,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img6.png",
+      "width": 274,
+      "height": 108,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img7.png",
+      "width": 274,
+      "height": 96,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img8.png",
+      "width": 274,
+      "height": 102,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img9.png",
+      "width": 274,
+      "height": 102,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img10.png",
+      "width": 274,
+      "height": 143,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img11.png",
+      "width": 274,
+      "height": 91,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img12.png",
+      "width": 274,
+      "height": 84,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img13.png",
+      "width": 274,
+      "height": 98,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img14.png",
+      "width": 274,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img15.jpeg",
+      "width": 258,
+      "height": 109,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 22,
+      "file": "/assets/companies/general/page022_img16.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img2.png",
+      "width": 292,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img3.png",
+      "width": 1431,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img4.png",
+      "width": 556,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img5.jpeg",
+      "width": 258,
+      "height": 109,
+      "ext": "jpeg"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img6.png",
+      "width": 294,
+      "height": 249,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img8.png",
+      "width": 294,
+      "height": 135,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img9.png",
+      "width": 1261,
+      "height": 439,
+      "ext": "png"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023_img10.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 24,
+      "file": "/assets/companies/nextcare/page024_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 24,
+      "file": "/assets/companies/nextcare/page024_img2.jpeg",
+      "width": 737,
+      "height": 810,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 24,
+      "file": "/assets/companies/nextcare/page024_img3.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 24,
+      "file": "/assets/companies/nextcare/page024_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img2.jpeg",
+      "width": 758,
+      "height": 1048,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img3.png",
+      "width": 690,
+      "height": 952,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img4.jpeg",
+      "width": 758,
+      "height": 1055,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img5.png",
+      "width": 690,
+      "height": 959,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img6.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img7.jpeg",
+      "width": 1096,
+      "height": 534,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img8.jpeg",
+      "width": 497,
+      "height": 617,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img9.png",
+      "width": 565,
+      "height": 701,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025_img10.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 26,
+      "file": "/assets/companies/general/page026_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 26,
+      "file": "/assets/companies/general/page026_img2.png",
+      "width": 849,
+      "height": 898,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 26,
+      "file": "/assets/companies/general/page026_img3.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 26,
+      "file": "/assets/companies/general/page026_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 27,
+      "file": "/assets/companies/nextcare/page027_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 27,
+      "file": "/assets/companies/nextcare/page027_img2.png",
+      "width": 1556,
+      "height": 1664,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 27,
+      "file": "/assets/companies/nextcare/page027_img3.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 27,
+      "file": "/assets/companies/nextcare/page027_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img6.png",
+      "width": 246,
+      "height": 105,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img7.png",
+      "width": 246,
+      "height": 118,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img8.png",
+      "width": 246,
+      "height": 97,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img10.png",
+      "width": 246,
+      "height": 102,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img11.png",
+      "width": 246,
+      "height": 177,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img12.png",
+      "width": 246,
+      "height": 96,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img14.png",
+      "width": 246,
+      "height": 269,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img15.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028_img16.jpeg",
+      "width": 990,
+      "height": 295,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img2.png",
+      "width": 2329,
+      "height": 81,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img3.png",
+      "width": 331,
+      "height": 526,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img4.png",
+      "width": 331,
+      "height": 126,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img5.png",
+      "width": 331,
+      "height": 209,
+      "ext": "png"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029_img7.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 30,
+      "file": "/assets/companies/general/page030_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 30,
+      "file": "/assets/companies/general/page030_img3.png",
+      "width": 224,
+      "height": 784,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 30,
+      "file": "/assets/companies/general/page030_img4.png",
+      "width": 199,
+      "height": 89,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 30,
+      "file": "/assets/companies/general/page030_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 31,
+      "file": "/assets/companies/general/page031_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 31,
+      "file": "/assets/companies/general/page031_img2.png",
+      "width": 290,
+      "height": 104,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 31,
+      "file": "/assets/companies/general/page031_img3.png",
+      "width": 168,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 31,
+      "file": "/assets/companies/general/page031_img4.jpeg",
+      "width": 1030,
+      "height": 659,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 31,
+      "file": "/assets/companies/general/page031_img5.png",
+      "width": 1488,
+      "height": 953,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 31,
+      "file": "/assets/companies/general/page031_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img2.jpeg",
+      "width": 612,
+      "height": 887,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img3.png",
+      "width": 681,
+      "height": 936,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img5.jpeg",
+      "width": 469,
+      "height": 617,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img6.png",
+      "width": 290,
+      "height": 104,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img7.png",
+      "width": 168,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img8.jpeg",
+      "width": 765,
+      "height": 1052,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img9.png",
+      "width": 696,
+      "height": 957,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img10.png",
+      "width": 437,
+      "height": 582,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img11.png",
+      "width": 715,
+      "height": 952,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 32,
+      "file": "/assets/companies/general/page032_img12.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img2.png",
+      "width": 290,
+      "height": 104,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img3.png",
+      "width": 168,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img4.jpeg",
+      "width": 494,
+      "height": 509,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img5.png",
+      "width": 702,
+      "height": 911,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img6.jpeg",
+      "width": 491,
+      "height": 593,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img7.png",
+      "width": 648,
+      "height": 911,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img9.jpeg",
+      "width": 573,
+      "height": 599,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img10.png",
+      "width": 664,
+      "height": 935,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 33,
+      "file": "/assets/companies/general/page033_img11.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img2.png",
+      "width": 1198,
+      "height": 608,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img3.png",
+      "width": 2371,
+      "height": 90,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img6.png",
+      "width": 513,
+      "height": 106,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img7.png",
+      "width": 513,
+      "height": 80,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img9.png",
+      "width": 513,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img11.png",
+      "width": 513,
+      "height": 196,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img14.png",
+      "width": 290,
+      "height": 105,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img15.png",
+      "width": 168,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 34,
+      "file": "/assets/companies/general/page034_img16.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 35,
+      "file": "/assets/companies/general/page035_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 35,
+      "file": "/assets/companies/general/page035_img2.png",
+      "width": 2149,
+      "height": 115,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 35,
+      "file": "/assets/companies/general/page035_img3.png",
+      "width": 307,
+      "height": 292,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 35,
+      "file": "/assets/companies/general/page035_img4.png",
+      "width": 290,
+      "height": 104,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 35,
+      "file": "/assets/companies/general/page035_img5.png",
+      "width": 168,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 35,
+      "file": "/assets/companies/general/page035_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img2.jpeg",
+      "width": 746,
+      "height": 268,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img3.jpeg",
+      "width": 1045,
+      "height": 692,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img4.png",
+      "width": 1008,
+      "height": 667,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img5.jpeg",
+      "width": 1215,
+      "height": 770,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img6.png",
+      "width": 1053,
+      "height": 667,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 37,
+      "file": "/assets/companies/misr-healthcare/page037_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 37,
+      "file": "/assets/companies/misr-healthcare/page037_img2.jpeg",
+      "width": 663,
+      "height": 809,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 37,
+      "file": "/assets/companies/misr-healthcare/page037_img3.png",
+      "width": 746,
+      "height": 910,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 37,
+      "file": "/assets/companies/misr-healthcare/page037_img4.jpeg",
+      "width": 746,
+      "height": 268,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 37,
+      "file": "/assets/companies/misr-healthcare/page037_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 38,
+      "file": "/assets/companies/misr-healthcare/page038_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 38,
+      "file": "/assets/companies/misr-healthcare/page038_img2.jpeg",
+      "width": 746,
+      "height": 268,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 38,
+      "file": "/assets/companies/misr-healthcare/page038_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 39,
+      "file": "/assets/companies/misr-healthcare/page039_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 39,
+      "file": "/assets/companies/misr-healthcare/page039_img2.jpeg",
+      "width": 746,
+      "height": 268,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 39,
+      "file": "/assets/companies/misr-healthcare/page039_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040_img2.png",
+      "width": 2261,
+      "height": 126,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040_img3.png",
+      "width": 744,
+      "height": 199,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040_img4.png",
+      "width": 744,
+      "height": 199,
+      "ext": "png"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040_img5.jpeg",
+      "width": 746,
+      "height": 268,
+      "ext": "jpeg"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 41,
+      "file": "/assets/companies/amc/page041_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 41,
+      "file": "/assets/companies/amc/page041_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 41,
+      "file": "/assets/companies/amc/page041_img3.jpeg",
+      "width": 1213,
+      "height": 761,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 41,
+      "file": "/assets/companies/amc/page041_img4.png",
+      "width": 1104,
+      "height": 692,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 41,
+      "file": "/assets/companies/amc/page041_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img3.jpeg",
+      "width": 864,
+      "height": 1335,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img4.png",
+      "width": 865,
+      "height": 1336,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img5.png",
+      "width": 1128,
+      "height": 392,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img6.png",
+      "width": 1519,
+      "height": 528,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 43,
+      "file": "/assets/companies/amc/page043_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 43,
+      "file": "/assets/companies/amc/page043_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 43,
+      "file": "/assets/companies/amc/page043_img4.png",
+      "width": 461,
+      "height": 87,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 44,
+      "file": "/assets/companies/amc/page044_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 44,
+      "file": "/assets/companies/amc/page044_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 44,
+      "file": "/assets/companies/amc/page044_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 45,
+      "file": "/assets/companies/amc/page045_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 45,
+      "file": "/assets/companies/amc/page045_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 45,
+      "file": "/assets/companies/amc/page045_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 46,
+      "file": "/assets/companies/amc/page046_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 46,
+      "file": "/assets/companies/amc/page046_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 47,
+      "file": "/assets/companies/amc/page047_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "amc",
+      "page": 47,
+      "file": "/assets/companies/amc/page047_img2.jpeg",
+      "width": 162,
+      "height": 229,
+      "ext": "jpeg"
+    },
+    {
+      "company": "amc",
+      "page": 47,
+      "file": "/assets/companies/amc/page047_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img2.png",
+      "width": 487,
+      "height": 553,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img3.jpeg",
+      "width": 911,
+      "height": 1044,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img4.png",
+      "width": 239,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img5.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img6.png",
+      "width": 380,
+      "height": 482,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img7.png",
+      "width": 418,
+      "height": 541,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 48,
+      "file": "/assets/companies/general/page048_img8.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img2.png",
+      "width": 239,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img3.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img4.png",
+      "width": 716,
+      "height": 387,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img5.jpeg",
+      "width": 1152,
+      "height": 598,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img6.png",
+      "width": 1058,
+      "height": 287,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 49,
+      "file": "/assets/companies/general/page049_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medright",
+      "page": 50,
+      "file": "/assets/companies/medright/page050_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 50,
+      "file": "/assets/companies/medright/page050_img2.png",
+      "width": 212,
+      "height": 92,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 50,
+      "file": "/assets/companies/medright/page050_img3.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 51,
+      "file": "/assets/companies/medright/page051_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 51,
+      "file": "/assets/companies/medright/page051_img3.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "medright",
+      "page": 51,
+      "file": "/assets/companies/medright/page051_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img3.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img4.png",
+      "width": 577,
+      "height": 619,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img5.png",
+      "width": 658,
+      "height": 708,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img6.png",
+      "width": 507,
+      "height": 633,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img7.png",
+      "width": 488,
+      "height": 617,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 52,
+      "file": "/assets/companies/general/page052_img8.jpeg",
+      "width": 243,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 53,
+      "file": "/assets/companies/general/page053_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 53,
+      "file": "/assets/companies/general/page053_img2.png",
+      "width": 590,
+      "height": 624,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 53,
+      "file": "/assets/companies/general/page053_img3.png",
+      "width": 742,
+      "height": 787,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 53,
+      "file": "/assets/companies/general/page053_img4.png",
+      "width": 592,
+      "height": 618,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 53,
+      "file": "/assets/companies/general/page053_img5.png",
+      "width": 791,
+      "height": 790,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 53,
+      "file": "/assets/companies/general/page053_img7.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img3.png",
+      "width": 300,
+      "height": 120,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img4.png",
+      "width": 671,
+      "height": 507,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img5.png",
+      "width": 985,
+      "height": 733,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img6.png",
+      "width": 671,
+      "height": 489,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img7.jpeg",
+      "width": 703,
+      "height": 502,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 54,
+      "file": "/assets/companies/general/page054_img8.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 55,
+      "file": "/assets/companies/medmark/page055_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 55,
+      "file": "/assets/companies/medmark/page055_img2.jpeg",
+      "width": 595,
+      "height": 806,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 55,
+      "file": "/assets/companies/medmark/page055_img3.jpeg",
+      "width": 200,
+      "height": 200,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 55,
+      "file": "/assets/companies/medmark/page055_img4.jpeg",
+      "width": 1115,
+      "height": 377,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 55,
+      "file": "/assets/companies/medmark/page055_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 56,
+      "file": "/assets/companies/medmark/page056_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 56,
+      "file": "/assets/companies/medmark/page056_img2.jpeg",
+      "width": 200,
+      "height": 200,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 56,
+      "file": "/assets/companies/medmark/page056_img3.png",
+      "width": 1610,
+      "height": 646,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 56,
+      "file": "/assets/companies/medmark/page056_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 57,
+      "file": "/assets/companies/medmark/page057_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 57,
+      "file": "/assets/companies/medmark/page057_img2.jpeg",
+      "width": 175,
+      "height": 175,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 57,
+      "file": "/assets/companies/medmark/page057_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 58,
+      "file": "/assets/companies/medmark/page058_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 58,
+      "file": "/assets/companies/medmark/page058_img2.jpeg",
+      "width": 195,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 58,
+      "file": "/assets/companies/medmark/page058_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 59,
+      "file": "/assets/companies/medmark/page059_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 59,
+      "file": "/assets/companies/medmark/page059_img2.jpeg",
+      "width": 195,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 60,
+      "file": "/assets/companies/medmark/page060_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 60,
+      "file": "/assets/companies/medmark/page060_img2.jpeg",
+      "width": 195,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 61,
+      "file": "/assets/companies/medmark/page061_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 61,
+      "file": "/assets/companies/medmark/page061_img2.jpeg",
+      "width": 195,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 61,
+      "file": "/assets/companies/medmark/page061_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 62,
+      "file": "/assets/companies/medmark/page062_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 62,
+      "file": "/assets/companies/medmark/page062_img2.jpeg",
+      "width": 195,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 62,
+      "file": "/assets/companies/medmark/page062_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 63,
+      "file": "/assets/companies/medmark/page063_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "medmark",
+      "page": 63,
+      "file": "/assets/companies/medmark/page063_img2.jpeg",
+      "width": 195,
+      "height": 195,
+      "ext": "jpeg"
+    },
+    {
+      "company": "medmark",
+      "page": 63,
+      "file": "/assets/companies/medmark/page063_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 64,
+      "file": "/assets/companies/general/page064_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 64,
+      "file": "/assets/companies/general/page064_img2.png",
+      "width": 224,
+      "height": 225,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 64,
+      "file": "/assets/companies/general/page064_img3.jpeg",
+      "width": 685,
+      "height": 431,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 64,
+      "file": "/assets/companies/general/page064_img4.png",
+      "width": 1142,
+      "height": 719,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 64,
+      "file": "/assets/companies/general/page064_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "bupa",
+      "page": 65,
+      "file": "/assets/companies/bupa/page065_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 65,
+      "file": "/assets/companies/bupa/page065_img2.png",
+      "width": 657,
+      "height": 930,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 65,
+      "file": "/assets/companies/bupa/page065_img3.png",
+      "width": 975,
+      "height": 1380,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 65,
+      "file": "/assets/companies/bupa/page065_img4.png",
+      "width": 224,
+      "height": 225,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 65,
+      "file": "/assets/companies/bupa/page065_img5.jpeg",
+      "width": 243,
+      "height": 244,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 66,
+      "file": "/assets/companies/general/page066_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 66,
+      "file": "/assets/companies/general/page066_img2.png",
+      "width": 665,
+      "height": 928,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 66,
+      "file": "/assets/companies/general/page066_img3.png",
+      "width": 1022,
+      "height": 1426,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 66,
+      "file": "/assets/companies/general/page066_img4.png",
+      "width": 658,
+      "height": 909,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 66,
+      "file": "/assets/companies/general/page066_img5.png",
+      "width": 1022,
+      "height": 1411,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 67,
+      "file": "/assets/companies/general/page067_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 67,
+      "file": "/assets/companies/general/page067_img2.png",
+      "width": 664,
+      "height": 930,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 67,
+      "file": "/assets/companies/general/page067_img3.png",
+      "width": 224,
+      "height": 225,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 67,
+      "file": "/assets/companies/general/page067_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "bupa",
+      "page": 68,
+      "file": "/assets/companies/bupa/page068_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 68,
+      "file": "/assets/companies/bupa/page068_img2.png",
+      "width": 224,
+      "height": 225,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 68,
+      "file": "/assets/companies/bupa/page068_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "bupa",
+      "page": 69,
+      "file": "/assets/companies/bupa/page069_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 69,
+      "file": "/assets/companies/bupa/page069_img2.png",
+      "width": 224,
+      "height": 225,
+      "ext": "png"
+    },
+    {
+      "company": "bupa",
+      "page": 69,
+      "file": "/assets/companies/bupa/page069_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 70,
+      "file": "/assets/companies/general/page070_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 70,
+      "file": "/assets/companies/general/page070_img2.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 70,
+      "file": "/assets/companies/general/page070_img3.jpeg",
+      "width": 685,
+      "height": 1046,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 70,
+      "file": "/assets/companies/general/page070_img4.png",
+      "width": 624,
+      "height": 953,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 70,
+      "file": "/assets/companies/general/page070_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img2.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img3.jpeg",
+      "width": 634,
+      "height": 843,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img4.png",
+      "width": 522,
+      "height": 866,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img5.jpeg",
+      "width": 642,
+      "height": 877,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img6.png",
+      "width": 643,
+      "height": 884,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img7.jpeg",
+      "width": 682,
+      "height": 968,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img8.png",
+      "width": 621,
+      "height": 880,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img9.jpeg",
+      "width": 652,
+      "height": 791,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img10.png",
+      "width": 629,
+      "height": 878,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 71,
+      "file": "/assets/companies/general/page071_img11.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img2.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img3.png",
+      "width": 626,
+      "height": 942,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img4.png",
+      "width": 753,
+      "height": 1133,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img5.png",
+      "width": 900,
+      "height": 747,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img6.png",
+      "width": 1163,
+      "height": 966,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 72,
+      "file": "/assets/companies/general/page072_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 73,
+      "file": "/assets/companies/general/page073_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 73,
+      "file": "/assets/companies/general/page073_img2.png",
+      "width": 1444,
+      "height": 1586,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 73,
+      "file": "/assets/companies/general/page073_img3.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 73,
+      "file": "/assets/companies/general/page073_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img2.png",
+      "width": 2569,
+      "height": 83,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img3.png",
+      "width": 339,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img4.png",
+      "width": 643,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img5.png",
+      "width": 592,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img6.png",
+      "width": 400,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img7.png",
+      "width": 599,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img8.png",
+      "width": 339,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img10.png",
+      "width": 339,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img12.png",
+      "width": 339,
+      "height": 270,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img13.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 74,
+      "file": "/assets/companies/general/page074_img14.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img2.png",
+      "width": 2434,
+      "height": 90,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img3.png",
+      "width": 297,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img4.png",
+      "width": 840,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img5.png",
+      "width": 460,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img6.png",
+      "width": 351,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img7.png",
+      "width": 489,
+      "height": 123,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img8.png",
+      "width": 297,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img9.png",
+      "width": 297,
+      "height": 163,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img10.png",
+      "width": 297,
+      "height": 157,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img11.png",
+      "width": 297,
+      "height": 430,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img12.png",
+      "width": 297,
+      "height": 131,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img13.png",
+      "width": 128,
+      "height": 132,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 75,
+      "file": "/assets/companies/general/page075_img14.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 76,
+      "file": "/assets/companies/general/page076_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 76,
+      "file": "/assets/companies/general/page076_img2.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 76,
+      "file": "/assets/companies/general/page076_img3.jpeg",
+      "width": 357,
+      "height": 202,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 76,
+      "file": "/assets/companies/general/page076_img4.png",
+      "width": 1124,
+      "height": 636,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 76,
+      "file": "/assets/companies/general/page076_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img2.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img3.jpeg",
+      "width": 778,
+      "height": 584,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img4.png",
+      "width": 707,
+      "height": 532,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img5.png",
+      "width": 943,
+      "height": 794,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img6.png",
+      "width": 858,
+      "height": 723,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img7.jpeg",
+      "width": 548,
+      "height": 219,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img8.png",
+      "width": 843,
+      "height": 443,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077_img9.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img2.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img4.png",
+      "width": 345,
+      "height": 117,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img5.png",
+      "width": 778,
+      "height": 117,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img6.png",
+      "width": 754,
+      "height": 117,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img7.png",
+      "width": 632,
+      "height": 117,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img8.png",
+      "width": 345,
+      "height": 135,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img10.png",
+      "width": 345,
+      "height": 135,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img11.png",
+      "width": 345,
+      "height": 91,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img12.png",
+      "width": 345,
+      "height": 91,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img13.png",
+      "width": 345,
+      "height": 223,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img15.png",
+      "width": 345,
+      "height": 126,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img16.png",
+      "width": 345,
+      "height": 216,
+      "ext": "png"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078_img17.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079_img2.png",
+      "width": 2261,
+      "height": 126,
+      "ext": "png"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079_img3.png",
+      "width": 744,
+      "height": 216,
+      "ext": "png"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079_img4.png",
+      "width": 744,
+      "height": 199,
+      "ext": "png"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079_img5.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img2.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img3.jpeg",
+      "width": 548,
+      "height": 230,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img4.png",
+      "width": 1236,
+      "height": 519,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img5.jpeg",
+      "width": 548,
+      "height": 219,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img6.png",
+      "width": 1236,
+      "height": 520,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 80,
+      "file": "/assets/companies/general/page080_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 81,
+      "file": "/assets/companies/general/page081_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 81,
+      "file": "/assets/companies/general/page081_img2.png",
+      "width": 1217,
+      "height": 555,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 81,
+      "file": "/assets/companies/general/page081_img3.png",
+      "width": 2029,
+      "height": 926,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 81,
+      "file": "/assets/companies/general/page081_img4.png",
+      "width": 265,
+      "height": 159,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 81,
+      "file": "/assets/companies/general/page081_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 82,
+      "file": "/assets/companies/general/page082_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 82,
+      "file": "/assets/companies/general/page082_img2.jpeg",
+      "width": 1013,
+      "height": 659,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 82,
+      "file": "/assets/companies/general/page082_img3.png",
+      "width": 1102,
+      "height": 698,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 82,
+      "file": "/assets/companies/general/page082_img4.jpeg",
+      "width": 281,
+      "height": 207,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 82,
+      "file": "/assets/companies/general/page082_img5.jpeg",
+      "width": 720,
+      "height": 478,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 82,
+      "file": "/assets/companies/general/page082_img6.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img2.png",
+      "width": 1109,
+      "height": 832,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img3.png",
+      "width": 756,
+      "height": 1008,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img4.jpeg",
+      "width": 281,
+      "height": 207,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img5.jpeg",
+      "width": 647,
+      "height": 900,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img6.png",
+      "width": 588,
+      "height": 819,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 83,
+      "file": "/assets/companies/general/page083_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img2.png",
+      "width": 1267,
+      "height": 655,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img4.png",
+      "width": 405,
+      "height": 136,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img5.png",
+      "width": 405,
+      "height": 107,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img8.png",
+      "width": 405,
+      "height": 98,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img9.png",
+      "width": 405,
+      "height": 161,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img10.png",
+      "width": 405,
+      "height": 83,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img11.png",
+      "width": 405,
+      "height": 93,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img12.png",
+      "width": 405,
+      "height": 148,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img13.png",
+      "width": 405,
+      "height": 96,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img14.png",
+      "width": 405,
+      "height": 106,
+      "ext": "png"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img15.jpeg",
+      "width": 281,
+      "height": 207,
+      "ext": "jpeg"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084_img16.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img2.jpeg",
+      "width": 281,
+      "height": 207,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img3.png",
+      "width": 1147,
+      "height": 795,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img4.png",
+      "width": 1012,
+      "height": 730,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img5.png",
+      "width": 1138,
+      "height": 782,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img6.png",
+      "width": 936,
+      "height": 643,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img7.png",
+      "width": 1105,
+      "height": 722,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img8.png",
+      "width": 1117,
+      "height": 730,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img9.png",
+      "width": 946,
+      "height": 669,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 85,
+      "file": "/assets/companies/general/page085_img10.png",
+      "width": 1117,
+      "height": 663,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img2.jpeg",
+      "width": 304,
+      "height": 166,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img3.jpeg",
+      "width": 1126,
+      "height": 719,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img4.png",
+      "width": 1026,
+      "height": 655,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img5.jpeg",
+      "width": 891,
+      "height": 1280,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img6.png",
+      "width": 663,
+      "height": 952,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 87,
+      "file": "/assets/companies/atomic-energy/page087_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 87,
+      "file": "/assets/companies/atomic-energy/page087_img2.png",
+      "width": 1177,
+      "height": 608,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 87,
+      "file": "/assets/companies/atomic-energy/page087_img3.jpeg",
+      "width": 304,
+      "height": 166,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 87,
+      "file": "/assets/companies/atomic-energy/page087_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 88,
+      "file": "/assets/companies/atomic-energy/page088_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 88,
+      "file": "/assets/companies/atomic-energy/page088_img2.jpeg",
+      "width": 304,
+      "height": 166,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 88,
+      "file": "/assets/companies/atomic-energy/page088_img3.jpeg",
+      "width": 558,
+      "height": 500,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 88,
+      "file": "/assets/companies/atomic-energy/page088_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 89,
+      "file": "/assets/companies/atomic-energy/page089_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 89,
+      "file": "/assets/companies/atomic-energy/page089_img2.jpeg",
+      "width": 304,
+      "height": 166,
+      "ext": "jpeg"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 89,
+      "file": "/assets/companies/atomic-energy/page089_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 90,
+      "file": "/assets/companies/sesco-care/page090_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 90,
+      "file": "/assets/companies/sesco-care/page090_img2.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 90,
+      "file": "/assets/companies/sesco-care/page090_img3.jpeg",
+      "width": 825,
+      "height": 1169,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 90,
+      "file": "/assets/companies/sesco-care/page090_img4.png",
+      "width": 838,
+      "height": 1188,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 90,
+      "file": "/assets/companies/sesco-care/page090_img5.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img2.jpeg",
+      "width": 419,
+      "height": 647,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img3.png",
+      "width": 588,
+      "height": 908,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img4.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img5.jpeg",
+      "width": 537,
+      "height": 835,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img6.png",
+      "width": 584,
+      "height": 908,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img7.jpeg",
+      "width": 505,
+      "height": 805,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img8.png",
+      "width": 552,
+      "height": 880,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091_img9.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 92,
+      "file": "/assets/companies/sesco-care/page092_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 92,
+      "file": "/assets/companies/sesco-care/page092_img2.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 92,
+      "file": "/assets/companies/sesco-care/page092_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 93,
+      "file": "/assets/companies/sesco-care/page093_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 93,
+      "file": "/assets/companies/sesco-care/page093_img2.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 93,
+      "file": "/assets/companies/sesco-care/page093_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 94,
+      "file": "/assets/companies/sesco-care/page094_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 94,
+      "file": "/assets/companies/sesco-care/page094_img2.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 94,
+      "file": "/assets/companies/sesco-care/page094_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 95,
+      "file": "/assets/companies/sesco-care/page095_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 95,
+      "file": "/assets/companies/sesco-care/page095_img2.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 95,
+      "file": "/assets/companies/sesco-care/page095_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 96,
+      "file": "/assets/companies/sesco-care/page096_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sesco-care",
+      "page": 96,
+      "file": "/assets/companies/sesco-care/page096_img2.jpeg",
+      "width": 305,
+      "height": 131,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sesco-care",
+      "page": 96,
+      "file": "/assets/companies/sesco-care/page096_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 97,
+      "file": "/assets/companies/general/page097_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 97,
+      "file": "/assets/companies/general/page097_img2.png",
+      "width": 1621,
+      "height": 871,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 97,
+      "file": "/assets/companies/general/page097_img3.jpeg",
+      "width": 304,
+      "height": 166,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 97,
+      "file": "/assets/companies/general/page097_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 98,
+      "file": "/assets/companies/general/page098_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 98,
+      "file": "/assets/companies/general/page098_img2.jpeg",
+      "width": 421,
+      "height": 610,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 98,
+      "file": "/assets/companies/general/page098_img3.jpeg",
+      "width": 199,
+      "height": 148,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 98,
+      "file": "/assets/companies/general/page098_img4.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img2.png",
+      "width": 642,
+      "height": 353,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img3.png",
+      "width": 1398,
+      "height": 736,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img4.jpeg",
+      "width": 199,
+      "height": 148,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img5.png",
+      "width": 606,
+      "height": 354,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img6.png",
+      "width": 1407,
+      "height": 790,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 99,
+      "file": "/assets/companies/general/page099_img7.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img2.png",
+      "width": 352,
+      "height": 492,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img3.png",
+      "width": 550,
+      "height": 791,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img4.png",
+      "width": 353,
+      "height": 492,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img5.png",
+      "width": 492,
+      "height": 705,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img6.jpeg",
+      "width": 199,
+      "height": 148,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img7.png",
+      "width": 564,
+      "height": 354,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img8.png",
+      "width": 1050,
+      "height": 637,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 100,
+      "file": "/assets/companies/general/page100_img9.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sehatech",
+      "page": 101,
+      "file": "/assets/companies/sehatech/page101_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "sehatech",
+      "page": 101,
+      "file": "/assets/companies/sehatech/page101_img2.jpeg",
+      "width": 199,
+      "height": 148,
+      "ext": "jpeg"
+    },
+    {
+      "company": "sehatech",
+      "page": 101,
+      "file": "/assets/companies/sehatech/page101_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 102,
+      "file": "/assets/companies/general/page102_img1.png",
+      "width": 318,
+      "height": 285,
+      "ext": "png"
+    },
+    {
+      "company": "general",
+      "page": 102,
+      "file": "/assets/companies/general/page102_img2.jpeg",
+      "width": 199,
+      "height": 148,
+      "ext": "jpeg"
+    },
+    {
+      "company": "general",
+      "page": 102,
+      "file": "/assets/companies/general/page102_img3.jpeg",
+      "width": 242,
+      "height": 243,
+      "ext": "jpeg"
+    }
+  ],
+  "page_cards": [
+    {
+      "company": "globemed",
+      "page": 1,
+      "file": "/assets/companies/globemed/page001.png",
+      "type": "page_card"
+    },
+    {
+      "company": "nextcare",
+      "page": 2,
+      "file": "/assets/companies/nextcare/page002.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medright",
+      "page": 3,
+      "file": "/assets/companies/medright/page003.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sehatech",
+      "page": 4,
+      "file": "/assets/companies/sehatech/page004.png",
+      "type": "page_card"
+    },
+    {
+      "company": "axa",
+      "page": 7,
+      "file": "/assets/companies/axa/page007.png",
+      "type": "page_card"
+    },
+    {
+      "company": "axa",
+      "page": 8,
+      "file": "/assets/companies/axa/page008.png",
+      "type": "page_card"
+    },
+    {
+      "company": "axa",
+      "page": 14,
+      "file": "/assets/companies/axa/page014.png",
+      "type": "page_card"
+    },
+    {
+      "company": "globemed",
+      "page": 16,
+      "file": "/assets/companies/globemed/page016.png",
+      "type": "page_card"
+    },
+    {
+      "company": "globemed",
+      "page": 20,
+      "file": "/assets/companies/globemed/page020.png",
+      "type": "page_card"
+    },
+    {
+      "company": "globemed",
+      "page": 21,
+      "file": "/assets/companies/globemed/page021.png",
+      "type": "page_card"
+    },
+    {
+      "company": "globemed",
+      "page": 23,
+      "file": "/assets/companies/globemed/page023.png",
+      "type": "page_card"
+    },
+    {
+      "company": "nextcare",
+      "page": 24,
+      "file": "/assets/companies/nextcare/page024.png",
+      "type": "page_card"
+    },
+    {
+      "company": "axa",
+      "page": 25,
+      "file": "/assets/companies/axa/page025.png",
+      "type": "page_card"
+    },
+    {
+      "company": "nextcare",
+      "page": 27,
+      "file": "/assets/companies/nextcare/page027.png",
+      "type": "page_card"
+    },
+    {
+      "company": "nextcare",
+      "page": 28,
+      "file": "/assets/companies/nextcare/page028.png",
+      "type": "page_card"
+    },
+    {
+      "company": "nextcare",
+      "page": 29,
+      "file": "/assets/companies/nextcare/page029.png",
+      "type": "page_card"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 36,
+      "file": "/assets/companies/misr-healthcare/page036.png",
+      "type": "page_card"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 37,
+      "file": "/assets/companies/misr-healthcare/page037.png",
+      "type": "page_card"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 38,
+      "file": "/assets/companies/misr-healthcare/page038.png",
+      "type": "page_card"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 39,
+      "file": "/assets/companies/misr-healthcare/page039.png",
+      "type": "page_card"
+    },
+    {
+      "company": "misr-healthcare",
+      "page": 40,
+      "file": "/assets/companies/misr-healthcare/page040.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 41,
+      "file": "/assets/companies/amc/page041.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 42,
+      "file": "/assets/companies/amc/page042.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 43,
+      "file": "/assets/companies/amc/page043.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 44,
+      "file": "/assets/companies/amc/page044.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 45,
+      "file": "/assets/companies/amc/page045.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 46,
+      "file": "/assets/companies/amc/page046.png",
+      "type": "page_card"
+    },
+    {
+      "company": "amc",
+      "page": 47,
+      "file": "/assets/companies/amc/page047.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medright",
+      "page": 50,
+      "file": "/assets/companies/medright/page050.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medright",
+      "page": 51,
+      "file": "/assets/companies/medright/page051.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 55,
+      "file": "/assets/companies/medmark/page055.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 56,
+      "file": "/assets/companies/medmark/page056.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 57,
+      "file": "/assets/companies/medmark/page057.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 58,
+      "file": "/assets/companies/medmark/page058.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 59,
+      "file": "/assets/companies/medmark/page059.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 60,
+      "file": "/assets/companies/medmark/page060.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 61,
+      "file": "/assets/companies/medmark/page061.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 62,
+      "file": "/assets/companies/medmark/page062.png",
+      "type": "page_card"
+    },
+    {
+      "company": "medmark",
+      "page": 63,
+      "file": "/assets/companies/medmark/page063.png",
+      "type": "page_card"
+    },
+    {
+      "company": "bupa",
+      "page": 65,
+      "file": "/assets/companies/bupa/page065.png",
+      "type": "page_card"
+    },
+    {
+      "company": "bupa",
+      "page": 68,
+      "file": "/assets/companies/bupa/page068.png",
+      "type": "page_card"
+    },
+    {
+      "company": "bupa",
+      "page": 69,
+      "file": "/assets/companies/bupa/page069.png",
+      "type": "page_card"
+    },
+    {
+      "company": "axa",
+      "page": 77,
+      "file": "/assets/companies/axa/page077.png",
+      "type": "page_card"
+    },
+    {
+      "company": "axa",
+      "page": 78,
+      "file": "/assets/companies/axa/page078.png",
+      "type": "page_card"
+    },
+    {
+      "company": "care-plus",
+      "page": 79,
+      "file": "/assets/companies/care-plus/page079.png",
+      "type": "page_card"
+    },
+    {
+      "company": "unicare",
+      "page": 84,
+      "file": "/assets/companies/unicare/page084.png",
+      "type": "page_card"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 86,
+      "file": "/assets/companies/atomic-energy/page086.png",
+      "type": "page_card"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 87,
+      "file": "/assets/companies/atomic-energy/page087.png",
+      "type": "page_card"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 88,
+      "file": "/assets/companies/atomic-energy/page088.png",
+      "type": "page_card"
+    },
+    {
+      "company": "atomic-energy",
+      "page": 89,
+      "file": "/assets/companies/atomic-energy/page089.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 90,
+      "file": "/assets/companies/sesco-care/page090.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 91,
+      "file": "/assets/companies/sesco-care/page091.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 92,
+      "file": "/assets/companies/sesco-care/page092.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 93,
+      "file": "/assets/companies/sesco-care/page093.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 94,
+      "file": "/assets/companies/sesco-care/page094.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 95,
+      "file": "/assets/companies/sesco-care/page095.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sesco-care",
+      "page": 96,
+      "file": "/assets/companies/sesco-care/page096.png",
+      "type": "page_card"
+    },
+    {
+      "company": "sehatech",
+      "page": 101,
+      "file": "/assets/companies/sehatech/page101.png",
+      "type": "page_card"
+    }
+  ],
+  "page_company": [
+    {
+      "page": 1,
+      "company": "globemed",
+      "score": 4
+    },
+    {
+      "page": 2,
+      "company": "nextcare",
+      "score": 4
+    },
+    {
+      "page": 3,
+      "company": "medright",
+      "score": 4
+    },
+    {
+      "page": 4,
+      "company": "sehatech",
+      "score": 3
+    },
+    {
+      "page": 5,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 6,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 7,
+      "company": "axa",
+      "score": 1
+    },
+    {
+      "page": 8,
+      "company": "axa",
+      "score": 3
+    },
+    {
+      "page": 9,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 10,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 11,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 12,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 13,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 14,
+      "company": "axa",
+      "score": 1
+    },
+    {
+      "page": 15,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 16,
+      "company": "globemed",
+      "score": 3
+    },
+    {
+      "page": 17,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 18,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 19,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 20,
+      "company": "globemed",
+      "score": 1
+    },
+    {
+      "page": 21,
+      "company": "globemed",
+      "score": 3
+    },
+    {
+      "page": 22,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 23,
+      "company": "globemed",
+      "score": 1
+    },
+    {
+      "page": 24,
+      "company": "nextcare",
+      "score": 1
+    },
+    {
+      "page": 25,
+      "company": "axa",
+      "score": 1
+    },
+    {
+      "page": 26,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 27,
+      "company": "nextcare",
+      "score": 1
+    },
+    {
+      "page": 28,
+      "company": "nextcare",
+      "score": 3
+    },
+    {
+      "page": 29,
+      "company": "nextcare",
+      "score": 3
+    },
+    {
+      "page": 30,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 31,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 32,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 33,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 34,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 35,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 36,
+      "company": "misr-healthcare",
+      "score": 1
+    },
+    {
+      "page": 37,
+      "company": "misr-healthcare",
+      "score": 1
+    },
+    {
+      "page": 38,
+      "company": "misr-healthcare",
+      "score": 2
+    },
+    {
+      "page": 39,
+      "company": "misr-healthcare",
+      "score": 1
+    },
+    {
+      "page": 40,
+      "company": "misr-healthcare",
+      "score": 4
+    },
+    {
+      "page": 41,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 42,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 43,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 44,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 45,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 46,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 47,
+      "company": "amc",
+      "score": 1
+    },
+    {
+      "page": 48,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 49,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 50,
+      "company": "medright",
+      "score": 1
+    },
+    {
+      "page": 51,
+      "company": "medright",
+      "score": 2
+    },
+    {
+      "page": 52,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 53,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 54,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 55,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 56,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 57,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 58,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 59,
+      "company": "medmark",
+      "score": 3
+    },
+    {
+      "page": 60,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 61,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 62,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 63,
+      "company": "medmark",
+      "score": 2
+    },
+    {
+      "page": 64,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 65,
+      "company": "bupa",
+      "score": 2
+    },
+    {
+      "page": 66,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 67,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 68,
+      "company": "bupa",
+      "score": 3
+    },
+    {
+      "page": 69,
+      "company": "bupa",
+      "score": 3
+    },
+    {
+      "page": 70,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 71,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 72,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 73,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 74,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 75,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 76,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 77,
+      "company": "axa",
+      "score": 1
+    },
+    {
+      "page": 78,
+      "company": "axa",
+      "score": 1
+    },
+    {
+      "page": 79,
+      "company": "care-plus",
+      "score": 2
+    },
+    {
+      "page": 80,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 81,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 82,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 83,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 84,
+      "company": "unicare",
+      "score": 1
+    },
+    {
+      "page": 85,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 86,
+      "company": "atomic-energy",
+      "score": 2
+    },
+    {
+      "page": 87,
+      "company": "atomic-energy",
+      "score": 2
+    },
+    {
+      "page": 88,
+      "company": "atomic-energy",
+      "score": 2
+    },
+    {
+      "page": 89,
+      "company": "atomic-energy",
+      "score": 2
+    },
+    {
+      "page": 90,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 91,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 92,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 93,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 94,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 95,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 96,
+      "company": "sesco-care",
+      "score": 1
+    },
+    {
+      "page": 97,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 98,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 99,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 100,
+      "company": null,
+      "score": 0
+    },
+    {
+      "page": 101,
+      "company": "sehatech",
+      "score": 1
+    },
+    {
+      "page": 102,
+      "company": null,
+      "score": 0
+    }
+  ]
+}

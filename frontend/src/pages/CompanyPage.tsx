@@ -7,6 +7,7 @@ import {
 import { useState } from 'react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
+import MediaGallery from '../components/MediaGallery';
 import { RuleItem, NotesList, StepWizard } from '../components/RuleDisplay';
 import { useRules } from '../hooks/useRules';
 
@@ -122,6 +123,14 @@ export default function CompanyPage() {
                 )}
               </div>
             </motion.div>
+
+            {company.media && company.media.length > 0 && (
+              <MediaGallery
+                media={company.media}
+                companyName={company.nameAr}
+                accentColor={color}
+              />
+            )}
 
             {/* Dispensing wizard */}
             <motion.section

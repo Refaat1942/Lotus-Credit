@@ -119,6 +119,7 @@ export default function AdminPage() {
       rules: {},
       forms: [],
       contacts: [],
+      media: [],
     };
     setEditData({ ...editData, companies: [...editData.companies, newCo] });
     setSelectedCompany(newCo);
