@@ -5,9 +5,9 @@ import { useBranding } from '../hooks/useBranding';
 type LotusLogoSize = 'sm' | 'md' | 'lg';
 
 const sizeClasses: Record<LotusLogoSize, string> = {
-  sm: 'h-11 w-auto max-w-[120px]',
-  md: 'h-16 w-auto max-w-[160px]',
-  lg: 'h-28 w-auto max-w-[220px] sm:h-32',
+  sm: 'h-8 w-auto max-w-[88px] rounded-md',
+  md: 'h-11 w-auto max-w-[110px] rounded-md',
+  lg: 'h-14 w-auto max-w-[130px] rounded-md',
 };
 
 interface LotusLogoProps {

@@ -17,76 +17,62 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       className="sticky top-0 z-50 glass border-b border-theme"
     >
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 group min-w-0">
-          <LotusLogo size="sm" animate />
-          <div className="min-w-0 leading-tight">
-            <h1 className="text-lg sm:text-xl font-bold gradient-text">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <Link to="/" className="flex items-center gap-2.5 group min-w-0">
+          <LotusLogo size="sm" />
+          <div className="min-w-0 leading-snug border-r border-theme pr-2.5">
+            <p className="text-sm sm:text-[15px] font-bold text-primary truncate">
               {branding.titleAr}
-            </h1>
-            <p className="text-sm font-semibold text-primary">
-              {branding.departmentAr}
             </p>
-            <p className="text-[11px] text-muted hidden sm:block">
-              {branding.subtitleAr}
+            <p className="text-xs font-medium text-lotus-600 dark:text-lotus-400 truncate">
+              {branding.departmentAr}
             </p>
           </div>
         </Link>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <motion.div
-            animate={{ scale: online ? [1, 1.05, 1] : 1 }}
-            transition={{ repeat: online ? Infinity : 0, duration: 2 }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium ${
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <span
+            className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium ${
               online
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-300'
+                : 'bg-amber-500/15 text-amber-700 dark:text-amber-300'
             }`}
           >
-            {online ? <Wifi className="w-3.5 h-3.5" /> : <WifiOff className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{online ? 'متصل' : 'بدون إنترنت'}</span>
-          </motion.div>
+            {online ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}
+            {online ? 'متصل' : 'أوفلاين'}
+          </span>
 
           {onRefresh && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={onRefresh}
               disabled={loading}
-              className="p-2 rounded-xl glass hover:bg-white/10 transition-colors disabled:opacity-50"
+              className="p-2 rounded-lg hover:bg-surface transition-colors disabled:opacity-50"
               title="تحديث"
             >
-              <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
-            </motion.button>
+              <RefreshCw className={`w-4 h-4 text-muted ${loading ? 'animate-spin' : ''}`} />
+            </button>
           )}
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl glass hover:bg-white/10 transition-colors"
-            title={theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}
+            className="p-2 rounded-lg hover:bg-surface transition-colors"
+            title={theme === 'dark' ? 'وضع فاتح' : 'وضع داكن'}
           >
             {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-amber-400" />
+              <Sun className="w-4 h-4 text-amber-400" />
             ) : (
-              <Moon className="w-5 h-5 text-lotus-600" />
+              <Moon className="w-4 h-4 text-lotus-600" />
             )}
-          </motion.button>
+          </button>
 
           <Link to="/admin" state={{ requireLogin: true }}>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-2 rounded-xl glass hover:bg-white/10 transition-colors"
-              title="لوحة الإدارة"
-            >
-              <Settings className="w-5 h-5 text-muted" />
-            </motion.button>
+            <button className="p-2 rounded-lg hover:bg-surface transition-colors" title="إدارة">
+              <Settings className="w-4 h-4 text-muted" />
+            </button>
           </Link>
         </div>
       </div>
