@@ -454,6 +454,57 @@
           "width": 243,
           "height": 244
         }
+      ],
+      "links": [
+        {
+          "id": "axa-link-1",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 1
+        },
+        {
+          "id": "axa-link-3",
+          "label": "بوابة i*care",
+          "url": "https://i-care.globemedegypt.com:8034/Index.cfm",
+          "type": "portal",
+          "page": 1
+        },
+        {
+          "id": "axa-contact-5",
+          "label": "hotline: 16363",
+          "url": "tel:16363",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "axa-contact-6",
+          "label": "yodawy: 15005",
+          "url": "tel:15005",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "axa-link-2",
+          "label": "بريد: Approval.Requests@metlife.com",
+          "url": "mailto:Approval.Requests@metlife.com",
+          "type": "email",
+          "page": 1
+        },
+        {
+          "id": "axa-link-4",
+          "label": "بريد: approvals@globemedegypt.com",
+          "url": "mailto:approvals@globemedegypt.com",
+          "type": "email",
+          "page": 1
+        },
+        {
+          "id": "axa-link-5",
+          "label": "بريد: PBM@AXA-EGYPT.COM",
+          "url": "mailto:PBM@AXA-EGYPT.COM",
+          "type": "email",
+          "page": 8
+        }
       ]
     },
     {
@@ -1026,6 +1077,57 @@
           "width": 722,
           "height": 450
         }
+      ],
+      "links": [
+        {
+          "id": "metlife-link-1",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 1
+        },
+        {
+          "id": "metlife-link-3",
+          "label": "بوابة i*care",
+          "url": "https://i-care.globemedegypt.com:8034/Index.cfm",
+          "type": "portal",
+          "page": 1
+        },
+        {
+          "id": "metlife-contact-4",
+          "label": "hotline: 19097",
+          "url": "tel:19097",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "metlife-contact-5",
+          "label": "icare: 0233086255",
+          "url": "tel:0233086255",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "metlife-contact-6",
+          "label": "whatsapp: 01016660199",
+          "url": "tel:01016660199",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "metlife-link-2",
+          "label": "بريد: Approval.Requests@metlife.com",
+          "url": "mailto:Approval.Requests@metlife.com",
+          "type": "email",
+          "page": 1
+        },
+        {
+          "id": "metlife-link-4",
+          "label": "بريد: approvals@globemedegypt.com",
+          "url": "mailto:approvals@globemedegypt.com",
+          "type": "email",
+          "page": 1
+        }
       ]
     },
     {
@@ -1283,6 +1385,57 @@
           "page": 23,
           "width": 1261,
           "height": 439
+        }
+      ],
+      "links": [
+        {
+          "id": "globemed-link-1",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 1
+        },
+        {
+          "id": "globemed-link-3",
+          "label": "بوابة i*care",
+          "url": "https://i-care.globemedegypt.com:8034/Index.cfm",
+          "type": "portal",
+          "page": 1
+        },
+        {
+          "id": "globemed-contact-4",
+          "label": "hotline: 16784",
+          "url": "tel:16784",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "globemed-contact-6",
+          "label": "بريد: pbmegypt@globemedegypt.com",
+          "url": "mailto:pbmegypt@globemedegypt.com",
+          "type": "email",
+          "page": 0
+        },
+        {
+          "id": "globemed-contact-5",
+          "label": "بريد: psu@globemedegypt.com",
+          "url": "mailto:psu@globemedegypt.com",
+          "type": "email",
+          "page": 0
+        },
+        {
+          "id": "globemed-link-2",
+          "label": "بريد: Approval.Requests@metlife.com",
+          "url": "mailto:Approval.Requests@metlife.com",
+          "type": "email",
+          "page": 1
+        },
+        {
+          "id": "globemed-link-4",
+          "label": "بريد: approvals@globemedegypt.com",
+          "url": "mailto:approvals@globemedegypt.com",
+          "type": "email",
+          "page": 1
         }
       ]
     },
@@ -1613,6 +1766,43 @@
           "width": 1488,
           "height": 953
         }
+      ],
+      "links": [
+        {
+          "id": "nextcare-link-2",
+          "label": "بوابة MedNeXt",
+          "url": "https://online.mednet-egypt.com/MedNeXtOnline/faces/pages/login.jspx;MEDNEXT_ONLINE=LEJqhSnets3hN-NBJ92rSMDu2sLvzQG-dI-W05GgNtv7KOZfNfp_M0Nux-OsEerJ6rjWsmbpYAd6S-mC4J_E2nDIjyq7QRblhLsG-p46KAbhxIac7xOe_RcTmcuzxKj_!1293113076?_adf.ctrl-state=1a4y9bp5ca_4",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "nextcare-link-3",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "nextcare-link-1",
+          "label": "بوابة Pulse / Nextcare",
+          "url": "https://pulsepp-egp.nextcarehealth.com/claims",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "nextcare-contact-3",
+          "label": "hotline: 19154",
+          "url": "tel:19154",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "nextcare-contact-4",
+          "label": "whatsapp: 01149992051",
+          "url": "tel:01149992051",
+          "type": "phone",
+          "page": 0
+        }
       ]
     },
     {
@@ -1887,6 +2077,43 @@
           "width": 307,
           "height": 292
         }
+      ],
+      "links": [
+        {
+          "id": "mednet-portal",
+          "label": "بوابة الموافقات (MedNeXt)",
+          "url": "https://online.mednet-egypt.com/MedNeXtOnline/faces/pages/login.jspx",
+          "type": "portal",
+          "page": 0
+        },
+        {
+          "id": "mednet-link-2",
+          "label": "بوابة MedNeXt",
+          "url": "https://online.mednet-egypt.com/MedNeXtOnline/faces/pages/login.jspx;MEDNEXT_ONLINE=LEJqhSnets3hN-NBJ92rSMDu2sLvzQG-dI-W05GgNtv7KOZfNfp_M0Nux-OsEerJ6rjWsmbpYAd6S-mC4J_E2nDIjyq7QRblhLsG-p46KAbhxIac7xOe_RcTmcuzxKj_!1293113076?_adf.ctrl-state=1a4y9bp5ca_4",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "mednet-link-3",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "mednet-link-1",
+          "label": "بوابة Pulse / Nextcare",
+          "url": "https://pulsepp-egp.nextcarehealth.com/claims",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "mednet-contact-4",
+          "label": "hotline: 17011",
+          "url": "tel:17011",
+          "type": "phone",
+          "page": 0
+        }
       ]
     },
     {
@@ -2072,6 +2299,43 @@
           "width": 744,
           "height": 199
         }
+      ],
+      "links": [
+        {
+          "id": "misr-healthcare-link-2",
+          "label": "بوابة MedNeXt",
+          "url": "https://online.mednet-egypt.com/MedNeXtOnline/faces/pages/login.jspx;MEDNEXT_ONLINE=LEJqhSnets3hN-NBJ92rSMDu2sLvzQG-dI-W05GgNtv7KOZfNfp_M0Nux-OsEerJ6rjWsmbpYAd6S-mC4J_E2nDIjyq7QRblhLsG-p46KAbhxIac7xOe_RcTmcuzxKj_!1293113076?_adf.ctrl-state=1a4y9bp5ca_4",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "misr-healthcare-link-3",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "misr-healthcare-link-1",
+          "label": "بوابة Pulse / Nextcare",
+          "url": "https://pulsepp-egp.nextcarehealth.com/claims",
+          "type": "portal",
+          "page": 2
+        },
+        {
+          "id": "misr-healthcare-contact-3",
+          "label": "hotline: 19114",
+          "url": "tel:19114",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "misr-healthcare-contact-4",
+          "label": "بريد: amt@misrins.com.eg",
+          "url": "mailto:amt@misrins.com.eg",
+          "type": "email",
+          "page": 0
+        }
       ]
     },
     {
@@ -2245,6 +2509,29 @@
           "title": "االهلى للخدمات الطبيةAMC",
           "url": "/assets/companies/amc/page047_card.png",
           "page": 47
+        }
+      ],
+      "links": [
+        {
+          "id": "amc-portal",
+          "label": "بوابة الموافقات (Nice Deer)",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 0
+        },
+        {
+          "id": "amc-contact-2",
+          "label": "help: 17109",
+          "url": "tel:17109",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "amc-contact-1",
+          "label": "hotline: 19462",
+          "url": "tel:19462",
+          "type": "phone",
+          "page": 0
         }
       ]
     },
@@ -2544,6 +2831,50 @@
           "width": 703,
           "height": 502
         }
+      ],
+      "links": [
+        {
+          "id": "medright-link-2",
+          "label": "بوابة Medmark (Zoho)",
+          "url": "https://accounts.zoho.com/signin?servicename=ZohoCRM&signupurl=https://www.zoho.com/crm/lp/signup.html",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "medright-link-1",
+          "label": "بوابة Medright ETPA",
+          "url": "https://etpa.med-right.com/Login",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "medright-link-3",
+          "label": "بوابة Unicare",
+          "url": "https://app.uni-act.org/ords/r/mis/erx105/login?session=6619767873795",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "medright-link-4",
+          "label": "بوابة Medright ETPA",
+          "url": "http://www.med-right.com",
+          "type": "portal",
+          "page": 51
+        },
+        {
+          "id": "medright-contact-4",
+          "label": "hotline: 16380",
+          "url": "tel:16380",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "medright-contact-5",
+          "label": "hotline: 16830",
+          "url": "tel:16830",
+          "type": "phone",
+          "page": 0
+        }
       ]
     },
     {
@@ -2735,6 +3066,64 @@
           "title": "تعليمات صرف",
           "url": "/assets/companies/medmark/page063_card.png",
           "page": 63
+        }
+      ],
+      "links": [
+        {
+          "id": "medmark-portal",
+          "label": "بوابة الموافقات (Zoho CRM)",
+          "url": "https://accounts.zoho.com/signin?servicename=ZohoCRM",
+          "type": "portal",
+          "page": 0
+        },
+        {
+          "id": "medmark-link-2",
+          "label": "بوابة Medmark (Zoho)",
+          "url": "https://accounts.zoho.com/signin?servicename=ZohoCRM&signupurl=https://www.zoho.com/crm/lp/signup.html",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "medmark-link-1",
+          "label": "بوابة Medright ETPA",
+          "url": "https://etpa.med-right.com/Login",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "medmark-link-3",
+          "label": "بوابة Unicare",
+          "url": "https://app.uni-act.org/ords/r/mis/erx105/login?session=6619767873795",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "medmark-contact-5",
+          "label": "hotline: 16816",
+          "url": "tel:16816",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "medmark-contact-6",
+          "label": "mobile: 01222109494",
+          "url": "tel:01222109494",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "medmark-contact-7",
+          "label": "بريد: preauthorization@medmak.eg",
+          "url": "mailto:preauthorization@medmak.eg",
+          "type": "email",
+          "page": 0
+        },
+        {
+          "id": "medmark-link-4",
+          "label": "بريد: provider@medmark.eg",
+          "url": "mailto:provider@medmark.eg",
+          "type": "email",
+          "page": 56
         }
       ]
     },
@@ -2938,6 +3327,43 @@
           "page": 70,
           "width": 624,
           "height": 953
+        }
+      ],
+      "links": [
+        {
+          "id": "bupa-link-2",
+          "label": "بوابة Medmark (Zoho)",
+          "url": "https://accounts.zoho.com/signin?servicename=ZohoCRM&signupurl=https://www.zoho.com/crm/lp/signup.html",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "bupa-link-1",
+          "label": "بوابة Medright ETPA",
+          "url": "https://etpa.med-right.com/Login",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "bupa-link-3",
+          "label": "بوابة Unicare",
+          "url": "https://app.uni-act.org/ords/r/mis/erx105/login?session=6619767873795",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "bupa-contact-4",
+          "label": "hotline: 16816",
+          "url": "tel:16816",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "bupa-link-4",
+          "label": "بريد: Prescription@lotuspharmacies.com",
+          "url": "mailto:Prescription@lotuspharmacies.com",
+          "type": "email",
+          "page": 68
         }
       ]
     },
@@ -3190,6 +3616,50 @@
           "width": 1117,
           "height": 663
         }
+      ],
+      "links": [
+        {
+          "id": "unicare-portal",
+          "label": "بوابة الموافقات (Uni-Act)",
+          "url": "https://app.uni-act.org/ords/r/mis/erx105/login",
+          "type": "portal",
+          "page": 0
+        },
+        {
+          "id": "unicare-link-2",
+          "label": "بوابة Medmark (Zoho)",
+          "url": "https://accounts.zoho.com/signin?servicename=ZohoCRM&signupurl=https://www.zoho.com/crm/lp/signup.html",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "unicare-link-1",
+          "label": "بوابة Medright ETPA",
+          "url": "https://etpa.med-right.com/Login",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "unicare-link-3",
+          "label": "بوابة Unicare",
+          "url": "https://app.uni-act.org/ords/r/mis/erx105/login?session=6619767873795",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "unicare-contact-4",
+          "label": "hotline: 19389",
+          "url": "tel:19389",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "unicare-contact-5",
+          "label": "بريد: Hotline@unicare-egypt.com",
+          "url": "mailto:Hotline@unicare-egypt.com",
+          "type": "email",
+          "page": 0
+        }
       ]
     },
     {
@@ -3329,6 +3799,29 @@
           "title": "هيئة الطاقة الذرية",
           "url": "/assets/companies/atomic-energy/page089_card.png",
           "page": 89
+        }
+      ],
+      "links": [
+        {
+          "id": "atomic-energy-link-2",
+          "label": "بوابة Medmark (Zoho)",
+          "url": "https://accounts.zoho.com/signin?servicename=ZohoCRM&signupurl=https://www.zoho.com/crm/lp/signup.html",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "atomic-energy-link-1",
+          "label": "بوابة Medright ETPA",
+          "url": "https://etpa.med-right.com/Login",
+          "type": "portal",
+          "page": 3
+        },
+        {
+          "id": "atomic-energy-link-3",
+          "label": "بوابة Unicare",
+          "url": "https://app.uni-act.org/ords/r/mis/erx105/login?session=6619767873795",
+          "type": "portal",
+          "page": 3
         }
       ]
     },
@@ -3739,6 +4232,43 @@
           "width": 1124,
           "height": 636
         }
+      ],
+      "links": [
+        {
+          "id": "egycare-link-1",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "egycare-link-2",
+          "label": "بوابة SehaOne",
+          "url": "https://provider.sehatech.xyz/login",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "egycare-link-3",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "egycare-contact-3",
+          "label": "hotline: 16426",
+          "url": "tel:16426",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "egycare-contact-4",
+          "label": "whatsapp: 01099990952",
+          "url": "tel:01099990952",
+          "type": "phone",
+          "page": 0
+        }
       ]
     },
     {
@@ -3807,6 +4337,36 @@
           "title": "اجراءات صرف",
           "url": "/assets/companies/sehatech/page102_card.png",
           "page": 102
+        }
+      ],
+      "links": [
+        {
+          "id": "sehatech-link-1",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sehatech-link-2",
+          "label": "بوابة SehaOne",
+          "url": "https://provider.sehatech.xyz/login",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sehatech-link-3",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sehatech-contact-3",
+          "label": "hotline: 16300",
+          "url": "tel:16300",
+          "type": "phone",
+          "page": 0
         }
       ]
     },
@@ -4165,6 +4725,50 @@
           "width": 720,
           "height": 478
         }
+      ],
+      "links": [
+        {
+          "id": "care-plus-link-1",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "care-plus-link-2",
+          "label": "بوابة SehaOne",
+          "url": "https://provider.sehatech.xyz/login",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "care-plus-link-3",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "care-plus-contact-3",
+          "label": "hotline: 17144",
+          "url": "tel:17144",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "care-plus-contact-5",
+          "label": "mobile: 01027405500",
+          "url": "tel:01027405500",
+          "type": "phone",
+          "page": 0
+        },
+        {
+          "id": "care-plus-contact-4",
+          "label": "whatsapp: 01003027300",
+          "url": "tel:01003027300",
+          "type": "phone",
+          "page": 0
+        }
       ]
     },
     {
@@ -4340,6 +4944,36 @@
           "url": "/assets/companies/sesco-care/page096_card.png",
           "page": 96
         }
+      ],
+      "links": [
+        {
+          "id": "sesco-care-link-1",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sesco-care-link-2",
+          "label": "بوابة SehaOne",
+          "url": "https://provider.sehatech.xyz/login",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sesco-care-link-3",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sesco-care-contact-3",
+          "label": "whatsapp: 01202842022",
+          "url": "tel:01202842022",
+          "type": "phone",
+          "page": 0
+        }
       ]
     },
     {
@@ -4472,6 +5106,29 @@
           "width": 1407,
           "height": 790
         }
+      ],
+      "links": [
+        {
+          "id": "petroshad-link-1",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "petroshad-link-2",
+          "label": "بوابة SehaOne",
+          "url": "https://provider.sehatech.xyz/login",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "petroshad-link-3",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 4
+        }
       ]
     },
     {
@@ -4580,6 +5237,29 @@
           "page": 100,
           "width": 242,
           "height": 243
+        }
+      ],
+      "links": [
+        {
+          "id": "sumed-link-1",
+          "label": "بوابة Nice Deer",
+          "url": "https://nicedeer.net/Account/Login?ReturnUrl=%2F",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sumed-link-2",
+          "label": "بوابة SehaOne",
+          "url": "https://provider.sehatech.xyz/login",
+          "type": "portal",
+          "page": 4
+        },
+        {
+          "id": "sumed-link-3",
+          "label": "بوابة Yodawy",
+          "url": "https://portal.yodawy.com/#/Login?_k=9g0mnx",
+          "type": "portal",
+          "page": 4
         }
       ]
     }

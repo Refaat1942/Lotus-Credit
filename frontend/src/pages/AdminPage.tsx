@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette } from 'lucide-react';
+import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon } from 'lucide-react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import { useRules } from '../hooks/useRules';
-import type { Branding, Company, RulesData } from '../types';
+import { useTheme } from '../context/ThemeContext';
+import type { Branding, Company, CompanyLink, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
 type AdminTab = 'companies' | 'branding';
 
 export default function AdminPage() {
   const { data, online, refetch, loading } = useRules();
+  const { theme, toggleTheme } = useTheme();
   const [token, setToken] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -120,6 +122,7 @@ export default function AdminPage() {
       forms: [],
       contacts: [],
       media: [],
+      links: [],
     };
     setEditData({ ...editData, companies: [...editData.companies, newCo] });
     setSelectedCompany(newCo);
@@ -128,7 +131,15 @@ export default function AdminPage() {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4 relative">
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="absolute top-4 left-4 p-2 rounded-xl glass hover:bg-white/10"
+          title={theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}
+        >
+          {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-lotus-600" />}
+        </button>
         <motion.form
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -404,6 +415,35 @@ function CompanyEditor({
         label="محظورات (سطر لكل محظور)"
         value={company.rules?.prohibitions?.join('\n') || ''}
         onChange={(v) => updateRule('prohibitions', v.split('\n').filter(Boolean))}
+        multiline
+      />
+
+      <h3 className="font-bold pt-4 border-t border-white/10">روابط مهمة</h3>
+      <p className="text-xs text-muted mb-2">سطر لكل رابط: العنوان | الرابط | النوع (portal/email/phone/website)</p>
+      <Field
+        label="الروابط"
+        value={(company.links || [])
+          .map((l) => `${l.label} | ${l.url} | ${l.type}`)
+          .join('\n')}
+        onChange={(v) => {
+          const links: CompanyLink[] = v
+            .split('\n')
+            .map((line) => line.trim())
+            .filter(Boolean)
+            .map((line, i) => {
+              const parts = line.split('|').map((p) => p.trim());
+              const label = parts[0] || 'رابط';
+              const url = parts[1] || '';
+              const type = (parts[2] || 'portal') as CompanyLink['type'];
+              return {
+                id: `${company.id}-link-${i}`,
+                label,
+                url,
+                type: ['portal', 'email', 'phone', 'website'].includes(type) ? type : 'portal',
+              };
+            });
+          onChange({ ...company, links });
+        }}
         multiline
       />
     </div>

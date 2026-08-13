@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { Wifi, WifiOff, RefreshCw, Settings } from 'lucide-react';
+import { Wifi, WifiOff, RefreshCw, Settings, Sun, Moon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LotusLogo from './LotusLogo';
 import { useBranding } from '../hooks/useBranding';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeaderProps {
   online: boolean;
@@ -12,6 +13,7 @@ interface HeaderProps {
 
 export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const branding = useBranding();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <motion.header
@@ -58,6 +60,20 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
               <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
             </motion.button>
           )}
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={toggleTheme}
+            className="p-2 rounded-xl glass hover:bg-white/10 transition-colors"
+            title={theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-5 h-5 text-amber-400" />
+            ) : (
+              <Moon className="w-5 h-5 text-lotus-600" />
+            )}
+          </motion.button>
 
           <Link to="/admin" state={{ requireLogin: true }}>
             <motion.button

@@ -31,6 +31,14 @@ export interface CompanyMedia {
   height?: number;
 }
 
+export interface CompanyLink {
+  id: string;
+  label: string;
+  url: string;
+  type: 'portal' | 'email' | 'phone' | 'website';
+  page?: number;
+}
+
 export interface Company {
   id: string;
   nameAr: string;
@@ -46,6 +54,7 @@ export interface Company {
   rules?: CompanyRules;
   cardInstructions?: string[];
   media?: CompanyMedia[];
+  links?: CompanyLink[];
 }
 
 export interface Branding {
