@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Sparkles, CreditCard, Link2 } from 'lucide-react';
 import Header from '../components/Header';
 import CompanyCard from '../components/CompanyCard';
+import LotusLogo from '../components/LotusLogo';
 import { useRules } from '../hooks/useRules';
 
 export default function HomePage() {
@@ -33,6 +34,14 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12 relative"
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex justify-center mb-6"
+          >
+            <LotusLogo size="lg" animate />
+          </motion.div>
+
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ repeat: Infinity, duration: 4 }}
@@ -141,6 +150,9 @@ export default function HomePage() {
       </main>
 
       <footer className="text-center py-8 text-slate-500 text-sm border-t border-white/5 mt-12">
+        <div className="flex justify-center mb-3">
+          <LotusLogo size="sm" />
+        </div>
         <p>© 2026 Lotus Pharmacies · آخر تحديث: {data?.meta.lastUpdated || '2026-08'}</p>
       </footer>
     </div>

@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'logo.svg'],
+        includeAssets: ['favicon.svg', 'lotus-logo.png'],
       manifest: {
         name: 'Lotus Credit - شروط صرف التعاقدات',
         short_name: 'Lotus Credit',

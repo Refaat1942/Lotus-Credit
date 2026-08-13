@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus } from 'lucide-react';
 import Header from '../components/Header';
+import LotusLogo from '../components/LotusLogo';
 import { useRules } from '../hooks/useRules';
 import type { Company, RulesData } from '../types';
 
@@ -15,7 +16,6 @@ export default function AdminPage() {
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   const isLoggedIn = !!token;
 
@@ -113,8 +113,11 @@ export default function AdminPage() {
           className="glass-card p-8 w-full max-w-md"
         >
           <div className="text-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-lotus-500/20 flex items-center justify-center mx-auto mb-4">
-              <Lock className="w-8 h-8 text-lotus-400" />
+            <div className="flex justify-center mb-4">
+              <LotusLogo size="md" />
+            </div>
+            <div className="w-12 h-12 rounded-2xl bg-lotus-500/20 flex items-center justify-center mx-auto mb-3">
+              <Lock className="w-6 h-6 text-lotus-400" />
             </div>
             <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
             <p className="text-slate-400 text-sm mt-1">تعديل شروط صرف التعاقدات</p>

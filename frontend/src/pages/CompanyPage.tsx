@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import Header from '../components/Header';
+import LotusLogo from '../components/LotusLogo';
 import { RuleItem, NotesList, StepWizard } from '../components/RuleDisplay';
 import { useRules } from '../hooks/useRules';
 
@@ -67,21 +68,24 @@ export default function CompanyPage() {
                 style={{ backgroundColor: color }}
               />
               <div className="relative">
-                <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                  <div>
+                <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <LotusLogo size="sm" className="opacity-90" />
+                  <div className="flex-1 min-w-[200px]">
                     <h1 className="text-3xl font-bold text-white mb-1">{company.nameAr}</h1>
                     <p className="text-slate-400">{company.nameEn}</p>
                   </div>
-                  {company.hotline && (
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      href={`tel:${company.hotline}`}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                    >
-                      <Phone className="w-4 h-4" />
-                      {company.hotline}
-                    </motion.a>
-                  )}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {company.hotline && (
+                      <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        href={`tel:${company.hotline}`}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                      >
+                        <Phone className="w-4 h-4" />
+                        {company.hotline}
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
 
                 {company.approvalPortal && (

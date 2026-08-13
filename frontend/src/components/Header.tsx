@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { Wifi, WifiOff, RefreshCw, Settings, Leaf } from 'lucide-react';
+import { Wifi, WifiOff, RefreshCw, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import LotusLogo from './LotusLogo';
 
 interface HeaderProps {
   online: boolean;
@@ -17,12 +18,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 group">
-          <motion.div
-            whileHover={{ rotate: 15, scale: 1.1 }}
-            className="w-11 h-11 rounded-xl bg-gradient-to-br from-lotus-400 to-lotus-600 flex items-center justify-center shadow-lg shadow-lotus-500/30"
-          >
-            <Leaf className="w-6 h-6 text-white" />
-          </motion.div>
+          <LotusLogo size="sm" animate />
           <div>
             <h1 className="text-xl font-bold gradient-text">لوتس كريدت</h1>
             <p className="text-xs text-slate-400">Lotus Credit · شروط صرف التعاقدات</p>
