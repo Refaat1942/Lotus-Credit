@@ -337,7 +337,7 @@
           "page": 8
         }
       ],
-      "logoUrl": "/assets/companies/axa/logo.png"
+      "logoUrl": "/logos/axa.png"
     },
     {
       "id": "metlife",
@@ -880,7 +880,7 @@
           "page": 1
         }
       ],
-      "logoUrl": "/assets/companies/metlife/logo.png"
+      "logoUrl": "/logos/metlife.png"
     },
     {
       "id": "globemed",
@@ -1136,7 +1136,7 @@
           "page": 1
         }
       ],
-      "logoUrl": "/assets/companies/globemed/logo.jpeg"
+      "logoUrl": "/logos/globemed.png"
     },
     {
       "id": "nextcare",
@@ -1476,7 +1476,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/nextcare/logo.png"
+      "logoUrl": "/logos/nextcare.png"
     },
     {
       "id": "mednet",
@@ -1743,7 +1743,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/mednet/logo.jpeg"
+      "logoUrl": "/logos/mednet.png"
     },
     {
       "id": "misr-healthcare",
@@ -1930,7 +1930,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/misr-healthcare/logo.png"
+      "logoUrl": "/logos/misr-healthcare.png"
     },
     {
       "id": "amc",
@@ -2101,7 +2101,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/amc/logo.jpeg"
+      "logoUrl": "/logos/amc.png"
     },
     {
       "id": "medright",
@@ -2417,7 +2417,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/medright/logo.png"
+      "logoUrl": "/logos/medright.png"
     },
     {
       "id": "medmark",
@@ -2641,7 +2641,7 @@
           "page": 56
         }
       ],
-      "logoUrl": "/assets/companies/medmark/logo.png"
+      "logoUrl": "/logos/medmark.png"
     },
     {
       "id": "bupa",
@@ -2846,7 +2846,7 @@
           "page": 68
         }
       ],
-      "logoUrl": "/assets/companies/bupa/logo.jpeg"
+      "logoUrl": "/logos/bupa.png"
     },
     {
       "id": "unicare",
@@ -3115,7 +3115,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/unicare/logo.jpeg"
+      "logoUrl": "/logos/unicare.png"
     },
     {
       "id": "atomic-energy",
@@ -3252,7 +3252,7 @@
           "page": 3
         }
       ],
-      "logoUrl": "/assets/companies/atomic-energy/logo.png"
+      "logoUrl": "/logos/atomic-energy.png"
     },
     {
       "id": "egycare",
@@ -3672,7 +3672,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/egycare/logo.png"
+      "logoUrl": "/logos/egycare.png"
     },
     {
       "id": "sehatech",
@@ -3745,7 +3745,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/sehatech/logo.jpeg"
+      "logoUrl": "/logos/sehatech.png"
     },
     {
       "id": "care-plus",
@@ -4075,7 +4075,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/care-plus/logo.png"
+      "logoUrl": "/logos/care-plus.png"
     },
     {
       "id": "sesco-care",
@@ -4254,7 +4254,7 @@
           "page": 0
         }
       ],
-      "logoUrl": "/assets/companies/sesco-care/logo.png"
+      "logoUrl": "/logos/sesco-care.png"
     },
     {
       "id": "petroshad",
@@ -4383,7 +4383,7 @@
           "page": 4
         }
       ],
-      "logoUrl": "/assets/companies/petroshad/logo.jpeg"
+      "logoUrl": "/logos/petroshad.png"
     },
     {
       "id": "sumed",
@@ -4489,7 +4489,7 @@
           "page": 4
         }
       ],
-      "logoUrl": "/assets/companies/sumed/logo.png"
+      "logoUrl": "/logos/sumed.png"
     }
   ]
 }

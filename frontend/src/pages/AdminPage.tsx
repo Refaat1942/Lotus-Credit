@@ -390,7 +390,7 @@ function CompanyEditor({
         <Field label="رابط البوابة" value={company.approvalPortal || ''} onChange={(v) => update('approvalPortal', v)} className="sm:col-span-2" />
         <Field label="اللون" value={company.color || ''} onChange={(v) => update('color', v)} />
         <Field label="الترتيب" value={String(company.order)} onChange={(v) => update('order', Number(v))} />
-        <Field label="رابط اللوجو" value={company.logoUrl || ''} onChange={(v) => update('logoUrl', v)} className="sm:col-span-2" />
+        <Field label="رابط اللوجو (مثال: /logos/axa.png)" value={company.logoUrl || ''} onChange={(v) => update('logoUrl', v)} className="sm:col-span-2" />
       </div>
 
       <h3 className="font-bold pt-4 border-t border-white/10">شروط الصرف</h3>
