@@ -7,6 +7,7 @@ import {
 import type { Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import CompanyLinks from './CompanyLinks';
+import MediaLinks from './MediaLinks';
 import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
@@ -294,6 +295,9 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
                     />
                   </button>
                   <p className="text-xs text-muted px-3 py-2">صفحة {activeDoc.page} · اضغط على الصورة للتكبير</p>
+                  {activeDoc.links && activeDoc.links.length > 0 && (
+                    <MediaLinks links={activeDoc.links} accentColor={color} />
+                  )}
                 </div>
               ) : (
                 <p className="text-sm text-amber-600 dark:text-amber-400 p-4 rounded-xl bg-amber-500/10">

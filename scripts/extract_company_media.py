@@ -3,35 +3,18 @@ import json
 import os
 import re
 import shutil
+import sys
 
 import pymupdf
 
-PDF = os.path.join(r"C:\Users\a.refaat\Downloads", "شروط صرف التعاقدات اغسطس 2026.pdf")
+sys.path.insert(0, os.path.dirname(__file__))
+from company_ranges import PAGE_RANGES
+
+PDF = os.path.join(os.path.expanduser("~"), "Downloads", "شروط صرف التعاقدات اغسطس 2026.pdf")
 BASE = os.path.join(os.path.dirname(os.path.dirname(__file__)))
 ASSETS = os.path.join(BASE, "data", "assets", "companies")
 RULES = os.path.join(BASE, "data", "rules.json")
 RAW = os.path.join(BASE, "data", "extracted_raw.json")
-
-PAGE_RANGES = {
-    "axa": (7, 11),
-    "metlife": (12, 20),
-    "globemed": (21, 23),
-    "nextcare": (24, 31),
-    "mednet": (32, 35),
-    "misr-healthcare": (36, 40),
-    "amc": (41, 47),
-    "medright": (48, 54),
-    "medmark": (55, 63),
-    "bupa": (65, 70),
-    "egycare": (71, 76),
-    "care-plus": (77, 82),
-    "unicare": (83, 85),
-    "atomic-energy": (86, 89),
-    "sesco-care": (90, 96),
-    "petroshad": (97, 99),
-    "sumed": (100, 100),
-    "sehatech": (101, 102),
-}
 
 GLOBAL_TEMPLATE_XREFS = {5, 8, 10, 198}
 GLOBAL_TEMPLATE_SIZES = {

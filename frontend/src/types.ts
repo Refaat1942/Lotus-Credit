@@ -29,6 +29,7 @@ export interface CompanyMedia {
   page: number;
   width?: number;
   height?: number;
+  links?: CompanyLink[];
 }
 
 export interface CompanyLink {

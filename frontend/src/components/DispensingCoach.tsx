@@ -7,6 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import type { Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
+import MediaLinks from './MediaLinks';
 import { galleryMedia } from '../utils/mediaFilters';
 import { pickApprovalMedia, pickMediaForForm } from '../utils/formMedia';
 
@@ -580,6 +581,9 @@ function ChatBubble({
               </span>
             </button>
             <p className="text-[11px] text-muted px-2 py-1.5 truncate">{line.doc.title}</p>
+            {line.doc.links && line.doc.links.length > 0 && (
+              <MediaLinks links={line.doc.links} accentColor={color} />
+            )}
           </div>
         )}
       </div>
