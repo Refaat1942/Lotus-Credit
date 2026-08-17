@@ -23,6 +23,11 @@ export function formKeywords(form: string): string[] {
   if (n.includes('خارج')) keys.push('خارج', 'خارجية', 'external');
   if (n.includes('أبيض') || n.includes('ابيض')) keys.push('أبيض', 'ابيض', 'white');
   if (n.includes('مسجل')) keys.push('مسجل', 'برنامج');
+  if (n.includes('مزمن') || n.includes('شهري')) keys.push('مزمن', 'شهري', 'chronic');
+  if (n.includes('e-prescription') || n.includes('eprescription')) {
+    keys.push('e-prescription', 'prescription', 'روشتة', 'إلكترون');
+  }
+  if (n.includes('sehaone')) keys.push('sehaone', 'seha');
   return keys;
 }
 
