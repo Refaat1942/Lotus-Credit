@@ -2,13 +2,15 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   PlayCircle, ListChecks, FileImage, AlertTriangle, Link2,
-  Phone, ExternalLink, ChevronLeft, ChevronRight, Check, ZoomIn, X,
+  Phone, ExternalLink, Check, ZoomIn, X, Sparkles,
 } from 'lucide-react';
 import type { Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import CompanyLinks from './CompanyLinks';
+import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
+import { pickMediaForForm } from '../utils/formMedia';
 
 type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'links';
 
@@ -24,48 +26,13 @@ const PHASES: { id: Phase; label: string; icon: typeof PlayCircle }[] = [
   { id: 'links', label: 'الروابط', icon: Link2 },
 ];
 
-function normalizeAr(s: string) {
-  return s.toLowerCase().replace(/\s+/g, ' ').trim();
-}
-
-function formKeywords(form: string): string[] {
-  const n = normalizeAr(form);
-  const keys = [n];
-  if (n.includes('أزرق') || n.includes('ازرق')) keys.push('أزرق', 'ازرق', 'blue');
-  if (n.includes('أصفر') || n.includes('اصفر')) keys.push('أصفر', 'اصفر', 'yellow');
-  if (n.includes('كربون')) keys.push('كربون', 'carbon');
-  if (n.includes('روشت')) keys.push('روشت');
-  if (n.includes('e-form') || n.includes('eform')) keys.push('form', 'e-form');
-  if (n.includes('موافق')) keys.push('موافق');
-  if (n.includes('كارن')) keys.push('كارن', 'card');
-  return keys;
-}
-
-function scoreMediaForForm(form: string, item: CompanyMedia): number {
-  const title = normalizeAr(item.title);
-  let score = 0;
-  for (const kw of formKeywords(form)) {
-    if (title.includes(normalizeAr(kw))) score += 3;
-  }
-  if (item.type === 'card') score += 2;
-  if (item.type === 'photo' && title.includes('نموذج')) score += 1;
-  return score;
-}
-
-function pickMediaForForm(form: string, media: CompanyMedia[]): CompanyMedia | null {
-  const ranked = media
-    .map((m) => ({ m, score: scoreMediaForForm(form, m) }))
-    .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score);
-  return ranked[0]?.m ?? null;
-}
-
 export default function DispensingGuide({ company }: DispensingGuideProps) {
   const color = company.color || '#14b8a6';
   const rules = company.rules;
   const media = useMemo(() => galleryMedia(company.media || []), [company.media]);
   const cardDocs = useMemo(() => media.filter((m) => m.type === 'card'), [media]);
 
+  const [coachActive, setCoachActive] = useState(false);
   const [phase, setPhase] = useState<Phase>('start');
   const [stepDone, setStepDone] = useState<Record<number, boolean>>({});
   const [selectedForm, setSelectedForm] = useState(0);
@@ -93,11 +60,24 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
     const idx = forms.findIndex((f) => f === formName);
     if (idx >= 0) setSelectedForm(idx);
     setPhase('forms');
+    setCoachActive(false);
   };
+
+  if (coachActive) {
+    return (
+      <DispensingCoach
+        company={company}
+        onExit={() => setCoachActive(false)}
+        onOpenReference={() => {
+          setCoachActive(false);
+          setPhase('forms');
+        }}
+      />
+    );
+  }
 
   return (
     <div className="space-y-4">
-      {/* Phase navigation — sticky on mobile */}
       <div className="sticky top-[52px] z-40 -mx-1 px-1 py-2 bg-[var(--color-bg-start)]/90 backdrop-blur-md border-b border-theme mb-2">
         <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
           {PHASES.map(({ id, label, icon: Icon }) => (
@@ -133,10 +113,18 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
                 <p className="text-muted text-sm">{company.nameEn}</p>
               </div>
             </div>
-            <p className="text-base text-muted mb-5 leading-relaxed">
-              اتبع التبويبات بالترتيب: خطوات الصرف ← النماذج (المستند الأزرق/الأصفر) ← الشروط ← الروابط
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
+
+            <div className="rounded-xl border border-lotus-500/30 bg-lotus-500/10 p-4 mb-5">
+              <p className="text-primary font-semibold flex items-center gap-2 mb-2">
+                <Sparkles className="w-5 h-5 text-lotus-500" />
+                مرشد الصرف التفاعلي
+              </p>
+              <p className="text-sm text-muted leading-relaxed">
+                هيسألك أسئلة ويوجّهك للخطوة والنموذج الصح — زي زميل في الفرع بيرشدك خطوة بخطوة.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-5">
               {company.hotline && (
                 <a
                   href={`tel:${company.hotline}`}
@@ -158,22 +146,39 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
                 </a>
               )}
             </div>
+
+            <button
+              type="button"
+              onClick={() => setCoachActive(true)}
+              className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold text-base shadow-lg shadow-lotus-500/25 mb-3"
+            >
+              ابدأ الإرشاد التفاعلي ←
+            </button>
             <button
               type="button"
               onClick={() => setPhase('steps')}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold text-base"
+              className="w-full px-4 py-2.5 rounded-xl text-sm text-muted hover:text-primary border border-theme hover:bg-surface/50 transition-colors"
             >
-              ابدأ خطوات الصرف ←
+              أو تصفّح المرجع يدوياً
             </button>
           </motion.div>
         )}
 
         {phase === 'steps' && (
           <motion.div key="steps" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="glass-card p-5 sm:p-6">
-            <h2 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
-              <ListChecks className="w-5 h-5 text-lotus-500" />
-              خطوات الصرف — علّم كل خطوة بعد تنفيذها
-            </h2>
+            <div className="flex items-center justify-between mb-4 gap-2">
+              <h2 className="text-lg font-bold text-primary flex items-center gap-2">
+                <ListChecks className="w-5 h-5 text-lotus-500" />
+                خطوات الصرف
+              </h2>
+              <button
+                type="button"
+                onClick={() => setCoachActive(true)}
+                className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30 whitespace-nowrap"
+              >
+                ✨ إرشاد تفاعلي
+              </button>
+            </div>
             <div className="space-y-3">
               {dispensingSteps.map((step, i) => {
                 const done = stepDone[i];
@@ -228,10 +233,19 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
         {phase === 'forms' && (
           <motion.div key="forms" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-4">
             <div className="glass-card p-5">
-              <h2 className="text-lg font-bold text-primary mb-3 flex items-center gap-2">
-                <FileImage className="w-5 h-5 text-lotus-500" />
-                اختر طريقة الصرف — يظهر النموذج من المستند
-              </h2>
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <h2 className="text-lg font-bold text-primary flex items-center gap-2">
+                  <FileImage className="w-5 h-5 text-lotus-500" />
+                  اختر طريقة الصرف
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setCoachActive(true)}
+                  className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30"
+                >
+                  ✨ إرشاد تفاعلي
+                </button>
+              </div>
               {forms.length === 0 ? (
                 <p className="text-muted text-sm">لا توجد طرق صرف مسجلة لهذه الشركة.</p>
               ) : (
@@ -363,7 +377,6 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
