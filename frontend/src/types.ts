@@ -3,6 +3,20 @@ export interface Contact {
   value: string;
 }
 
+export type Lang = 'ar' | 'en';
+
+export interface LocalizedString {
+  ar: string;
+  en: string;
+}
+
+export interface CoachCopyBundle {
+  messages?: Record<string, LocalizedString>;
+  buttons?: Record<string, LocalizedString>;
+  checklist?: Record<string, LocalizedString>;
+  ui?: Record<string, LocalizedString>;
+}
+
 export interface CompanyRules {
   prescriptionValidity?: string;
   maxDispensePeriod?: string;
@@ -68,8 +82,16 @@ export interface Company {
   logoUrl?: string;
   contacts?: Contact[];
   forms?: string[];
+  /** English labels parallel to forms[] */
+  formsEn?: string[];
   /** Admin-assigned: dispensing form label → media id */
   formMediaMap?: Record<string, string>;
+  /** Admin-assigned: parallel to forms[] — media id per form choice (stable by index) */
+  formMediaByIndex?: string[];
+  /** Admin-assigned: coach answer key → media id (e.g. card_bad, no_card, need_approval) */
+  coachAnswerMedia?: Record<string, string>;
+  /** Per-company overrides for interactive coach copy */
+  coachCopy?: CoachCopyBundle;
   /** Admin-assigned: coach step → media id(s) */
   stepMediaMap?: Partial<Record<CoachPhase, string | string[]>>;
   rules?: CompanyRules;
@@ -82,11 +104,16 @@ export interface Branding {
   logoUrl: string;
   titleAr: string;
   departmentAr: string;
+  departmentEn?: string;
   titleEn: string;
   subtitleAr: string;
+  subtitleEn?: string;
   heroBadgeAr?: string;
+  heroBadgeEn?: string;
   heroTitleAr: string;
+  heroTitleEn?: string;
   heroSubtitleAr: string;
+  heroSubtitleEn?: string;
   footerText: string;
 }
 
@@ -94,6 +121,7 @@ export const DEFAULT_BRANDING: Branding = {
   logoUrl: '/lotus-logo.png',
   titleAr: 'صيدليات لوتس',
   departmentAr: 'قسم الاجل',
+  departmentEn: 'Credit Department',
   titleEn: 'Lotus Credit',
   subtitleAr: 'شروط صرف التعاقدات',
   heroBadgeAr: 'قسم الاجل · شروط صرف التعاقدات',
@@ -105,6 +133,8 @@ export const DEFAULT_BRANDING: Branding = {
 export interface RulesData {
   version: string;
   branding?: Branding;
+  /** Global defaults/overrides for interactive coach copy */
+  coach?: CoachCopyBundle;
   meta: {
     titleAr: string;
     titleEn: string;

@@ -4,7 +4,7 @@ import {
   PlayCircle, ListChecks, FileImage, AlertTriangle, Link2,
   Phone, ExternalLink, Check, ZoomIn, X, Sparkles,
 } from 'lucide-react';
-import type { Company, CompanyMedia } from '../types';
+import type { CoachCopyBundle, Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import CompanyLinks from './CompanyLinks';
 import MediaLinks from './MediaLinks';
@@ -17,6 +17,7 @@ type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'links';
 
 interface DispensingGuideProps {
   company: Company;
+  globalCoach?: CoachCopyBundle;
 }
 
 const PHASES: { id: Phase; label: string; icon: typeof PlayCircle }[] = [
@@ -27,7 +28,7 @@ const PHASES: { id: Phase; label: string; icon: typeof PlayCircle }[] = [
   { id: 'links', label: 'الروابط', icon: Link2 },
 ];
 
-export default function DispensingGuide({ company }: DispensingGuideProps) {
+export default function DispensingGuide({ company, globalCoach }: DispensingGuideProps) {
   const color = company.color || '#14b8a6';
   const rules = company.rules;
   const media = useMemo(() => galleryMedia(company.media || []), [company.media]);
@@ -41,7 +42,9 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
 
   const forms = company.forms || [];
   const activeForm = forms[selectedForm];
-  const activeDoc = activeForm ? resolveFormDoc(activeForm, media, company) : cardDocs[0] ?? null;
+  const activeDoc = activeForm
+    ? resolveFormDoc(activeForm, media, company, selectedForm)
+    : cardDocs[0] ?? null;
 
   const dispensingSteps = [
     { title: 'فحص الكارنية', detail: 'تأكد من صلاحية العضوية وبيانات المستفيد والتاريخ', tip: company.cardInstructions?.[0] },
@@ -68,6 +71,7 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
     return (
       <DispensingCoach
         company={company}
+        globalCoach={globalCoach}
         onExit={() => setCoachActive(false)}
         onOpenReference={() => {
           setCoachActive(false);

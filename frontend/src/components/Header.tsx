@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import LotusLogo from './LotusLogo';
 import { useBranding } from '../hooks/useBranding';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
+import { uiText } from '../data/uiStrings';
 
 interface HeaderProps {
   online: boolean;
@@ -14,6 +16,12 @@ interface HeaderProps {
 export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const branding = useBranding();
   const { theme, toggleTheme } = useTheme();
+  const { lang, toggleLang } = useLanguage();
+
+  const title = lang === 'en' ? (branding.titleEn || branding.titleAr) : branding.titleAr;
+  const department = lang === 'en'
+    ? (branding.departmentEn || branding.departmentAr)
+    : branding.departmentAr;
 
   return (
     <motion.header
@@ -24,12 +32,12 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-2.5 group min-w-0">
           <LotusLogo size="sm" />
-          <div className="min-w-0 leading-snug border-r border-theme pr-2.5">
+          <div className={`min-w-0 leading-snug ${lang === 'ar' ? 'border-r' : 'border-l'} border-theme ${lang === 'ar' ? 'pr-2.5' : 'pl-2.5'}`}>
             <p className="text-base sm:text-lg font-bold text-primary truncate">
-              {branding.titleAr}
+              {title}
             </p>
             <p className="text-sm font-medium text-lotus-600 dark:text-lotus-400 truncate">
-              {branding.departmentAr}
+              {department}
             </p>
           </div>
         </Link>
@@ -43,15 +51,23 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
             }`}
           >
             {online ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}
-            {online ? 'متصل' : 'أوفلاين'}
+            {uiText(online ? 'online' : 'offline', lang)}
           </span>
+
+          <button
+            onClick={toggleLang}
+            className="px-2 py-1.5 rounded-lg hover:bg-surface transition-colors text-xs font-bold text-lotus-600 dark:text-lotus-400 min-w-[2.5rem]"
+            title={lang === 'ar' ? 'English' : 'العربية'}
+          >
+            {uiText('langSwitch', lang)}
+          </button>
 
           {onRefresh && (
             <button
               onClick={onRefresh}
               disabled={loading}
               className="p-2 rounded-lg hover:bg-surface transition-colors disabled:opacity-50"
-              title="تحديث"
+              title={uiText('refresh', lang)}
             >
               <RefreshCw className={`w-4 h-4 text-muted ${loading ? 'animate-spin' : ''}`} />
             </button>
@@ -60,7 +76,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-surface transition-colors"
-            title={theme === 'dark' ? 'وضع فاتح' : 'وضع داكن'}
+            title={uiText(theme === 'dark' ? 'themeLight' : 'themeDark', lang)}
           >
             {theme === 'dark' ? (
               <Sun className="w-4 h-4 text-amber-400" />
@@ -70,7 +86,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
           </button>
 
           <Link to="/admin" state={{ requireLogin: true }}>
-            <button className="p-2 rounded-lg hover:bg-surface transition-colors" title="إدارة">
+            <button className="p-2 rounded-lg hover:bg-surface transition-colors" title={uiText('admin', lang)}>
               <Settings className="w-4 h-4 text-muted" />
             </button>
           </Link>

@@ -37,12 +37,40 @@ export function resolveStepMedia(
   return [];
 }
 
+export const COACH_ANSWER_MEDIA_CONFIG: {
+  key: string;
+  labelAr: string;
+  labelEn: string;
+}[] = [
+  { key: 'card_bad', labelAr: 'في مشكلة في الكارنية', labelEn: 'Card has a problem' },
+  { key: 'no_card', labelAr: 'مفيش كارنية إلكترونية', labelEn: 'No e-card' },
+  { key: 'need_approval', labelAr: 'محتاج موافقة', labelEn: 'Needs approval' },
+  { key: 'approval_help', labelAr: 'محتاج مساعدة في الموافقة', labelEn: 'Needs approval help' },
+];
+
 export function resolveFormDoc(
   form: string,
   media: CompanyMedia[],
-  company: Pick<Company, 'formMediaMap'>,
+  company: Pick<Company, 'formMediaMap' | 'formMediaByIndex' | 'coachAnswerMedia'>,
+  formIndex?: number,
 ): CompanyMedia | null {
-  return pickMediaForForm(form, media, company.formMediaMap);
+  return pickMediaForForm(form, media, {
+    formMediaMap: company.formMediaMap,
+    formMediaByIndex: company.formMediaByIndex,
+    formIndex,
+    coachAnswerMedia: company.coachAnswerMedia,
+  });
+}
+
+export function resolveAnswerMedia(
+  answerKey: string,
+  media: CompanyMedia[],
+  coachAnswerMedia?: Record<string, string>,
+): CompanyMedia[] {
+  const id = coachAnswerMedia?.[answerKey];
+  if (!id) return [];
+  const item = media.find((m) => m.id === id);
+  return item ? [item] : [];
 }
 
 export function setStepMediaId(

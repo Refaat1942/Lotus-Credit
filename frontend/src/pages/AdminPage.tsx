@@ -7,12 +7,13 @@ import LotusLogo from '../components/LotusLogo';
 import CompanyLogo from '../components/CompanyLogo';
 import CompanyLogoUpload from '../components/CompanyLogoUpload';
 import CoachMediaEditor from '../components/CoachMediaEditor';
+import CoachCopyEditor from '../components/CoachCopyEditor';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
 import type { Branding, Company, CompanyLink, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
-type AdminTab = 'companies' | 'branding';
+type AdminTab = 'companies' | 'branding' | 'coach';
 
 export default function AdminPage() {
   const { data, online, refetch, loading } = useRules();
@@ -272,7 +273,33 @@ export default function AdminPage() {
             <Edit3 className="w-4 h-4" />
             شركات التأمين
           </button>
+          <button
+            onClick={() => setActiveTab('coach')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+              activeTab === 'coach'
+                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
+                : 'glass hover:bg-white/10'
+            }`}
+          >
+            <Edit3 className="w-4 h-4" />
+            مرشد الصرف
+          </button>
         </div>
+
+        {activeTab === 'coach' && editData && (
+          <div className="glass-card p-6">
+            <h2 className="text-xl font-bold mb-2">نصوص المرشد التفاعلي (عام)</h2>
+            <p className="text-sm text-muted mb-4">
+              التعديلات هنا تطبّق على كل الشركات. يمكن تجاوزها لكل شركة من تبويب الشركات.
+            </p>
+            <CoachCopyEditor
+              title="النصوص الافتراضية للمرشد"
+              copy={editData.coach}
+              onChange={(coach) => setEditData({ ...editData, coach })}
+              defaultOpen
+            />
+          </div>
+        )}
 
         {activeTab === 'branding' && (
           <div className="glass-card p-6">
@@ -393,7 +420,11 @@ function BrandingEditor({
       <Field label="العنوان الفرعي" value={branding.subtitleAr} onChange={(v) => set('subtitleAr', v)} />
       <Field label="شارة تحت اللوجو" value={branding.heroBadgeAr || ''} onChange={(v) => set('heroBadgeAr', v)} className="sm:col-span-2" />
       <Field label="عنوان الصفحة الرئيسية" value={branding.heroTitleAr} onChange={(v) => set('heroTitleAr', v)} />
+      <Field label="Homepage title (English)" value={branding.heroTitleEn || ''} onChange={(v) => set('heroTitleEn', v)} />
       <Field label="وصف الصفحة الرئيسية" value={branding.heroSubtitleAr} onChange={(v) => set('heroSubtitleAr', v)} multiline className="sm:col-span-2" />
+      <Field label="Homepage subtitle (English)" value={branding.heroSubtitleEn || ''} onChange={(v) => set('heroSubtitleEn', v)} multiline className="sm:col-span-2" />
+      <Field label="العنوان الفرعي (English)" value={branding.subtitleEn || ''} onChange={(v) => set('subtitleEn', v)} />
+      <Field label="القسم (English)" value={branding.departmentEn || ''} onChange={(v) => set('departmentEn', v)} />
       <Field label="نص التذييل" value={branding.footerText} onChange={(v) => set('footerText', v)} className="sm:col-span-2" />
       <p className="sm:col-span-2 text-xs text-slate-500">
         لاستبدال ملف الشعار: ضع الصورة في مجلد public باسم lotus-logo.png أو أدخل رابط خارجي.
@@ -459,10 +490,23 @@ function CompanyEditor({
       </div>
 
       <Field
-        label="طرق الصرف (سطر لكل طريقة)"
+        label="طرق الصرف — عربي (سطر لكل طريقة)"
         value={company.forms?.join('\n') || ''}
         onChange={(v) => update('forms', v.split('\n').filter(Boolean))}
         multiline
+      />
+
+      <Field
+        label="Dispensing forms — English (one per line)"
+        value={company.formsEn?.join('\n') || ''}
+        onChange={(v) => update('formsEn', v.split('\n').filter(Boolean))}
+        multiline
+      />
+
+      <CoachCopyEditor
+        title="نصوص المرشد لهذه الشركة (اختياري)"
+        copy={company.coachCopy}
+        onChange={(coachCopy) => onChange({ ...company, coachCopy })}
       />
 
       <CoachMediaEditor

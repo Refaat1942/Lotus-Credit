@@ -56,8 +56,28 @@ export function scoreMediaForForm(form: string, item: CompanyMedia): number {
 export function pickMediaForForm(
   form: string,
   media: CompanyMedia[],
-  formMediaMap?: Record<string, string>,
+  options?: {
+    formMediaMap?: Record<string, string>;
+    formMediaByIndex?: string[];
+    formIndex?: number;
+    coachAnswerMedia?: Record<string, string>;
+  },
 ): CompanyMedia | null {
+  const { formMediaMap, formMediaByIndex, formIndex, coachAnswerMedia } = options || {};
+
+  if (formIndex !== undefined && formIndex >= 0) {
+    const answerId = coachAnswerMedia?.[`form:${formIndex}`];
+    if (answerId) {
+      const fromAnswer = media.find((m) => m.id === answerId);
+      if (fromAnswer) return fromAnswer;
+    }
+    const indexId = formMediaByIndex?.[formIndex];
+    if (indexId) {
+      const fromIndex = media.find((m) => m.id === indexId);
+      if (fromIndex) return fromIndex;
+    }
+  }
+
   const mappedId = formMediaMap?.[form];
   if (mappedId) {
     const exact = media.find((m) => m.id === mappedId);
