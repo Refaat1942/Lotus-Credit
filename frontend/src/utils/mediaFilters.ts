@@ -41,3 +41,36 @@ export function galleryMedia(media: CompanyMedia[] = []): CompanyMedia[] {
 export function galleryMediaCount(media: CompanyMedia[] = []): number {
   return galleryMedia(media).length;
 }
+
+/** Images suitable for admin form/card picker — excludes long rule-text blobs from PPTX */
+export function pickableCoachMedia(media: CompanyMedia[] = []): CompanyMedia[] {
+  return galleryMedia(media).filter((m) => {
+    if (m.page === 0 || m.id.includes('-coach-')) return true;
+    if (m.type === 'form' || m.type === 'card') return true;
+    if (m.matchedForm) return true;
+    const t = m.title.trim();
+    if (t.length > 72) return false;
+    if (/^\d+-/.test(t) && t.length > 50) return false;
+    if (/يلزم|يجب|عند الادخال|من الممكن|لا يتعدى|out of network/i.test(t) && t.length > 40) {
+      return false;
+    }
+    return m.type === 'photo';
+  });
+}
+
+export function mediaPickerLabel(m: CompanyMedia, fallbackIndex = 0): string {
+  if (m.matchedForm) return m.matchedForm.length > 42 ? `${m.matchedForm.slice(0, 40)}…` : m.matchedForm;
+  if (m.page === 0 || m.id.includes('-coach-')) {
+    const t = m.title.trim();
+    return t.length > 42 ? `${t.slice(0, 40)}…` : (t || 'مرفوعة من الجهاز');
+  }
+  if (m.type === 'card') return 'كارنية';
+  if (m.type === 'form') {
+    const t = m.title.trim();
+    return t.length > 42 ? `${t.slice(0, 40)}…` : t;
+  }
+  const t = m.title.trim();
+  if (t.startsWith('صفحة')) return t.length > 42 ? `${t.slice(0, 40)}…` : t;
+  if (t.length <= 42) return t;
+  return `ص${m.page} · ${fallbackIndex + 1}`;
+}

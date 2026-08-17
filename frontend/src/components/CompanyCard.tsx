@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
-import { Phone, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Phone, ExternalLink, ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Company } from '../types';
 import CompanyLogo from './CompanyLogo';
 import { galleryMediaCount } from '../utils/mediaFilters';
-import { useLanguage } from '../context/LanguageContext';
 
 interface CompanyCardProps {
   company: Company;
@@ -12,10 +11,8 @@ interface CompanyCardProps {
 }
 
 export default function CompanyCard({ company, index }: CompanyCardProps) {
-  const { lang } = useLanguage();
   const color = company.color || '#14b8a6';
   const mediaCount = galleryMediaCount(company.media);
-  const Chevron = lang === 'ar' ? ChevronLeft : ChevronRight;
 
   return (
     <motion.div
@@ -41,12 +38,8 @@ export default function CompanyCard({ company, index }: CompanyCardProps) {
             )}
           </div>
 
-          <h3 className="text-lg sm:text-xl font-bold text-primary mb-0.5">
-            {lang === 'en' ? company.nameEn : company.nameAr}
-          </h3>
-          <p className="text-sm text-muted mb-3">
-            {lang === 'en' ? company.nameAr : company.nameEn}
-          </p>
+          <h3 className="text-lg sm:text-xl font-bold text-primary mb-0.5">{company.nameAr}</h3>
+          <p className="text-sm text-muted mb-3">{company.nameEn}</p>
 
           <div className="flex flex-wrap gap-2 mb-3">
             {company.approvalSystem && (
@@ -56,23 +49,23 @@ export default function CompanyCard({ company, index }: CompanyCardProps) {
             )}
             {mediaCount > 0 && (
               <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-surface text-muted">
-                {mediaCount} {lang === 'en' ? 'cards/photos' : 'بطاقة/صورة'}
+                {mediaCount} بطاقة/صورة
               </span>
             )}
             {company.links && company.links.length > 0 && (
               <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-surface text-muted">
-                {company.links.length} {lang === 'en' ? 'links' : 'رابط'}
+                {company.links.length} رابط
               </span>
             )}
           </div>
 
           <div className="flex items-center justify-between mt-auto pt-3 border-t border-theme">
             <span className="text-sm text-muted">
-              {company.forms?.length || 0} {lang === 'en' ? 'dispensing methods' : 'طرق صرف'}
+              {company.forms?.length || 0} طرق صرف
             </span>
             <span className="flex items-center gap-1 text-sm text-lotus-600 dark:text-lotus-400 group-hover:text-lotus-500">
-              {lang === 'en' ? 'Details' : 'التفاصيل'}
-              <Chevron className="w-4 h-4" />
+              التفاصيل
+              <ChevronLeft className="w-4 h-4" />
             </span>
           </div>
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown } from 'lucide-react';
@@ -13,7 +13,7 @@ import { useTheme } from '../context/ThemeContext';
 import type { Branding, Company, CompanyLink, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
-type AdminTab = 'companies' | 'branding' | 'coach';
+type AdminTab = 'companies' | 'branding';
 
 export default function AdminPage() {
   const { data, online, refetch, loading } = useRules();
@@ -23,11 +23,10 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState('');
   const [editData, setEditData] = useState<RulesData | null>(null);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
-  const [activeTab, setActiveTab] = useState<AdminTab>('branding');
+  const [activeTab, setActiveTab] = useState<AdminTab>('companies');
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Always require password when opening admin — never restore saved session
   useEffect(() => {
     localStorage.removeItem('admin-token');
     sessionStorage.removeItem('admin-token');
@@ -218,7 +217,7 @@ export default function AdminPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
-            <p className="text-slate-400 text-sm">تعديل الشروط والهوية البصرية</p>
+            <p className="text-slate-400 text-sm">تعديل الشركات والمرشد التفاعلي</p>
           </div>
           <div className="flex gap-2">
             <motion.button
@@ -252,17 +251,6 @@ export default function AdminPage() {
 
         <div className="flex gap-2 mb-6">
           <button
-            onClick={() => setActiveTab('branding')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'branding'
-                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
-                : 'glass hover:bg-white/10'
-            }`}
-          >
-            <Palette className="w-4 h-4" />
-            الهوية والشعار
-          </button>
-          <button
             onClick={() => setActiveTab('companies')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
               activeTab === 'companies'
@@ -274,32 +262,17 @@ export default function AdminPage() {
             شركات التأمين
           </button>
           <button
-            onClick={() => setActiveTab('coach')}
+            onClick={() => setActiveTab('branding')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'coach'
+              activeTab === 'branding'
                 ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
                 : 'glass hover:bg-white/10'
             }`}
           >
-            <Edit3 className="w-4 h-4" />
-            مرشد الصرف
+            <Palette className="w-4 h-4" />
+            الهوية والشعار
           </button>
         </div>
-
-        {activeTab === 'coach' && editData && (
-          <div className="glass-card p-6">
-            <h2 className="text-xl font-bold mb-2">نصوص المرشد التفاعلي (عام)</h2>
-            <p className="text-sm text-muted mb-4">
-              التعديلات هنا تطبّق على كل الشركات. يمكن تجاوزها لكل شركة من تبويب الشركات.
-            </p>
-            <CoachCopyEditor
-              title="النصوص الافتراضية للمرشد"
-              copy={editData.coach}
-              onChange={(coach) => setEditData({ ...editData, coach })}
-              defaultOpen
-            />
-          </div>
-        )}
 
         {activeTab === 'branding' && (
           <div className="glass-card p-6">
@@ -320,7 +293,7 @@ export default function AdminPage() {
 
         {activeTab === 'companies' && (
           <div className="grid lg:grid-cols-3 gap-6">
-            <div className="glass-card p-4">
+            <div className="glass-card p-4 lg:sticky lg:top-20 lg:self-start">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-bold">الشركات</h2>
                 <button
@@ -330,8 +303,7 @@ export default function AdminPage() {
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-xs text-muted mb-3">اسحب الترتيب بالأسهم — يظهر للصيدلي بنفس الترتيب</p>
-              <div className="space-y-1 max-h-[60vh] overflow-y-auto">
+              <div className="space-y-1 max-h-[70vh] overflow-y-auto">
                 {sortedCompanies.map((c, i) => (
                   <div
                     key={c.id}
@@ -345,7 +317,6 @@ export default function AdminPage() {
                         disabled={i === 0}
                         onClick={() => moveCompany(c.id, 'up')}
                         className="p-1 rounded text-muted hover:text-primary disabled:opacity-25"
-                        title="لأعلى"
                       >
                         <ChevronUp className="w-4 h-4" />
                       </button>
@@ -354,7 +325,6 @@ export default function AdminPage() {
                         disabled={i === sortedCompanies.length - 1}
                         onClick={() => moveCompany(c.id, 'down')}
                         className="p-1 rounded text-muted hover:text-primary disabled:opacity-25"
-                        title="لأسفل"
                       >
                         <ChevronDown className="w-4 h-4" />
                       </button>
@@ -366,14 +336,22 @@ export default function AdminPage() {
                     >
                       <CompanyLogo company={c} size="sm" />
                       <span className="truncate flex-1">{c.nameAr}</span>
-                      <span className="text-xs text-muted shrink-0">#{c.order}</span>
                     </button>
                   </div>
                 ))}
               </div>
+
+              {editData && (
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <CoachCopyEditor
+                    copy={editData.coach}
+                    onChange={(coach) => setEditData({ ...editData, coach })}
+                  />
+                </div>
+              )}
             </div>
 
-            <div className="lg:col-span-2 glass-card p-6">
+            <div className="lg:col-span-2">
               {selectedCompany ? (
                 <CompanyEditor
                   company={selectedCompany}
@@ -382,7 +360,9 @@ export default function AdminPage() {
                   onDelete={() => deleteCompany(selectedCompany.id)}
                 />
               ) : (
-                <p className="text-slate-400 text-center py-12">اختر شركة للتعديل</p>
+                <div className="glass-card p-12 text-center text-slate-400">
+                  اختر شركة من القائمة للتعديل
+                </div>
               )}
             </div>
           </div>
@@ -413,22 +393,13 @@ function BrandingEditor({
 
   return (
     <div className="grid sm:grid-cols-2 gap-4">
-      <Field label="رابط الشعار (مثال: /lotus-logo.png)" value={branding.logoUrl} onChange={(v) => set('logoUrl', v)} className="sm:col-span-2" />
-      <Field label="الاسم بالعربية (السطر الأول)" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
-      <Field label="قسم / فرع (السطر الثاني)" value={branding.departmentAr} onChange={(v) => set('departmentAr', v)} />
-      <Field label="الاسم بالإنجليزية" value={branding.titleEn} onChange={(v) => set('titleEn', v)} />
+      <Field label="رابط الشعار" value={branding.logoUrl} onChange={(v) => set('logoUrl', v)} className="sm:col-span-2" />
+      <Field label="الاسم (السطر الأول)" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
+      <Field label="القسم / الفرع" value={branding.departmentAr} onChange={(v) => set('departmentAr', v)} />
       <Field label="العنوان الفرعي" value={branding.subtitleAr} onChange={(v) => set('subtitleAr', v)} />
-      <Field label="شارة تحت اللوجو" value={branding.heroBadgeAr || ''} onChange={(v) => set('heroBadgeAr', v)} className="sm:col-span-2" />
       <Field label="عنوان الصفحة الرئيسية" value={branding.heroTitleAr} onChange={(v) => set('heroTitleAr', v)} />
-      <Field label="Homepage title (English)" value={branding.heroTitleEn || ''} onChange={(v) => set('heroTitleEn', v)} />
       <Field label="وصف الصفحة الرئيسية" value={branding.heroSubtitleAr} onChange={(v) => set('heroSubtitleAr', v)} multiline className="sm:col-span-2" />
-      <Field label="Homepage subtitle (English)" value={branding.heroSubtitleEn || ''} onChange={(v) => set('heroSubtitleEn', v)} multiline className="sm:col-span-2" />
-      <Field label="العنوان الفرعي (English)" value={branding.subtitleEn || ''} onChange={(v) => set('subtitleEn', v)} />
-      <Field label="القسم (English)" value={branding.departmentEn || ''} onChange={(v) => set('departmentEn', v)} />
       <Field label="نص التذييل" value={branding.footerText} onChange={(v) => set('footerText', v)} className="sm:col-span-2" />
-      <p className="sm:col-span-2 text-xs text-slate-500">
-        لاستبدال ملف الشعار: ضع الصورة في مجلد public باسم lotus-logo.png أو أدخل رابط خارجي.
-      </p>
     </div>
   );
 }
@@ -456,107 +427,110 @@ function CompanyEditor({
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-start">
-        <h2 className="text-xl font-bold">{company.nameAr}</h2>
-        <button onClick={onDelete} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10">
-          <Trash2 className="w-4 h-4" />
-        </button>
+    <div className="space-y-5">
+      <div className="glass-card p-5">
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-xl font-bold">{company.nameAr}</h2>
+          <button onClick={onDelete} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+
+        <CompanyLogoUpload
+          company={company}
+          logoUrl={company.logoUrl}
+          adminToken={adminToken}
+          onLogoChange={(url) => update('logoUrl', url)}
+        />
+
+        <div className="grid sm:grid-cols-2 gap-4 mt-4">
+          <Field label="الاسم بالعربية" value={company.nameAr} onChange={(v) => update('nameAr', v)} />
+          <Field label="الاسم بالإنجليزية" value={company.nameEn} onChange={(v) => update('nameEn', v)} />
+          <Field label="الخط الساخن" value={company.hotline || ''} onChange={(v) => update('hotline', v)} />
+          <Field label="نظام الموافقات" value={company.approvalSystem || ''} onChange={(v) => update('approvalSystem', v)} />
+          <Field label="رابط البوابة" value={company.approvalPortal || ''} onChange={(v) => update('approvalPortal', v)} className="sm:col-span-2" />
+          <Field label="اللون" value={company.color || ''} onChange={(v) => update('color', v)} />
+          <Field label="الترتيب" value={String(company.order)} onChange={(v) => update('order', Number(v) || 0)} />
+        </div>
       </div>
 
-      <CompanyLogoUpload
-        company={company}
-        logoUrl={company.logoUrl}
-        adminToken={adminToken}
-        onLogoChange={(url) => update('logoUrl', url)}
-      />
+      <AdminSection title="المرشد التفاعلي — النماذج والصور">
+        <Field
+          label="طرق الصرف (سطر لكل نوع — يظهر كزر للصيدلي)"
+          value={company.forms?.join('\n') || ''}
+          onChange={(v) => update('forms', v.split('\n').filter(Boolean))}
+          multiline
+        />
+        <CoachMediaEditor
+          company={company}
+          adminToken={adminToken}
+          onChange={onChange}
+        />
+        <CoachCopyEditor
+          copy={company.coachCopy}
+          onChange={(coachCopy) => onChange({ ...company, coachCopy })}
+        />
+      </AdminSection>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Field label="الاسم بالعربية" value={company.nameAr} onChange={(v) => update('nameAr', v)} />
-        <Field label="الاسم بالإنجليزية" value={company.nameEn} onChange={(v) => update('nameEn', v)} />
-        <Field label="الخط الساخن" value={company.hotline || ''} onChange={(v) => update('hotline', v)} />
-        <Field label="نظام الموافقات" value={company.approvalSystem || ''} onChange={(v) => update('approvalSystem', v)} />
-        <Field label="رابط البوابة" value={company.approvalPortal || ''} onChange={(v) => update('approvalPortal', v)} className="sm:col-span-2" />
-        <Field label="اللون (hex)" value={company.color || ''} onChange={(v) => update('color', v)} />
-        <Field label="الترتيب (رقم)" value={String(company.order)} onChange={(v) => update('order', Number(v) || 0)} />
-      </div>
+      <AdminSection title="شروط الصرف">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <Field label="صلاحية الروشتة" value={company.rules?.prescriptionValidity || ''} onChange={(v) => updateRule('prescriptionValidity', v)} />
+          <Field label="أقصى مدة صرف" value={company.rules?.maxDispensePeriod || ''} onChange={(v) => updateRule('maxDispensePeriod', v)} />
+          <Field label="الحد المالي" value={company.rules?.financialLimit || ''} onChange={(v) => updateRule('financialLimit', v)} />
+          <Field label="نسبة التحمل" value={company.rules?.copay || ''} onChange={(v) => updateRule('copay', v)} />
+        </div>
+        <Field
+          label="ملاحظات هامة"
+          value={company.rules?.importantNotes?.join('\n') || ''}
+          onChange={(v) => updateRule('importantNotes', v.split('\n').filter(Boolean))}
+          multiline
+        />
+        <Field
+          label="محظورات"
+          value={company.rules?.prohibitions?.join('\n') || ''}
+          onChange={(v) => updateRule('prohibitions', v.split('\n').filter(Boolean))}
+          multiline
+        />
+      </AdminSection>
 
-      <h3 className="font-bold pt-4 border-t border-white/10">شروط الصرف</h3>
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Field label="صلاحية الروشتة" value={company.rules?.prescriptionValidity || ''} onChange={(v) => updateRule('prescriptionValidity', v)} />
-        <Field label="أقصى مدة صرف" value={company.rules?.maxDispensePeriod || ''} onChange={(v) => updateRule('maxDispensePeriod', v)} />
-        <Field label="الحد المالي" value={company.rules?.financialLimit || ''} onChange={(v) => updateRule('financialLimit', v)} />
-        <Field label="نسبة التحمل" value={company.rules?.copay || ''} onChange={(v) => updateRule('copay', v)} />
-      </div>
+      <AdminSection title="روابط مهمة">
+        <p className="text-xs text-muted mb-2">سطر لكل رابط: العنوان | الرابط | النوع (portal/email/phone/website)</p>
+        <Field
+          label="الروابط"
+          value={(company.links || [])
+            .map((l) => `${l.label} | ${l.url} | ${l.type}`)
+            .join('\n')}
+          onChange={(v) => {
+            const links: CompanyLink[] = v
+              .split('\n')
+              .map((line) => line.trim())
+              .filter(Boolean)
+              .map((line, i) => {
+                const parts = line.split('|').map((p) => p.trim());
+                const label = parts[0] || 'رابط';
+                const url = parts[1] || '';
+                const type = (parts[2] || 'portal') as CompanyLink['type'];
+                return {
+                  id: `${company.id}-link-${i}`,
+                  label,
+                  url,
+                  type: ['portal', 'email', 'phone', 'website'].includes(type) ? type : 'portal',
+                };
+              });
+            onChange({ ...company, links });
+          }}
+          multiline
+        />
+      </AdminSection>
+    </div>
+  );
+}
 
-      <Field
-        label="طرق الصرف — عربي (سطر لكل طريقة)"
-        value={company.forms?.join('\n') || ''}
-        onChange={(v) => update('forms', v.split('\n').filter(Boolean))}
-        multiline
-      />
-
-      <Field
-        label="Dispensing forms — English (one per line)"
-        value={company.formsEn?.join('\n') || ''}
-        onChange={(v) => update('formsEn', v.split('\n').filter(Boolean))}
-        multiline
-      />
-
-      <CoachCopyEditor
-        title="نصوص المرشد لهذه الشركة (اختياري)"
-        copy={company.coachCopy}
-        onChange={(coachCopy) => onChange({ ...company, coachCopy })}
-      />
-
-      <CoachMediaEditor
-        company={company}
-        adminToken={adminToken}
-        onChange={onChange}
-      />
-
-      <Field
-        label="ملاحظات هامة (سطر لكل ملاحظة)"
-        value={company.rules?.importantNotes?.join('\n') || ''}
-        onChange={(v) => updateRule('importantNotes', v.split('\n').filter(Boolean))}
-        multiline
-      />
-
-      <Field
-        label="محظورات (سطر لكل محظور)"
-        value={company.rules?.prohibitions?.join('\n') || ''}
-        onChange={(v) => updateRule('prohibitions', v.split('\n').filter(Boolean))}
-        multiline
-      />
-
-      <h3 className="font-bold pt-4 border-t border-white/10">روابط مهمة</h3>
-      <p className="text-xs text-muted mb-2">سطر لكل رابط: العنوان | الرابط | النوع (portal/email/phone/website)</p>
-      <Field
-        label="الروابط"
-        value={(company.links || [])
-          .map((l) => `${l.label} | ${l.url} | ${l.type}`)
-          .join('\n')}
-        onChange={(v) => {
-          const links: CompanyLink[] = v
-            .split('\n')
-            .map((line) => line.trim())
-            .filter(Boolean)
-            .map((line, i) => {
-              const parts = line.split('|').map((p) => p.trim());
-              const label = parts[0] || 'رابط';
-              const url = parts[1] || '';
-              const type = (parts[2] || 'portal') as CompanyLink['type'];
-              return {
-                id: `${company.id}-link-${i}`,
-                label,
-                url,
-                type: ['portal', 'email', 'phone', 'website'].includes(type) ? type : 'portal',
-              };
-            });
-          onChange({ ...company, links });
-        }}
-        multiline
-      />
+function AdminSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="glass-card p-5 space-y-4">
+      <h3 className="font-bold text-lg border-b border-white/10 pb-2">{title}</h3>
+      {children}
     </div>
   );
 }

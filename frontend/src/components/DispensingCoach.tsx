@@ -16,7 +16,6 @@ import {
   useCoachCopy,
   type ChecklistKey,
 } from '../hooks/useCoachCopy';
-import { useLanguage } from '../context/LanguageContext';
 
 type Phase =
   | 'welcome'
@@ -70,7 +69,6 @@ export default function DispensingCoach({
   const media = useMemo(() => galleryMedia(company.media || []), [company.media]);
   const forms = company.forms || [];
   const color = company.color || '#14b8a6';
-  const { lang } = useLanguage();
   const { msg, btn, checklist, ui, formLabel, formLabelByName } = useCoachCopy(
     company,
     globalCoach,
@@ -115,7 +113,7 @@ export default function DispensingCoach({
     [pushCoach],
   );
 
-  const systemName = company.approvalSystem || (lang === 'en' ? 'the system' : 'النظام');
+  const systemName = company.approvalSystem || 'النظام';
 
   const setPhaseActions = useCallback(
     (p: Phase, opts?: { doc?: CompanyMedia | null }) => {
@@ -194,7 +192,7 @@ export default function DispensingCoach({
       }
       setPhase(p);
     },
-    [btn, company, forms, formLabel, lang, onOpenReference, systemName],
+    [btn, company, forms, formLabel, onOpenReference, systemName],
   );
 
   useEffect(() => {
@@ -457,13 +455,13 @@ export default function DispensingCoach({
         ))}
 
         {phase === 'final_checks' && finalChecklistKeys.length > 0 && (
-          <div className={`${lang === 'ar' ? 'mr-10' : 'ml-10'} space-y-2`}>
+          <div className="mr-10 space-y-2">
             {finalChecklistKeys.map((key) => (
               <button
                 key={key}
                 type="button"
                 onClick={() => setFinalChecks((c) => ({ ...c, [key]: !c[key] }))}
-                className={`w-full ${lang === 'ar' ? 'text-right' : 'text-left'} flex items-center gap-3 p-3 rounded-xl border text-sm transition-colors ${
+                className={`w-full text-right flex items-center gap-3 p-3 rounded-xl border text-sm transition-colors ${
                   finalChecks[key]
                     ? 'border-emerald-500/50 bg-emerald-500/10 text-primary'
                     : 'border-theme bg-surface/50 text-muted hover:bg-surface'
@@ -481,7 +479,7 @@ export default function DispensingCoach({
         )}
 
         {typing && (
-          <div className={`flex gap-2 items-center text-muted text-sm ${lang === 'ar' ? 'mr-2' : 'ml-2'}`}>
+          <div className="flex gap-2 items-center text-muted text-sm mr-2">
             <div className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center">
               <Bot className="w-4 h-4 text-lotus-500" />
             </div>
@@ -503,7 +501,7 @@ export default function DispensingCoach({
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 8 }}
-              className={`flex flex-wrap gap-2 ${lang === 'ar' ? 'justify-end' : 'justify-start'}`}
+              className="flex flex-wrap gap-2 justify-end"
             >
               {actions.map((action) =>
                 action.href ? (
@@ -529,7 +527,7 @@ export default function DispensingCoach({
                     to="/"
                     className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-surface border border-theme text-primary"
                   >
-                    <ChevronLeft className={`w-4 h-4 ${lang === 'en' ? 'rotate-180' : ''}`} />
+                    <ChevronLeft className="w-4 h-4" />
                     {action.label}
                   </Link>
                 ) : (
@@ -588,7 +586,6 @@ function ChatBubble({
   color: string;
   onZoom: (doc: CompanyMedia) => void;
 }) {
-  const { lang } = useLanguage();
   const isCoach = line.from === 'coach';
   return (
     <motion.div
@@ -608,10 +605,7 @@ function ChatBubble({
               ? 'bg-surface border border-theme text-primary rounded-tr-sm'
               : 'bg-lotus-500 text-white rounded-tl-sm'
           }`}
-          style={isCoach ? {
-            [lang === 'ar' ? 'borderRightColor' : 'borderLeftColor']: `${color}40`,
-            [lang === 'ar' ? 'borderRightWidth' : 'borderLeftWidth']: 3,
-          } : undefined}
+          style={isCoach ? { borderRightColor: `${color}40`, borderRightWidth: 3 } : undefined}
         >
           <FormattedText text={line.text} />
           {line.bullets && line.bullets.length > 0 && (

@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
-import type { Company } from '../types';
-import type { CoachCopyBundle } from '../types';
-import { useLanguage } from '../context/LanguageContext';
+import type { Company, CoachCopyBundle } from '../types';
 import { mergeCoachCopy, resolveCoachText } from '../utils/coachCopy';
 
 export type ChecklistKey =
@@ -35,32 +33,26 @@ export function formHintKey(form: string): string | null {
 }
 
 export function useCoachCopy(company: Company, globalCoach?: CoachCopyBundle) {
-  const { lang } = useLanguage();
   const copy = useMemo(
     () => mergeCoachCopy(globalCoach, company.coachCopy),
     [globalCoach, company.coachCopy],
   );
 
-  const companyName = lang === 'en' ? company.nameEn : company.nameAr;
-  const baseVars = useMemo(() => ({ company: companyName }), [companyName]);
+  const baseVars = useMemo(() => ({ company: company.nameAr }), [company.nameAr]);
 
   const msg = (key: string, vars: Record<string, string> = {}) =>
-    resolveCoachText(copy, 'messages', key, lang, { ...baseVars, ...vars });
+    resolveCoachText(copy, 'messages', key, 'ar', { ...baseVars, ...vars });
 
   const btn = (key: string, vars: Record<string, string> = {}) =>
-    resolveCoachText(copy, 'buttons', key, lang, { ...baseVars, ...vars });
+    resolveCoachText(copy, 'buttons', key, 'ar', { ...baseVars, ...vars });
 
   const checklist = (key: ChecklistKey, vars: Record<string, string> = {}) =>
-    resolveCoachText(copy, 'checklist', key, lang, vars);
+    resolveCoachText(copy, 'checklist', key, 'ar', vars);
 
   const ui = (key: string, vars: Record<string, string> = {}) =>
-    resolveCoachText(copy, 'ui', key, lang, { ...baseVars, ...vars });
+    resolveCoachText(copy, 'ui', key, 'ar', { ...baseVars, ...vars });
 
-  const formLabel = (index: number): string => {
-    const ar = company.forms?.[index] || '';
-    const en = company.formsEn?.[index];
-    return lang === 'en' ? (en || ar) : ar;
-  };
+  const formLabel = (index: number): string => company.forms?.[index] || '';
 
   const formLabelByName = (form: string | null): string => {
     if (!form) return '';
@@ -69,5 +61,5 @@ export function useCoachCopy(company: Company, globalCoach?: CoachCopyBundle) {
     return form;
   };
 
-  return { lang, copy, msg, btn, checklist, ui, formLabel, formLabelByName, companyName };
+  return { msg, btn, checklist, ui, formLabel, formLabelByName };
 }
