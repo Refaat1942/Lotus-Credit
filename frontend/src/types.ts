@@ -42,6 +42,19 @@ export interface CompanyLink {
   page?: number;
 }
 
+/** Interactive dispensing coach phases that can show images */
+export type CoachPhase =
+  | 'welcome'
+  | 'card_check'
+  | 'card_help'
+  | 'form_pick'
+  | 'form_doc'
+  | 'approval_check'
+  | 'approval_portal'
+  | 'rules_tip'
+  | 'final_checks'
+  | 'done';
+
 export interface Company {
   id: string;
   nameAr: string;
@@ -55,7 +68,10 @@ export interface Company {
   logoUrl?: string;
   contacts?: Contact[];
   forms?: string[];
+  /** Admin-assigned: dispensing form label → media id */
   formMediaMap?: Record<string, string>;
+  /** Admin-assigned: coach step → media id(s) */
+  stepMediaMap?: Partial<Record<CoachPhase, string | string[]>>;
   rules?: CompanyRules;
   cardInstructions?: string[];
   media?: CompanyMedia[];

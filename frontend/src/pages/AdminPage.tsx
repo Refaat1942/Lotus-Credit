@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import CompanyLogo from '../components/CompanyLogo';
 import CompanyLogoUpload from '../components/CompanyLogoUpload';
+import CoachMediaEditor from '../components/CoachMediaEditor';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
 import type { Branding, Company, CompanyLink, RulesData } from '../types';
@@ -462,6 +463,12 @@ function CompanyEditor({
         value={company.forms?.join('\n') || ''}
         onChange={(v) => update('forms', v.split('\n').filter(Boolean))}
         multiline
+      />
+
+      <CoachMediaEditor
+        company={company}
+        adminToken={adminToken}
+        onChange={onChange}
       />
 
       <Field

@@ -11,7 +11,7 @@ import MediaLinks from './MediaLinks';
 import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
-import { pickMediaForForm } from '../utils/formMedia';
+import { resolveFormDoc } from '../utils/coachSteps';
 
 type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'links';
 
@@ -41,7 +41,7 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
 
   const forms = company.forms || [];
   const activeForm = forms[selectedForm];
-  const activeDoc = activeForm ? pickMediaForForm(activeForm, media, company.formMediaMap) : cardDocs[0] ?? null;
+  const activeDoc = activeForm ? resolveFormDoc(activeForm, media, company) : cardDocs[0] ?? null;
 
   const dispensingSteps = [
     { title: 'فحص الكارنية', detail: 'تأكد من صلاحية العضوية وبيانات المستفيد والتاريخ', tip: company.cardInstructions?.[0] },

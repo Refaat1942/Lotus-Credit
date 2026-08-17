@@ -9,7 +9,7 @@ import type { Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import MediaLinks from './MediaLinks';
 import { galleryMedia } from '../utils/mediaFilters';
-import { pickApprovalMedia, pickMediaForForm } from '../utils/formMedia';
+import { resolveFormDoc, resolveStepMedia } from '../utils/coachSteps';
 
 type Phase =
   | 'welcome'
@@ -28,6 +28,7 @@ interface ChatLine {
   from: 'coach' | 'user';
   text: string;
   doc?: CompanyMedia;
+  docs?: CompanyMedia[];
   bullets?: string[];
 }
 
@@ -186,14 +187,14 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
   };
 
   const showFormDoc = async (form: string) => {
-    const doc = pickMediaForForm(form, media, company.formMediaMap);
+    const doc = resolveFormDoc(form, media, company);
     setSelectedForm(form);
     setSelectedDoc(doc);
     let msg = `**${form}**\n\n`;
     if (doc) {
       msg += `ده **النموذج اللي هتستخدمه** — املأه حسب التعليمات:`;
     } else {
-      msg += `مفيش صورة مطابقة في المستند — راجع **تبويب النماذج** أو اسأل مساعد لوتس.`;
+      msg += `مفيش صورة مطابقة — راجع **تبويب النماذج** أو اطلب من المسؤول تعيين الصورة في لوحة الإدارة.`;
     }
     if (rules?.prescriptionValidity) {
       msg += `\n\n⏱ صلاحية الروشتة: **${rules.prescriptionValidity}**`;
@@ -213,11 +214,15 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
     if (rules?.importantNotes?.length) {
       bullets.push(...rules.importantNotes.slice(0, 2));
     }
+    const tipDocs = resolveStepMedia('rules_tip', media, company.stepMediaMap);
     await coachSay(
       bullets.length
         ? '**قبل ما تقفل الفاتورة** — اتأكد من النقاط دي:'
         : 'تمام! اتأكد إن كل البيانات مطابقة للموافقة.',
-      { bullets },
+      {
+        bullets,
+        ...(tipDocs[0] ? { doc: tipDocs[0] } : {}),
+      },
     );
     setPhaseActions('rules_tip');
   };
@@ -234,12 +239,15 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
     pushUser(action.label);
 
     switch (action.id) {
-      case 'start':
+      case 'start': {
+        const cardIntro = resolveStepMedia('card_check', media, company.stepMediaMap)[0];
         await coachSay(
           '**أول خطوة: فحص الكارنية** 🪪\n\nهل الكارنية الإلكترونية **سارية** وتاريخها **النهاردة** (يوم الصرف)؟',
+          cardIntro ? { doc: cardIntro } : undefined,
         );
         setPhaseActions('card_check');
         break;
+      }
 
       case 'ref':
         onOpenReference?.();
@@ -260,7 +268,12 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
           action.id === 'no_card' && rules?.cardRequired
             ? '⚠️ **الكارنية مطلوبة** لهذه الشركة. اتبع التعليمات:'
             : 'مفيش مشكلة — اتبع **التعليمات دي** وظبط الكارنية:';
-        await coachSay(intro, { bullets: tips });
+        const helpDocs = resolveStepMedia('card_help', media, company.stepMediaMap);
+        await coachSay(intro, {
+          bullets: tips,
+          ...(helpDocs[0] ? { doc: helpDocs[0] } : {}),
+          ...(helpDocs.length > 1 ? { docs: helpDocs.slice(1) } : {}),
+        });
         setPhaseActions('card_help');
         break;
       }
@@ -341,7 +354,7 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
   };
 
   const showApprovalStep = async () => {
-    const approvalPhotos = pickApprovalMedia(media);
+    const approvalPhotos = resolveStepMedia('approval_portal', media, company.stepMediaMap);
     let msg = `**خُد الموافقة** من **${company.approvalSystem || 'النظام المعتمد'}**`;
     if (rules?.approvalValidity) msg += `\n\n⏱ صلاحية الموافقة: **${rules.approvalValidity}**`;
     if (rules?.importantNotes?.some((n) => n.includes('Yodawy') || n.includes('موافقة'))) {
@@ -349,19 +362,23 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
       if (note) msg += `\n\n💡 ${note}`;
     }
     msg += '\n\nبعد ما تاخد الموافقة، اضغط **خُدت الموافقة ✓**';
-    await coachSay(msg, approvalPhotos[0] ? { doc: approvalPhotos[0], bullets: approvalPhotos.length > 1 ? ['شوف صور الموافقات في المرجع'] : undefined } : undefined);
+    await coachSay(msg, {
+      ...(approvalPhotos[0] ? { doc: approvalPhotos[0] } : {}),
+      ...(approvalPhotos.length > 1 ? { docs: approvalPhotos.slice(1) } : {}),
+    });
     setPhaseActions('approval_portal');
   };
 
   const showApprovalHelp = async () => {
-    const photos = pickApprovalMedia(media);
+    const photos = resolveStepMedia('approval_portal', media, company.stepMediaMap);
     const bullets = [
       company.approvalPortal ? `افتح البوابة: ${company.approvalSystem || 'الموافقات'}` : '',
       'أدخل كل الأدوية والجرعات والتشخيص',
       rules?.approvalValidity ? `الموافقة صالحة ${rules.approvalValidity}` : '',
     ].filter(Boolean);
     await coachSay('**خطوات الموافقة:**', {
-      doc: photos[0],
+      ...(photos[0] ? { doc: photos[0] } : {}),
+      ...(photos.length > 1 ? { docs: photos.slice(1) } : {}),
       bullets,
     });
     setPhaseActions('approval_portal');
@@ -569,25 +586,42 @@ function ChatBubble({
           )}
         </div>
         {line.doc && (
-          <div className="rounded-xl border border-theme overflow-hidden bg-black/10 max-w-sm">
-            <button type="button" onClick={() => onZoom(line.doc!)} className="block w-full group relative">
-              <img
-                src={line.doc.url}
-                alt={line.doc.title}
-                className="w-full max-h-48 sm:max-h-64 object-contain bg-white/5"
-              />
-              <span className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
-                <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
-              </span>
-            </button>
-            <p className="text-[11px] text-muted px-2 py-1.5 truncate">{line.doc.title}</p>
-            {line.doc.links && line.doc.links.length > 0 && (
-              <MediaLinks links={line.doc.links} accentColor={color} />
-            )}
-          </div>
+          <DocPreview doc={line.doc} color={color} onZoom={onZoom} />
         )}
+        {line.docs?.map((doc) => (
+          <DocPreview key={doc.id} doc={doc} color={color} onZoom={onZoom} />
+        ))}
       </div>
     </motion.div>
+  );
+}
+
+function DocPreview({
+  doc,
+  color,
+  onZoom,
+}: {
+  doc: CompanyMedia;
+  color: string;
+  onZoom: (doc: CompanyMedia) => void;
+}) {
+  return (
+    <div className="rounded-xl border border-theme overflow-hidden bg-black/10 max-w-sm">
+      <button type="button" onClick={() => onZoom(doc)} className="block w-full group relative">
+        <img
+          src={doc.url}
+          alt={doc.title}
+          className="w-full max-h-48 sm:max-h-64 object-contain bg-white/5"
+        />
+        <span className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
+          <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
+        </span>
+      </button>
+      <p className="text-[11px] text-muted px-2 py-1.5 truncate">{doc.title}</p>
+      {doc.links && doc.links.length > 0 && (
+        <MediaLinks links={doc.links} accentColor={color} />
+      )}
+    </div>
   );
 }
 

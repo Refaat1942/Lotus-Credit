@@ -173,6 +173,56 @@ app.post('/api/admin/companies/:id/logo', authMiddleware, (req, res) => {
   }
 });
 
+app.post('/api/admin/companies/:id/media', authMiddleware, (req, res) => {
+  try {
+    const { dataUrl, title } = req.body;
+    if (!dataUrl || typeof dataUrl !== 'string') {
+      return res.status(400).json({ error: 'Missing image data' });
+    }
+    const match = dataUrl.match(/^data:image\/(\w+);base64,(.+)$/);
+    if (!match) return res.status(400).json({ error: 'Invalid image format' });
+    let ext = match[1].toLowerCase();
+    if (ext === 'jpeg') ext = 'jpg';
+    if (!['png', 'jpg', 'webp'].includes(ext)) {
+      return res.status(400).json({ error: 'Unsupported image type' });
+    }
+    const buffer = Buffer.from(match[2], 'base64');
+    if (buffer.length > 3 * 1024 * 1024) {
+      return res.status(400).json({ error: 'Image too large (max 3MB)' });
+    }
+
+    const cid = req.params.id;
+    const companyDir = path.join(assetsPath, 'companies', cid);
+    if (!fs.existsSync(companyDir)) fs.mkdirSync(companyDir, { recursive: true });
+
+    const stamp = Date.now();
+    const filename = `coach_${stamp}.${ext}`;
+    fs.writeFileSync(path.join(companyDir, filename), buffer);
+
+    const data = readRules();
+    const idx = data.companies.findIndex((c) => c.id === cid);
+    if (idx === -1) return res.status(404).json({ error: 'Company not found' });
+
+    const company = data.companies[idx];
+    if (!company.media) company.media = [];
+    const mediaItem = {
+      id: `${cid}-coach-${stamp}`,
+      type: 'photo',
+      title: (title || 'صورة مرشد').slice(0, 120),
+      url: `/assets/companies/${cid}/${filename}`,
+      page: 0,
+      links: [],
+    };
+    company.media.push(mediaItem);
+    data.companies[idx] = company;
+    writeRules(data);
+    res.json({ media: mediaItem, company });
+  } catch (err) {
+    console.error('Coach media upload error:', err);
+    res.status(500).json({ error: 'Failed to upload media' });
+  }
+});
+
 const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
 if (fs.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
