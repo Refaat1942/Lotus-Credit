@@ -43,13 +43,9 @@ function scoreTextMatch(form: string, text: string): number {
 }
 
 export function scoreMediaForForm(form: string, item: CompanyMedia): number {
+  if (item.matchedForm === form) return 1000;
+
   let score = 0;
-  if (item.formTags?.length) {
-    for (const tag of item.formTags) {
-      score += scoreTextMatch(form, tag);
-    }
-    if (item.type === 'form') score += 5;
-  }
   score += scoreTextMatch(form, item.title);
   if (item.type === 'form') score += 4;
   if (item.type === 'photo') score += 1;
@@ -57,7 +53,20 @@ export function scoreMediaForForm(form: string, item: CompanyMedia): number {
   return score;
 }
 
-export function pickMediaForForm(form: string, media: CompanyMedia[]): CompanyMedia | null {
+export function pickMediaForForm(
+  form: string,
+  media: CompanyMedia[],
+  formMediaMap?: Record<string, string>,
+): CompanyMedia | null {
+  const mappedId = formMediaMap?.[form];
+  if (mappedId) {
+    const exact = media.find((m) => m.id === mappedId);
+    if (exact) return exact;
+  }
+
+  const byMatch = media.find((m) => m.matchedForm === form);
+  if (byMatch) return byMatch;
+
   const ranked = media
     .map((m) => ({ m, score: scoreMediaForForm(form, m) }))
     .filter((x) => x.score > 0)

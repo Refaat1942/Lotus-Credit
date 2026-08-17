@@ -130,29 +130,14 @@
             "كربون",
             "نموذج أصفر",
             "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي"
+            "نموذج"
           ],
-          "url": "/assets/companies/axa/slide006_form1.jpg",
+          "url": "/assets/companies/axa/slide006_form1.png",
           "page": 6,
-          "links": []
+          "width": 206,
+          "height": 317,
+          "links": [],
+          "matchedForm": "نموذج أصفر بالكربون"
         },
         {
           "id": "axa-s6-form2",
@@ -165,23 +150,14 @@
             "وان هيلث",
             "روشتة one health",
             "one",
-            "روشتة",
-            "روشتة One Health",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي"
+            "روشتة"
           ],
-          "url": "/assets/companies/axa/slide006_form2.jpg",
+          "url": "/assets/companies/axa/slide006_form2.png",
           "page": 6,
-          "links": []
+          "width": 222,
+          "height": 317,
+          "links": [],
+          "matchedForm": "روشتة One Health"
         },
         {
           "id": "axa-s6-form3",
@@ -193,24 +169,14 @@
             "خارج",
             "external",
             "out of network",
-            "روشتة",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة خارجية",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي"
+            "روشتة"
           ],
           "url": "/assets/companies/axa/slide006_form3.png",
           "page": 6,
-          "links": []
+          "width": 219,
+          "height": 314,
+          "links": [],
+          "matchedForm": "روشتة خارجية"
         },
         {
           "id": "axa-s6-form4",
@@ -222,225 +188,14 @@
             "eform",
             "yodawy",
             "يوادوي",
-            "يوداوي",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي"
+            "يوداوي"
           ],
           "url": "/assets/companies/axa/slide006_form4.png",
           "page": 6,
-          "links": []
-        },
-        {
-          "id": "axa-s6-form5",
-          "type": "form",
-          "title": "نموذج أصفر بالكربون",
-          "formTags": [
-            "مستند — صفحة 6",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج"
-          ],
-          "url": "/assets/companies/axa/slide006_form5.png",
-          "page": 6,
-          "links": []
-        },
-        {
-          "id": "axa-s7-form1",
-          "type": "form",
-          "title": "روشتة One Health",
-          "formTags": [
-            "مستند — صفحة 7",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide007_form1.jpg",
-          "page": 7,
-          "links": []
-        },
-        {
-          "id": "axa-s7-form2",
-          "type": "form",
-          "title": "روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 7",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide007_form2.png",
-          "page": 7,
-          "links": []
-        },
-        {
-          "id": "axa-s8-form1",
-          "type": "form",
-          "title": "E-Form على يوداوي",
-          "formTags": [
-            "مستند — صفحة 8",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide008_form1.jpg",
-          "page": 8,
-          "links": []
-        },
-        {
-          "id": "axa-s8-form2",
-          "type": "form",
-          "title": "علاج مسجل على البرنامج",
-          "formTags": [
-            "مستند — صفحة 8",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "E-Form على يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide008_form2.png",
-          "page": 8,
-          "links": []
+          "width": 235,
+          "height": 309,
+          "links": [],
+          "matchedForm": "E-Form على يوداوي"
         },
         {
           "id": "axa-s9-form1",
@@ -449,138 +204,14 @@
           "formTags": [
             "1- لا تحتاج الى ارفاق اصل الروشتة او نموذج",
             "نموذج",
-            "روشتة",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
+            "روشتة"
           ],
           "url": "/assets/companies/axa/slide009_form1.png",
           "page": 9,
-          "links": []
-        },
-        {
-          "id": "axa-s9-form2",
-          "type": "form",
-          "title": "مستند — صفحة 9",
-          "formTags": [
-            "مستند — صفحة 9",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide009_form2.png",
-          "page": 9,
-          "links": []
-        },
-        {
-          "id": "axa-s9-form3",
-          "type": "form",
-          "title": "مستند — صفحة 9",
-          "formTags": [
-            "مستند — صفحة 9",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide009_form3.png",
-          "page": 9,
-          "links": []
-        },
-        {
-          "id": "axa-s9-form4",
-          "type": "form",
-          "title": "مستند — صفحة 9",
-          "formTags": [
-            "مستند — صفحة 9",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "علاج مسجل على البرنامج",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/axa/slide009_form4.png",
-          "page": 9,
-          "links": []
+          "width": 420,
+          "height": 251,
+          "links": [],
+          "matchedForm": "علاج مسجل على البرنامج"
         },
         {
           "id": "axa-s10-form1",
@@ -604,128 +235,12 @@
             "external",
             "out of network",
             "نموذج",
-            "روشتة",
-            "نموذج أصفر بالكربون",
-            "روشتة One Health",
-            "روشتة خارجية"
+            "روشتة"
           ],
-          "url": "/assets/companies/axa/slide010_form1.jpg",
+          "url": "/assets/companies/axa/slide010_form1.png",
           "page": 10,
-          "links": []
-        },
-        {
-          "id": "axa-s10-form2",
-          "type": "form",
-          "title": "مستند — صفحة 10",
-          "formTags": [
-            "مستند — صفحة 10",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
-          ],
-          "url": "/assets/companies/axa/slide010_form2.png",
-          "page": 10,
-          "links": []
-        },
-        {
-          "id": "axa-s10-form3",
-          "type": "form",
-          "title": "مستند — صفحة 10",
-          "formTags": [
-            "مستند — صفحة 10",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
-          ],
-          "url": "/assets/companies/axa/slide010_form3.png",
-          "page": 10,
-          "links": []
-        },
-        {
-          "id": "axa-s10-form4",
-          "type": "form",
-          "title": "مستند — صفحة 10",
-          "formTags": [
-            "مستند — صفحة 10",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة One Health",
-            "one health",
-            "onehealth",
-            "وان هيلث",
-            "روشتة one health",
-            "one",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
-          ],
-          "url": "/assets/companies/axa/slide010_form4.png",
-          "page": 10,
-          "links": []
-        },
-        {
-          "id": "axa-s11-form1",
-          "type": "form",
-          "title": "مستند — صفحة 11",
-          "formTags": [
-            "مستند — صفحة 11"
-          ],
-          "url": "/assets/companies/axa/slide011_form1.png",
-          "page": 11,
-          "links": []
-        },
-        {
-          "id": "axa-s11-form2",
-          "type": "form",
-          "title": "مستند — صفحة 11",
-          "formTags": [
-            "مستند — صفحة 11"
-          ],
-          "url": "/assets/companies/axa/slide011_form2.jpg",
-          "page": 11,
+          "width": 461,
+          "height": 319,
           "links": []
         }
       ],
@@ -759,7 +274,14 @@
           "page": 8
         }
       ],
-      "logoUrl": "/logos/axa.png"
+      "logoUrl": "/logos/axa.png",
+      "formMediaMap": {
+        "نموذج أصفر بالكربون": "axa-s6-form1",
+        "روشتة One Health": "axa-s6-form2",
+        "روشتة خارجية": "axa-s6-form3",
+        "E-Form على يوداوي": "axa-s6-form4",
+        "علاج مسجل على البرنامج": "axa-s9-form1"
+      }
     },
     {
       "id": "metlife",
@@ -830,22 +352,14 @@
             "يوادوي",
             "يوداوي",
             "نموذج",
-            "روشتة",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "روشتة يوداوي",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
+            "روشتة"
           ],
-          "url": "/assets/companies/metlife/slide012_form1.jpg",
+          "url": "/assets/companies/metlife/slide012_form1.png",
           "page": 12,
-          "links": []
+          "width": 245,
+          "height": 396,
+          "links": [],
+          "matchedForm": "روشتة يوداوي"
         },
         {
           "id": "metlife-s12-form2",
@@ -860,20 +374,12 @@
             "يوداوي",
             "مسجل",
             "برنامج",
-            "علاج مسجل",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة يوداوي",
-            "روشتة",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy"
+            "علاج مسجل"
           ],
           "url": "/assets/companies/metlife/slide012_form2.png",
           "page": 12,
+          "width": 518,
+          "height": 372,
           "links": []
         },
         {
@@ -882,58 +388,15 @@
           "title": "نموذج بدون روشتة",
           "formTags": [
             "نموذج بدون روشتة",
-            "بدون روشتة",
             "نموذج",
-            "روشتة",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "روشتة يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
+            "روشتة"
           ],
           "url": "/assets/companies/metlife/slide012_form3.png",
           "page": 12,
-          "links": []
-        },
-        {
-          "id": "metlife-s12-form4",
-          "type": "form",
-          "title": "يتم ادخاله على icare للموافقة",
-          "formTags": [
-            "يتم ادخاله على icare للموافقة",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/metlife/slide012_form4.png",
-          "page": 12,
-          "links": []
+          "width": 208,
+          "height": 298,
+          "links": [],
+          "matchedForm": "صورة روشتة مرفوعة"
         },
         {
           "id": "metlife-s13-form1",
@@ -949,9 +412,12 @@
             "نموذج",
             "روشتة"
           ],
-          "url": "/assets/companies/metlife/slide013_form1.jpg",
+          "url": "/assets/companies/metlife/slide013_form1.png",
           "page": 13,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "علاج مسجل i*care/yodawy"
         },
         {
           "id": "metlife-s13-form2",
@@ -969,65 +435,10 @@
           ],
           "url": "/assets/companies/metlife/slide013_form2.png",
           "page": 13,
-          "links": []
-        },
-        {
-          "id": "metlife-s14-form1",
-          "type": "form",
-          "title": "نموذج أزرق بالكربون",
-          "formTags": [
-            "مستند — صفحة 14",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/metlife/slide014_form1.jpg",
-          "page": 14,
-          "links": []
-        },
-        {
-          "id": "metlife-s14-form2",
-          "type": "form",
-          "title": "روشتة يوداوي",
-          "formTags": [
-            "مستند — صفحة 14",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/metlife/slide014_form2.png",
-          "page": 14,
-          "links": []
+          "width": 333,
+          "height": 476,
+          "links": [],
+          "matchedForm": "نموذج أزرق بالكربون"
         },
         {
           "id": "metlife-s15-card",
@@ -1108,116 +519,16 @@
           "links": []
         },
         {
-          "id": "metlife-s16-form1",
-          "type": "form",
-          "title": "صورة روشتة مرفوعة",
-          "formTags": [
-            "مستند — صفحة 16",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/metlife/slide016_form1.jpg",
-          "page": 16,
-          "links": []
-        },
-        {
-          "id": "metlife-s16-form2",
-          "type": "form",
-          "title": "علاج مسجل i*care/yodawy",
-          "formTags": [
-            "مستند — صفحة 16",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة يوداوي",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "صورة روشتة مرفوعة",
-            "علاج مسجل i*care/yodawy",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/metlife/slide016_form2.jpg",
-          "page": 16,
-          "links": []
-        },
-        {
-          "id": "metlife-s17-form1",
-          "type": "form",
-          "title": "مستند — صفحة 17",
-          "formTags": [
-            "مستند — صفحة 17"
-          ],
-          "url": "/assets/companies/metlife/slide017_form1.jpg",
-          "page": 17,
-          "links": []
-        },
-        {
-          "id": "metlife-s17-form2",
-          "type": "form",
-          "title": "مستند — صفحة 17",
-          "formTags": [
-            "مستند — صفحة 17"
-          ],
-          "url": "/assets/companies/metlife/slide017_form2.png",
-          "page": 17,
-          "links": []
-        },
-        {
-          "id": "metlife-s17-form3",
-          "type": "form",
-          "title": "مستند — صفحة 17",
-          "formTags": [
-            "مستند — صفحة 17"
-          ],
-          "url": "/assets/companies/metlife/slide017_form3.jpg",
-          "page": 17,
-          "links": []
-        },
-        {
           "id": "metlife-s18-form1",
           "type": "form",
           "title": "يجب التاكد فى هذه المرحلة ان المريض لديه موافقة مسبقة وبعدها نقوم باختيار Yes",
           "formTags": [
             "يجب التاكد فى هذه المرحلة ان المريض لديه موافقة مسبقة وبعدها نقوم باختيار Yes"
           ],
-          "url": "/assets/companies/metlife/slide018_form1.jpg",
+          "url": "/assets/companies/metlife/slide018_form1.png",
           "page": 18,
-          "links": []
-        },
-        {
-          "id": "metlife-s18-form2",
-          "type": "form",
-          "title": "مستند — صفحة 18",
-          "formTags": [
-            "مستند — صفحة 18"
-          ],
-          "url": "/assets/companies/metlife/slide018_form2.jpg",
-          "page": 18,
+          "width": 518,
+          "height": 372,
           "links": []
         },
         {
@@ -1227,19 +538,10 @@
           "formTags": [
             "قيمة ما تم الموافقة عليه"
           ],
-          "url": "/assets/companies/metlife/slide019_form1.jpg",
+          "url": "/assets/companies/metlife/slide019_form1.png",
           "page": 19,
-          "links": []
-        },
-        {
-          "id": "metlife-s19-form2",
-          "type": "form",
-          "title": "مستند — صفحة 19",
-          "formTags": [
-            "مستند — صفحة 19"
-          ],
-          "url": "/assets/companies/metlife/slide019_form2.jpg",
-          "page": 19,
+          "width": 792,
+          "height": 383,
           "links": []
         },
         {
@@ -1249,41 +551,10 @@
           "formTags": [
             "عند الادخال على ريسيت البيع يتم اختيار اسم جلوب ميد +risk carrier فى موافقة icare"
           ],
-          "url": "/assets/companies/metlife/slide020_form1.jpg",
+          "url": "/assets/companies/metlife/slide020_form1.png",
           "page": 20,
-          "links": []
-        },
-        {
-          "id": "metlife-s20-form2",
-          "type": "form",
-          "title": "مستند — صفحة 20",
-          "formTags": [
-            "مستند — صفحة 20"
-          ],
-          "url": "/assets/companies/metlife/slide020_form2.jpg",
-          "page": 20,
-          "links": []
-        },
-        {
-          "id": "metlife-s20-form3",
-          "type": "form",
-          "title": "مستند — صفحة 20",
-          "formTags": [
-            "مستند — صفحة 20"
-          ],
-          "url": "/assets/companies/metlife/slide020_form3.jpg",
-          "page": 20,
-          "links": []
-        },
-        {
-          "id": "metlife-s20-form4",
-          "type": "form",
-          "title": "مستند — صفحة 20",
-          "formTags": [
-            "مستند — صفحة 20"
-          ],
-          "url": "/assets/companies/metlife/slide020_form4.jpg",
-          "page": 20,
+          "width": 518,
+          "height": 372,
           "links": []
         }
       ],
@@ -1324,7 +595,13 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/metlife.png"
+      "logoUrl": "/logos/metlife.png",
+      "formMediaMap": {
+        "علاج مسجل i*care/yodawy": "metlife-s13-form1",
+        "نموذج أزرق بالكربون": "metlife-s13-form2",
+        "روشتة يوداوي": "metlife-s12-form1",
+        "صورة روشتة مرفوعة": "metlife-s12-form3"
+      }
     },
     {
       "id": "globemed",
@@ -1387,23 +664,17 @@
           "title": "الروشتة الالكترونية ومرفق بالبرنامج صورة الروشتة الاصلية يلزم الطباعة وارفاقها مع الريسيت لوغير متوفرة يلزم ارفاق النموذ",
           "formTags": [
             "الروشتة الالكترونية ومرفق بالبرنامج صورة الروشتة الاصلية يلزم الطباعة وارفاقها مع الريسيت لوغير متوفرة يلزم ارفاق النموذ",
-            "روشتة",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة إلكترونية"
+            "مسجل",
+            "برنامج",
+            "علاج مسجل",
+            "روشتة"
           ],
-          "url": "/assets/companies/globemed/slide021_form1.jpg",
+          "url": "/assets/companies/globemed/slide021_form1.png",
           "page": 21,
-          "links": []
+          "width": 274,
+          "height": 379,
+          "links": [],
+          "matchedForm": "روشتة خارجية"
         },
         {
           "id": "globemed-s21-form2",
@@ -1414,193 +685,14 @@
             "أزرق",
             "ازرق",
             "blue",
-            "globemed",
-            "نموذج",
-            "نموذج أزرق بالكربون",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية"
+            "نموذج"
           ],
-          "url": "/assets/companies/globemed/slide021_form2.jpg",
+          "url": "/assets/companies/globemed/slide021_form2.png",
           "page": 21,
-          "links": []
-        },
-        {
-          "id": "globemed-s21-form3",
-          "type": "form",
-          "title": "نموذج أزرق بالكربون",
-          "formTags": [
-            "مستند — صفحة 21",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية"
-          ],
-          "url": "/assets/companies/globemed/slide021_form3.jpg",
-          "page": 21,
-          "links": []
-        },
-        {
-          "id": "globemed-s21-form4",
-          "type": "form",
-          "title": "روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 21",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية"
-          ],
-          "url": "/assets/companies/globemed/slide021_form4.png",
-          "page": 21,
-          "links": []
-        },
-        {
-          "id": "globemed-s22-form1",
-          "type": "form",
-          "title": "روشتة إلكترونية",
-          "formTags": [
-            "مستند — صفحة 22",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية",
-            "Within network (no)"
-          ],
-          "url": "/assets/companies/globemed/slide022_form1.jpg",
-          "page": 22,
-          "links": []
-        },
-        {
-          "id": "globemed-s22-form2",
-          "type": "form",
-          "title": "Within network (no)",
-          "formTags": [
-            "مستند — صفحة 22",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية",
-            "Within network (no)"
-          ],
-          "url": "/assets/companies/globemed/slide022_form2.jpg",
-          "page": 22,
-          "links": []
-        },
-        {
-          "id": "globemed-s23-form1",
-          "type": "form",
-          "title": "مستند — صفحة 23",
-          "formTags": [
-            "مستند — صفحة 23",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية",
-            "Within network (no)"
-          ],
-          "url": "/assets/companies/globemed/slide023_form1.jpg",
-          "page": 23,
-          "links": []
-        },
-        {
-          "id": "globemed-s23-form2",
-          "type": "form",
-          "title": "مستند — صفحة 23",
-          "formTags": [
-            "مستند — صفحة 23",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية",
-            "Within network (no)"
-          ],
-          "url": "/assets/companies/globemed/slide023_form2.jpg",
-          "page": 23,
-          "links": []
-        },
-        {
-          "id": "globemed-s23-form3",
-          "type": "form",
-          "title": "مستند — صفحة 23",
-          "formTags": [
-            "مستند — صفحة 23",
-            "نموذج أزرق بالكربون",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية",
-            "Within network (no)"
-          ],
-          "url": "/assets/companies/globemed/slide023_form3.png",
-          "page": 23,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "نموذج أزرق بالكربون"
         }
       ],
       "links": [
@@ -1640,7 +732,11 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/globemed.png"
+      "logoUrl": "/logos/globemed.png",
+      "formMediaMap": {
+        "روشتة خارجية": "globemed-s21-form1",
+        "نموذج أزرق بالكربون": "globemed-s21-form2"
+      }
     },
     {
       "id": "nextcare",
@@ -1689,69 +785,7 @@
       },
       "media": [
         {
-          "id": "nextcare-s24-form1",
-          "type": "form",
-          "title": "نموذج أصفر بالكربون",
-          "formTags": [
-            "مستند — صفحة 24",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج"
-          ],
-          "url": "/assets/companies/nextcare/slide024_form1.jpg",
-          "page": 24,
-          "links": []
-        },
-        {
-          "id": "nextcare-s24-form2",
-          "type": "form",
-          "title": "روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 24",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/nextcare/slide024_form2.png",
-          "page": 24,
-          "links": []
-        },
-        {
           "id": "nextcare-s25-form1",
-          "type": "form",
-          "title": "2-روشتة خارجية ويلزم كتابة الصرف بالروشتة الخارجية فى الملاحظات",
-          "formTags": [
-            "2-روشتة خارجية ويلزم كتابة الصرف بالروشتة الخارجية فى الملاحظات",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide025_form1.png",
-          "page": 25,
-          "links": []
-        },
-        {
-          "id": "nextcare-s25-form2",
           "type": "form",
           "title": "1-النموذج الاصفرنسخة الصيدلية",
           "formTags": [
@@ -1762,97 +796,33 @@
             "كربون",
             "نموذج أصفر",
             "بالكربون",
-            "نموذج",
-            "نموذج أصفر بالكربون",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
+            "نموذج"
           ],
-          "url": "/assets/companies/nextcare/slide025_form2.jpg",
+          "url": "/assets/companies/nextcare/slide025_form1.png",
           "page": 25,
-          "links": []
+          "width": 248,
+          "height": 342,
+          "links": [],
+          "matchedForm": "نموذج أصفر بالكربون"
         },
         {
-          "id": "nextcare-s25-form3",
+          "id": "nextcare-s25-form2",
           "type": "form",
-          "title": "2-روشتة خارجية",
+          "title": "2-روشتة خارجية ويلزم كتابة الصرف بالروشتة الخارجية فى الملاحظات",
           "formTags": [
-            "2-روشتة خارجية",
+            "2-روشتة خارجية ويلزم كتابة الصرف بالروشتة الخارجية فى الملاحظات",
             "خارجية",
             "خارج",
             "external",
             "out of network",
-            "روشتة",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "روشتة إلكترونية مطبوعة"
+            "روشتة"
           ],
-          "url": "/assets/companies/nextcare/slide025_form3.jpg",
+          "url": "/assets/companies/nextcare/slide025_form2.png",
           "page": 25,
-          "links": []
-        },
-        {
-          "id": "nextcare-s25-form4",
-          "type": "form",
-          "title": "روشتة إلكترونية مطبوعة",
-          "formTags": [
-            "مستند — صفحة 25",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide025_form4.png",
-          "page": 25,
-          "links": []
-        },
-        {
-          "id": "nextcare-s25-form5",
-          "type": "form",
-          "title": "مستند — صفحة 25",
-          "formTags": [
-            "مستند — صفحة 25",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide025_form5.png",
-          "page": 25,
-          "links": []
+          "width": 248,
+          "height": 345,
+          "links": [],
+          "matchedForm": "روشتة خارجية"
         },
         {
           "id": "nextcare-s26-form1",
@@ -1862,20 +832,12 @@
             "121236 -من الممكن عدم ارفاق النموذج فى حالة تحديد no attachments",
             "نموذج"
           ],
-          "url": "/assets/companies/nextcare/slide026_form1.jpg",
+          "url": "/assets/companies/nextcare/slide026_form1.png",
           "page": 26,
-          "links": []
-        },
-        {
-          "id": "nextcare-s26-form2",
-          "type": "form",
-          "title": "مستند — صفحة 26",
-          "formTags": [
-            "مستند — صفحة 26"
-          ],
-          "url": "/assets/companies/nextcare/slide026_form2.png",
-          "page": 26,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "روشتة إلكترونية مطبوعة"
         },
         {
           "id": "nextcare-s27-form1",
@@ -1883,182 +845,15 @@
           "title": "عند ادخال روشتة على برنامج Pulse يجب اختيار type بشكل صحيح (out patient – dental – maternity",
           "formTags": [
             "عند ادخال روشتة على برنامج Pulse يجب اختيار type بشكل صحيح (out patient – dental – maternity",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة إلكترونية مطبوعة"
+            "مسجل",
+            "برنامج",
+            "علاج مسجل",
+            "روشتة"
           ],
-          "url": "/assets/companies/nextcare/slide027_form1.jpg",
+          "url": "/assets/companies/nextcare/slide027_form1.png",
           "page": 27,
-          "links": []
-        },
-        {
-          "id": "nextcare-s27-form2",
-          "type": "form",
-          "title": "مستند — صفحة 27",
-          "formTags": [
-            "مستند — صفحة 27",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide027_form2.png",
-          "page": 27,
-          "links": []
-        },
-        {
-          "id": "nextcare-s28-form1",
-          "type": "form",
-          "title": "مستند — صفحة 28",
-          "formTags": [
-            "مستند — صفحة 28",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide028_form1.png",
-          "page": 28,
-          "links": []
-        },
-        {
-          "id": "nextcare-s28-form2",
-          "type": "form",
-          "title": "مستند — صفحة 28",
-          "formTags": [
-            "مستند — صفحة 28",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide028_form2.jpg",
-          "page": 28,
-          "links": []
-        },
-        {
-          "id": "nextcare-s29-form1",
-          "type": "form",
-          "title": "مستند — صفحة 29",
-          "formTags": [
-            "مستند — صفحة 29",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide029_form1.jpg",
-          "page": 29,
-          "links": []
-        },
-        {
-          "id": "nextcare-s29-form2",
-          "type": "form",
-          "title": "مستند — صفحة 29",
-          "formTags": [
-            "مستند — صفحة 29",
-            "نموذج أصفر بالكربون",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "روشتة إلكترونية مطبوعة"
-          ],
-          "url": "/assets/companies/nextcare/slide029_form2.png",
-          "page": 29,
-          "links": []
-        },
-        {
-          "id": "nextcare-s30-form1",
-          "type": "form",
-          "title": "مستند — صفحة 30",
-          "formTags": [
-            "مستند — صفحة 30"
-          ],
-          "url": "/assets/companies/nextcare/slide030_form1.jpg",
-          "page": 30,
-          "links": []
-        },
-        {
-          "id": "nextcare-s30-form2",
-          "type": "form",
-          "title": "مستند — صفحة 30",
-          "formTags": [
-            "مستند — صفحة 30"
-          ],
-          "url": "/assets/companies/nextcare/slide030_form2.png",
-          "page": 30,
-          "links": []
-        },
-        {
-          "id": "nextcare-s31-form1",
-          "type": "form",
-          "title": "مستند — صفحة 31",
-          "formTags": [
-            "مستند — صفحة 31"
-          ],
-          "url": "/assets/companies/nextcare/slide031_form1.jpg",
-          "page": 31,
-          "links": []
-        },
-        {
-          "id": "nextcare-s31-form2",
-          "type": "form",
-          "title": "مستند — صفحة 31",
-          "formTags": [
-            "مستند — صفحة 31"
-          ],
-          "url": "/assets/companies/nextcare/slide031_form2.jpg",
-          "page": 31,
+          "width": 476,
+          "height": 450,
           "links": []
         }
       ],
@@ -2088,7 +883,12 @@
       "logoUrl": "/logos/nextcare.png",
       "cardInstructions": [
         "تقديم البطاقة الإلكترونية الموجودة على التطبيق الخاص بشركة نكستكير والموجود على الهاتف الخاص بالعملاء حسب تعليمات التشغيل. كما يجب على العميل تقديم البطاقة الشخصية الخاصة"
-      ]
+      ],
+      "formMediaMap": {
+        "نموذج أصفر بالكربون": "nextcare-s25-form1",
+        "روشتة خارجية": "nextcare-s25-form2",
+        "روشتة إلكترونية مطبوعة": "nextcare-s26-form1"
+      }
     },
     {
       "id": "mednet",
@@ -2133,50 +933,29 @@
           "title": "اى ستثناء روشتة بدون نموذج او نموذج بدون روشتة يجب اختيار ذلك فى الموافقة وكتابتها فى الملاحظات",
           "formTags": [
             "اى ستثناء روشتة بدون نموذج او نموذج بدون روشتة يجب اختيار ذلك فى الموافقة وكتابتها فى الملاحظات",
-            "بدون روشتة",
             "نموذج",
-            "روشتة",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
+            "روشتة"
           ],
-          "url": "/assets/companies/mednet/slide032_form1.jpg",
+          "url": "/assets/companies/mednet/slide032_form1.png",
           "page": 32,
-          "links": []
+          "width": 245,
+          "height": 336,
+          "links": [],
+          "matchedForm": "موافقة مسبقة"
         },
         {
           "id": "mednet-s32-form2",
           "type": "form",
           "title": "موافقة من الشركة",
           "formTags": [
-            "موافقة من الشركة",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
+            "موافقة من الشركة"
           ],
-          "url": "/assets/companies/mednet/slide032_form2.jpg",
+          "url": "/assets/companies/mednet/slide032_form2.png",
           "page": 32,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "علاج مزمن"
         },
         {
           "id": "mednet-s32-form3",
@@ -2185,22 +964,14 @@
           "formTags": [
             "نموذج أمراض مزمنة",
             "مزمن",
-            "نموذج",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن"
+            "شهري",
+            "chronic",
+            "نموذج"
           ],
-          "url": "/assets/companies/mednet/slide032_form3.jpg",
+          "url": "/assets/companies/mednet/slide032_form3.png",
           "page": 32,
+          "width": 257,
+          "height": 342,
           "links": []
         },
         {
@@ -2212,46 +983,19 @@
             "أزرق",
             "ازرق",
             "blue",
-            "globemed",
             "خارجية",
             "خارج",
             "external",
             "out of network",
             "نموذج",
-            "روشتة",
-            "النموذج الأزرق + روشتة خارجية",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
+            "روشتة"
           ],
-          "url": "/assets/companies/mednet/slide032_form4.jpg",
+          "url": "/assets/companies/mednet/slide032_form4.png",
           "page": 32,
-          "links": []
-        },
-        {
-          "id": "mednet-s32-form5",
-          "type": "form",
-          "title": "النموذج الأزرق + روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 32",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/mednet/slide032_form5.jpg",
-          "page": 32,
-          "links": []
+          "width": 250,
+          "height": 344,
+          "links": [],
+          "matchedForm": "النموذج الأزرق + روشتة خارجية"
         },
         {
           "id": "mednet-s33-form1",
@@ -2259,160 +1003,14 @@
           "title": "أنواع موافقات البرنامج",
           "formTags": [
             "أنواع موافقات البرنامج",
-            "موافقة مسبقة"
+            "مسجل",
+            "برنامج",
+            "علاج مسجل"
           ],
-          "url": "/assets/companies/mednet/slide033_form1.jpg",
+          "url": "/assets/companies/mednet/slide033_form1.png",
           "page": 33,
-          "links": []
-        },
-        {
-          "id": "mednet-s33-form2",
-          "type": "form",
-          "title": "موافقة مسبقة",
-          "formTags": [
-            "مستند — صفحة 33",
-            "موافقة مسبقة"
-          ],
-          "url": "/assets/companies/mednet/slide033_form2.jpg",
-          "page": 33,
-          "links": []
-        },
-        {
-          "id": "mednet-s33-form3",
-          "type": "form",
-          "title": "علاج مزمن",
-          "formTags": [
-            "مستند — صفحة 33",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/mednet/slide033_form3.jpg",
-          "page": 33,
-          "links": []
-        },
-        {
-          "id": "mednet-s33-form4",
-          "type": "form",
-          "title": "مستند — صفحة 33",
-          "formTags": [
-            "مستند — صفحة 33",
-            "موافقة مسبقة"
-          ],
-          "url": "/assets/companies/mednet/slide033_form4.jpg",
-          "page": 33,
-          "links": []
-        },
-        {
-          "id": "mednet-s33-form5",
-          "type": "form",
-          "title": "مستند — صفحة 33",
-          "formTags": [
-            "مستند — صفحة 33",
-            "موافقة مسبقة"
-          ],
-          "url": "/assets/companies/mednet/slide033_form5.jpg",
-          "page": 33,
-          "links": []
-        },
-        {
-          "id": "mednet-s34-form1",
-          "type": "form",
-          "title": "مستند — صفحة 34",
-          "formTags": [
-            "مستند — صفحة 34",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/mednet/slide034_form1.jpg",
-          "page": 34,
-          "links": []
-        },
-        {
-          "id": "mednet-s34-form2",
-          "type": "form",
-          "title": "مستند — صفحة 34",
-          "formTags": [
-            "مستند — صفحة 34",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/mednet/slide034_form2.jpg",
-          "page": 34,
-          "links": []
-        },
-        {
-          "id": "mednet-s35-form1",
-          "type": "form",
-          "title": "مستند — صفحة 35",
-          "formTags": [
-            "مستند — صفحة 35",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/mednet/slide035_form1.jpg",
-          "page": 35,
-          "links": []
-        },
-        {
-          "id": "mednet-s35-form2",
-          "type": "form",
-          "title": "مستند — صفحة 35",
-          "formTags": [
-            "مستند — صفحة 35",
-            "النموذج الأزرق + روشتة خارجية",
-            "أزرق",
-            "ازرق",
-            "blue",
-            "globemed",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "موافقة مسبقة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/mednet/slide035_form2.jpg",
-          "page": 35,
+          "width": 232,
+          "height": 327,
           "links": []
         }
       ],
@@ -2432,7 +1030,12 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/mednet.png"
+      "logoUrl": "/logos/mednet.png",
+      "formMediaMap": {
+        "النموذج الأزرق + روشتة خارجية": "mednet-s32-form4",
+        "موافقة مسبقة": "mednet-s32-form1",
+        "علاج مزمن": "mednet-s32-form2"
+      }
     },
     {
       "id": "misr-healthcare",
@@ -2475,64 +1078,6 @@
       },
       "media": [
         {
-          "id": "misr-healthcare-s36-form1",
-          "type": "form",
-          "title": "موافقات مسجلة Nice Deer",
-          "formTags": [
-            "مستند — صفحة 36",
-            "موافقات مسجلة Nice Deer",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide036_form1.jpg",
-          "page": 36,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s36-form2",
-          "type": "form",
-          "title": "روشتة خارجية VIP",
-          "formTags": [
-            "مستند — صفحة 36",
-            "روشتة خارجية VIP",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide036_form2.png",
-          "page": 36,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s36-form3",
-          "type": "form",
-          "title": "علاج شهري مزمن",
-          "formTags": [
-            "مستند — صفحة 36",
-            "علاج شهري مزمن",
-            "مزمن",
-            "شهري",
-            "chronic"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide036_form3.jpg",
-          "page": 36,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s36-form4",
-          "type": "form",
-          "title": "مستند — صفحة 36",
-          "formTags": [
-            "مستند — صفحة 36"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide036_form4.jpg",
-          "page": 36,
-          "links": []
-        },
-        {
           "id": "misr-healthcare-s37-form1",
           "type": "form",
           "title": "الصرف بروشتة خارجية او علاج مسجل على سيستم",
@@ -2542,15 +1087,17 @@
             "خارج",
             "external",
             "out of network",
-            "روشتة",
             "مسجل",
             "برنامج",
             "علاج مسجل",
-            "موافقات مسجلة Nice Deer"
+            "روشتة"
           ],
-          "url": "/assets/companies/misr-healthcare/slide037_form1.jpg",
+          "url": "/assets/companies/misr-healthcare/slide037_form1.png",
           "page": 37,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "موافقات مسجلة Nice Deer"
         },
         {
           "id": "misr-healthcare-s37-form2",
@@ -2559,95 +1106,15 @@
           "formTags": [
             "و تحديد نوع التشخيص اذا كان مزمن او حادacute",
             "مزمن",
-            "موافقات مسجلة Nice Deer",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
+            "شهري",
+            "chronic"
           ],
-          "url": "/assets/companies/misr-healthcare/slide037_form2.jpg",
+          "url": "/assets/companies/misr-healthcare/slide037_form2.png",
           "page": 37,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s37-form3",
-          "type": "form",
-          "title": "يجب مطابقة الاسعار بما تم الموافقة عليه فى الموافقة وإلا يتم تعديل الاسعار على الموافقة",
-          "formTags": [
-            "يجب مطابقة الاسعار بما تم الموافقة عليه فى الموافقة وإلا يتم تعديل الاسعار على الموافقة",
-            "موافقات مسجلة Nice Deer",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide037_form3.jpg",
-          "page": 37,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s38-form1",
-          "type": "form",
-          "title": "مستند — صفحة 38",
-          "formTags": [
-            "مستند — صفحة 38"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide038_form1.jpg",
-          "page": 38,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s38-form2",
-          "type": "form",
-          "title": "مستند — صفحة 38",
-          "formTags": [
-            "مستند — صفحة 38"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide038_form2.jpg",
-          "page": 38,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s39-form1",
-          "type": "form",
-          "title": "مستند — صفحة 39",
-          "formTags": [
-            "مستند — صفحة 39"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide039_form1.jpg",
-          "page": 39,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s39-form2",
-          "type": "form",
-          "title": "مستند — صفحة 39",
-          "formTags": [
-            "مستند — صفحة 39"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide039_form2.jpg",
-          "page": 39,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s40-form1",
-          "type": "form",
-          "title": "مستند — صفحة 40",
-          "formTags": [
-            "مستند — صفحة 40"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide040_form1.jpg",
-          "page": 40,
-          "links": []
-        },
-        {
-          "id": "misr-healthcare-s40-form2",
-          "type": "form",
-          "title": "مستند — صفحة 40",
-          "formTags": [
-            "مستند — صفحة 40"
-          ],
-          "url": "/assets/companies/misr-healthcare/slide040_form2.jpg",
-          "page": 40,
-          "links": []
+          "width": 268,
+          "height": 327,
+          "links": [],
+          "matchedForm": "روشتة خارجية VIP"
         }
       ],
       "links": [
@@ -2677,7 +1144,11 @@
       "cardInstructions": [
         "كارنيه الكترونى",
         "تاريخ الاتطلاع من التطبيق"
-      ]
+      ],
+      "formMediaMap": {
+        "موافقات مسجلة Nice Deer": "misr-healthcare-s37-form1",
+        "روشتة خارجية VIP": "misr-healthcare-s37-form2"
+      }
     },
     {
       "id": "amc",
@@ -2722,76 +1193,19 @@
       },
       "media": [
         {
-          "id": "amc-s41-form1",
-          "type": "form",
-          "title": "نموذج نسخة الصيدلية بالكربون",
-          "formTags": [
-            "مستند — صفحة 41",
-            "نموذج نسخة الصيدلية بالكربون",
-            "نموذج"
-          ],
-          "url": "/assets/companies/amc/slide041_form1.jpg",
-          "page": 41,
-          "links": []
-        },
-        {
-          "id": "amc-s41-form2",
-          "type": "form",
-          "title": "روشتة إلكترونية E-PRESCRIPTION",
-          "formTags": [
-            "مستند — صفحة 41",
-            "روشتة إلكترونية E-PRESCRIPTION",
-            "e-prescription",
-            "prescription",
-            "روشتة",
-            "إلكترون"
-          ],
-          "url": "/assets/companies/amc/slide041_form2.jpg",
-          "page": 41,
-          "links": []
-        },
-        {
           "id": "amc-s42-form1",
           "type": "form",
           "title": "يلزم تطابق اسم المستشفى فى الموافقة مع ختم النموذج",
           "formTags": [
             "يلزم تطابق اسم المستشفى فى الموافقة مع ختم النموذج",
-            "نموذج",
-            "نموذج نسخة الصيدلية بالكربون"
-          ],
-          "url": "/assets/companies/amc/slide042_form1.jpg",
-          "page": 42,
-          "links": []
-        },
-        {
-          "id": "amc-s42-form2",
-          "type": "form",
-          "title": "علاج شهري مزمن",
-          "formTags": [
-            "مستند — صفحة 42",
-            "نموذج نسخة الصيدلية بالكربون",
-            "نموذج",
-            "علاج شهري مزمن",
-            "مزمن",
-            "شهري",
-            "chronic"
-          ],
-          "url": "/assets/companies/amc/slide042_form2.png",
-          "page": 42,
-          "links": []
-        },
-        {
-          "id": "amc-s42-form3",
-          "type": "form",
-          "title": "مستند — صفحة 42",
-          "formTags": [
-            "مستند — صفحة 42",
-            "نموذج نسخة الصيدلية بالكربون",
             "نموذج"
           ],
-          "url": "/assets/companies/amc/slide042_form3.jpg",
+          "url": "/assets/companies/amc/slide042_form1.png",
           "page": 42,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "نموذج نسخة الصيدلية بالكربون"
         },
         {
           "id": "amc-s43-card",
@@ -2802,44 +1216,11 @@
           "links": []
         },
         {
-          "id": "amc-s44-form1",
-          "type": "form",
-          "title": "الاهلى للخدمات الطبيةAMC",
-          "formTags": [
-            "الاهلى للخدمات الطبيةAMC"
-          ],
-          "url": "/assets/companies/amc/slide044_form1.jpg",
-          "page": 44,
-          "links": []
-        },
-        {
-          "id": "amc-s45-form1",
-          "type": "form",
-          "title": "الاهلى للخدمات الطبيةAMC",
-          "formTags": [
-            "الاهلى للخدمات الطبيةAMC"
-          ],
-          "url": "/assets/companies/amc/slide045_form1.jpg",
-          "page": 45,
-          "links": []
-        },
-        {
           "id": "amc-s46-card",
           "type": "card",
           "title": "الاهلى للخدمات الطبيةAMC",
           "url": "/assets/companies/amc/slide046_card.png",
           "page": 46,
-          "links": []
-        },
-        {
-          "id": "amc-s47-form1",
-          "type": "form",
-          "title": "الاهلى للخدمات الطبيةAMC",
-          "formTags": [
-            "الاهلى للخدمات الطبيةAMC"
-          ],
-          "url": "/assets/companies/amc/slide047_form1.jpg",
-          "page": 47,
           "links": []
         }
       ],
@@ -2866,7 +1247,10 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/amc.png"
+      "logoUrl": "/logos/amc.png",
+      "formMediaMap": {
+        "نموذج نسخة الصيدلية بالكربون": "amc-s42-form1"
+      }
     },
     {
       "id": "medright",
@@ -2917,91 +1301,14 @@
             "أبيض",
             "ابيض",
             "white",
-            "نموذج",
-            "النموذج الأبيض"
-          ],
-          "url": "/assets/companies/medright/slide048_form1.jpg",
-          "page": 48,
-          "links": []
-        },
-        {
-          "id": "medright-s48-form2",
-          "type": "form",
-          "title": "النموذج الأبيض",
-          "formTags": [
-            "مستند — صفحة 48",
-            "النموذج الأبيض",
-            "أبيض",
-            "ابيض",
-            "white",
             "نموذج"
           ],
-          "url": "/assets/companies/medright/slide048_form2.png",
+          "url": "/assets/companies/medright/slide048_form1.png",
           "page": 48,
-          "links": []
-        },
-        {
-          "id": "medright-s48-form3",
-          "type": "form",
-          "title": "موافقة مسبقة",
-          "formTags": [
-            "مستند — صفحة 48",
-            "النموذج الأبيض",
-            "أبيض",
-            "ابيض",
-            "white",
-            "نموذج",
-            "موافقة مسبقة"
-          ],
-          "url": "/assets/companies/medright/slide048_form3.png",
-          "page": 48,
-          "links": []
-        },
-        {
-          "id": "medright-s49-form1",
-          "type": "form",
-          "title": "علاج مزمن",
-          "formTags": [
-            "مستند — صفحة 49",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/medright/slide049_form1.jpg",
-          "page": 49,
-          "links": []
-        },
-        {
-          "id": "medright-s49-form2",
-          "type": "form",
-          "title": "مستند — صفحة 49",
-          "formTags": [
-            "مستند — صفحة 49"
-          ],
-          "url": "/assets/companies/medright/slide049_form2.png",
-          "page": 49,
-          "links": []
-        },
-        {
-          "id": "medright-s49-form3",
-          "type": "form",
-          "title": "مستند — صفحة 49",
-          "formTags": [
-            "مستند — صفحة 49"
-          ],
-          "url": "/assets/companies/medright/slide049_form3.png",
-          "page": 49,
-          "links": []
-        },
-        {
-          "id": "medright-s49-form4",
-          "type": "form",
-          "title": "مستند — صفحة 49",
-          "formTags": [
-            "مستند — صفحة 49"
-          ],
-          "url": "/assets/companies/medright/slide049_form4.png",
-          "page": 49,
-          "links": []
+          "width": 350,
+          "height": 398,
+          "links": [],
+          "matchedForm": "النموذج الأبيض"
         },
         {
           "id": "medright-s50-card",
@@ -3028,67 +1335,47 @@
           ]
         },
         {
-          "id": "medright-s52-form1",
-          "type": "form",
-          "title": "مستند — صفحة 52",
-          "formTags": [
-            "مستند — صفحة 52"
-          ],
-          "url": "/assets/companies/medright/slide052_form1.jpg",
-          "page": 52,
-          "links": []
-        },
-        {
-          "id": "medright-s52-form2",
-          "type": "form",
-          "title": "مستند — صفحة 52",
-          "formTags": [
-            "مستند — صفحة 52"
-          ],
-          "url": "/assets/companies/medright/slide052_form2.png",
-          "page": 52,
-          "links": []
-        },
-        {
           "id": "medright-s53-form1",
           "type": "form",
           "title": "مزمن",
           "formTags": [
             "مزمن",
-            "النموذج الأبيض",
-            "أبيض",
-            "ابيض",
-            "white",
-            "نموذج",
-            "موافقة مسبقة",
-            "علاج مزمن"
+            "شهري",
+            "chronic"
           ],
           "url": "/assets/companies/medright/slide053_form1.png",
           "page": 53,
-          "links": []
+          "width": 425,
+          "height": 444,
+          "links": [],
+          "matchedForm": "علاج مزمن"
+        },
+        {
+          "id": "medright-s53-form2",
+          "type": "form",
+          "title": "موافقة تحتاج نموذج",
+          "formTags": [
+            "موافقة تحتاج نموذج",
+            "نموذج"
+          ],
+          "url": "/assets/companies/medright/slide053_form2.png",
+          "page": 53,
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "موافقة مسبقة"
         },
         {
           "id": "medright-s54-form1",
           "type": "form",
           "title": "عند وجود موافقة مع العميل preapproval يجب الدخول على السيستم الخاص بالشركة وسحب الموافقة من حساب الصيدلية ووجود اسم الصي",
           "formTags": [
-            "عند وجود موافقة مع العميل preapproval يجب الدخول على السيستم الخاص بالشركة وسحب الموافقة من حساب الصيدلية ووجود اسم الصي",
-            "موافقة مسبقة"
+            "عند وجود موافقة مع العميل preapproval يجب الدخول على السيستم الخاص بالشركة وسحب الموافقة من حساب الصيدلية ووجود اسم الصي"
           ],
-          "url": "/assets/companies/medright/slide054_form1.jpg",
+          "url": "/assets/companies/medright/slide054_form1.png",
           "page": 54,
-          "links": []
-        },
-        {
-          "id": "medright-s54-form2",
-          "type": "form",
-          "title": "مستند — صفحة 54",
-          "formTags": [
-            "مستند — صفحة 54",
-            "موافقة مسبقة"
-          ],
-          "url": "/assets/companies/medright/slide054_form2.png",
-          "page": 54,
+          "width": 482,
+          "height": 364,
           "links": []
         }
       ],
@@ -3122,7 +1409,12 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/medright.png"
+      "logoUrl": "/logos/medright.png",
+      "formMediaMap": {
+        "علاج مزمن": "medright-s53-form1",
+        "النموذج الأبيض": "medright-s48-form1",
+        "موافقة مسبقة": "medright-s53-form2"
+      }
     },
     {
       "id": "medmark",
@@ -3180,114 +1472,19 @@
       },
       "media": [
         {
-          "id": "medmark-s55-form1",
-          "type": "form",
-          "title": "روشتة خارجية + نموذج Horizon/Allianz",
-          "formTags": [
-            "مستند — صفحة 55",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة"
-          ],
-          "url": "/assets/companies/medmark/slide055_form1.jpg",
-          "page": 55,
-          "links": []
-        },
-        {
-          "id": "medmark-s55-form2",
-          "type": "form",
-          "title": "علاج مزمن",
-          "formTags": [
-            "مستند — صفحة 55",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "علاج مزمن",
-            "مزمن"
-          ],
-          "url": "/assets/companies/medmark/slide055_form2.jpg",
-          "page": 55,
-          "links": []
-        },
-        {
-          "id": "medmark-s55-form3",
-          "type": "form",
-          "title": "مستند — صفحة 55",
-          "formTags": [
-            "مستند — صفحة 55",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة"
-          ],
-          "url": "/assets/companies/medmark/slide055_form3.png",
-          "page": 55,
-          "links": []
-        },
-        {
           "id": "medmark-s56-form1",
           "type": "form",
           "title": "مع صرف كل روشتة يجب الدخول على الموقع للتاكد من فاعلية صرف الادوية للعميل",
           "formTags": [
             "مع صرف كل روشتة يجب الدخول على الموقع للتاكد من فاعلية صرف الادوية للعميل",
-            "روشتة",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج"
-          ],
-          "url": "/assets/companies/medmark/slide056_form1.jpg",
-          "page": 56,
-          "links": []
-        },
-        {
-          "id": "medmark-s56-form2",
-          "type": "form",
-          "title": "مستند — صفحة 56",
-          "formTags": [
-            "مستند — صفحة 56",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
             "روشتة"
           ],
-          "url": "/assets/companies/medmark/slide056_form2.jpg",
+          "url": "/assets/companies/medmark/slide056_form1.png",
           "page": 56,
-          "links": []
-        },
-        {
-          "id": "medmark-s56-form3",
-          "type": "form",
-          "title": "مستند — صفحة 56",
-          "formTags": [
-            "مستند — صفحة 56",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة"
-          ],
-          "url": "/assets/companies/medmark/slide056_form3.png",
-          "page": 56,
-          "links": []
+          "width": 887,
+          "height": 355,
+          "links": [],
+          "matchedForm": "روشتة خارجية + نموذج Horizon/Allianz"
         },
         {
           "id": "medmark-s57-form1",
@@ -3296,58 +1493,16 @@
           "formTags": [
             "صلاحية تاريخ روشتة العلاج المزمن 12 شهر من تاريخ اول كشف للعميل مدون بالروشتة الاصلية.",
             "مزمن",
-            "روشتة",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج"
-          ],
-          "url": "/assets/companies/medmark/slide057_form1.jpg",
-          "page": 57,
-          "links": []
-        },
-        {
-          "id": "medmark-s57-form2",
-          "type": "form",
-          "title": "فى حالة علاج مزمن مكرر اكثر من شهر:",
-          "formTags": [
-            "فى حالة علاج مزمن مكرر اكثر من شهر:",
-            "مزمن",
-            "روشتة خارجية + نموذج Horizon/Allianz",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
+            "شهري",
+            "chronic",
             "روشتة"
           ],
-          "url": "/assets/companies/medmark/slide057_form2.jpg",
+          "url": "/assets/companies/medmark/slide057_form1.png",
           "page": 57,
-          "links": []
-        },
-        {
-          "id": "medmark-s58-form1",
-          "type": "form",
-          "title": "مستند — صفحة 58",
-          "formTags": [
-            "مستند — صفحة 58"
-          ],
-          "url": "/assets/companies/medmark/slide058_form1.jpg",
-          "page": 58,
-          "links": []
-        },
-        {
-          "id": "medmark-s58-form2",
-          "type": "form",
-          "title": "مستند — صفحة 58",
-          "formTags": [
-            "مستند — صفحة 58"
-          ],
-          "url": "/assets/companies/medmark/slide058_form2.jpg",
-          "page": 58,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "علاج مزمن"
         },
         {
           "id": "medmark-s59-card",
@@ -3363,72 +1518,6 @@
           "title": "Medmark",
           "url": "/assets/companies/medmark/slide060_card.png",
           "page": 60,
-          "links": []
-        },
-        {
-          "id": "medmark-s61-form1",
-          "type": "form",
-          "title": "مستند — صفحة 61",
-          "formTags": [
-            "مستند — صفحة 61"
-          ],
-          "url": "/assets/companies/medmark/slide061_form1.jpg",
-          "page": 61,
-          "links": []
-        },
-        {
-          "id": "medmark-s61-form2",
-          "type": "form",
-          "title": "مستند — صفحة 61",
-          "formTags": [
-            "مستند — صفحة 61"
-          ],
-          "url": "/assets/companies/medmark/slide061_form2.jpg",
-          "page": 61,
-          "links": []
-        },
-        {
-          "id": "medmark-s62-form1",
-          "type": "form",
-          "title": "مستند — صفحة 62",
-          "formTags": [
-            "مستند — صفحة 62"
-          ],
-          "url": "/assets/companies/medmark/slide062_form1.jpg",
-          "page": 62,
-          "links": []
-        },
-        {
-          "id": "medmark-s62-form2",
-          "type": "form",
-          "title": "مستند — صفحة 62",
-          "formTags": [
-            "مستند — صفحة 62"
-          ],
-          "url": "/assets/companies/medmark/slide062_form2.jpg",
-          "page": 62,
-          "links": []
-        },
-        {
-          "id": "medmark-s63-form1",
-          "type": "form",
-          "title": "مستند — صفحة 63",
-          "formTags": [
-            "مستند — صفحة 63"
-          ],
-          "url": "/assets/companies/medmark/slide063_form1.jpg",
-          "page": 63,
-          "links": []
-        },
-        {
-          "id": "medmark-s63-form2",
-          "type": "form",
-          "title": "مستند — صفحة 63",
-          "formTags": [
-            "مستند — صفحة 63"
-          ],
-          "url": "/assets/companies/medmark/slide063_form2.jpg",
-          "page": 63,
           "links": []
         }
       ],
@@ -3480,7 +1569,11 @@
       "cardInstructions": [
         "يتم اخذ صورة ضوئية من كارنيه العميل",
         "يتم الصرف بالروشتة الخارجية + صورة الكارنيه الطبى"
-      ]
+      ],
+      "formMediaMap": {
+        "روشتة خارجية + نموذج Horizon/Allianz": "medmark-s56-form1",
+        "علاج مزمن": "medmark-s57-form1"
+      }
     },
     {
       "id": "bupa",
@@ -3529,105 +1622,26 @@
           "type": "form",
           "title": "تاريخ الموافقة لحساب صلاحية الموافقة",
           "formTags": [
-            "تاريخ الموافقة لحساب صلاحية الموافقة",
-            "نموذج Bupa",
-            "نموذج",
-            "موافقة Call Center"
+            "تاريخ الموافقة لحساب صلاحية الموافقة"
           ],
-          "url": "/assets/companies/bupa/slide065_form1.jpg",
+          "url": "/assets/companies/bupa/slide065_form1.png",
           "page": 65,
-          "links": []
+          "width": 350,
+          "height": 496,
+          "links": [],
+          "matchedForm": "موافقة Call Center"
         },
         {
           "id": "bupa-s65-form2",
           "type": "form",
           "title": "حد اقصى الموافقة",
           "formTags": [
-            "حد اقصى الموافقة",
-            "نموذج Bupa",
-            "نموذج",
-            "موافقة Call Center"
+            "حد اقصى الموافقة"
           ],
           "url": "/assets/companies/bupa/slide065_form2.png",
           "page": 65,
-          "links": []
-        },
-        {
-          "id": "bupa-s65-form3",
-          "type": "form",
-          "title": "رقم الموافقةاذا كان يبدأ بحرف",
-          "formTags": [
-            "رقم الموافقةاذا كان يبدأ بحرف",
-            "نموذج Bupa",
-            "نموذج",
-            "موافقة Call Center"
-          ],
-          "url": "/assets/companies/bupa/slide065_form3.png",
-          "page": 65,
-          "links": []
-        },
-        {
-          "id": "bupa-s66-form1",
-          "type": "form",
-          "title": "روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 66",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/bupa/slide066_form1.png",
-          "page": 66,
-          "links": []
-        },
-        {
-          "id": "bupa-s66-form2",
-          "type": "form",
-          "title": "نموذج Bupa",
-          "formTags": [
-            "مستند — صفحة 66",
-            "نموذج Bupa",
-            "نموذج"
-          ],
-          "url": "/assets/companies/bupa/slide066_form2.png",
-          "page": 66,
-          "links": []
-        },
-        {
-          "id": "bupa-s67-form1",
-          "type": "form",
-          "title": "موافقة Call Center",
-          "formTags": [
-            "مستند — صفحة 67",
-            "موافقة Call Center"
-          ],
-          "url": "/assets/companies/bupa/slide067_form1.jpg",
-          "page": 67,
-          "links": []
-        },
-        {
-          "id": "bupa-s67-form2",
-          "type": "form",
-          "title": "مستند — صفحة 67",
-          "formTags": [
-            "مستند — صفحة 67"
-          ],
-          "url": "/assets/companies/bupa/slide067_form2.png",
-          "page": 67,
-          "links": []
-        },
-        {
-          "id": "bupa-s67-form3",
-          "type": "form",
-          "title": "مستند — صفحة 67",
-          "formTags": [
-            "مستند — صفحة 67"
-          ],
-          "url": "/assets/companies/bupa/slide067_form3.png",
-          "page": 67,
+          "width": 518,
+          "height": 372,
           "links": []
         },
         {
@@ -3636,33 +1650,14 @@
           "title": "1-روشتة تاريخها لا يتعدى",
           "formTags": [
             "1-روشتة تاريخها لا يتعدى",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
+            "روشتة"
           ],
-          "url": "/assets/companies/bupa/slide068_form1.jpg",
+          "url": "/assets/companies/bupa/slide068_form1.png",
           "page": 68,
-          "links": []
-        },
-        {
-          "id": "bupa-s68-form2",
-          "type": "form",
-          "title": "1-روشتة تاريخها لا يتعدى 6 اشهرمدون بها الاسم والتاريخ وتشخيص واضح.",
-          "formTags": [
-            "1-روشتة تاريخها لا يتعدى 6 اشهرمدون بها الاسم والتاريخ وتشخيص واضح.",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
-          ],
-          "url": "/assets/companies/bupa/slide068_form2.png",
-          "page": 68,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "روشتة خارجية"
         },
         {
           "id": "bupa-s69-form1",
@@ -3671,38 +1666,14 @@
           "formTags": [
             "1-يجب ارفاق كلا من الروشتة و النموذج بعد ملئ البيانات و امضاء العميل والموافقو وصورة من الكارنيه وصورة الرقم القومى بالا",
             "نموذج",
-            "روشتة",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج Bupa",
-            "موافقة Call Center"
+            "روشتة"
           ],
-          "url": "/assets/companies/bupa/slide069_form1.jpg",
+          "url": "/assets/companies/bupa/slide069_form1.png",
           "page": 69,
-          "links": []
-        },
-        {
-          "id": "bupa-s69-form2",
-          "type": "form",
-          "title": "مستند — صفحة 69",
-          "formTags": [
-            "مستند — صفحة 69",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "نموذج Bupa",
-            "نموذج",
-            "موافقة Call Center"
-          ],
-          "url": "/assets/companies/bupa/slide069_form2.png",
-          "page": 69,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "نموذج Bupa"
         },
         {
           "id": "bupa-s70-form1",
@@ -3714,28 +1685,12 @@
             "خارج",
             "external",
             "out of network",
-            "روشتة",
-            "روشتة خارجية"
-          ],
-          "url": "/assets/companies/bupa/slide070_form1.jpg",
-          "page": 70,
-          "links": []
-        },
-        {
-          "id": "bupa-s70-form2",
-          "type": "form",
-          "title": "مستند — صفحة 70",
-          "formTags": [
-            "مستند — صفحة 70",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
             "روشتة"
           ],
-          "url": "/assets/companies/bupa/slide070_form2.png",
+          "url": "/assets/companies/bupa/slide070_form1.png",
           "page": 70,
+          "width": 518,
+          "height": 372,
           "links": []
         }
       ],
@@ -3762,7 +1717,12 @@
         "1-اسم العميل ورقم الكارنيه",
         "1-يجب ارفاق كلا من الروشتة و النموذج بعد ملئ البيانات و امضاء العميل والموافقو وصورة من الكارنيه وصورة الرقم القومى بالاضافة الى ريسيت البيع وارسالهم الى ادارة التعاقدات.",
         "يمكن الصرف بروشتة خارجية اذا كان مدون على الكارنيه ذلك وكتابة ذلك فى الملاحظات"
-      ]
+      ],
+      "formMediaMap": {
+        "روشتة خارجية": "bupa-s68-form1",
+        "نموذج Bupa": "bupa-s69-form1",
+        "موافقة Call Center": "bupa-s65-form1"
+      }
     },
     {
       "id": "unicare",
@@ -3806,35 +1766,6 @@
         {
           "id": "unicare-s83-form1",
           "type": "form",
-          "title": "2- طبيب موقع أوالعلاج الشهرى مسجل على البرنامج يصرف بدون روشتة يجب ملاحظة قيمة الحد الاقصى",
-          "formTags": [
-            "2- طبيب موقع أوالعلاج الشهرى مسجل على البرنامج يصرف بدون روشتة يجب ملاحظة قيمة الحد الاقصى",
-            "بدون روشتة",
-            "روشتة",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "طبيب موقع"
-          ],
-          "url": "/assets/companies/unicare/slide083_form1.jpg",
-          "page": 83,
-          "links": []
-        },
-        {
-          "id": "unicare-s83-form2",
-          "type": "form",
           "title": "1-النموذج الاصفر صرف ادوية يجب ان يرفق معه روشتة خارجية مدون فيها الادوية ولا يصرف بالنموذج فقط",
           "formTags": [
             "1-النموذج الاصفر صرف ادوية يجب ان يرفق معه روشتة خارجية مدون فيها الادوية ولا يصرف بالنموذج فقط",
@@ -3849,98 +1780,32 @@
             "external",
             "out of network",
             "نموذج",
-            "روشتة",
-            "النموذج الأصفر + روشتة خارجية",
-            "طبيب موقع"
+            "روشتة"
           ],
-          "url": "/assets/companies/unicare/slide083_form2.jpg",
+          "url": "/assets/companies/unicare/slide083_form1.png",
           "page": 83,
-          "links": []
+          "width": 272,
+          "height": 362,
+          "links": [],
+          "matchedForm": "النموذج الأصفر + روشتة خارجية"
         },
         {
-          "id": "unicare-s83-form3",
+          "id": "unicare-s83-form2",
           "type": "form",
-          "title": "النموذج الأصفر + روشتة خارجية",
+          "title": "2- طبيب موقع أوالعلاج الشهرى مسجل على البرنامج يصرف بدون روشتة يجب ملاحظة قيمة الحد الاقصى",
           "formTags": [
-            "مستند — صفحة 83",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "طبيب موقع"
-          ],
-          "url": "/assets/companies/unicare/slide083_form3.jpg",
-          "page": 83,
-          "links": []
-        },
-        {
-          "id": "unicare-s84-form1",
-          "type": "form",
-          "title": "DOS/علاج مزمن مسجل",
-          "formTags": [
-            "مستند — صفحة 84",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "DOS/علاج مزمن مسجل",
-            "مزمن",
+            "2- طبيب موقع أوالعلاج الشهرى مسجل على البرنامج يصرف بدون روشتة يجب ملاحظة قيمة الحد الاقصى",
             "مسجل",
             "برنامج",
             "علاج مسجل",
-            "طبيب موقع"
+            "روشتة"
           ],
-          "url": "/assets/companies/unicare/slide084_form1.jpg",
-          "page": 84,
-          "links": []
-        },
-        {
-          "id": "unicare-s84-form2",
-          "type": "form",
-          "title": "طبيب موقع",
-          "formTags": [
-            "مستند — صفحة 84",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "DOS/علاج مزمن مسجل",
-            "مزمن",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل",
-            "طبيب موقع"
-          ],
-          "url": "/assets/companies/unicare/slide084_form2.jpg",
-          "page": 84,
-          "links": []
+          "url": "/assets/companies/unicare/slide083_form2.png",
+          "page": 83,
+          "width": 211,
+          "height": 294,
+          "links": [],
+          "matchedForm": "DOS/علاج مزمن مسجل"
         },
         {
           "id": "unicare-s85-form1",
@@ -3949,27 +1814,15 @@
           "formTags": [
             "روشتة مزمن لا تحتاج الى نموذج",
             "مزمن",
+            "شهري",
+            "chronic",
             "نموذج",
-            "روشتة",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "DOS/علاج مزمن مسجل",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل",
-            "طبيب موقع"
+            "روشتة"
           ],
           "url": "/assets/companies/unicare/slide085_form1.png",
           "page": 85,
+          "width": 401,
+          "height": 262,
           "links": []
         },
         {
@@ -3978,29 +1831,18 @@
           "title": "روشتة مسجلة طبيب موقع لا يلزم نموذج",
           "formTags": [
             "روشتة مسجلة طبيب موقع لا يلزم نموذج",
-            "نموذج",
-            "روشتة",
             "مسجل",
             "برنامج",
             "علاج مسجل",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "DOS/علاج مزمن مسجل",
-            "مزمن",
-            "طبيب موقع"
+            "نموذج",
+            "روشتة"
           ],
           "url": "/assets/companies/unicare/slide085_form2.png",
           "page": 85,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "طبيب موقع"
         },
         {
           "id": "unicare-s85-form3",
@@ -4013,83 +1855,12 @@
             "external",
             "out of network",
             "نموذج",
-            "روشتة",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "DOS/علاج مزمن مسجل",
-            "مزمن",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل",
-            "طبيب موقع"
+            "روشتة"
           ],
-          "url": "/assets/companies/unicare/slide085_form3.jpg",
+          "url": "/assets/companies/unicare/slide085_form3.png",
           "page": 85,
-          "links": []
-        },
-        {
-          "id": "unicare-s85-form4",
-          "type": "form",
-          "title": "نموذج مزمن",
-          "formTags": [
-            "نموذج مزمن",
-            "مزمن",
-            "نموذج",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "DOS/علاج مزمن مسجل",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل",
-            "طبيب موقع"
-          ],
-          "url": "/assets/companies/unicare/slide085_form4.png",
-          "page": 85,
-          "links": []
-        },
-        {
-          "id": "unicare-s85-form5",
-          "type": "form",
-          "title": "مستند — صفحة 85",
-          "formTags": [
-            "مستند — صفحة 85",
-            "النموذج الأصفر + روشتة خارجية",
-            "أصفر",
-            "اصفر",
-            "yellow",
-            "كربون",
-            "نموذج أصفر",
-            "بالكربون",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "نموذج",
-            "روشتة",
-            "DOS/علاج مزمن مسجل",
-            "مزمن",
-            "مسجل",
-            "برنامج",
-            "علاج مسجل",
-            "طبيب موقع"
-          ],
-          "url": "/assets/companies/unicare/slide085_form5.png",
-          "page": 85,
+          "width": 364,
+          "height": 262,
           "links": []
         }
       ],
@@ -4116,7 +1887,12 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/unicare.png"
+      "logoUrl": "/logos/unicare.png",
+      "formMediaMap": {
+        "النموذج الأصفر + روشتة خارجية": "unicare-s83-form1",
+        "DOS/علاج مزمن مسجل": "unicare-s83-form2",
+        "طبيب موقع": "unicare-s85-form2"
+      }
     },
     {
       "id": "atomic-energy",
@@ -4194,45 +1970,6 @@
           "width": 663,
           "height": 952,
           "links": []
-        },
-        {
-          "id": "atomic-energy-s87-form1",
-          "type": "form",
-          "title": "Smart Medical Service",
-          "formTags": [
-            "Smart Medical Service",
-            "نموذج الهيئة موجه لصيدليات اللوتس",
-            "نموذج"
-          ],
-          "url": "/assets/companies/atomic-energy/slide087_form1.png",
-          "page": 87,
-          "links": []
-        },
-        {
-          "id": "atomic-energy-s88-form1",
-          "type": "form",
-          "title": "Smart Medical Service",
-          "formTags": [
-            "Smart Medical Service",
-            "نموذج الهيئة موجه لصيدليات اللوتس",
-            "نموذج"
-          ],
-          "url": "/assets/companies/atomic-energy/slide088_form1.png",
-          "page": 88,
-          "links": []
-        },
-        {
-          "id": "atomic-energy-s89-form1",
-          "type": "form",
-          "title": "الكارنيه من الخلف",
-          "formTags": [
-            "الكارنيه من الخلف",
-            "نموذج الهيئة موجه لصيدليات اللوتس",
-            "نموذج"
-          ],
-          "url": "/assets/companies/atomic-energy/slide089_form1.jpg",
-          "page": 89,
-          "links": []
         }
       ],
       "links": [],
@@ -4289,13 +2026,15 @@
           "formTags": [
             "خطاب العلاج المزمن",
             "مزمن",
-            "نموذج Egycare",
-            "نموذج",
-            "نموذج طوارئ"
+            "شهري",
+            "chronic"
           ],
-          "url": "/assets/companies/egycare/slide071_form1.jpg",
+          "url": "/assets/companies/egycare/slide071_form1.png",
           "page": 71,
-          "links": []
+          "width": 223,
+          "height": 316,
+          "links": [],
+          "matchedForm": "نموذج Egycare"
         },
         {
           "id": "egycare-s71-form2",
@@ -4303,14 +2042,14 @@
           "title": "روشتة الكترونية",
           "formTags": [
             "روشتة الكترونية",
-            "روشتة",
-            "نموذج Egycare",
-            "نموذج",
-            "نموذج طوارئ"
+            "روشتة"
           ],
-          "url": "/assets/companies/egycare/slide071_form2.jpg",
+          "url": "/assets/companies/egycare/slide071_form2.png",
           "page": 71,
-          "links": []
+          "width": 226,
+          "height": 315,
+          "links": [],
+          "matchedForm": "روشتة إلكترونية E-FORM"
         },
         {
           "id": "egycare-s71-form3",
@@ -4318,13 +2057,14 @@
           "title": "نموذج الطوارىء صلاحية 48 ساعة و يصرف علاج لمدة اسبوع و عدم صرف اى فيتامينات",
           "formTags": [
             "نموذج الطوارىء صلاحية 48 ساعة و يصرف علاج لمدة اسبوع و عدم صرف اى فيتامينات",
-            "نموذج",
-            "نموذج Egycare",
-            "نموذج طوارئ"
+            "نموذج"
           ],
           "url": "/assets/companies/egycare/slide071_form3.png",
           "page": 71,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "نموذج طوارئ"
         },
         {
           "id": "egycare-s71-form4",
@@ -4332,27 +2072,14 @@
           "title": "نموذج مباشر يحتاج ختم المستشفى او العيادة اوامضاء طبيب",
           "formTags": [
             "نموذج مباشر يحتاج ختم المستشفى او العيادة اوامضاء طبيب",
-            "نموذج",
-            "نموذج Egycare",
-            "نموذج طوارئ"
+            "نموذج"
           ],
           "url": "/assets/companies/egycare/slide071_form4.png",
           "page": 71,
-          "links": []
-        },
-        {
-          "id": "egycare-s71-form5",
-          "type": "form",
-          "title": "نموذج Egycare",
-          "formTags": [
-            "مستند — صفحة 71",
-            "نموذج Egycare",
-            "نموذج",
-            "نموذج طوارئ"
-          ],
-          "url": "/assets/companies/egycare/slide071_form5.jpg",
-          "page": 71,
-          "links": []
+          "width": 231,
+          "height": 318,
+          "links": [],
+          "matchedForm": "preapproval"
         },
         {
           "id": "egycare-s72-form1",
@@ -4360,55 +2087,14 @@
           "title": "موافقة برنامج NICEDEER",
           "formTags": [
             "موافقة برنامج NICEDEER",
-            "preapproval"
+            "مسجل",
+            "برنامج",
+            "علاج مسجل"
           ],
-          "url": "/assets/companies/egycare/slide072_form1.jpg",
+          "url": "/assets/companies/egycare/slide072_form1.png",
           "page": 72,
-          "links": []
-        },
-        {
-          "id": "egycare-s72-form2",
-          "type": "form",
-          "title": "روشتة إلكترونية E-FORM",
-          "formTags": [
-            "مستند — صفحة 72",
-            "preapproval",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة"
-          ],
-          "url": "/assets/companies/egycare/slide072_form2.png",
-          "page": 72,
-          "links": []
-        },
-        {
-          "id": "egycare-s72-form3",
-          "type": "form",
-          "title": "نموذج طوارئ",
-          "formTags": [
-            "مستند — صفحة 72",
-            "preapproval",
-            "نموذج طوارئ",
-            "نموذج"
-          ],
-          "url": "/assets/companies/egycare/slide072_form3.png",
-          "page": 72,
-          "links": []
-        },
-        {
-          "id": "egycare-s72-form4",
-          "type": "form",
-          "title": "preapproval",
-          "formTags": [
-            "مستند — صفحة 72",
-            "preapproval"
-          ],
-          "url": "/assets/companies/egycare/slide072_form4.png",
-          "page": 72,
+          "width": 270,
+          "height": 407,
           "links": []
         },
         {
@@ -4417,16 +2103,15 @@
           "title": "عند ادخال الروشتة على برنامج nice deer يجب ادخال يجب ادخال benefit (acute – chronic – maternity)",
           "formTags": [
             "عند ادخال الروشتة على برنامج nice deer يجب ادخال يجب ادخال benefit (acute – chronic – maternity)",
-            "روشتة",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي"
+            "مسجل",
+            "برنامج",
+            "علاج مسجل",
+            "روشتة"
           ],
-          "url": "/assets/companies/egycare/slide073_form1.jpg",
+          "url": "/assets/companies/egycare/slide073_form1.png",
           "page": 73,
+          "width": 543,
+          "height": 445,
           "links": []
         },
         {
@@ -4435,127 +2120,15 @@
           "title": "يجب ادخال رقم النموذج صحيح على البرنامج وتعديل الاسعر بقيمة الريسيت",
           "formTags": [
             "يجب ادخال رقم النموذج صحيح على البرنامج وتعديل الاسعر بقيمة الريسيت",
-            "نموذج",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة"
+            "مسجل",
+            "برنامج",
+            "علاج مسجل",
+            "نموذج"
           ],
           "url": "/assets/companies/egycare/slide073_form2.png",
           "page": 73,
-          "links": []
-        },
-        {
-          "id": "egycare-s74-form1",
-          "type": "form",
-          "title": "مستند — صفحة 74",
-          "formTags": [
-            "مستند — صفحة 74",
-            "نموذج Egycare",
-            "نموذج",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "نموذج طوارئ",
-            "preapproval"
-          ],
-          "url": "/assets/companies/egycare/slide074_form1.jpg",
-          "page": 74,
-          "links": []
-        },
-        {
-          "id": "egycare-s74-form2",
-          "type": "form",
-          "title": "مستند — صفحة 74",
-          "formTags": [
-            "مستند — صفحة 74",
-            "نموذج Egycare",
-            "نموذج",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "نموذج طوارئ",
-            "preapproval"
-          ],
-          "url": "/assets/companies/egycare/slide074_form2.png",
-          "page": 74,
-          "links": []
-        },
-        {
-          "id": "egycare-s75-form1",
-          "type": "form",
-          "title": "مستند — صفحة 75",
-          "formTags": [
-            "مستند — صفحة 75",
-            "نموذج Egycare",
-            "نموذج",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "نموذج طوارئ",
-            "preapproval"
-          ],
-          "url": "/assets/companies/egycare/slide075_form1.jpg",
-          "page": 75,
-          "links": []
-        },
-        {
-          "id": "egycare-s75-form2",
-          "type": "form",
-          "title": "مستند — صفحة 75",
-          "formTags": [
-            "مستند — صفحة 75",
-            "نموذج Egycare",
-            "نموذج",
-            "روشتة إلكترونية E-FORM",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "روشتة",
-            "نموذج طوارئ",
-            "preapproval"
-          ],
-          "url": "/assets/companies/egycare/slide075_form2.png",
-          "page": 75,
-          "links": []
-        },
-        {
-          "id": "egycare-s76-form1",
-          "type": "form",
-          "title": "مستند — صفحة 76",
-          "formTags": [
-            "مستند — صفحة 76"
-          ],
-          "url": "/assets/companies/egycare/slide076_form1.jpg",
-          "page": 76,
-          "links": []
-        },
-        {
-          "id": "egycare-s76-form2",
-          "type": "form",
-          "title": "مستند — صفحة 76",
-          "formTags": [
-            "مستند — صفحة 76"
-          ],
-          "url": "/assets/companies/egycare/slide076_form2.png",
-          "page": 76,
+          "width": 518,
+          "height": 372,
           "links": []
         }
       ],
@@ -4582,7 +2155,13 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/egycare.png"
+      "logoUrl": "/logos/egycare.png",
+      "formMediaMap": {
+        "روشتة إلكترونية E-FORM": "egycare-s71-form2",
+        "نموذج Egycare": "egycare-s71-form1",
+        "نموذج طوارئ": "egycare-s71-form3",
+        "preapproval": "egycare-s71-form4"
+      }
     },
     {
       "id": "sehatech",
@@ -4609,53 +2188,7 @@
         "copay": "كما مدون بالكارنية",
         "diagnosisRequired": true
       },
-      "media": [
-        {
-          "id": "sehatech-s101-form1",
-          "type": "form",
-          "title": "نموذج SehaOne",
-          "formTags": [
-            "مستند — صفحة 101",
-            "نموذج SehaOne",
-            "نموذج"
-          ],
-          "url": "/assets/companies/sehatech/slide101_form1.jpg",
-          "page": 101,
-          "links": []
-        },
-        {
-          "id": "sehatech-s101-form2",
-          "type": "form",
-          "title": "روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 101",
-            "نموذج SehaOne",
-            "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/sehatech/slide101_form2.png",
-          "page": 101,
-          "links": []
-        },
-        {
-          "id": "sehatech-s102-form1",
-          "type": "form",
-          "title": "Sesco Care",
-          "formTags": [
-            "Sesco Care",
-            "نموذج SehaOne",
-            "نموذج"
-          ],
-          "url": "/assets/companies/sehatech/slide102_form1.jpg",
-          "page": 102,
-          "links": []
-        }
-      ],
+      "media": [],
       "links": [
         {
           "id": "sehatech-link-1",
@@ -4723,21 +2256,18 @@
           "title": "روشتة طبيب موقع مسجلة على السيستم لا يحتاج الى ارفاق نموذج",
           "formTags": [
             "روشتة طبيب موقع مسجلة على السيستم لا يحتاج الى ارفاق نموذج",
-            "نموذج",
-            "روشتة",
             "مسجل",
             "برنامج",
             "علاج مسجل",
-            "نسخة الصيدلية",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
+            "نموذج",
+            "روشتة"
           ],
-          "url": "/assets/companies/care-plus/slide077_form1.jpg",
+          "url": "/assets/companies/care-plus/slide077_form1.png",
           "page": 77,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "روشتة خارجية"
         },
         {
           "id": "care-plus-s77-form2",
@@ -4752,141 +2282,14 @@
             "يوداوي",
             "مسجل",
             "برنامج",
-            "علاج مسجل",
-            "نسخة الصيدلية",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
+            "علاج مسجل"
           ],
           "url": "/assets/companies/care-plus/slide077_form2.png",
           "page": 77,
-          "links": []
-        },
-        {
-          "id": "care-plus-s77-form3",
-          "type": "form",
-          "title": "لا يحتاج الى ارفاق اى نموذج",
-          "formTags": [
-            "لا يحتاج الى ارفاق اى نموذج",
-            "نموذج",
-            "نسخة الصيدلية",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/care-plus/slide077_form3.jpg",
-          "page": 77,
-          "links": []
-        },
-        {
-          "id": "care-plus-s77-form4",
-          "type": "form",
-          "title": "نموذج صرف نسخة الصيدلية يلزم وجود ختم المستشفى او الطبيب+ختم كيربلاس",
-          "formTags": [
-            "نموذج صرف نسخة الصيدلية يلزم وجود ختم المستشفى او الطبيب+ختم كيربلاس",
-            "نموذج",
-            "نسخة الصيدلية",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/care-plus/slide077_form4.png",
-          "page": 77,
-          "links": []
-        },
-        {
-          "id": "care-plus-s78-form1",
-          "type": "form",
-          "title": "نسخة الصيدلية",
-          "formTags": [
-            "مستند — صفحة 78",
-            "نسخة الصيدلية",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "DOS Yodawy",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "علاج شهري",
-            "شهري",
-            "chronic"
-          ],
-          "url": "/assets/companies/care-plus/slide078_form1.jpg",
-          "page": 78,
-          "links": []
-        },
-        {
-          "id": "care-plus-s78-form2",
-          "type": "form",
-          "title": "روشتة خارجية",
-          "formTags": [
-            "مستند — صفحة 78",
-            "نسخة الصيدلية",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة",
-            "DOS Yodawy",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي",
-            "علاج شهري",
-            "شهري",
-            "chronic"
-          ],
-          "url": "/assets/companies/care-plus/slide078_form2.png",
-          "page": 78,
-          "links": []
-        },
-        {
-          "id": "care-plus-s79-form1",
-          "type": "form",
-          "title": "DOS Yodawy",
-          "formTags": [
-            "مستند — صفحة 79",
-            "DOS Yodawy",
-            "e-form",
-            "eform",
-            "yodawy",
-            "يوادوي",
-            "يوداوي"
-          ],
-          "url": "/assets/companies/care-plus/slide079_form1.jpg",
-          "page": 79,
-          "links": []
-        },
-        {
-          "id": "care-plus-s79-form2",
-          "type": "form",
-          "title": "علاج شهري",
-          "formTags": [
-            "مستند — صفحة 79",
-            "علاج شهري",
-            "شهري",
-            "chronic"
-          ],
-          "url": "/assets/companies/care-plus/slide079_form2.png",
-          "page": 79,
-          "links": []
+          "width": 308,
+          "height": 259,
+          "links": [],
+          "matchedForm": "نسخة الصيدلية"
         },
         {
           "id": "care-plus-s80-form1",
@@ -4894,110 +2297,18 @@
           "title": "روشتة طبيب موقع مسجلة على السيستم بدون ارفاق نموذج",
           "formTags": [
             "روشتة طبيب موقع مسجلة على السيستم بدون ارفاق نموذج",
-            "نموذج",
-            "روشتة",
             "مسجل",
             "برنامج",
             "علاج مسجل",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network"
-          ],
-          "url": "/assets/companies/care-plus/slide080_form1.jpg",
-          "page": 80,
-          "links": []
-        },
-        {
-          "id": "care-plus-s80-form2",
-          "type": "form",
-          "title": "يجب ارفاق النموذج",
-          "formTags": [
-            "يجب ارفاق النموذج",
             "نموذج",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
             "روشتة"
           ],
-          "url": "/assets/companies/care-plus/slide080_form2.jpg",
+          "url": "/assets/companies/care-plus/slide080_form1.png",
           "page": 80,
-          "links": []
-        },
-        {
-          "id": "care-plus-s80-form3",
-          "type": "form",
-          "title": "مستند — صفحة 80",
-          "formTags": [
-            "مستند — صفحة 80",
-            "روشتة خارجية",
-            "خارجية",
-            "خارج",
-            "external",
-            "out of network",
-            "روشتة"
-          ],
-          "url": "/assets/companies/care-plus/slide080_form3.png",
-          "page": 80,
-          "links": []
-        },
-        {
-          "id": "care-plus-s81-form1",
-          "type": "form",
-          "title": "مستند — صفحة 81",
-          "formTags": [
-            "مستند — صفحة 81"
-          ],
-          "url": "/assets/companies/care-plus/slide081_form1.jpg",
-          "page": 81,
-          "links": []
-        },
-        {
-          "id": "care-plus-s81-form2",
-          "type": "form",
-          "title": "مستند — صفحة 81",
-          "formTags": [
-            "مستند — صفحة 81"
-          ],
-          "url": "/assets/companies/care-plus/slide081_form2.png",
-          "page": 81,
-          "links": []
-        },
-        {
-          "id": "care-plus-s82-form1",
-          "type": "form",
-          "title": "مستند — صفحة 82",
-          "formTags": [
-            "مستند — صفحة 82"
-          ],
-          "url": "/assets/companies/care-plus/slide082_form1.jpg",
-          "page": 82,
-          "links": []
-        },
-        {
-          "id": "care-plus-s82-form2",
-          "type": "form",
-          "title": "مستند — صفحة 82",
-          "formTags": [
-            "مستند — صفحة 82"
-          ],
-          "url": "/assets/companies/care-plus/slide082_form2.jpg",
-          "page": 82,
-          "links": []
-        },
-        {
-          "id": "care-plus-s82-form3",
-          "type": "form",
-          "title": "مستند — صفحة 82",
-          "formTags": [
-            "مستند — صفحة 82"
-          ],
-          "url": "/assets/companies/care-plus/slide082_form3.jpg",
-          "page": 82,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "DOS Yodawy"
         }
       ],
       "links": [
@@ -5033,7 +2344,12 @@
       "logoUrl": "/logos/care-plus.png",
       "cardInstructions": [
         "صلاحية الكارنيه"
-      ]
+      ],
+      "formMediaMap": {
+        "روشتة خارجية": "care-plus-s77-form1",
+        "نسخة الصيدلية": "care-plus-s77-form2",
+        "DOS Yodawy": "care-plus-s80-form1"
+      }
     },
     {
       "id": "sesco-care",
@@ -5077,36 +2393,14 @@
             "external",
             "out of network",
             "نموذج",
-            "روشتة",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
+            "روشتة"
           ],
-          "url": "/assets/companies/sesco-care/slide090_form1.jpg",
+          "url": "/assets/companies/sesco-care/slide090_form1.png",
           "page": 90,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s90-form2",
-          "type": "form",
-          "title": "صرف مباشر بعد تطبيق تعليمات الصرف",
-          "formTags": [
-            "مستند — صفحة 90",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
-          ],
-          "url": "/assets/companies/sesco-care/slide090_form2.jpg",
-          "page": 90,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s90-form3",
-          "type": "form",
-          "title": "صرف مباشر بعد تطبيق تعليمات الصرف",
-          "formTags": [
-            "مستند — صفحة 90",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
-          ],
-          "url": "/assets/companies/sesco-care/slide090_form3.jpg",
-          "page": 90,
-          "links": []
+          "width": 518,
+          "height": 372,
+          "links": [],
+          "matchedForm": "صرف مباشر بعد تطبيق تعليمات الصرف"
         },
         {
           "id": "sesco-care-s91-form1",
@@ -5115,11 +2409,12 @@
           "formTags": [
             "روشتة طبيب موقع لا يلزم نموذج",
             "نموذج",
-            "روشتة",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
+            "روشتة"
           ],
           "url": "/assets/companies/sesco-care/slide091_form1.png",
           "page": 91,
+          "width": 198,
+          "height": 316,
           "links": []
         },
         {
@@ -5129,12 +2424,15 @@
           "formTags": [
             "روشتة مزمن لا تحتاج الى نموذج",
             "مزمن",
+            "شهري",
+            "chronic",
             "نموذج",
-            "روشتة",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
+            "روشتة"
           ],
-          "url": "/assets/companies/sesco-care/slide091_form2.jpg",
+          "url": "/assets/companies/sesco-care/slide091_form2.png",
           "page": 91,
+          "width": 518,
+          "height": 372,
           "links": []
         },
         {
@@ -5143,11 +2441,12 @@
           "title": "موافقة على صرف نموذج يجب ارفاق نموذج",
           "formTags": [
             "موافقة على صرف نموذج يجب ارفاق نموذج",
-            "نموذج",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
+            "نموذج"
           ],
           "url": "/assets/companies/sesco-care/slide091_form3.png",
           "page": 91,
+          "width": 211,
+          "height": 326,
           "links": []
         },
         {
@@ -5157,11 +2456,14 @@
           "formTags": [
             "نموذج مزمن",
             "مزمن",
-            "نموذج",
-            "صرف مباشر بعد تطبيق تعليمات الصرف"
+            "شهري",
+            "chronic",
+            "نموذج"
           ],
           "url": "/assets/companies/sesco-care/slide091_form4.png",
           "page": 91,
+          "width": 210,
+          "height": 326,
           "links": []
         },
         {
@@ -5179,83 +2481,6 @@
           "url": "/assets/companies/sesco-care/slide093_card.png",
           "page": 93,
           "links": []
-        },
-        {
-          "id": "sesco-care-s94-form1",
-          "type": "form",
-          "title": "مستند — صفحة 94",
-          "formTags": [
-            "مستند — صفحة 94"
-          ],
-          "url": "/assets/companies/sesco-care/slide094_form1.jpg",
-          "page": 94,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s94-form2",
-          "type": "form",
-          "title": "مستند — صفحة 94",
-          "formTags": [
-            "مستند — صفحة 94"
-          ],
-          "url": "/assets/companies/sesco-care/slide094_form2.jpg",
-          "page": 94,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s94-form3",
-          "type": "form",
-          "title": "مستند — صفحة 94",
-          "formTags": [
-            "مستند — صفحة 94"
-          ],
-          "url": "/assets/companies/sesco-care/slide094_form3.png",
-          "page": 94,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s95-form1",
-          "type": "form",
-          "title": "مستند — صفحة 95",
-          "formTags": [
-            "مستند — صفحة 95"
-          ],
-          "url": "/assets/companies/sesco-care/slide095_form1.jpg",
-          "page": 95,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s95-form2",
-          "type": "form",
-          "title": "مستند — صفحة 95",
-          "formTags": [
-            "مستند — صفحة 95"
-          ],
-          "url": "/assets/companies/sesco-care/slide095_form2.jpg",
-          "page": 95,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s96-form1",
-          "type": "form",
-          "title": "مستند — صفحة 96",
-          "formTags": [
-            "مستند — صفحة 96"
-          ],
-          "url": "/assets/companies/sesco-care/slide096_form1.jpg",
-          "page": 96,
-          "links": []
-        },
-        {
-          "id": "sesco-care-s96-form2",
-          "type": "form",
-          "title": "مستند — صفحة 96",
-          "formTags": [
-            "مستند — صفحة 96"
-          ],
-          "url": "/assets/companies/sesco-care/slide096_form2.jpg",
-          "page": 96,
-          "links": []
         }
       ],
       "links": [
@@ -5267,7 +2492,10 @@
           "page": 0
         }
       ],
-      "logoUrl": "/logos/sesco-care.png"
+      "logoUrl": "/logos/sesco-care.png",
+      "formMediaMap": {
+        "صرف مباشر بعد تطبيق تعليمات الصرف": "sesco-care-s90-form1"
+      }
     },
     {
       "id": "petroshad",
@@ -5287,60 +2515,7 @@
           "صرف مباشر بالكميات المحددة في النموذج"
         ]
       },
-      "media": [
-        {
-          "id": "petroshad-s97-form1",
-          "type": "form",
-          "title": "نموذج Petroshad",
-          "formTags": [
-            "مستند — صفحة 97",
-            "نموذج Petroshad",
-            "نموذج"
-          ],
-          "url": "/assets/companies/petroshad/slide097_form1.jpg",
-          "page": 97,
-          "links": []
-        },
-        {
-          "id": "petroshad-s97-form2",
-          "type": "form",
-          "title": "نموذج Petroshad",
-          "formTags": [
-            "مستند — صفحة 97",
-            "نموذج Petroshad",
-            "نموذج"
-          ],
-          "url": "/assets/companies/petroshad/slide097_form2.jpg",
-          "page": 97,
-          "links": []
-        },
-        {
-          "id": "petroshad-s98-form1",
-          "type": "form",
-          "title": "نموذج Petroshad",
-          "formTags": [
-            "مستند — صفحة 98",
-            "نموذج Petroshad",
-            "نموذج"
-          ],
-          "url": "/assets/companies/petroshad/slide098_form1.jpg",
-          "page": 98,
-          "links": []
-        },
-        {
-          "id": "petroshad-s98-form2",
-          "type": "form",
-          "title": "نموذج Petroshad",
-          "formTags": [
-            "مستند — صفحة 98",
-            "نموذج Petroshad",
-            "نموذج"
-          ],
-          "url": "/assets/companies/petroshad/slide098_form2.jpg",
-          "page": 98,
-          "links": []
-        }
-      ],
+      "media": [],
       "links": [],
       "logoUrl": "/logos/petroshad.png"
     },
@@ -5362,68 +2537,7 @@
           "صرف مباشر بالكميات المحددة في جروب الشركة"
         ]
       },
-      "media": [
-        {
-          "id": "sumed-s99-form1",
-          "type": "form",
-          "title": "جروب الشركة",
-          "formTags": [
-            "مستند — صفحة 99",
-            "جروب الشركة"
-          ],
-          "url": "/assets/companies/sumed/slide099_form1.jpg",
-          "page": 99,
-          "links": []
-        },
-        {
-          "id": "sumed-s99-form2",
-          "type": "form",
-          "title": "جروب الشركة",
-          "formTags": [
-            "مستند — صفحة 99",
-            "جروب الشركة"
-          ],
-          "url": "/assets/companies/sumed/slide099_form2.jpg",
-          "page": 99,
-          "links": []
-        },
-        {
-          "id": "sumed-s99-form3",
-          "type": "form",
-          "title": "جروب الشركة",
-          "formTags": [
-            "مستند — صفحة 99",
-            "جروب الشركة"
-          ],
-          "url": "/assets/companies/sumed/slide099_form3.png",
-          "page": 99,
-          "links": []
-        },
-        {
-          "id": "sumed-s99-form4",
-          "type": "form",
-          "title": "جروب الشركة",
-          "formTags": [
-            "مستند — صفحة 99",
-            "جروب الشركة"
-          ],
-          "url": "/assets/companies/sumed/slide099_form4.jpg",
-          "page": 99,
-          "links": []
-        },
-        {
-          "id": "sumed-s100-form1",
-          "type": "form",
-          "title": "Sesco Care",
-          "formTags": [
-            "Sesco Care",
-            "جروب الشركة"
-          ],
-          "url": "/assets/companies/sumed/slide100_form1.jpg",
-          "page": 100,
-          "links": []
-        }
-      ],
+      "media": [],
       "links": [],
       "logoUrl": "/logos/sumed.png"
     }

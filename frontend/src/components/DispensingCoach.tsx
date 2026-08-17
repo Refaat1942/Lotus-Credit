@@ -186,7 +186,7 @@ export default function DispensingCoach({ company, onExit, onOpenReference }: Di
   };
 
   const showFormDoc = async (form: string) => {
-    const doc = pickMediaForForm(form, media);
+    const doc = pickMediaForForm(form, media, company.formMediaMap);
     setSelectedForm(form);
     setSelectedDoc(doc);
     let msg = `**${form}**\n\n`;

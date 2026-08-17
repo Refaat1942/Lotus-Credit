@@ -30,6 +30,7 @@ export interface CompanyMedia {
   width?: number;
   height?: number;
   formTags?: string[];
+  matchedForm?: string;
   links?: CompanyLink[];
 }
 
@@ -54,6 +55,7 @@ export interface Company {
   logoUrl?: string;
   contacts?: Contact[];
   forms?: string[];
+  formMediaMap?: Record<string, string>;
   rules?: CompanyRules;
   cardInstructions?: string[];
   media?: CompanyMedia[];

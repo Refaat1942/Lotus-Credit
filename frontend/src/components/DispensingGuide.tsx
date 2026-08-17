@@ -41,7 +41,7 @@ export default function DispensingGuide({ company }: DispensingGuideProps) {
 
   const forms = company.forms || [];
   const activeForm = forms[selectedForm];
-  const activeDoc = activeForm ? pickMediaForForm(activeForm, media) : cardDocs[0] ?? null;
+  const activeDoc = activeForm ? pickMediaForForm(activeForm, media, company.formMediaMap) : cardDocs[0] ?? null;
 
   const dispensingSteps = [
     { title: 'فحص الكارنية', detail: 'تأكد من صلاحية العضوية وبيانات المستفيد والتاريخ', tip: company.cardInstructions?.[0] },
