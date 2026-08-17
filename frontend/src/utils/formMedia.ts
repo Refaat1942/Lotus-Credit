@@ -10,23 +10,45 @@ export function formKeywords(form: string): string[] {
   if (n.includes('أزرق') || n.includes('ازرق')) keys.push('أزرق', 'ازرق', 'blue');
   if (n.includes('أصفر') || n.includes('اصفر')) keys.push('أصفر', 'اصفر', 'yellow');
   if (n.includes('كربون')) keys.push('كربون', 'carbon');
-  if (n.includes('روشت')) keys.push('روشت');
-  if (n.includes('e-form') || n.includes('eform')) keys.push('form', 'e-form');
+  if (n.includes('روشت')) keys.push('روشت', 'روشتة');
+  if (n.includes('e-form') || n.includes('eform')) keys.push('form', 'e-form', 'eform');
+  if (n.includes('yodawy') || n.includes('yodawy') || n.includes('يواد') || n.includes('يوداو')) {
+    keys.push('yodawy', 'يوادوي', 'يوداوي', 'e-form');
+  }
   if (n.includes('موافق')) keys.push('موافق');
   if (n.includes('كارن')) keys.push('كارن', 'card');
-  if (n.includes('one health')) keys.push('one', 'health');
-  if (n.includes('خارج')) keys.push('خارج');
+  if (n.includes('one health') || n.includes('onehealth') || n.includes('وان هيلث') || n.includes('one')) {
+    keys.push('one health', 'onehealth', 'وان هيلث', 'one');
+  }
+  if (n.includes('خارج')) keys.push('خارج', 'خارجية', 'external');
+  if (n.includes('أبيض') || n.includes('ابيض')) keys.push('أبيض', 'ابيض', 'white');
+  if (n.includes('مسجل')) keys.push('مسجل', 'برنامج');
   return keys;
 }
 
-export function scoreMediaForForm(form: string, item: CompanyMedia): number {
-  const title = normalizeAr(item.title);
+function scoreTextMatch(form: string, text: string): number {
+  const keys = formKeywords(form);
+  const title = normalizeAr(text);
   let score = 0;
-  for (const kw of formKeywords(form)) {
-    if (title.includes(normalizeAr(kw))) score += 3;
+  for (const kw of keys) {
+    const k = normalizeAr(kw);
+    if (k.length >= 3 && title.includes(k)) score += 3;
   }
-  if (item.type === 'card') score += 2;
-  if (item.type === 'photo' && title.includes('نموذج')) score += 1;
+  return score;
+}
+
+export function scoreMediaForForm(form: string, item: CompanyMedia): number {
+  let score = 0;
+  if (item.formTags?.length) {
+    for (const tag of item.formTags) {
+      score += scoreTextMatch(form, tag);
+    }
+    if (item.type === 'form') score += 5;
+  }
+  score += scoreTextMatch(form, item.title);
+  if (item.type === 'form') score += 4;
+  if (item.type === 'photo') score += 1;
+  if (item.type === 'card') score -= 2;
   return score;
 }
 

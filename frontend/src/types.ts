@@ -23,12 +23,13 @@ export interface CompanyRules {
 
 export interface CompanyMedia {
   id: string;
-  type: 'card' | 'photo';
+  type: 'card' | 'photo' | 'form';
   title: string;
   url: string;
   page: number;
   width?: number;
   height?: number;
+  formTags?: string[];
   links?: CompanyLink[];
 }
 

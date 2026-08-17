@@ -223,6 +223,7 @@ def main():
         json.dump(rules, f, ensure_ascii=False, indent=2)
 
     run([sys.executable, os.path.join(BASE, "scripts", "extract_company_links.py")])
+    run([sys.executable, os.path.join(BASE, "scripts", "extract_pptx_form_images.py")])
 
     total_media = sum(len(c.get("media") or []) for c in rules["companies"])
     print(f"Rebuild complete: {len(PAGE_RANGES)} companies, {total_media} media items")
