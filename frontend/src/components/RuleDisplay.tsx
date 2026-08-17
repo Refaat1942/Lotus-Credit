@@ -14,7 +14,7 @@ export function RuleItem({ label, value, type = 'text' }: RuleItemProps) {
     <motion.div
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
-      className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5"
+      className="flex items-start gap-3 p-3 rounded-xl bg-surface/60 border border-theme"
     >
       {type === 'boolean' ? (
         value ? (
@@ -26,8 +26,8 @@ export function RuleItem({ label, value, type = 'text' }: RuleItemProps) {
         <Info className="w-5 h-5 text-lotus-400 flex-shrink-0 mt-0.5" />
       )}
       <div>
-        <p className="text-sm text-slate-400">{label}</p>
-        <p className="text-white font-medium">
+        <p className="text-sm text-muted">{label}</p>
+        <p className="text-primary font-medium">
           {type === 'boolean' ? (value ? 'نعم / يلزم' : 'لا / غير يلزم') : String(value)}
         </p>
       </div>
@@ -69,7 +69,7 @@ export function NotesList({ title, items, variant = 'info' }: NotesListProps) {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="flex items-start gap-2 text-sm text-slate-200"
+            className="flex items-start gap-2 text-sm text-primary/90"
           >
             <span className="text-lotus-400 mt-1">•</span>
             {item}
@@ -107,8 +107,8 @@ export function StepWizard({ steps }: StepWizardProps) {
             )}
           </div>
           <div className="flex-1 pb-6">
-            <h4 className="font-bold text-white mb-1">{step.title}</h4>
-            <p className="text-sm text-slate-300 leading-relaxed">{step.content}</p>
+            <h4 className="font-bold text-primary mb-1">{step.title}</h4>
+            <p className="text-sm text-muted leading-relaxed">{step.content}</p>
           </div>
         </motion.div>
       ))}

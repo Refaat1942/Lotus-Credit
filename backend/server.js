@@ -14,8 +14,12 @@ app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 
 const assetsPath = path.join(__dirname, '..', 'data', 'assets');
+const logosDir = path.join(assetsPath, 'logos');
 if (fs.existsSync(assetsPath)) {
   app.use('/assets', express.static(assetsPath));
+}
+if (!fs.existsSync(logosDir)) {
+  fs.mkdirSync(logosDir, { recursive: true });
 }
 
 const { chat } = require('./assistant');
@@ -133,6 +137,39 @@ app.delete('/api/admin/companies/:id', authMiddleware, (req, res) => {
     res.json({ success: true });
   } catch {
     res.status(500).json({ error: 'Failed to delete company' });
+  }
+});
+
+app.post('/api/admin/companies/:id/logo', authMiddleware, (req, res) => {
+  try {
+    const { dataUrl } = req.body;
+    if (!dataUrl || typeof dataUrl !== 'string') {
+      return res.status(400).json({ error: 'Missing image data' });
+    }
+    const match = dataUrl.match(/^data:image\/(\w+);base64,(.+)$/);
+    if (!match) return res.status(400).json({ error: 'Invalid image format' });
+    let ext = match[1].toLowerCase();
+    if (ext === 'jpeg') ext = 'jpg';
+    if (!['png', 'jpg', 'webp', 'svg+xml', 'svg'].includes(ext)) {
+      return res.status(400).json({ error: 'Unsupported image type' });
+    }
+    const fileExt = ext.replace('+xml', '').replace('svg', 'svg');
+    const buffer = Buffer.from(match[2], 'base64');
+    if (buffer.length > 2 * 1024 * 1024) {
+      return res.status(400).json({ error: 'Image too large (max 2MB)' });
+    }
+    const filename = `${req.params.id}.${fileExt === 'svg' ? 'svg' : fileExt}`;
+    fs.writeFileSync(path.join(logosDir, filename), buffer);
+    const logoUrl = `/assets/logos/${filename}`;
+    const data = readRules();
+    const idx = data.companies.findIndex((c) => c.id === req.params.id);
+    if (idx === -1) return res.status(404).json({ error: 'Company not found' });
+    data.companies[idx].logoUrl = logoUrl;
+    writeRules(data);
+    res.json({ logoUrl, company: data.companies[idx] });
+  } catch (err) {
+    console.error('Logo upload error:', err);
+    res.status(500).json({ error: 'Failed to upload logo' });
   }
 });
 

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon } from 'lucide-react';
+import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown } from 'lucide-react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
+import CompanyLogo from '../components/CompanyLogo';
+import CompanyLogoUpload from '../components/CompanyLogoUpload';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
 import type { Branding, Company, CompanyLink, RulesData } from '../types';
@@ -113,11 +115,12 @@ export default function AdminPage() {
 
   const addCompany = () => {
     if (!editData) return;
+    const maxOrder = Math.max(0, ...editData.companies.map((c) => c.order || 0));
     const newCo: Company = {
       id: `new-${Date.now()}`,
       nameAr: 'شركة جديدة',
       nameEn: 'New Company',
-      order: editData.companies.length + 1,
+      order: maxOrder + 1,
       rules: {},
       forms: [],
       contacts: [],
@@ -127,6 +130,25 @@ export default function AdminPage() {
     setEditData({ ...editData, companies: [...editData.companies, newCo] });
     setSelectedCompany(newCo);
     setActiveTab('companies');
+  };
+
+  const sortedCompanies = editData
+    ? [...editData.companies].sort((a, b) => (a.order || 0) - (b.order || 0))
+    : [];
+
+  const moveCompany = (id: string, direction: 'up' | 'down') => {
+    if (!editData) return;
+    const list = [...sortedCompanies];
+    const idx = list.findIndex((c) => c.id === id);
+    if (idx < 0) return;
+    const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
+    if (swapIdx < 0 || swapIdx >= list.length) return;
+    const reordered = [...list];
+    [reordered[idx], reordered[swapIdx]] = [reordered[swapIdx], reordered[idx]];
+    const companies = reordered.map((c, i) => ({ ...c, order: i + 1 }));
+    setEditData({ ...editData, companies });
+    const sel = companies.find((c) => c.id === id);
+    if (sel) setSelectedCompany(sel);
   };
 
   if (!isLoggedIn) {
@@ -280,20 +302,45 @@ export default function AdminPage() {
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
+              <p className="text-xs text-muted mb-3">اسحب الترتيب بالأسهم — يظهر للصيدلي بنفس الترتيب</p>
               <div className="space-y-1 max-h-[60vh] overflow-y-auto">
-                {editData?.companies.map((c) => (
-                  <button
+                {sortedCompanies.map((c, i) => (
+                  <div
                     key={c.id}
-                    onClick={() => setSelectedCompany(c)}
-                    className={`w-full text-right p-3 rounded-xl transition-colors flex items-center justify-between ${
-                      selectedCompany?.id === c.id
-                        ? 'bg-lotus-500/20 text-lotus-300'
-                        : 'hover:bg-white/5'
+                    className={`flex items-center gap-1 rounded-xl transition-colors ${
+                      selectedCompany?.id === c.id ? 'bg-lotus-500/20' : 'hover:bg-white/5'
                     }`}
                   >
-                    <span>{c.nameAr}</span>
-                    <Edit3 className="w-4 h-4 opacity-50" />
-                  </button>
+                    <div className="flex flex-col p-1">
+                      <button
+                        type="button"
+                        disabled={i === 0}
+                        onClick={() => moveCompany(c.id, 'up')}
+                        className="p-1 rounded text-muted hover:text-primary disabled:opacity-25"
+                        title="لأعلى"
+                      >
+                        <ChevronUp className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        disabled={i === sortedCompanies.length - 1}
+                        onClick={() => moveCompany(c.id, 'down')}
+                        className="p-1 rounded text-muted hover:text-primary disabled:opacity-25"
+                        title="لأسفل"
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCompany(c)}
+                      className="flex-1 text-right p-2 flex items-center gap-2 min-w-0"
+                    >
+                      <CompanyLogo company={c} size="sm" />
+                      <span className="truncate flex-1">{c.nameAr}</span>
+                      <span className="text-xs text-muted shrink-0">#{c.order}</span>
+                    </button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -302,6 +349,7 @@ export default function AdminPage() {
               {selectedCompany ? (
                 <CompanyEditor
                   company={selectedCompany}
+                  adminToken={token}
                   onChange={updateCompany}
                   onDelete={() => deleteCompany(selectedCompany.id)}
                 />
@@ -355,10 +403,12 @@ function BrandingEditor({
 
 function CompanyEditor({
   company,
+  adminToken,
   onChange,
   onDelete,
 }: {
   company: Company;
+  adminToken: string;
   onChange: (c: Company) => void;
   onDelete: () => void;
 }) {
@@ -382,15 +432,21 @@ function CompanyEditor({
         </button>
       </div>
 
+      <CompanyLogoUpload
+        company={company}
+        logoUrl={company.logoUrl}
+        adminToken={adminToken}
+        onLogoChange={(url) => update('logoUrl', url)}
+      />
+
       <div className="grid sm:grid-cols-2 gap-4">
         <Field label="الاسم بالعربية" value={company.nameAr} onChange={(v) => update('nameAr', v)} />
         <Field label="الاسم بالإنجليزية" value={company.nameEn} onChange={(v) => update('nameEn', v)} />
         <Field label="الخط الساخن" value={company.hotline || ''} onChange={(v) => update('hotline', v)} />
         <Field label="نظام الموافقات" value={company.approvalSystem || ''} onChange={(v) => update('approvalSystem', v)} />
         <Field label="رابط البوابة" value={company.approvalPortal || ''} onChange={(v) => update('approvalPortal', v)} className="sm:col-span-2" />
-        <Field label="اللون" value={company.color || ''} onChange={(v) => update('color', v)} />
-        <Field label="الترتيب" value={String(company.order)} onChange={(v) => update('order', Number(v))} />
-        <Field label="رابط اللوجو (مثال: /logos/axa.png)" value={company.logoUrl || ''} onChange={(v) => update('logoUrl', v)} className="sm:col-span-2" />
+        <Field label="اللون (hex)" value={company.color || ''} onChange={(v) => update('color', v)} />
+        <Field label="الترتيب (رقم)" value={String(company.order)} onChange={(v) => update('order', Number(v) || 0)} />
       </div>
 
       <h3 className="font-bold pt-4 border-t border-white/10">شروط الصرف</h3>
