@@ -6,10 +6,12 @@ import CompanyCard from '../components/CompanyCard';
 import QuickReferencePanel from '../components/QuickReferencePanel';
 import { useRules } from '../hooks/useRules';
 import { useBranding } from '../hooks/useBranding';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 export default function HomePage() {
   const { data, loading, online, error, refetch } = useRules();
   const branding = useBranding();
+  const { u } = useAppCopy(data?.ui);
   const [search, setSearch] = useState('');
 
   const filtered = useMemo(() => {
@@ -25,6 +27,8 @@ export default function HomePage() {
     );
   }, [data, search]);
 
+  const heroBadge = branding.heroBadgeAr || branding.subtitleAr;
+
   return (
     <div className="min-h-screen">
       <Header online={online} onRefresh={refetch} loading={loading} />
@@ -37,7 +41,7 @@ export default function HomePage() {
         >
           <div className="rounded-2xl border border-theme bg-surface/50 p-5 sm:p-6">
             <p className="text-xs font-medium text-lotus-600 dark:text-lotus-400 mb-1">
-              {branding.subtitleAr}
+              {heroBadge}
             </p>
             <h1 className="text-xl sm:text-2xl font-bold text-primary mb-2">
               {branding.heroTitleAr}
@@ -50,7 +54,7 @@ export default function HomePage() {
               <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-muted pointer-events-none" />
               <input
                 type="text"
-                placeholder="ابحث عن شركة تأمين، خط ساخن، أو نظام موافقات..."
+                placeholder={u('home', 'searchPlaceholder')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full py-3.5 pr-11 pl-3 rounded-xl input-theme placeholder-muted text-base focus:outline-none focus:ring-2 focus:ring-lotus-500/35 transition-all"
@@ -59,7 +63,7 @@ export default function HomePage() {
 
             {error === 'offline' && (
               <p className="mt-2.5 text-sm text-amber-600 dark:text-amber-400">
-                بيانات محفوظة محلياً — سيتم التحديث عند عودة الاتصال
+                {u('home', 'offlineCache')}
               </p>
             )}
 
@@ -68,6 +72,7 @@ export default function HomePage() {
                 cardChecklist={data.general.cardChecklist}
                 electronicCardRules={data.general.electronicCardRules}
                 approvalLinks={data.general.approvalLinks}
+                ui={data.ui}
               />
             )}
           </div>
@@ -82,28 +87,34 @@ export default function HomePage() {
         ) : (
           <>
             <div className="flex items-center justify-between mb-4 pb-2 border-b border-theme">
-              <h2 className="text-base sm:text-lg font-semibold text-primary">شركات التأمين</h2>
-              <span className="text-sm text-muted">{filtered.length} شركة</span>
+              <h2 className="text-base sm:text-lg font-semibold text-primary">
+                {u('home', 'companiesHeading')}
+              </h2>
+              <span className="text-sm text-muted">
+                {u('home', 'companyCount', { count: filtered.length })}
+              </span>
             </div>
             <AnimatePresence mode="popLayout">
               <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filtered.map((company, i) => (
-                  <CompanyCard key={company.id} company={company} index={i} />
+                  <CompanyCard key={company.id} company={company} index={i} ui={data?.ui} />
                 ))}
               </motion.div>
             </AnimatePresence>
             {filtered.length === 0 && (
-              <p className="text-center text-muted text-base py-10">لا توجد نتائج للبحث</p>
+              <p className="text-center text-muted text-base py-10">
+                {u('home', 'noSearchResults')}
+              </p>
             )}
           </>
         )}
       </main>
 
       <footer className="text-center py-5 text-xs text-muted border-t border-theme mt-8">
-        <p>
-          {branding.titleAr} · {branding.departmentAr}
+        <p>{branding.footerText || `${branding.titleAr} · ${branding.departmentAr}`}</p>
+        <p className="mt-0.5 opacity-75">
+          {u('home', 'lastUpdatedPrefix')} {data?.meta.lastUpdated || '2026-08'}
         </p>
-        <p className="mt-0.5 opacity-75">آخر تحديث: {data?.meta.lastUpdated || '2026-08'}</p>
       </footer>
     </div>
   );

@@ -5,9 +5,11 @@ interface RuleItemProps {
   label: string;
   value: string | boolean | undefined;
   type?: 'text' | 'boolean';
+  booleanYes?: string;
+  booleanNo?: string;
 }
 
-export function RuleItem({ label, value, type = 'text' }: RuleItemProps) {
+export function RuleItem({ label, value, type = 'text', booleanYes = 'نعم / يلزم', booleanNo = 'لا / غير يلزم' }: RuleItemProps) {
   if (value === undefined || value === null || value === '') return null;
 
   return (
@@ -28,7 +30,7 @@ export function RuleItem({ label, value, type = 'text' }: RuleItemProps) {
       <div>
         <p className="text-sm text-muted">{label}</p>
         <p className="text-primary font-medium">
-          {type === 'boolean' ? (value ? 'نعم / يلزم' : 'لا / غير يلزم') : String(value)}
+          {type === 'boolean' ? (value ? booleanYes : booleanNo) : String(value)}
         </p>
       </div>
     </motion.div>

@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
+import { useRules } from '../hooks/useRules';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 interface ChatImage {
   url: string;
@@ -15,17 +17,24 @@ interface Message {
 }
 
 export default function SmartAssistant() {
+  const { data } = useRules();
+  const { u } = useAppCopy(data?.ui);
+  const welcome = u('assistant', 'welcome');
+
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content:
-        'أهلاً يا فندم! 👋\n\nأنا **مساعد لوتس** — اسألني أي حاجة عن شروط صرف التعاقدات بالمصري.\n\nمثال:\n• "AXA بصرف إزاي؟"\n• "كارنية MetLife"\n• "رابط يوداوي"\n• "محظورات Medmark"',
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([{ role: 'assistant', content: welcome }]);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length === 1 && prev[0].role === 'assistant') {
+        return [{ role: 'assistant', content: welcome }];
+      }
+      return prev;
+    });
+  }, [welcome]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -43,20 +52,17 @@ export default function SmartAssistant() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: q }),
       });
-      const data = await res.json();
+      const responseData = await res.json();
       setMessages((m) => [
         ...m,
         {
           role: 'assistant',
-          content: data.answer || 'معلش مقدرتش أجاوب دلوقتي.',
-          images: data.images,
+          content: responseData.answer || u('assistant', 'errorEmpty'),
+          images: responseData.images,
         },
       ]);
     } catch {
-      setMessages((m) => [
-        ...m,
-        { role: 'assistant', content: 'في مشكلة في الاتصال. تأكد من النت وجرب تاني.' },
-      ]);
+      setMessages((m) => [...m, { role: 'assistant', content: u('assistant', 'errorNetwork') }]);
     } finally {
       setLoading(false);
     }
@@ -69,7 +75,7 @@ export default function SmartAssistant() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(true)}
         className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-lotus-500 to-lotus-700 text-white shadow-lg shadow-lotus-500/40 flex items-center justify-center"
-        title="مساعد لوتس الذكي"
+        title={u('assistant', 'title')}
       >
         <MessageCircle className="w-7 h-7" />
         <span className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center">
@@ -91,8 +97,8 @@ export default function SmartAssistant() {
                   <Bot className="w-5 h-5 text-lotus-500" />
                 </div>
                 <div>
-                  <p className="font-bold text-sm text-primary">مساعد لوتس</p>
-                  <p className="text-[10px] text-muted">بيعرف كل الشروط · عامية مصرية</p>
+                  <p className="font-bold text-sm text-primary">{u('assistant', 'title')}</p>
+                  <p className="text-[10px] text-muted">{u('assistant', 'subtitle')}</p>
                 </div>
               </div>
               <button onClick={() => setOpen(false)} className="p-2 rounded-lg hover:bg-surface">
@@ -159,7 +165,7 @@ export default function SmartAssistant() {
               {loading && (
                 <div className="flex gap-2 items-center text-muted text-sm">
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  بفكر...
+                  {u('assistant', 'thinking')}
                 </div>
               )}
               <div ref={bottomRef} />
@@ -170,7 +176,7 @@ export default function SmartAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && send()}
-                placeholder="اسأل بالمصري... مثلاً: AXA بصرف إزاي؟"
+                placeholder={u('assistant', 'placeholder')}
                 className="flex-1 input-theme rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
               />
               <button

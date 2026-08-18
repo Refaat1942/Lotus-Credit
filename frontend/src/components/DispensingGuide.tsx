@@ -4,7 +4,7 @@ import {
   PlayCircle, ListChecks, FileImage, AlertTriangle, Link2,
   Phone, ExternalLink, Check, ZoomIn, X, Sparkles,
 } from 'lucide-react';
-import type { CoachCopyBundle, Company, CompanyMedia } from '../types';
+import type { AppCopyBundle, CoachCopyBundle, Company, CompanyMedia, GuideCopyBundle } from '../types';
 import CompanyLogo from './CompanyLogo';
 import CompanyLinks from './CompanyLinks';
 import MediaLinks from './MediaLinks';
@@ -12,23 +12,27 @@ import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
 import { resolveFormDoc } from '../utils/coachSteps';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'links';
 
 interface DispensingGuideProps {
   company: Company;
   globalCoach?: CoachCopyBundle;
+  ui?: AppCopyBundle;
+  guide?: GuideCopyBundle;
 }
 
-const PHASES: { id: Phase; label: string; icon: typeof PlayCircle }[] = [
-  { id: 'start', label: 'البداية', icon: PlayCircle },
-  { id: 'steps', label: 'خطوات الصرف', icon: ListChecks },
-  { id: 'forms', label: 'النماذج والمستند', icon: FileImage },
-  { id: 'rules', label: 'الشروط', icon: AlertTriangle },
-  { id: 'links', label: 'الروابط', icon: Link2 },
-];
+const PHASE_ICONS = {
+  start: PlayCircle,
+  steps: ListChecks,
+  forms: FileImage,
+  rules: AlertTriangle,
+  links: Link2,
+} as const;
 
-export default function DispensingGuide({ company, globalCoach }: DispensingGuideProps) {
+export default function DispensingGuide({ company, globalCoach, ui, guide }: DispensingGuideProps) {
+  const { u, g } = useAppCopy(ui, guide);
   const color = company.color || '#14b8a6';
   const rules = company.rules;
   const media = useMemo(() => galleryMedia(company.media || []), [company.media]);
@@ -46,16 +50,22 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
     ? resolveFormDoc(activeForm, media, company, selectedForm)
     : cardDocs[0] ?? null;
 
+  const phases: Phase[] = ['start', 'steps', 'forms', 'rules', 'links'];
+
   const dispensingSteps = [
-    { title: 'فحص الكارنية', detail: 'تأكد من صلاحية العضوية وبيانات المستفيد والتاريخ', tip: company.cardInstructions?.[0] },
+    { title: g('steps', 'stepCardTitle'), detail: g('steps', 'stepCardDetail'), tip: company.cardInstructions?.[0] },
     ...(forms.map((f) => ({
-      title: 'طريقة الصرف',
+      title: g('steps', 'stepFormTitle'),
       detail: f,
       tip: undefined as string | undefined,
       formName: f,
     })) || []),
-    { title: 'الموافقة', detail: `عبر ${company.approvalSystem || 'النظام المعتمد'}`, tip: company.approvalPortal ? 'افتح بوابة الموافقات من تبويب البداية' : undefined },
-    { title: 'تنفيذ الصرف', detail: 'طابق الكميات والتحمل مع الموافقة قبل إغلاق الفاتورة', tip: rules?.alternativesPolicy },
+    {
+      title: g('steps', 'stepApprovalTitle'),
+      detail: g('steps', 'stepApprovalDetail', { system: company.approvalSystem || g('steps', 'defaultSystem') }),
+      tip: company.approvalPortal ? g('steps', 'stepApprovalTip') : undefined,
+    },
+    { title: g('steps', 'stepDispenseTitle'), detail: g('steps', 'stepDispenseDetail'), tip: rules?.alternativesPolicy },
   ];
 
   const completedSteps = Object.values(stepDone).filter(Boolean).length;
@@ -85,7 +95,9 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
     <div className="space-y-4">
       <div className="sticky top-[52px] z-40 -mx-1 px-1 py-2 bg-[var(--color-bg-start)]/90 backdrop-blur-md border-b border-theme mb-2">
         <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
-          {PHASES.map(({ id, label, icon: Icon }) => (
+          {phases.map((id) => {
+            const Icon = PHASE_ICONS[id];
+            return (
             <button
               key={id}
               type="button"
@@ -97,13 +109,14 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
               }`}
             >
               <Icon className="w-4 h-4 shrink-0" />
-              {label}
+              {g('phases', id)}
             </button>
-          ))}
+            );
+          })}
         </div>
         {phase === 'steps' && (
           <p className="text-xs text-muted mt-2">
-            {completedSteps} / {dispensingSteps.length} خطوات مكتملة
+            {g('steps', 'progress', { done: completedSteps, total: dispensingSteps.length })}
           </p>
         )}
       </div>
@@ -122,10 +135,10 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
             <div className="rounded-xl border border-lotus-500/30 bg-lotus-500/10 p-4 mb-5">
               <p className="text-primary font-semibold flex items-center gap-2 mb-2">
                 <Sparkles className="w-5 h-5 text-lotus-500" />
-                مرشد الصرف التفاعلي
+                {g('start', 'coachTitle')}
               </p>
               <p className="text-sm text-muted leading-relaxed">
-                هيسألك أسئلة ويوجّهك للخطوة والنموذج الصح — زي زميل في الفرع بيرشدك خطوة بخطوة.
+                {g('start', 'coachDesc')}
               </p>
             </div>
 
@@ -147,7 +160,7 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-lotus-500/15 text-lotus-700 dark:text-lotus-300 border border-lotus-500/30 text-sm font-medium"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  بوابة {company.approvalSystem || 'الموافقات'}
+                  {g('start', 'portalPrefix')} {company.approvalSystem || g('start', 'defaultPortal')}
                 </a>
               )}
             </div>
@@ -157,14 +170,14 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
               onClick={() => setCoachActive(true)}
               className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold text-base shadow-lg shadow-lotus-500/25 mb-3"
             >
-              ابدأ الإرشاد التفاعلي ←
+              {g('start', 'startCoachBtn')}
             </button>
             <button
               type="button"
               onClick={() => setPhase('steps')}
               className="w-full px-4 py-2.5 rounded-xl text-sm text-muted hover:text-primary border border-theme hover:bg-surface/50 transition-colors"
             >
-              أو تصفّح المرجع يدوياً
+              {g('start', 'manualBrowseBtn')}
             </button>
           </motion.div>
         )}
@@ -174,14 +187,14 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
             <div className="flex items-center justify-between mb-4 gap-2">
               <h2 className="text-lg font-bold text-primary flex items-center gap-2">
                 <ListChecks className="w-5 h-5 text-lotus-500" />
-                خطوات الصرف
+                {g('steps', 'heading')}
               </h2>
               <button
                 type="button"
                 onClick={() => setCoachActive(true)}
                 className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30 whitespace-nowrap"
               >
-                ✨ إرشاد تفاعلي
+                {g('common', 'interactiveBadge')}
               </button>
             </div>
             <div className="space-y-3">
@@ -218,7 +231,7 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
                             className="mt-2 inline-flex items-center gap-1 text-sm text-lotus-600 dark:text-lotus-400 hover:underline"
                           >
                             <FileImage className="w-4 h-4" />
-                            عرض النموذج في المستند
+                            {g('steps', 'viewFormBtn')}
                           </button>
                         )}
                       </div>
@@ -229,7 +242,7 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
             </div>
             <div className="flex gap-2 mt-5">
               <button type="button" onClick={() => setPhase('forms')} className="flex-1 py-3 rounded-xl bg-lotus-500 text-white font-medium">
-                التالي: النماذج والمستند
+                {g('steps', 'nextFormsBtn')}
               </button>
             </div>
           </motion.div>
@@ -241,18 +254,18 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
               <div className="flex items-center justify-between gap-2 mb-3">
                 <h2 className="text-lg font-bold text-primary flex items-center gap-2">
                   <FileImage className="w-5 h-5 text-lotus-500" />
-                  اختر طريقة الصرف
+                  {g('forms', 'heading')}
                 </h2>
                 <button
                   type="button"
                   onClick={() => setCoachActive(true)}
                   className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30"
                 >
-                  ✨ إرشاد تفاعلي
+                  {g('common', 'interactiveBadge')}
                 </button>
               </div>
               {forms.length === 0 ? (
-                <p className="text-muted text-sm">لا توجد طرق صرف مسجلة لهذه الشركة.</p>
+                <p className="text-muted text-sm">{g('forms', 'noForms')}</p>
               ) : (
                 <div className="flex flex-wrap gap-2 mb-4">
                   {forms.map((form, i) => (
@@ -274,7 +287,7 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
 
               {activeForm && (
                 <p className="text-sm text-muted mb-3">
-                  الطريقة المختارة: <span className="font-semibold text-primary">{activeForm}</span>
+                  {g('forms', 'selectedLabel')} <span className="font-semibold text-primary">{activeForm}</span>
                 </p>
               )}
 
@@ -286,7 +299,7 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
                       type="button"
                       onClick={() => setLightbox(activeDoc)}
                       className="p-1.5 rounded-lg hover:bg-surface text-muted"
-                      title="تكبير"
+                      title={g('forms', 'zoomTitle')}
                     >
                       <ZoomIn className="w-5 h-5" />
                     </button>
@@ -298,21 +311,21 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
                       className="w-full max-h-[min(70vh,520px)] object-contain bg-white/5"
                     />
                   </button>
-                  <p className="text-xs text-muted px-3 py-2">صفحة {activeDoc.page} · اضغط على الصورة للتكبير</p>
+                  <p className="text-xs text-muted px-3 py-2">{g('forms', 'pageHint', { page: activeDoc.page })}</p>
                   {activeDoc.links && activeDoc.links.length > 0 && (
                     <MediaLinks links={activeDoc.links} accentColor={color} />
                   )}
                 </div>
               ) : (
                 <p className="text-sm text-amber-600 dark:text-amber-400 p-4 rounded-xl bg-amber-500/10">
-                  لم يُعثر على صورة مطابقة — اختر صفحة من المعرض أدناه.
+                  {g('forms', 'noImageWarning')}
                 </p>
               )}
             </div>
 
             {cardDocs.length > 0 && (
               <div className="glass-card p-5">
-                <h3 className="text-sm font-semibold text-primary mb-3">كل صفحات المستند ({cardDocs.length})</h3>
+                <h3 className="text-sm font-semibold text-primary mb-3">{g('forms', 'galleryCards', { count: cardDocs.length })}</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {cardDocs.map((doc) => (
                     <button
@@ -331,7 +344,7 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
 
             {media.filter((m) => m.type === 'photo').length > 0 && (
               <div className="glass-card p-5">
-                <h3 className="text-sm font-semibold text-primary mb-3">صور إضافية (كارنية، موافقات)</h3>
+                <h3 className="text-sm font-semibold text-primary mb-3">{g('forms', 'galleryPhotos')}</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {media.filter((m) => m.type === 'photo').slice(0, 12).map((doc) => (
                     <button
@@ -353,34 +366,34 @@ export default function DispensingGuide({ company, globalCoach }: DispensingGuid
           <motion.div key="rules" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-4">
             {rules && (
               <div className="glass-card p-5">
-                <h2 className="text-lg font-bold text-primary mb-4">شروط الصرف</h2>
+                <h2 className="text-lg font-bold text-primary mb-4">{g('rules', 'heading')}</h2>
                 <div className="grid sm:grid-cols-2 gap-3">
-                  <RuleItem label="صلاحية الروشتة" value={rules.prescriptionValidity} />
-                  <RuleItem label="أقصى مدة صرف" value={rules.maxDispensePeriod} />
-                  <RuleItem label="صلاحية الموافقة" value={rules.approvalValidity} />
-                  <RuleItem label="الحد المالي" value={rules.financialLimit} />
-                  <RuleItem label="نسبة التحمل" value={rules.copay} />
-                  <RuleItem label="موافقة مسبقة" value={rules.priorApprovalRequired} />
-                  <RuleItem label="روشتة خارجية" value={rules.externalRxAllowed} />
-                  <RuleItem label="سياسة البدائل" value={rules.alternativesPolicy} />
-                  <RuleItem label="صورة الكارنية" value={rules.cardRequired} type="boolean" />
-                  <RuleItem label="توقيع العميل" value={rules.signatureRequired} type="boolean" />
-                  <RuleItem label="ختم الطبيب" value={rules.stampRequired} type="boolean" />
-                  <RuleItem label="التشخيص" value={rules.diagnosisRequired} type="boolean" />
+                  <RuleItem label={u('ruleLabels', 'prescriptionValidity')} value={rules.prescriptionValidity} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'maxDispensePeriod')} value={rules.maxDispensePeriod} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'approvalValidity')} value={rules.approvalValidity} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'financialLimit')} value={rules.financialLimit} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'copay')} value={rules.copay} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'priorApprovalRequired')} value={rules.priorApprovalRequired} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'externalRxAllowed')} value={rules.externalRxAllowed} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'alternativesPolicy')} value={rules.alternativesPolicy} booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'cardRequired')} value={rules.cardRequired} type="boolean" booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'signatureRequired')} value={rules.signatureRequired} type="boolean" booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'stampRequired')} value={rules.stampRequired} type="boolean" booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
+                  <RuleItem label={u('ruleLabels', 'diagnosisRequired')} value={rules.diagnosisRequired} type="boolean" booleanYes={u('ruleLabels', 'booleanYes')} booleanNo={u('ruleLabels', 'booleanNo')} />
                 </div>
               </div>
             )}
-            {rules?.importantNotes && <NotesList title="ملاحظات هامة" items={rules.importantNotes} variant="warning" />}
-            {rules?.prohibitions && <NotesList title="محظورات الصرف" items={rules.prohibitions} variant="danger" />}
+            {rules?.importantNotes && <NotesList title={u('ruleLabels', 'importantNotes')} items={rules.importantNotes} variant="warning" />}
+            {rules?.prohibitions && <NotesList title={u('ruleLabels', 'prohibitions')} items={rules.prohibitions} variant="danger" />}
             {company.cardInstructions && (
-              <NotesList title="تعليمات الكارنية" items={company.cardInstructions} variant="info" />
+              <NotesList title={u('ruleLabels', 'cardInstructions')} items={company.cardInstructions} variant="info" />
             )}
           </motion.div>
         )}
 
         {phase === 'links' && company.links && company.links.length > 0 && (
           <motion.div key="links" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            <CompanyLinks links={company.links} accentColor={color} />
+            <CompanyLinks links={company.links} accentColor={color} linksTitle={u('ruleLabels', 'importantLinks')} copyLabel={u('ruleLabels', 'copyLink')} />
           </motion.div>
         )}
       </AnimatePresence>

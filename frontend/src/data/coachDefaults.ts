@@ -1,4 +1,5 @@
 import type { CoachCopyBundle, LocalizedString } from '../types';
+import type { CopyFieldMeta } from './appDefaults';
 
 export type CoachSection = 'messages' | 'buttons' | 'checklist' | 'ui';
 
@@ -206,4 +207,105 @@ export const COACH_SECTION_LABELS: Record<CoachSection, LocalizedString> = {
   buttons: { ar: 'أزرار الإجابة', en: 'Answer buttons' },
   checklist: { ar: 'قائمة التأكيد', en: 'Final checklist' },
   ui: { ar: 'عناوين الواجهة', en: 'UI labels' },
+};
+
+const COACH_MESSAGES_LABELS: Record<string, CopyFieldMeta> = {
+  welcome: { label: 'رسالة الترحيب', multiline: true },
+  welcomeRestart: { label: 'إعادة الترحيب', multiline: true },
+  cardCheckIntro: { label: 'سؤال فحص الكارنية', multiline: true },
+  formPickIntro: { label: 'سؤال اختيار النموذج', multiline: true },
+  formDocHasImage: { label: 'عند وجود صورة نموذج', multiline: true },
+  formDocNoImage: { label: 'عند عدم وجود صورة', multiline: true },
+  formDocValidity: { label: 'صلاحية الروشتة', hint: '{validity}' },
+  cardHelpNoCard: { label: 'بدون كارنية', multiline: true },
+  cardHelpProblem: { label: 'مشكلة في الكارنية', multiline: true },
+  cardHelpDefault1: { label: 'تلميح كارنية 1' },
+  cardHelpDefault2: { label: 'تلميح كارنية 2' },
+  cardHelpDefaultNoCard: { label: 'تلميح بدون كارنية' },
+  formUnsureList: { label: 'غير متأكد — قائمة الأنواع', multiline: true, hint: '{formsList}' },
+  formUnsureEmpty: { label: 'غير متأكد — لا أنواع' },
+  formAgain: { label: 'رسالة: اختيار نوع تاني', multiline: true },
+  approvalCheckIntro: { label: 'سؤال الموافقة', multiline: true, hint: '{system}' },
+  approvalNoWarning: { label: 'تحذير بدون موافقة', multiline: true },
+  approvalStep: { label: 'خطوة الموافقة', hint: '{system}' },
+  approvalStepValidity: { label: 'صلاحية الموافقة', hint: '{validity}' },
+  approvalStepFooter: { label: 'بعد الموافقة' },
+  approvalHelpTitle: { label: 'مساعدة الموافقة — عنوان' },
+  approvalHelpPortal: { label: 'مساعدة — فتح البوابة', hint: '{system}' },
+  approvalHelpEnterMeds: { label: 'مساعدة — إدخال الأدوية' },
+  approvalHelpValidity: { label: 'مساعدة — صلاحية', hint: '{validity}' },
+  rulesTipTitle: { label: 'قبل إغلاق الفاتورة' },
+  rulesTipEmpty: { label: 'تلميح بدون نقاط' },
+  rulesCopay: { label: 'نقطة: التحمل', hint: '{copay}' },
+  rulesSignature: { label: 'نقطة: التوقيع' },
+  rulesStamp: { label: 'نقطة: الختم' },
+  rulesDiagnosis: { label: 'نقطة: التشخيص' },
+  rulesAlternatives: { label: 'نقطة: البدائل', hint: '{policy}' },
+  formHintYellow: { label: 'تلميح نموذج أصفر' },
+  formHintBlue: { label: 'تلميح نموذج أزرق' },
+  formHintEform: { label: 'تلميح E-Form' },
+  formHintExternal: { label: 'تلميح روشتة خارجية' },
+  finalChecksTitle: { label: 'قائمة التأكيد — عنوان' },
+  finishIncomplete: { label: 'لم يكتمل التأكيد' },
+  finishSuccess: { label: 'نجاح الصرف', multiline: true, hint: '{company}' },
+};
+
+const COACH_BUTTONS_LABELS: Record<string, CopyFieldMeta> = {
+  start: { label: 'زر: ابدأ' },
+  ref: { label: 'زر: المرجع الكامل' },
+  cardOk: { label: 'زر: الكارنية تمام' },
+  cardBad: { label: 'زر: مشكلة كارنية' },
+  noCard: { label: 'زر: مفيش كارنية' },
+  cardFixed: { label: 'زر: ظبطت الكارنية' },
+  formUnsure: { label: 'زر: مش متأكد' },
+  docOk: { label: 'زر: شفت النموذج' },
+  docZoom: { label: 'زر: تكبير النموذج' },
+  formAgain: { label: 'زر: نوع تاني' },
+  needApproval: { label: 'زر: محتاج موافقة' },
+  noApproval: { label: 'زر: صرف مباشر' },
+  gotApproval: { label: 'زر: خُدت الموافقة' },
+  openPortal: { label: 'زر: افتح البوابة', hint: '{system}' },
+  approvalHelp: { label: 'زر: مساعدة موافقة' },
+  rulesOk: { label: 'زر: فهمت' },
+  finish: { label: 'زر: خلصت الصرف' },
+  restart: { label: 'زر: صرف جديد' },
+  home: { label: 'زر: العودة للشركات' },
+  call: { label: 'زر: اتصل', hint: '{hotline}' },
+};
+
+const COACH_CHECKLIST_LABELS: Record<string, CopyFieldMeta> = {
+  cardValid: { label: 'تأكيد: كارنية سارية' },
+  formComplete: { label: 'تأكيد: النموذج مكتمل', hint: '{form}' },
+  formCompleteGeneric: { label: 'تأكيد: نموذج (عام)' },
+  signature: { label: 'تأكيد: التوقيع' },
+  stamp: { label: 'تأكيد: الختم' },
+  diagnosis: { label: 'تأكيد: التشخيص' },
+  copay: { label: 'تأكيد: التحمل' },
+  quantities: { label: 'تأكيد: الكميات' },
+};
+
+const COACH_UI_LABELS: Record<string, CopyFieldMeta> = {
+  coachTitle: { label: 'عنوان المرشد', hint: '{company}' },
+  coachSubtitle: { label: 'وصف المرشد' },
+  reference: { label: 'زر المرجع' },
+  phaseCard: { label: 'مرحلة: كارنية' },
+  phaseForm: { label: 'مرحلة: نموذج' },
+  phaseApproval: { label: 'مرحلة: موافقة' },
+  phaseConfirm: { label: 'مرحلة: تأكيد' },
+  phaseDone: { label: 'مرحلة: تم' },
+};
+
+export const COACH_FIELD_LABELS: Record<CoachSection, Record<string, CopyFieldMeta>> = {
+  messages: Object.fromEntries(
+    Object.keys(DEFAULT_COACH.messages).map((k) => [k, COACH_MESSAGES_LABELS[k] || { label: k }]),
+  ),
+  buttons: Object.fromEntries(
+    Object.keys(DEFAULT_COACH.buttons).map((k) => [k, COACH_BUTTONS_LABELS[k] || { label: k }]),
+  ),
+  checklist: Object.fromEntries(
+    Object.keys(DEFAULT_COACH.checklist).map((k) => [k, COACH_CHECKLIST_LABELS[k] || { label: k }]),
+  ),
+  ui: Object.fromEntries(
+    Object.keys(DEFAULT_COACH.ui).map((k) => [k, COACH_UI_LABELS[k] || { label: k }]),
+  ),
 };

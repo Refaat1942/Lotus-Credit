@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 import { Phone, ExternalLink, ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { Company } from '../types';
+import type { AppCopyBundle, Company } from '../types';
 import CompanyLogo from './CompanyLogo';
 import { galleryMediaCount } from '../utils/mediaFilters';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 interface CompanyCardProps {
   company: Company;
   index: number;
+  ui?: AppCopyBundle;
 }
 
-export default function CompanyCard({ company, index }: CompanyCardProps) {
+export default function CompanyCard({ company, index, ui }: CompanyCardProps) {
+  const { u } = useAppCopy(ui);
   const color = company.color || '#14b8a6';
   const mediaCount = galleryMediaCount(company.media);
 
@@ -49,22 +52,22 @@ export default function CompanyCard({ company, index }: CompanyCardProps) {
             )}
             {mediaCount > 0 && (
               <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-surface text-muted">
-                {mediaCount} بطاقة/صورة
+                {mediaCount} {u('card', 'mediaCount')}
               </span>
             )}
             {company.links && company.links.length > 0 && (
               <span className="inline-block text-xs px-2.5 py-1 rounded-full bg-surface text-muted">
-                {company.links.length} رابط
+                {company.links.length} {u('card', 'linksCount')}
               </span>
             )}
           </div>
 
           <div className="flex items-center justify-between mt-auto pt-3 border-t border-theme">
             <span className="text-sm text-muted">
-              {company.forms?.length || 0} طرق صرف
+              {company.forms?.length || 0} {u('card', 'formsCount')}
             </span>
             <span className="flex items-center gap-1 text-sm text-lotus-600 dark:text-lotus-400 group-hover:text-lotus-500">
-              التفاصيل
+              {u('card', 'details')}
               <ChevronLeft className="w-4 h-4" />
             </span>
           </div>

@@ -8,6 +8,8 @@ import type { CompanyLink } from '../types';
 interface CompanyLinksProps {
   links: CompanyLink[];
   accentColor?: string;
+  linksTitle?: string;
+  copyLabel?: string;
 }
 
 const typeIcons = {
@@ -17,7 +19,12 @@ const typeIcons = {
   website: ExternalLink,
 };
 
-export default function CompanyLinks({ links, accentColor = '#14b8a6' }: CompanyLinksProps) {
+export default function CompanyLinks({
+  links,
+  accentColor = '#14b8a6',
+  linksTitle = 'روابط مهمة',
+  copyLabel = 'نسخ',
+}: CompanyLinksProps) {
   const [copied, setCopied] = useState<string | null>(null);
 
   if (!links.length) return null;
@@ -37,7 +44,7 @@ export default function CompanyLinks({ links, accentColor = '#14b8a6' }: Company
     >
       <h2 className="flex items-center gap-2 text-xl font-bold mb-4">
         <Link2 className="w-6 h-6 text-lotus-400" />
-        روابط مهمة
+        {linksTitle}
         <span className="text-sm font-normal text-muted">({links.length})</span>
       </h2>
       <div className="grid sm:grid-cols-2 gap-3">
@@ -81,7 +88,7 @@ export default function CompanyLinks({ links, accentColor = '#14b8a6' }: Company
                   type="button"
                   onClick={() => copy(link.url, link.id)}
                   className="px-3 border-r border-theme hover:bg-surface-hover transition-colors"
-                  title="نسخ"
+                  title={copyLabel}
                 >
                   {copied === link.id ? (
                     <Check className="w-4 h-4 text-emerald-500" />

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import LotusLogo from './LotusLogo';
 import { useBranding } from '../hooks/useBranding';
 import { useTheme } from '../context/ThemeContext';
+import { useRules } from '../hooks/useRules';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 interface HeaderProps {
   online: boolean;
@@ -14,11 +16,13 @@ interface HeaderProps {
 export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const branding = useBranding();
   const { theme, toggleTheme } = useTheme();
+  const { data } = useRules();
+  const { u } = useAppCopy(data?.ui);
 
   return (
     <motion.header
       initial={{ y: -12, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      animate={{ opacity: 1, y: 0 }}
       className="sticky top-0 z-50 glass border-b border-theme"
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
@@ -43,7 +47,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
             }`}
           >
             {online ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}
-            {online ? 'متصل' : 'أوفلاين'}
+            {u('header', online ? 'online' : 'offline')}
           </span>
 
           {onRefresh && (
@@ -51,7 +55,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
               onClick={onRefresh}
               disabled={loading}
               className="p-2 rounded-lg hover:bg-surface transition-colors disabled:opacity-50"
-              title="تحديث"
+              title={u('header', 'refresh')}
             >
               <RefreshCw className={`w-4 h-4 text-muted ${loading ? 'animate-spin' : ''}`} />
             </button>
@@ -60,7 +64,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-surface transition-colors"
-            title={theme === 'dark' ? 'وضع فاتح' : 'وضع داكن'}
+            title={u('header', theme === 'dark' ? 'themeLight' : 'themeDark')}
           >
             {theme === 'dark' ? (
               <Sun className="w-4 h-4 text-amber-400" />
@@ -70,7 +74,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
           </button>
 
           <Link to="/admin" state={{ requireLogin: true }}>
-            <button className="p-2 rounded-lg hover:bg-surface transition-colors" title="إدارة">
+            <button className="p-2 rounded-lg hover:bg-surface transition-colors" title={u('header', 'admin')}>
               <Settings className="w-4 h-4 text-muted" />
             </button>
           </Link>

@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, Link2, X, ExternalLink, ChevronDown } from 'lucide-react';
+import type { AppCopyBundle } from '../types';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 interface QuickReferencePanelProps {
   cardChecklist: string[];
   electronicCardRules?: string[];
   approvalLinks: string[];
+  ui?: AppCopyBundle;
 }
 
-function linkLabel(url: string): string {
+function linkLabel(url: string, mailPrefix: string): string {
   if (url.startsWith('mailto:')) {
-    return url.replace('mailto:', 'بريد: ') ;
+    return url.replace('mailto:', `${mailPrefix} `);
   }
   try {
-    const host = new URL(url).hostname.replace('www.', '');
-    return host;
+    return new URL(url).hostname.replace('www.', '');
   } catch {
     return url.slice(0, 40);
   }
@@ -24,7 +26,9 @@ export default function QuickReferencePanel({
   cardChecklist,
   electronicCardRules = [],
   approvalLinks,
+  ui,
 }: QuickReferencePanelProps) {
+  const { u } = useAppCopy(ui);
   const [modal, setModal] = useState<'card' | 'links' | null>(null);
 
   return (
@@ -36,7 +40,7 @@ export default function QuickReferencePanel({
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-theme bg-surface/60 hover:bg-surface text-sm font-medium text-primary transition-colors"
         >
           <CreditCard className="w-4 h-4 text-lotus-500" />
-          فحص الكارنية
+          {u('quickRef', 'cardButton')}
           <span className="text-xs text-muted">({cardChecklist.length})</span>
         </button>
         <button
@@ -45,7 +49,7 @@ export default function QuickReferencePanel({
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-theme bg-surface/60 hover:bg-surface text-sm font-medium text-primary transition-colors"
         >
           <Link2 className="w-4 h-4 text-lotus-500" />
-          روابط الموافقات
+          {u('quickRef', 'linksButton')}
           <span className="text-xs text-muted">({approvalLinks.length})</span>
         </button>
       </div>
@@ -71,12 +75,12 @@ export default function QuickReferencePanel({
                   {modal === 'card' ? (
                     <>
                       <CreditCard className="w-5 h-5 text-lotus-500" />
-                      فحص الكارنية
+                      {u('quickRef', 'cardModalTitle')}
                     </>
                   ) : (
                     <>
                       <Link2 className="w-5 h-5 text-lotus-500" />
-                      روابط الموافقات
+                      {u('quickRef', 'linksModalTitle')}
                     </>
                   )}
                 </h2>
@@ -84,7 +88,7 @@ export default function QuickReferencePanel({
                   type="button"
                   onClick={() => setModal(null)}
                   className="p-2 rounded-lg hover:bg-surface transition-colors"
-                  aria-label="إغلاق"
+                  aria-label={u('quickRef', 'close')}
                 >
                   <X className="w-5 h-5 text-muted" />
                 </button>
@@ -94,13 +98,10 @@ export default function QuickReferencePanel({
                 {modal === 'card' ? (
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-sm font-semibold text-primary mb-2">عناصر الفحص</h3>
+                      <h3 className="text-sm font-semibold text-primary mb-2">{u('quickRef', 'checklistHeading')}</h3>
                       <ul className="space-y-2">
                         {cardChecklist.map((item, i) => (
-                          <li
-                            key={i}
-                            className="flex gap-2 text-sm text-muted leading-relaxed"
-                          >
+                          <li key={i} className="flex gap-2 text-sm text-muted leading-relaxed">
                             <span className="text-lotus-500 font-bold shrink-0">{i + 1}.</span>
                             {item}
                           </li>
@@ -109,12 +110,10 @@ export default function QuickReferencePanel({
                     </div>
                     {electronicCardRules.length > 0 && (
                       <div>
-                        <h3 className="text-sm font-semibold text-primary mb-2">الكارت الإلكتروني</h3>
+                        <h3 className="text-sm font-semibold text-primary mb-2">{u('quickRef', 'ecardHeading')}</h3>
                         <ul className="space-y-2">
                           {electronicCardRules.map((item, i) => (
-                            <li key={i} className="text-sm text-muted leading-relaxed">
-                              • {item}
-                            </li>
+                            <li key={i} className="text-sm text-muted leading-relaxed">• {item}</li>
                           ))}
                         </ul>
                       </div>
@@ -133,7 +132,7 @@ export default function QuickReferencePanel({
                           <ExternalLink className="w-4 h-4 text-lotus-500 shrink-0" />
                           <div className="min-w-0 flex-1">
                             <p className="text-sm font-medium text-primary truncate">
-                              {linkLabel(url)}
+                              {linkLabel(url, u('quickRef', 'mailPrefix'))}
                             </p>
                             <p className="text-xs text-muted truncate dir-ltr text-left">
                               {url.replace('mailto:', '')}

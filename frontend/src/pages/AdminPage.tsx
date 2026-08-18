@@ -8,12 +8,13 @@ import CompanyLogo from '../components/CompanyLogo';
 import CompanyLogoUpload from '../components/CompanyLogoUpload';
 import CoachMediaEditor from '../components/CoachMediaEditor';
 import CoachCopyEditor from '../components/CoachCopyEditor';
+import ContentAdminPanel from '../components/admin/ContentAdminPanel';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
 import type { Branding, Company, CompanyLink, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
-type AdminTab = 'companies' | 'branding';
+type AdminTab = 'companies' | 'branding' | 'content';
 
 export default function AdminPage() {
   const { data, online, refetch, loading } = useRules();
@@ -217,7 +218,7 @@ export default function AdminPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
-            <p className="text-slate-400 text-sm">تعديل الشركات والمرشد التفاعلي</p>
+            <p className="text-slate-400 text-sm">تعديل الشركات، الهوية، النصوص، والمرشد التفاعلي</p>
           </div>
           <div className="flex gap-2">
             <motion.button
@@ -272,7 +273,22 @@ export default function AdminPage() {
             <Palette className="w-4 h-4" />
             الهوية والشعار
           </button>
+          <button
+            onClick={() => setActiveTab('content')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+              activeTab === 'content'
+                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
+                : 'glass hover:bg-white/10'
+            }`}
+          >
+            <Edit3 className="w-4 h-4" />
+            المحتوى والنصوص
+          </button>
         </div>
+
+        {activeTab === 'content' && editData && (
+          <ContentAdminPanel data={editData} onChange={setEditData} />
+        )}
 
         {activeTab === 'branding' && (
           <div className="glass-card p-6">
@@ -340,15 +356,6 @@ export default function AdminPage() {
                   </div>
                 ))}
               </div>
-
-              {editData && (
-                <div className="mt-4 pt-4 border-t border-white/10">
-                  <CoachCopyEditor
-                    copy={editData.coach}
-                    onChange={(coach) => setEditData({ ...editData, coach })}
-                  />
-                </div>
-              )}
             </div>
 
             <div className="lg:col-span-2">
@@ -397,6 +404,7 @@ function BrandingEditor({
       <Field label="الاسم (السطر الأول)" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
       <Field label="القسم / الفرع" value={branding.departmentAr} onChange={(v) => set('departmentAr', v)} />
       <Field label="العنوان الفرعي" value={branding.subtitleAr} onChange={(v) => set('subtitleAr', v)} />
+      <Field label="شارة تحت العنوان" value={branding.heroBadgeAr || ''} onChange={(v) => set('heroBadgeAr', v)} />
       <Field label="عنوان الصفحة الرئيسية" value={branding.heroTitleAr} onChange={(v) => set('heroTitleAr', v)} />
       <Field label="وصف الصفحة الرئيسية" value={branding.heroSubtitleAr} onChange={(v) => set('heroSubtitleAr', v)} multiline className="sm:col-span-2" />
       <Field label="نص التذييل" value={branding.footerText} onChange={(v) => set('footerText', v)} className="sm:col-span-2" />
@@ -419,7 +427,7 @@ function CompanyEditor({
     onChange({ ...company, [field]: value });
   };
 
-  const updateRule = (field: string, value: string | string[]) => {
+  const updateRule = (field: string, value: string | string[] | boolean) => {
     onChange({
       ...company,
       rules: { ...company.rules, [field]: value },
@@ -476,9 +484,26 @@ function CompanyEditor({
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="صلاحية الروشتة" value={company.rules?.prescriptionValidity || ''} onChange={(v) => updateRule('prescriptionValidity', v)} />
           <Field label="أقصى مدة صرف" value={company.rules?.maxDispensePeriod || ''} onChange={(v) => updateRule('maxDispensePeriod', v)} />
+          <Field label="صلاحية الموافقة" value={company.rules?.approvalValidity || ''} onChange={(v) => updateRule('approvalValidity', v)} />
           <Field label="الحد المالي" value={company.rules?.financialLimit || ''} onChange={(v) => updateRule('financialLimit', v)} />
           <Field label="نسبة التحمل" value={company.rules?.copay || ''} onChange={(v) => updateRule('copay', v)} />
+          <Field label="موافقة مسبقة" value={company.rules?.priorApprovalRequired || ''} onChange={(v) => updateRule('priorApprovalRequired', v)} multiline className="sm:col-span-2" />
+          <Field label="روشتة خارجية" value={company.rules?.externalRxAllowed || ''} onChange={(v) => updateRule('externalRxAllowed', v)} />
+          <Field label="سياسة البدائل" value={company.rules?.alternativesPolicy || ''} onChange={(v) => updateRule('alternativesPolicy', v)} />
+          <Field label="مساعدة التشخيص" value={company.rules?.diagnosisHelp || ''} onChange={(v) => updateRule('diagnosisHelp', v)} className="sm:col-span-2" />
         </div>
+        <div className="grid sm:grid-cols-2 gap-3 pt-2">
+          <BoolField label="الكارنية مطلوبة" checked={!!company.rules?.cardRequired} onChange={(v) => updateRule('cardRequired', v)} />
+          <BoolField label="توقيع العميل مطلوب" checked={!!company.rules?.signatureRequired} onChange={(v) => updateRule('signatureRequired', v)} />
+          <BoolField label="ختم الطبيب مطلوب" checked={!!company.rules?.stampRequired} onChange={(v) => updateRule('stampRequired', v)} />
+          <BoolField label="التشخيص مطلوب" checked={!!company.rules?.diagnosisRequired} onChange={(v) => updateRule('diagnosisRequired', v)} />
+        </div>
+        <Field
+          label="تعليمات الكارنية (سطر لكل تعليمة)"
+          value={company.cardInstructions?.join('\n') || ''}
+          onChange={(v) => update('cardInstructions', v.split('\n').filter(Boolean))}
+          multiline
+        />
         <Field
           label="ملاحظات هامة"
           value={company.rules?.importantNotes?.join('\n') || ''}
@@ -489,6 +514,21 @@ function CompanyEditor({
           label="محظورات"
           value={company.rules?.prohibitions?.join('\n') || ''}
           onChange={(v) => updateRule('prohibitions', v.split('\n').filter(Boolean))}
+          multiline
+        />
+      </AdminSection>
+
+      <AdminSection title="جهات الاتصال (اختياري)">
+        <Field
+          label="سطر لكل جهة: النوع | القيمة"
+          value={(company.contacts || []).map((c) => `${c.type} | ${c.value}`).join('\n')}
+          onChange={(v) => {
+            const contacts = v.split('\n').map((line) => line.trim()).filter(Boolean).map((line) => {
+              const [type, ...rest] = line.split('|').map((p) => p.trim());
+              return { type: type || 'phone', value: rest.join('|') || '' };
+            });
+            update('contacts', contacts);
+          }}
           multiline
         />
       </AdminSection>
@@ -532,6 +572,28 @@ function AdminSection({ title, children }: { title: string; children: ReactNode 
       <h3 className="font-bold text-lg border-b border-white/10 pb-2">{title}</h3>
       {children}
     </div>
+  );
+}
+
+function BoolField({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (v: boolean) => void;
+}) {
+  return (
+    <label className="flex items-center gap-2 py-2 px-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="rounded border-white/20"
+      />
+      <span className="text-sm text-primary">{label}</span>
+    </label>
   );
 }
 

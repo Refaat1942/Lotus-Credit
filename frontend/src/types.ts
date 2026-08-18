@@ -17,6 +17,27 @@ export interface CoachCopyBundle {
   ui?: Record<string, LocalizedString>;
 }
 
+export type StringCopySection = Record<string, string>;
+
+export interface AppCopyBundle {
+  home?: StringCopySection;
+  header?: StringCopySection;
+  company?: StringCopySection;
+  card?: StringCopySection;
+  quickRef?: StringCopySection;
+  ruleLabels?: StringCopySection;
+  assistant?: StringCopySection;
+}
+
+export interface GuideCopyBundle {
+  phases?: StringCopySection;
+  start?: StringCopySection;
+  steps?: StringCopySection;
+  forms?: StringCopySection;
+  rules?: StringCopySection;
+  common?: StringCopySection;
+}
+
 export interface CompanyRules {
   prescriptionValidity?: string;
   maxDispensePeriod?: string;
@@ -135,6 +156,10 @@ export interface RulesData {
   branding?: Branding;
   /** Global defaults/overrides for interactive coach copy */
   coach?: CoachCopyBundle;
+  /** Global UI text overrides */
+  ui?: AppCopyBundle;
+  /** Dispensing guide text overrides */
+  guide?: GuideCopyBundle;
   meta: {
     titleAr: string;
     titleEn: string;

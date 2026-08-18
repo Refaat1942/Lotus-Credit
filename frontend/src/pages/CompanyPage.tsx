@@ -3,18 +3,20 @@ import { ArrowRight } from 'lucide-react';
 import Header from '../components/Header';
 import DispensingGuide from '../components/DispensingGuide';
 import { useRules } from '../hooks/useRules';
+import { useAppCopy } from '../hooks/useAppCopy';
 
 export default function CompanyPage() {
   const { id } = useParams<{ id: string }>();
   const { data, online, refetch, loading } = useRules();
+  const { u } = useAppCopy(data?.ui);
   const company = data?.companies.find((c) => c.id === id);
 
   if (!company && !loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-xl mb-4 text-primary">الشركة غير موجودة</p>
-          <Link to="/" className="text-lotus-500 hover:underline">العودة للرئيسية</Link>
+          <p className="text-xl mb-4 text-primary">{u('company', 'companyNotFound')}</p>
+          <Link to="/" className="text-lotus-500 hover:underline">{u('company', 'backHome')}</Link>
         </div>
       </div>
     );
@@ -30,10 +32,17 @@ export default function CompanyPage() {
           className="inline-flex items-center gap-2 text-muted hover:text-lotus-500 mb-4 transition-colors text-sm"
         >
           <ArrowRight className="w-4 h-4" />
-          العودة لشركات التأمين
+          {u('company', 'backToCompanies')}
         </Link>
 
-        {company && <DispensingGuide company={company} globalCoach={data?.coach} />}
+        {company && (
+          <DispensingGuide
+            company={company}
+            globalCoach={data?.coach}
+            ui={data?.ui}
+            guide={data?.guide}
+          />
+        )}
       </main>
     </div>
   );
