@@ -1,7 +1,7 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown } from 'lucide-react';
+import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown, Images, Database } from 'lucide-react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import CompanyLogo from '../components/CompanyLogo';
@@ -9,12 +9,14 @@ import CompanyLogoUpload from '../components/CompanyLogoUpload';
 import CoachMediaEditor from '../components/CoachMediaEditor';
 import CoachCopyEditor from '../components/CoachCopyEditor';
 import ContentAdminPanel from '../components/admin/ContentAdminPanel';
+import DocumentsAdminPanel from '../components/admin/DocumentsAdminPanel';
+import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
 import type { Branding, Company, CompanyLink, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
-type AdminTab = 'companies' | 'branding' | 'content';
+type AdminTab = 'companies' | 'branding' | 'content' | 'documents' | 'backups';
 
 export default function AdminPage() {
   const { data, online, refetch, loading } = useRules();
@@ -284,11 +286,39 @@ export default function AdminPage() {
             <Edit3 className="w-4 h-4" />
             المحتوى والنصوص
           </button>
+          <button
+            onClick={() => setActiveTab('documents')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+              activeTab === 'documents'
+                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
+                : 'glass hover:bg-white/10'
+            }`}
+          >
+            <Images className="w-4 h-4" />
+            المستندات
+          </button>
+          <button
+            onClick={() => setActiveTab('backups')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+              activeTab === 'backups'
+                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
+                : 'glass hover:bg-white/10'
+            }`}
+          >
+            <Database className="w-4 h-4" />
+            النسخ الاحتياطي
+          </button>
         </div>
 
         {activeTab === 'content' && editData && (
           <ContentAdminPanel data={editData} onChange={setEditData} />
         )}
+
+        {activeTab === 'documents' && editData && (
+          <DocumentsAdminPanel data={editData} adminToken={token} onCompanyChange={updateCompany} />
+        )}
+
+        {activeTab === 'backups' && <BackupsAdminPanel adminToken={token} />}
 
         {activeTab === 'branding' && (
           <div className="glass-card p-6">
