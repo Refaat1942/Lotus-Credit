@@ -1,12 +1,12 @@
 import { useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import {
   AlertTriangle, ArrowDown, ArrowUp, Flag, Images, Loader2, Play, Plus, Trash2, Upload, Wand2, X,
 } from 'lucide-react';
 import type { Company, CompanyPathway, PathwayStep } from '../../types';
-import PathwayCoach from '../PathwayCoach';
+import SimplePathwayEditor from './SimplePathwayEditor';
+import { EnableSwitch, PreviewModal } from './pathwayShared';
 import {
-  NODE_H, NODE_W, defaultPathwayTemplate, emptyStep, layoutPathway, newId, pathwayWarnings,
+  NODE_H, NODE_W, defaultPathwayTemplate, emptyStep, layoutPathway, linearSteps, newId, pathwayWarnings,
   type LayoutNode,
 } from '../../utils/pathway';
 import { uploadManyCompanyMedia } from '../../utils/mediaApi';
@@ -20,7 +20,22 @@ interface PathwayEditorProps {
 const END = '__end__';
 const NEW = '__new__';
 
-export default function PathwayEditor({ company, adminToken, onPatch }: PathwayEditorProps) {
+/** Simple numbered list by default; the branching flowchart only when asked for or already in use. */
+export default function PathwayEditor(props: PathwayEditorProps) {
+  const pathway = props.company.pathway;
+  const isSimple = !pathway || linearSteps(pathway) !== null;
+  const [advanced, setAdvanced] = useState(!isSimple);
+
+  if (!advanced) return <SimplePathwayEditor {...props} onAdvanced={() => setAdvanced(true)} />;
+  return <AdvancedPathwayEditor {...props} onSimple={isSimple ? () => setAdvanced(false) : undefined} />;
+}
+
+function AdvancedPathwayEditor({
+  company,
+  adminToken,
+  onPatch,
+  onSimple,
+}: PathwayEditorProps & { onSimple?: () => void }) {
   const pathway = company.pathway;
   const [selectedId, setSelectedId] = useState<string | null>(pathway?.startId ?? null);
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -69,6 +84,11 @@ export default function PathwayEditor({ company, adminToken, onPatch }: PathwayE
             مسار فارغ
           </button>
         </div>
+        {onSimple && (
+          <button type="button" onClick={onSimple} className="text-xs text-muted hover:text-lotus-400 underline">
+            رجوع للطريقة البسيطة (قائمة خطوات)
+          </button>
+        )}
       </div>
     );
   }
@@ -109,24 +129,7 @@ export default function PathwayEditor({ company, adminToken, onPatch }: PathwayE
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <label className="flex items-center gap-3 cursor-pointer select-none">
-          <span
-            className={`relative w-11 h-6 rounded-full transition-colors ${pathway.enabled ? 'bg-emerald-500' : 'bg-white/15'}`}
-          >
-            <span
-              className={`absolute top-0.5 w-5 h-5 rounded-full bg-white transition-all ${pathway.enabled ? 'right-0.5' : 'right-[22px]'}`}
-            />
-          </span>
-          <input
-            type="checkbox"
-            className="hidden"
-            checked={pathway.enabled}
-            onChange={(e) => patchPathway((p) => ({ ...p, enabled: e.target.checked }))}
-          />
-          <span className="text-sm font-medium">
-            {pathway.enabled ? 'المسار المخصص مفعّل — الصيدلي يشوفه بدل المرشد العادي' : 'المسار غير مفعّل (مسودة)'}
-          </span>
-        </label>
+        <EnableSwitch enabled={pathway.enabled} onChange={(v) => patchPathway((p) => ({ ...p, enabled: v }))} />
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
@@ -198,26 +201,13 @@ export default function PathwayEditor({ company, adminToken, onPatch }: PathwayE
         <p className="text-center text-sm text-muted py-4">اضغط على أي خطوة في الرسم لتعديلها</p>
       )}
 
-      {previewOpen &&
-        createPortal(
-        <div className="fixed inset-0 z-[150] bg-black/80 flex items-center justify-center p-2 sm:p-4" onClick={() => setPreviewOpen(false)}>
-          <div
-            className="w-full max-w-lg h-[88vh] rounded-2xl bg-[var(--color-bg-start)] border border-white/10 flex flex-col overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-              <span className="text-xs text-muted">معاينة — كما سيراها الصيدلي</span>
-              <button type="button" onClick={() => setPreviewOpen(false)} className="p-1.5 rounded-lg hover:bg-white/10">
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="flex-1 min-h-0 px-3 overflow-hidden">
-              <PathwayCoach company={{ ...company, pathway }} preview />
-            </div>
-          </div>
-        </div>,
-          document.body,
-        )}
+      {previewOpen && <PreviewModal company={company} pathway={pathway} onClose={() => setPreviewOpen(false)} />}
+
+      {onSimple && (
+        <button type="button" onClick={onSimple} className="text-xs text-muted hover:text-lotus-400 underline">
+          رجوع للطريقة البسيطة (قائمة خطوات)
+        </button>
+      )}
     </div>
   );
 }
