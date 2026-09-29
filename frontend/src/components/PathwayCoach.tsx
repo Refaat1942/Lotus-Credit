@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { BookOpen, ExternalLink, RotateCcw, Sparkles, Undo2, X, ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Company, CompanyMedia, PathwayOption } from '../types';
@@ -123,7 +123,6 @@ export default function PathwayCoach({ company, onExit, preview }: PathwayCoachP
       </div>
 
       <div className={`${preview ? '' : 'sticky bottom-0'} z-40 -mx-1 px-1 pt-2 pb-4 bg-gradient-to-t from-[var(--color-bg-start)] via-[var(--color-bg-start)] to-transparent`}>
-        <AnimatePresence mode="popLayout">
           <motion.div
             key={`${currentId}-${history.length}`}
             initial={{ opacity: 0, y: 12 }}
@@ -178,7 +177,6 @@ export default function PathwayCoach({ company, onExit, preview }: PathwayCoachP
               </>
             )}
           </motion.div>
-        </AnimatePresence>
       </div>
 
       {lightbox && (

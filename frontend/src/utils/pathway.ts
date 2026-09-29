@@ -79,6 +79,77 @@ export function defaultPathwayTemplate(company: Company): CompanyPathway {
   return { enabled: false, startId: ids.card, steps };
 }
 
+export interface SimpleStep {
+  id: string;
+  text: string;
+  mediaIds?: string[];
+}
+
+const NEXT_LABEL = 'التالي ←';
+
+/** Steps in order when the pathway is a straight line (no branches); null otherwise. */
+export function linearSteps(pathway: CompanyPathway): PathwayStep[] | null {
+  const byId = new Map(pathway.steps.map((s) => [s.id, s]));
+  const order: PathwayStep[] = [];
+  const seen = new Set<string>();
+  let cur = byId.get(pathway.startId);
+  while (cur && !seen.has(cur.id)) {
+    if (cur.options.length > 1 || cur.link?.url) return null;
+    seen.add(cur.id);
+    order.push(cur);
+    const next = cur.options[0]?.next;
+    cur = next ? byId.get(next) : undefined;
+  }
+  if (cur || order.length !== pathway.steps.length) return null;
+  return order;
+}
+
+export function toSimpleSteps(steps: PathwayStep[]): SimpleStep[] {
+  return steps.map((s) => ({
+    id: s.id,
+    text: [s.message, ...(s.bullets || []).filter((b) => b.trim()).map((b) => `• ${b}`)].filter(Boolean).join('\n'),
+    mediaIds: s.mediaIds,
+  }));
+}
+
+export function fromSimpleSteps(list: SimpleStep[], enabled: boolean): CompanyPathway {
+  const steps: PathwayStep[] = list.map((s, i) => {
+    const firstLine = s.text.split('\n')[0].trim();
+    return {
+      id: s.id,
+      title: firstLine.length > 40 ? `${firstLine.slice(0, 38)}…` : firstLine || `خطوة ${i + 1}`,
+      message: s.text,
+      mediaIds: s.mediaIds?.length ? s.mediaIds : undefined,
+      options: i < list.length - 1 ? [{ id: `${s.id}-next`, label: NEXT_LABEL, next: list[i + 1].id }] : [],
+    };
+  });
+  return { enabled, startId: list[0]?.id ?? '', steps };
+}
+
+/** Starter list filled from the company's existing rules. */
+export function simpleTemplate(company: Company): SimpleStep[] {
+  const r = company.rules || {};
+  const lines = (arr: (string | false | undefined | null)[]) => arr.filter(Boolean).join('\n');
+  const texts = [
+    lines(['اطلب الكارنية من العميل وتأكد إنها سارية.', ...(company.cardInstructions || []).slice(0, 3).map((t) => `• ${t}`)]),
+    lines(['تأكد من نوع الروشتة:', ...(company.forms || []).map((f) => `• ${f}`)]),
+    (company.approvalPortal || r.priorApprovalRequired) &&
+      lines([
+        'خد الموافقة المسبقة لو الأدوية محتاجة.',
+        company.approvalPortal && `البوابة: ${company.approvalPortal}`,
+        r.approvalValidity && `صلاحية الموافقة: ${r.approvalValidity}`,
+      ]),
+    lines([
+      'راجع قبل ما تقفل الفاتورة:',
+      r.copay && `• نسبة التحمل: ${r.copay}`,
+      r.signatureRequired && '• توقيع العميل',
+      r.stampRequired && '• ختم الطبيب',
+      r.diagnosisRequired && '• التشخيص',
+    ]),
+  ].filter(Boolean) as string[];
+  return texts.map((text) => ({ id: newId('step'), text }));
+}
+
 export function stepMedia(step: PathwayStep, media: CompanyMedia[]): CompanyMedia[] {
   return (step.mediaIds || [])
     .map((id) => media.find((m) => m.id === id))
