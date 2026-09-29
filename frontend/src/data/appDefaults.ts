@@ -81,6 +81,7 @@ export const DEFAULT_GUIDE: Required<GuideCopyBundle> = {
     steps: 'خطوات الصرف',
     forms: 'النماذج والمستند',
     rules: 'الشروط',
+    approvals: 'أشكال الموافقات',
     links: 'الروابط',
   },
   start: {
@@ -223,6 +224,7 @@ export const GUIDE_FIELD_LABELS: Record<string, Record<string, CopyFieldMeta>> =
     steps: { label: 'خطوات الصرف' },
     forms: { label: 'النماذج' },
     rules: { label: 'الشروط' },
+    approvals: { label: 'أشكال الموافقات' },
     links: { label: 'الروابط' },
   },
   start: {

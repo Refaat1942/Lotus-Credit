@@ -11,6 +11,7 @@ import DocumentsAdminPanel, { CompanyDocuments } from '../components/admin/Docum
 import CoachStepsEditor from '../components/admin/CoachStepsEditor';
 import LinesField from '../components/admin/LinesField';
 import GuideStepsEditor from '../components/admin/GuideStepsEditor';
+import ApprovalSamplesEditor from '../components/admin/ApprovalSamplesEditor';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
@@ -527,7 +528,6 @@ function CompanyEditor({
           company={company}
           globalCoach={globalCoach}
           adminToken={adminToken}
-          onChange={onChange}
           onPatch={onPatch}
         />
       </AdminSection>
@@ -572,6 +572,10 @@ function CompanyEditor({
           value={company.rules?.prohibitions || []}
           onChange={(v) => onPatch((c) => ({ ...c, rules: { ...c.rules, prohibitions: v } }))}
         />
+      </AdminSection>
+
+      <AdminSection title={`أشكال الموافقات (${company.approvalSamples?.length || 0})`}>
+        <ApprovalSamplesEditor key={company.id} company={company} adminToken={adminToken} onPatch={onPatch} />
       </AdminSection>
 
       <AdminSection title="جهات الاتصال (اختياري)">

@@ -1,30 +1,23 @@
 import type { Company } from '../types';
-import { COACH_ANSWER_MEDIA_CONFIG, COACH_STEP_CONFIG } from './coachSteps';
+import { COACH_STEP_CONFIG, resolveFormDocs, stepPhotos } from './coachSteps';
+import { galleryMedia } from './mediaFilters';
 
-/** Human-readable list of every place a media id is currently assigned within a company. */
+/** Every place a photo actually appears for the pharmacist, including photos the coach picks automatically. */
 export function getMediaUsage(company: Company, mediaId: string): string[] {
+  const media = galleryMedia(company.media || []);
   const usage: string[] = [];
-  const forms = company.forms || [];
-  const byIndex = company.formMediaByIndex || [];
-  const byMap = company.formMediaMap || {};
 
-  forms.forEach((label, i) => {
-    if (byIndex[i] === mediaId || byMap[label] === mediaId) {
-      usage.push(`نموذج: ${label}`);
+  COACH_STEP_CONFIG.forEach((step, i) => {
+    const label = `المرشد — خطوة ${i + 1}: ${step.labelAr}`;
+    if (step.id === 'form_pick') {
+      (company.forms || []).forEach((form, fi) => {
+        if (resolveFormDocs(form, media, company, fi).some((m) => m.id === mediaId)) usage.push(`${label} (${form})`);
+      });
+    } else if (stepPhotos(company, media, step.id).some((m) => m.id === mediaId)) {
+      usage.push(label);
     }
   });
 
-  const stepMap = company.stepMediaMap || {};
-  for (const step of COACH_STEP_CONFIG) {
-    const val = stepMap[step.id];
-    const ids = Array.isArray(val) ? val : val ? [val] : [];
-    if (ids.includes(mediaId)) usage.push(`خطوة المرشد: ${step.labelAr}`);
-  }
-
-  const answerMap = company.coachAnswerMedia || {};
-  for (const answer of COACH_ANSWER_MEDIA_CONFIG) {
-    if (answerMap[answer.key] === mediaId) usage.push(`إجابة: ${answer.labelAr}`);
-  }
-
+  if (company.approvalSamples?.includes(mediaId)) usage.push('أشكال الموافقات');
   return usage;
 }

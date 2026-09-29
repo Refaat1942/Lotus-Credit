@@ -108,6 +108,8 @@ export interface Company {
   formsEn?: string[];
   /** Admin-assigned: dispensing form label → media id */
   formMediaMap?: Record<string, string>;
+  /** Admin-assigned: prescription type label → its documents, in order (wins over the single-image fields) */
+  formMedia?: Record<string, string[]>;
   /** Admin-assigned: parallel to forms[] — media id per form choice (stable by index) */
   formMediaByIndex?: string[];
   /** Admin-assigned: coach answer key → media id (e.g. card_bad, no_card, need_approval) */
@@ -120,6 +122,8 @@ export interface Company {
   cardInstructions?: string[];
   /** Admin-written "before closing the invoice" points; when unset they're built from the rules */
   rulesTipBullets?: string[];
+  /** Photos for the pharmacist's "أشكال الموافقات" tab, in order */
+  approvalSamples?: string[];
   /** Admin-written numbered points under each step of the "خطوات الصرف" tab, keyed by step */
   guideStepPoints?: Record<string, string[]>;
   media?: CompanyMedia[];

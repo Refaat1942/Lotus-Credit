@@ -4,6 +4,15 @@ import type { Company } from '../types';
 export function stripMediaFromCompany(company: Company, mediaId: string): Company {
   const next: Company = { ...company, media: (company.media || []).filter((m) => m.id !== mediaId) };
 
+  if (next.approvalSamples) {
+    const ids = next.approvalSamples.filter((id) => id !== mediaId);
+    next.approvalSamples = ids.length ? ids : undefined;
+  }
+  if (next.formMedia) {
+    next.formMedia = Object.fromEntries(
+      Object.entries(next.formMedia).map(([k, ids]) => [k, ids.filter((id) => id !== mediaId)]),
+    );
+  }
   if (next.formMediaMap) {
     const map = Object.fromEntries(Object.entries(next.formMediaMap).filter(([, v]) => v !== mediaId));
     next.formMediaMap = Object.keys(map).length ? map : undefined;
