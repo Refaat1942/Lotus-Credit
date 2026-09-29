@@ -119,6 +119,31 @@ export interface Company {
   cardInstructions?: string[];
   media?: CompanyMedia[];
   links?: CompanyLink[];
+  /** Admin-designed dispensing pathway that replaces the default coach when enabled */
+  pathway?: CompanyPathway;
+}
+
+export interface PathwayOption {
+  id: string;
+  label: string;
+  /** Target step id; null ends the pathway */
+  next: string | null;
+}
+
+export interface PathwayStep {
+  id: string;
+  title: string;
+  message: string;
+  bullets?: string[];
+  mediaIds?: string[];
+  link?: { label: string; url: string };
+  options: PathwayOption[];
+}
+
+export interface CompanyPathway {
+  enabled: boolean;
+  startId: string;
+  steps: PathwayStep[];
 }
 
 export interface Branding {

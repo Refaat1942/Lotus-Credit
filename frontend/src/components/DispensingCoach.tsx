@@ -29,7 +29,7 @@ type Phase =
   | 'final_checks'
   | 'done';
 
-interface ChatLine {
+export interface ChatLine {
   id: string;
   from: 'coach' | 'user';
   text: string;
@@ -577,7 +577,7 @@ export default function DispensingCoach({
   );
 }
 
-function ChatBubble({
+export function ChatBubble({
   line,
   color,
   onZoom,

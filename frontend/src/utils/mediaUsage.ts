@@ -26,5 +26,9 @@ export function getMediaUsage(company: Company, mediaId: string): string[] {
     if (answerMap[answer.key] === mediaId) usage.push(`إجابة: ${answer.labelAr}`);
   }
 
+  for (const step of company.pathway?.steps || []) {
+    if (step.mediaIds?.includes(mediaId)) usage.push(`المسار: ${step.title || '—'}`);
+  }
+
   return usage;
 }

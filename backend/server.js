@@ -286,6 +286,11 @@ function stripMediaReferences(company, mediaId) {
     }
     if (!Object.keys(company.stepMediaMap).length) delete company.stepMediaMap;
   }
+  if (company.pathway && Array.isArray(company.pathway.steps)) {
+    for (const step of company.pathway.steps) {
+      if (Array.isArray(step.mediaIds)) step.mediaIds = step.mediaIds.filter((id) => id !== mediaId);
+    }
+  }
   return company;
 }
 
