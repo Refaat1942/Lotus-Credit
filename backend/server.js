@@ -257,6 +257,9 @@ app.post('/api/admin/companies/:id/logo', authMiddleware, (req, res) => {
 });
 
 function stripMediaReferences(company, mediaId) {
+  if (Array.isArray(company.approvalSamples)) {
+    company.approvalSamples = company.approvalSamples.filter((id) => id !== mediaId);
+  }
   if (company.formMedia) {
     for (const key of Object.keys(company.formMedia)) {
       company.formMedia[key] = company.formMedia[key].filter((id) => id !== mediaId);

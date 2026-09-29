@@ -408,15 +408,16 @@ function DocumentCard({
         className="w-full py-1.5 px-2 rounded-lg bg-white/5 border border-white/10 text-xs focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
       />
 
-      <div className="flex flex-wrap gap-1">
+      <div className="space-y-1">
+        <p className="text-[10px] font-bold text-muted">📍 مكانها في المرشد التفاعلي:</p>
         {usage.length > 0 ? (
           usage.map((u) => (
-            <span key={u} className="text-[10px] px-2 py-0.5 rounded-full bg-lotus-500/15 text-lotus-300">
+            <p key={u} className="text-[11px] leading-snug px-2 py-1 rounded-md bg-lotus-500/15 text-lotus-300">
               {u}
-            </span>
+            </p>
           ))
         ) : (
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-muted">غير مستخدمة حالياً</span>
+          <p className="text-[11px] px-2 py-1 rounded-md bg-white/5 text-muted">مش ظاهرة في أي خطوة</p>
         )}
       </div>
 

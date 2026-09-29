@@ -1,10 +1,12 @@
 import type { CoachPhase, Company, CompanyMedia } from '../types';
 import { pickApprovalMedia, pickMediaForForm } from './formMedia';
 
+/** Coach steps in the order the pharmacist sees them (same numbering as the admin step editor). */
 export const COACH_STEP_CONFIG: { id: CoachPhase; labelAr: string }[] = [
   { id: 'welcome', labelAr: 'الترحيب' },
   { id: 'card_check', labelAr: 'فحص الكارنية' },
   { id: 'card_help', labelAr: 'مشكلة الكارنية' },
+  { id: 'form_pick', labelAr: 'نوع الروشتة والنموذج' },
   { id: 'approval_check', labelAr: 'سؤال الموافقة' },
   { id: 'approval_portal', labelAr: 'أخذ الموافقة' },
   { id: 'rules_tip', labelAr: 'قبل ما تقفل الفاتورة' },

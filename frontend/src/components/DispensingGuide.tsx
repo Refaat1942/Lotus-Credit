@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  PlayCircle, ListChecks, FileImage, AlertTriangle, Link2,
+  PlayCircle, ListChecks, FileImage, AlertTriangle, Link2, FileCheck,
   Phone, ExternalLink, Check, ZoomIn, X, Sparkles,
 } from 'lucide-react';
 import type { AppCopyBundle, CoachCopyBundle, Company, CompanyMedia, GuideCopyBundle } from '../types';
@@ -11,11 +11,11 @@ import MediaLinks from './MediaLinks';
 import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
-import { resolveFormDocs } from '../utils/coachSteps';
+import { mediaByIds, resolveFormDocs } from '../utils/coachSteps';
 import { useAppCopy } from '../hooks/useAppCopy';
 import { buildGuideSteps } from '../utils/guideSteps';
 
-type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'links';
+type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'approvals' | 'links';
 
 interface DispensingGuideProps {
   company: Company;
@@ -29,6 +29,7 @@ const PHASE_ICONS = {
   steps: ListChecks,
   forms: FileImage,
   rules: AlertTriangle,
+  approvals: FileCheck,
   links: Link2,
 } as const;
 
@@ -51,7 +52,8 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
     ? resolveFormDocs(activeForm, media, company, selectedForm)
     : cardDocs.slice(0, 1);
 
-  const phases: Phase[] = ['start', 'steps', 'forms', 'rules', 'links'];
+  const approvalDocs = mediaByIds(company.media || [], company.approvalSamples);
+  const phases: Phase[] = ['start', 'steps', 'forms', 'rules', ...(approvalDocs.length ? ['approvals' as const] : []), 'links'];
 
   const dispensingSteps = buildGuideSteps(company, g);
 
@@ -393,6 +395,28 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
             {company.cardInstructions && (
               <NotesList title={u('ruleLabels', 'cardInstructions')} items={company.cardInstructions} variant="info" />
             )}
+          </motion.div>
+        )}
+
+        {phase === 'approvals' && (
+          <motion.div key="approvals" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="glass-card p-5 space-y-4">
+            <h2 className="text-lg font-bold text-primary flex items-center gap-2">
+              <FileCheck className="w-5 h-5 text-lotus-500" />
+              {g('phases', 'approvals')}
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {approvalDocs.map((doc) => (
+                <div key={doc.id} className="rounded-xl border border-theme overflow-hidden bg-black/10">
+                  <button type="button" onClick={() => setLightbox(doc)} className="block w-full group relative">
+                    <img src={doc.url} alt={doc.title} loading="lazy" className="w-full max-h-80 object-contain bg-white/5" />
+                    <span className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
+                      <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
+                    </span>
+                  </button>
+                  <p className="text-xs text-muted px-3 py-2 truncate">{doc.title}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
 
