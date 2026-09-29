@@ -9,6 +9,8 @@ import CompanyLogo from './CompanyLogo';
 import CompanyLinks from './CompanyLinks';
 import MediaLinks from './MediaLinks';
 import DispensingCoach from './DispensingCoach';
+import PathwayCoach from './PathwayCoach';
+import { isPathwayActive } from '../utils/pathway';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
 import { resolveFormDoc } from '../utils/coachSteps';
@@ -76,6 +78,18 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
     setPhase('forms');
     setCoachActive(false);
   };
+
+  if (coachActive && isPathwayActive(company)) {
+    return (
+      <PathwayCoach
+        company={company}
+        onExit={() => {
+          setCoachActive(false);
+          setPhase('forms');
+        }}
+      />
+    );
+  }
 
   if (coachActive) {
     return (

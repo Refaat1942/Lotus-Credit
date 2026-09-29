@@ -9,7 +9,8 @@ import CompanyLogoUpload from '../components/CompanyLogoUpload';
 import CoachMediaEditor from '../components/CoachMediaEditor';
 import CoachCopyEditor from '../components/CoachCopyEditor';
 import ContentAdminPanel from '../components/admin/ContentAdminPanel';
-import DocumentsAdminPanel from '../components/admin/DocumentsAdminPanel';
+import DocumentsAdminPanel, { CompanyDocuments } from '../components/admin/DocumentsAdminPanel';
+import PathwayEditor from '../components/admin/PathwayEditor';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
@@ -25,7 +26,7 @@ export default function AdminPage() {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [editData, setEditData] = useState<RulesData | null>(null);
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<AdminTab>('companies');
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
@@ -65,7 +66,7 @@ export default function AdminPage() {
   const handleLogout = () => {
     setToken('');
     setEditData(null);
-    setSelectedCompany(null);
+    setSelectedId(null);
     setPassword('');
   };
 
@@ -100,7 +101,13 @@ export default function AdminPage() {
         c.id === updated.id ? updated : c
       ),
     });
-    setSelectedCompany(updated);
+  };
+
+  // Applies against the latest state so async uploads never overwrite edits made meanwhile.
+  const patchCompany = (companyId: string, fn: (c: Company) => Company) => {
+    setEditData((prev) =>
+      prev ? { ...prev, companies: prev.companies.map((c) => (c.id === companyId ? fn(c) : c)) } : prev,
+    );
   };
 
   const updateBranding = (branding: Branding) => {
@@ -114,7 +121,7 @@ export default function AdminPage() {
       ...editData,
       companies: editData.companies.filter((c) => c.id !== id),
     });
-    setSelectedCompany(null);
+    setSelectedId(null);
   };
 
   const addCompany = () => {
@@ -132,9 +139,11 @@ export default function AdminPage() {
       links: [],
     };
     setEditData({ ...editData, companies: [...editData.companies, newCo] });
-    setSelectedCompany(newCo);
+    setSelectedId(newCo.id);
     setActiveTab('companies');
   };
+
+  const selectedCompany = editData?.companies.find((c) => c.id === selectedId) ?? null;
 
   const sortedCompanies = editData
     ? [...editData.companies].sort((a, b) => (a.order || 0) - (b.order || 0))
@@ -152,7 +161,7 @@ export default function AdminPage() {
     const companies = reordered.map((c, i) => ({ ...c, order: i + 1 }));
     setEditData({ ...editData, companies });
     const sel = companies.find((c) => c.id === id);
-    if (sel) setSelectedCompany(sel);
+    if (sel) setSelectedId(sel.id);
   };
 
   if (!isLoggedIn) {
@@ -315,7 +324,7 @@ export default function AdminPage() {
         )}
 
         {activeTab === 'documents' && editData && (
-          <DocumentsAdminPanel data={editData} adminToken={token} onCompanyChange={updateCompany} />
+          <DocumentsAdminPanel data={editData} adminToken={token} onPatchCompany={patchCompany} />
         )}
 
         {activeTab === 'backups' && <BackupsAdminPanel adminToken={token} />}
@@ -354,7 +363,7 @@ export default function AdminPage() {
                   <div
                     key={c.id}
                     className={`flex items-center gap-1 rounded-xl transition-colors ${
-                      selectedCompany?.id === c.id ? 'bg-lotus-500/20' : 'hover:bg-white/5'
+                      selectedId === c.id ? 'bg-lotus-500/20' : 'hover:bg-white/5'
                     }`}
                   >
                     <div className="flex flex-col p-1">
@@ -377,7 +386,7 @@ export default function AdminPage() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => setSelectedCompany(c)}
+                      onClick={() => setSelectedId(c.id)}
                       className="flex-1 text-right p-2 flex items-center gap-2 min-w-0"
                     >
                       <CompanyLogo company={c} size="sm" />
@@ -394,6 +403,7 @@ export default function AdminPage() {
                   company={selectedCompany}
                   adminToken={token}
                   onChange={updateCompany}
+                  onPatch={(fn) => patchCompany(selectedCompany.id, fn)}
                   onDelete={() => deleteCompany(selectedCompany.id)}
                 />
               ) : (
@@ -446,11 +456,13 @@ function CompanyEditor({
   company,
   adminToken,
   onChange,
+  onPatch,
   onDelete,
 }: {
   company: Company;
   adminToken: string;
   onChange: (c: Company) => void;
+  onPatch: (fn: (c: Company) => Company) => void;
   onDelete: () => void;
 }) {
   const update = (field: keyof Company, value: unknown) => {
@@ -491,6 +503,14 @@ function CompanyEditor({
           <Field label="الترتيب" value={String(company.order)} onChange={(v) => update('order', Number(v) || 0)} />
         </div>
       </div>
+
+      <AdminSection title={`صور الشركة (${company.media?.length || 0})`}>
+        <CompanyDocuments key={company.id} company={company} adminToken={adminToken} onPatch={onPatch} embedded />
+      </AdminSection>
+
+      <AdminSection title="مسار الصرف المخصص">
+        <PathwayEditor key={company.id} company={company} adminToken={adminToken} onPatch={onPatch} />
+      </AdminSection>
 
       <AdminSection title="المرشد التفاعلي — النماذج والصور">
         <Field

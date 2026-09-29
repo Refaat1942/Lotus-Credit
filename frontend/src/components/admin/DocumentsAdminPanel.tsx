@@ -1,8 +1,17 @@
 import { useMemo, useRef, useState } from 'react';
-import { ChevronDown, ChevronUp, Loader2, Search, Trash2, Upload, X, ZoomIn } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { CheckSquare, ChevronDown, ChevronUp, Loader2, Search, Square, Trash2, Upload, X, ZoomIn } from 'lucide-react';
 import type { Company, CompanyMedia, RulesData } from '../../types';
 import CompanyLogo from '../CompanyLogo';
 import { getMediaUsage } from '../../utils/mediaUsage';
+import { stripMediaFromCompany } from '../../utils/pathway';
+import {
+  deleteCompanyMedia,
+  readAsDataUrl,
+  updateCompanyMedia,
+  uploadManyCompanyMedia,
+  validateImage,
+} from '../../utils/mediaApi';
 
 type CategoryFilter = 'all' | 'form' | 'card' | 'photo';
 
@@ -13,34 +22,33 @@ const CATEGORY_LABELS: Record<CategoryFilter, string> = {
   photo: 'صور',
 };
 
+export type CompanyPatcher = (companyId: string, fn: (c: Company) => Company) => void;
+
 interface DocumentsAdminPanelProps {
   data: RulesData;
   adminToken: string;
-  onCompanyChange: (company: Company) => void;
+  onPatchCompany: CompanyPatcher;
 }
 
-export default function DocumentsAdminPanel({ data, adminToken, onCompanyChange }: DocumentsAdminPanelProps) {
+export default function DocumentsAdminPanel({ data, adminToken, onPatchCompany }: DocumentsAdminPanelProps) {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<CategoryFilter>('all');
-  const [preview, setPreview] = useState<CompanyMedia | null>(null);
 
   const companies = useMemo(
     () => [...data.companies].sort((a, b) => (a.order || 0) - (b.order || 0)),
     [data.companies],
   );
-
   const totalDocs = companies.reduce((sum, c) => sum + (c.media?.length || 0), 0);
 
   return (
     <div className="space-y-4">
       <div className="glass-card p-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div>
-            <h2 className="text-xl font-bold">مكتبة المستندات</h2>
-            <p className="text-xs text-muted mt-1">
-              كل الصور والنماذج المرفوعة لكل شركة، ومكان استخدام كل واحدة — {totalDocs} مستند
-            </p>
-          </div>
+        <div className="mb-4">
+          <h2 className="text-xl font-bold">مكتبة المستندات</h2>
+          <p className="text-xs text-muted mt-1">
+            كل الصور والنماذج لكل شركة، ومكان استخدام كل واحدة — {totalDocs} مستند. يمكنك رفع أكثر من صورة مرة واحدة،
+            وتحديد عدة صور وحذفها معاً.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-3">
@@ -77,46 +85,35 @@ export default function DocumentsAdminPanel({ data, adminToken, onCompanyChange 
           adminToken={adminToken}
           query={query}
           category={category}
-          onChange={onCompanyChange}
-          onPreview={setPreview}
+          onPatch={(fn) => onPatchCompany(company.id, fn)}
         />
       ))}
-
-      {preview && (
-        <div className="fixed inset-0 z-[200] bg-black/90 flex flex-col" onClick={() => setPreview(null)}>
-          <div className="flex justify-between items-center p-4 border-b border-white/10" onClick={(e) => e.stopPropagation()}>
-            <p className="text-white text-sm truncate">{preview.title}</p>
-            <button type="button" onClick={() => setPreview(null)} className="p-2 rounded-lg bg-white/10">
-              <X className="w-5 h-5 text-white" />
-            </button>
-          </div>
-          <div className="flex-1 flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
-            <img src={preview.url} alt={preview.title} className="max-w-full max-h-[85vh] object-contain" />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
 
-function CompanyDocuments({
+export function CompanyDocuments({
   company,
   adminToken,
-  query,
-  category,
-  onChange,
-  onPreview,
+  onPatch,
+  query = '',
+  category = 'all',
+  embedded = false,
 }: {
   company: Company;
   adminToken: string;
-  query: string;
-  category: CategoryFilter;
-  onChange: (c: Company) => void;
-  onPreview: (m: CompanyMedia) => void;
+  onPatch: (fn: (c: Company) => Company) => void;
+  query?: string;
+  category?: CategoryFilter;
+  /** Shown inside the company editor: always open, no header */
+  embedded?: boolean;
 }) {
-  const [open, setOpen] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState('');
+  const [open, setOpen] = useState(embedded);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [deleting, setDeleting] = useState(false);
+  const [preview, setPreview] = useState<CompanyMedia | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const media = company.media || [];
@@ -132,36 +129,156 @@ function CompanyDocuments({
   });
 
   const hasQuery = query.trim().length > 0;
-  if (hasQuery && filtered.length === 0) return null;
+  if (!embedded && hasQuery && filtered.length === 0) return null;
 
-  const uploadNew = async (file: File) => {
-    setError('');
-    if (!file.type.startsWith('image/')) {
-      setError('اختر صورة PNG أو JPG أو WebP');
-      return;
-    }
-    if (file.size > 3 * 1024 * 1024) {
-      setError('الحجم الأقصى 3MB');
-      return;
-    }
-    setUploading(true);
-    try {
-      const dataUrl = await readAsDataUrl(file);
-      const res = await fetch(`/api/admin/companies/${company.id}/media`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
-        body: JSON.stringify({ dataUrl, title: file.name.replace(/\.[^.]+$/, '') }),
-      });
-      if (!res.ok) throw new Error('upload failed');
-      const { company: updated } = await res.json();
-      onChange(updated);
-      setOpen(true);
-    } catch {
-      setError('فشل رفع المستند');
-    } finally {
-      setUploading(false);
-    }
+  const uploadFiles = async (files: File[]) => {
+    if (!files.length) return;
+    setErrors([]);
+    const { items, errors: errs } = await uploadManyCompanyMedia(company.id, adminToken, files, (done, total) =>
+      setProgress({ done, total }),
+    );
+    if (items.length) onPatch((c) => ({ ...c, media: [...(c.media || []), ...items] }));
+    setErrors(errs);
+    setProgress(null);
+    setOpen(true);
   };
+
+  const toggle = (id: string) =>
+    setSelected((s) => {
+      const next = new Set(s);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+
+  const allVisibleSelected = filtered.length > 0 && filtered.every((m) => selected.has(m.id));
+
+  const deleteSelected = async () => {
+    const ids = [...selected];
+    if (!ids.length) return;
+    if (!confirm(`حذف ${ids.length} صورة نهائياً؟ سيتم إلغاء ربطها من أي نموذج أو خطوة تستخدمها.`)) return;
+    setDeleting(true);
+    setErrors([]);
+    const removed: string[] = [];
+    for (const id of ids) {
+      try {
+        await deleteCompanyMedia(company.id, adminToken, id);
+        removed.push(id);
+      } catch {
+        setErrors((e) => [...e, `فشل حذف: ${media.find((m) => m.id === id)?.title || id}`]);
+      }
+    }
+    onPatch((c) => removed.reduce((acc, id) => stripMediaFromCompany(acc, id), c));
+    setSelected(new Set());
+    setDeleting(false);
+  };
+
+  const body = (
+    <div className={embedded ? 'space-y-3' : 'p-4 border-t border-white/10 space-y-3'}>
+      {errors.length > 0 && (
+        <div className="text-xs text-red-400 rounded-lg bg-red-500/10 px-3 py-2 space-y-0.5">
+          {errors.map((e, i) => (
+            <p key={i}>{e}</p>
+          ))}
+        </div>
+      )}
+
+      <div
+        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-dashed border-lotus-500/30 p-3"
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => {
+          e.preventDefault();
+          uploadFiles(Array.from(e.dataTransfer.files));
+        }}
+      >
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              setSelected(allVisibleSelected ? new Set() : new Set(filtered.map((m) => m.id)))
+            }
+            disabled={!filtered.length}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 text-xs hover:bg-white/15 disabled:opacity-40"
+          >
+            {allVisibleSelected ? <CheckSquare className="w-3.5 h-3.5" /> : <Square className="w-3.5 h-3.5" />}
+            {allVisibleSelected ? 'إلغاء التحديد' : 'تحديد الكل'}
+          </button>
+          {selected.size > 0 && (
+            <button
+              type="button"
+              onClick={deleteSelected}
+              disabled={deleting}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 text-red-300 text-xs font-medium hover:bg-red-500/30 disabled:opacity-50"
+            >
+              {deleting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
+              حذف المحدد ({selected.size})
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] text-muted hidden sm:inline">أو اسحب الصور هنا</span>
+          <input
+            ref={fileRef}
+            type="file"
+            multiple
+            accept="image/png,image/jpeg,image/webp"
+            className="hidden"
+            onChange={(e) => {
+              uploadFiles(Array.from(e.target.files || []));
+              e.target.value = '';
+            }}
+          />
+          <button
+            type="button"
+            disabled={!!progress}
+            onClick={() => fileRef.current?.click()}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-lotus-500 text-white text-xs font-medium hover:bg-lotus-600 disabled:opacity-60"
+          >
+            {progress ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
+            {progress ? `جاري الرفع ${progress.done} / ${progress.total}` : 'رفع صور (يمكن اختيار أكثر من صورة)'}
+          </button>
+        </div>
+      </div>
+
+      {filtered.length === 0 ? (
+        <p className="text-center text-muted text-sm py-6">لا توجد صور بعد</p>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {filtered.map((item) => (
+            <DocumentCard
+              key={item.id}
+              company={company}
+              item={item}
+              adminToken={adminToken}
+              selected={selected.has(item.id)}
+              onToggle={() => toggle(item.id)}
+              onPatch={onPatch}
+              onPreview={setPreview}
+            />
+          ))}
+        </div>
+      )}
+
+      {preview &&
+        createPortal(
+        <div className="fixed inset-0 z-[200] bg-black/90 flex flex-col" onClick={() => setPreview(null)}>
+          <div className="flex justify-between items-center p-4 border-b border-white/10" onClick={(e) => e.stopPropagation()}>
+            <p className="text-white text-sm truncate">{preview.title}</p>
+            <button type="button" onClick={() => setPreview(null)} className="p-2 rounded-lg bg-white/10">
+              <X className="w-5 h-5 text-white" />
+            </button>
+          </div>
+          <div className="flex-1 flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
+            <img src={preview.url} alt={preview.title} className="max-w-full max-h-[85vh] object-contain" />
+          </div>
+        </div>,
+          document.body,
+        )}
+    </div>
+  );
+
+  if (embedded) return body;
 
   return (
     <div className="glass-card overflow-hidden">
@@ -179,52 +296,7 @@ function CompanyDocuments({
         </div>
         {open ? <ChevronUp className="w-4 h-4 shrink-0" /> : <ChevronDown className="w-4 h-4 shrink-0" />}
       </button>
-
-      {open && (
-        <div className="p-4 border-t border-white/10 space-y-3">
-          {error && <p className="text-xs text-red-400 rounded-lg bg-red-500/10 px-3 py-2">{error}</p>}
-
-          <div className="flex justify-end">
-            <input
-              ref={fileRef}
-              type="file"
-              accept="image/png,image/jpeg,image/webp,image/*"
-              className="hidden"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                if (f) uploadNew(f);
-                e.target.value = '';
-              }}
-            />
-            <button
-              type="button"
-              disabled={uploading}
-              onClick={() => fileRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-lotus-500 text-white text-xs font-medium hover:bg-lotus-600 disabled:opacity-50"
-            >
-              {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
-              رفع مستند جديد لهذه الشركة
-            </button>
-          </div>
-
-          {filtered.length === 0 ? (
-            <p className="text-center text-muted text-sm py-6">لا توجد مستندات في هذا التصنيف</p>
-          ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {filtered.map((item) => (
-                <DocumentCard
-                  key={item.id}
-                  company={company}
-                  item={item}
-                  adminToken={adminToken}
-                  onChange={onChange}
-                  onPreview={onPreview}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+      {open && body}
     </div>
   );
 }
@@ -233,20 +305,27 @@ function DocumentCard({
   company,
   item,
   adminToken,
-  onChange,
+  selected,
+  onToggle,
+  onPatch,
   onPreview,
 }: {
   company: Company;
   item: CompanyMedia;
   adminToken: string;
-  onChange: (c: Company) => void;
+  selected: boolean;
+  onToggle: () => void;
+  onPatch: (fn: (c: Company) => Company) => void;
   onPreview: (m: CompanyMedia) => void;
 }) {
   const [title, setTitle] = useState(item.title);
-  const [saving, setSaving] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
   const usage = getMediaUsage(company, item.id);
+
+  const replaceItem = (updated: CompanyMedia) =>
+    onPatch((c) => ({ ...c, media: (c.media || []).map((m) => (m.id === updated.id ? { ...m, ...updated } : m)) }));
 
   const saveTitle = async () => {
     const trimmed = title.trim();
@@ -254,36 +333,29 @@ function DocumentCard({
       setTitle(item.title);
       return;
     }
-    setSaving(true);
+    setBusy(true);
     try {
-      const res = await fetch(`/api/admin/companies/${company.id}/media/${item.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
-        body: JSON.stringify({ title: trimmed }),
-      });
-      if (!res.ok) throw new Error('rename failed');
-      const { company: updated } = await res.json();
-      onChange(updated);
+      replaceItem(await updateCompanyMedia(company.id, adminToken, item.id, { title: trimmed }));
     } catch {
       setTitle(item.title);
+      setError('فشل الحفظ');
     } finally {
-      setSaving(false);
+      setBusy(false);
     }
   };
 
   const replaceImage = async (file: File) => {
-    if (!file.type.startsWith('image/') || file.size > 3 * 1024 * 1024) return;
+    const invalid = validateImage(file);
+    if (invalid) {
+      setError(invalid);
+      return;
+    }
     setBusy(true);
+    setError('');
     try {
-      const dataUrl = await readAsDataUrl(file);
-      const res = await fetch(`/api/admin/companies/${company.id}/media/${item.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${adminToken}` },
-        body: JSON.stringify({ dataUrl }),
-      });
-      if (!res.ok) throw new Error('replace failed');
-      const { company: updated } = await res.json();
-      onChange(updated);
+      replaceItem(await updateCompanyMedia(company.id, adminToken, item.id, { dataUrl: await readAsDataUrl(file) }));
+    } catch {
+      setError('فشل الاستبدال');
     } finally {
       setBusy(false);
     }
@@ -293,36 +365,46 @@ function DocumentCard({
     if (!confirm(`حذف "${item.title}"؟ سيتم إلغاء ربطها من أي نموذج أو خطوة تستخدمها.`)) return;
     setBusy(true);
     try {
-      const res = await fetch(`/api/admin/companies/${company.id}/media/${item.id}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${adminToken}` },
-      });
-      if (!res.ok) throw new Error('delete failed');
-      const { company: updated } = await res.json();
-      onChange(updated);
-    } finally {
+      await deleteCompanyMedia(company.id, adminToken, item.id);
+      onPatch((c) => stripMediaFromCompany(c, item.id));
+    } catch {
+      setError('فشل الحذف');
       setBusy(false);
     }
   };
 
   return (
-    <div className="rounded-xl border border-theme bg-surface/30 p-3 space-y-2">
-      <button
-        type="button"
-        onClick={() => onPreview(item)}
-        className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-black/20 relative group"
-      >
-        <img src={item.url} alt={item.title} className="w-full h-full object-contain" />
-        <span className="absolute top-1 left-1 p-1 rounded bg-black/60 opacity-0 group-hover:opacity-100">
-          <ZoomIn className="w-3.5 h-3.5 text-white" />
-        </span>
-      </button>
+    <div
+      className={`rounded-xl border p-2.5 space-y-2 transition-colors ${
+        selected ? 'border-red-400/60 bg-red-500/5' : 'border-theme bg-surface/30'
+      }`}
+    >
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => onPreview(item)}
+          className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-black/20 relative group block"
+        >
+          <img src={item.url} alt={item.title} loading="lazy" className="w-full h-full object-contain" />
+          <span className="absolute bottom-1 left-1 p-1 rounded bg-black/60 opacity-0 group-hover:opacity-100">
+            <ZoomIn className="w-3.5 h-3.5 text-white" />
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={onToggle}
+          title="تحديد"
+          className="absolute top-1 right-1 p-1 rounded-md bg-black/60 text-white"
+        >
+          {selected ? <CheckSquare className="w-4 h-4 text-red-300" /> : <Square className="w-4 h-4" />}
+        </button>
+      </div>
 
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         onBlur={saveTitle}
-        disabled={saving || busy}
+        disabled={busy}
         className="w-full py-1.5 px-2 rounded-lg bg-white/5 border border-white/10 text-xs focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
       />
 
@@ -338,11 +420,13 @@ function DocumentCard({
         )}
       </div>
 
+      {error && <p className="text-[10px] text-red-400">{error}</p>}
+
       <div className="flex gap-2">
         <input
           ref={fileRef}
           type="file"
-          accept="image/png,image/jpeg,image/webp,image/*"
+          accept="image/png,image/jpeg,image/webp"
           className="hidden"
           onChange={(e) => {
             const f = e.target.files?.[0];
@@ -356,7 +440,7 @@ function DocumentCard({
           onClick={() => fileRef.current?.click()}
           className="flex-1 text-[11px] py-1.5 rounded-lg bg-white/10 hover:bg-white/15 disabled:opacity-50"
         >
-          {busy ? <Loader2 className="w-3 h-3 animate-spin mx-auto" /> : 'استبدال الصورة'}
+          {busy ? <Loader2 className="w-3 h-3 animate-spin mx-auto" /> : 'استبدال'}
         </button>
         <button
           type="button"
@@ -370,13 +454,4 @@ function DocumentCard({
       </div>
     </div>
   );
-}
-
-function readAsDataUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result));
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
 }
