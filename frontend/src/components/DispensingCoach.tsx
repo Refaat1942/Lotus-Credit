@@ -9,7 +9,7 @@ import type { CoachCopyBundle, Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import MediaLinks from './MediaLinks';
 import { galleryMedia } from '../utils/mediaFilters';
-import { cleanBullet, resolveFormDoc, stepPhotos } from '../utils/coachSteps';
+import { cleanBullet, resolveFormDocs, stepPhotos } from '../utils/coachSteps';
 import {
   buildFinalChecklistKeys,
   buildRulesTipBullets,
@@ -220,7 +220,8 @@ export default function DispensingCoach({
   };
 
   const showFormDoc = async (form: string, formIndex: number) => {
-    const doc = resolveFormDoc(form, media, company, formIndex);
+    const docs = resolveFormDocs(form, media, company, formIndex);
+    const doc = docs[0] ?? null;
     setSelectedForm(form);
     setSelectedDoc(doc);
     const displayForm = formLabelByName(form);
@@ -228,7 +229,7 @@ export default function DispensingCoach({
     if (rules?.prescriptionValidity) {
       text += `\n\n${msg('formDocValidity', { validity: rules.prescriptionValidity })}`;
     }
-    await coachSay(text, doc ? { doc } : undefined);
+    await coachSay(text, doc ? { doc, ...(docs.length > 1 ? { docs: docs.slice(1) } : {}) } : undefined);
     setPhaseActions('form_doc', { doc });
   };
 

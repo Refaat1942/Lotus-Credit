@@ -83,11 +83,10 @@ interface Props {
   company: Company;
   globalCoach?: CoachCopyBundle;
   adminToken: string;
-  onChange: (c: Company) => void;
   onPatch: (fn: (c: Company) => Company) => void;
 }
 
-export default function CoachStepsEditor({ company, globalCoach, adminToken, onChange, onPatch }: Props) {
+export default function CoachStepsEditor({ company, globalCoach, adminToken, onPatch }: Props) {
   const [open, setOpen] = useState<CoachPhase | null>(null);
   const [pickerFor, setPickerFor] = useState<CoachPhase | null>(null);
 
@@ -181,7 +180,7 @@ export default function CoachStepsEditor({ company, globalCoach, adminToken, onC
               value={company.forms || []}
               onChange={(v) => onPatch((c) => ({ ...c, forms: v }))}
             />
-            <CoachMediaEditor company={company} adminToken={adminToken} onChange={onChange} />
+            <CoachMediaEditor company={company} adminToken={adminToken} onPatch={onPatch} />
           </div>
         );
       case 'rulesTip': {

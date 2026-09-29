@@ -527,7 +527,6 @@ function CompanyEditor({
           company={company}
           globalCoach={globalCoach}
           adminToken={adminToken}
-          onChange={onChange}
           onPatch={onPatch}
         />
       </AdminSection>

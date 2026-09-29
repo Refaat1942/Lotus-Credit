@@ -11,7 +11,7 @@ import MediaLinks from './MediaLinks';
 import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
-import { resolveFormDoc } from '../utils/coachSteps';
+import { resolveFormDocs } from '../utils/coachSteps';
 import { useAppCopy } from '../hooks/useAppCopy';
 import { buildGuideSteps } from '../utils/guideSteps';
 
@@ -47,9 +47,9 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
 
   const forms = company.forms || [];
   const activeForm = forms[selectedForm];
-  const activeDoc = activeForm
-    ? resolveFormDoc(activeForm, media, company, selectedForm)
-    : cardDocs[0] ?? null;
+  const activeDocs = activeForm
+    ? resolveFormDocs(activeForm, media, company, selectedForm)
+    : cardDocs.slice(0, 1);
 
   const phases: Phase[] = ['start', 'steps', 'forms', 'rules', 'links'];
 
@@ -290,30 +290,36 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
                 </p>
               )}
 
-              {activeDoc ? (
-                <div className="rounded-xl border border-theme overflow-hidden bg-black/20">
-                  <div className="flex items-center justify-between px-3 py-2 border-b border-theme bg-surface/50">
-                    <p className="text-sm font-medium text-primary truncate">{activeDoc.title}</p>
-                    <button
-                      type="button"
-                      onClick={() => setLightbox(activeDoc)}
-                      className="p-1.5 rounded-lg hover:bg-surface text-muted"
-                      title={g('forms', 'zoomTitle')}
-                    >
-                      <ZoomIn className="w-5 h-5" />
-                    </button>
-                  </div>
-                  <button type="button" onClick={() => setLightbox(activeDoc)} className="block w-full">
-                    <img
-                      src={activeDoc.url}
-                      alt={activeDoc.title}
-                      className="w-full max-h-[min(70vh,520px)] object-contain bg-white/5"
-                    />
-                  </button>
-                  <p className="text-xs text-muted px-3 py-2">{g('forms', 'pageHint', { page: activeDoc.page })}</p>
-                  {activeDoc.links && activeDoc.links.length > 0 && (
-                    <MediaLinks links={activeDoc.links} accentColor={color} />
-                  )}
+              {activeDocs.length > 0 ? (
+                <div className="space-y-3">
+                  {activeDocs.map((activeDoc) => (
+                    <div key={activeDoc.id} className="rounded-xl border border-theme overflow-hidden bg-black/20">
+                      <div className="flex items-center justify-between px-3 py-2 border-b border-theme bg-surface/50">
+                        <p className="text-sm font-medium text-primary truncate">{activeDoc.title}</p>
+                        <button
+                          type="button"
+                          onClick={() => setLightbox(activeDoc)}
+                          className="p-1.5 rounded-lg hover:bg-surface text-muted"
+                          title={g('forms', 'zoomTitle')}
+                        >
+                          <ZoomIn className="w-5 h-5" />
+                        </button>
+                      </div>
+                      <button type="button" onClick={() => setLightbox(activeDoc)} className="block w-full">
+                        <img
+                          src={activeDoc.url}
+                          alt={activeDoc.title}
+                          className="w-full max-h-[min(70vh,520px)] object-contain bg-white/5"
+                        />
+                      </button>
+                      {activeDoc.page > 0 && (
+                        <p className="text-xs text-muted px-3 py-2">{g('forms', 'pageHint', { page: activeDoc.page })}</p>
+                      )}
+                      {activeDoc.links && activeDoc.links.length > 0 && (
+                        <MediaLinks links={activeDoc.links} accentColor={color} />
+                      )}
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <p className="text-sm text-amber-600 dark:text-amber-400 p-4 rounded-xl bg-amber-500/10">

@@ -9,7 +9,8 @@ export function getMediaUsage(company: Company, mediaId: string): string[] {
   const byMap = company.formMediaMap || {};
 
   forms.forEach((label, i) => {
-    if (byIndex[i] === mediaId || byMap[label] === mediaId) {
+    const list = company.formMedia?.[label];
+    if (list ? list.includes(mediaId) : byIndex[i] === mediaId || byMap[label] === mediaId) {
       usage.push(`نموذج: ${label}`);
     }
   });

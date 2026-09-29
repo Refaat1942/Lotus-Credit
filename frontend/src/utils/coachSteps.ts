@@ -62,6 +62,18 @@ export function resolveFormDoc(
   });
 }
 
+/** All documents for a prescription type: the admin's list if set, else the older single-image match. */
+export function resolveFormDocs(
+  form: string,
+  media: CompanyMedia[],
+  company: Pick<Company, 'formMedia' | 'formMediaMap' | 'formMediaByIndex' | 'coachAnswerMedia'>,
+  formIndex?: number,
+): CompanyMedia[] {
+  if (company.formMedia && form in company.formMedia) return mediaByIds(media, company.formMedia[form]);
+  const single = resolveFormDoc(form, media, company, formIndex);
+  return single ? [single] : [];
+}
+
 export function resolveAnswerMedia(
   answerKey: string,
   media: CompanyMedia[],
