@@ -1,8 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
-import { ImagePlus, Loader2, Upload, X, ZoomIn, Images } from 'lucide-react';
+import { Loader2, Upload, X, ZoomIn, Images } from 'lucide-react';
 import type { Company, CompanyMedia } from '../types';
 import { mediaPickerLabel, pickableCoachMedia } from '../utils/mediaFilters';
-import { setStepMediaId } from '../utils/coachSteps';
 
 interface CoachMediaEditorProps {
   company: Company;
@@ -10,7 +9,7 @@ interface CoachMediaEditorProps {
   onChange: (company: Company) => void;
 }
 
-type UploadTarget = number | 'card' | 'approval';
+type UploadTarget = number;
 
 export default function CoachMediaEditor({ company, adminToken, onChange }: CoachMediaEditorProps) {
   const [uploading, setUploading] = useState<UploadTarget | null>(null);
@@ -27,7 +26,6 @@ export default function CoachMediaEditor({ company, adminToken, onChange }: Coac
 
   const formMediaMap = company.formMediaMap || {};
   const formMediaByIndex = company.formMediaByIndex || [];
-  const stepMediaMap = company.stepMediaMap || {};
   const forms = company.forms || [];
 
   const patch = (partial: Partial<Company>) => onChange({ ...company, ...partial });
@@ -69,33 +67,14 @@ export default function CoachMediaEditor({ company, adminToken, onChange }: Coac
     });
   };
 
-  const applyMedia = (target: UploadTarget, mediaId: string, nextMedia = media) => {
-    if (typeof target === 'number') {
-      assignFormImage(target, mediaId, nextMedia);
-      return;
-    }
-    if (target === 'card') {
-      const withCheck = setStepMediaId(stepMediaMap, 'card_check', mediaId);
-      patch({
-        media: nextMedia,
-        stepMediaMap: setStepMediaId(withCheck, 'card_help', mediaId),
-      });
-      return;
-    }
-    patch({
-      media: nextMedia,
-      stepMediaMap: setStepMediaId(stepMediaMap, 'approval_portal', mediaId, true),
-    });
-  };
+  const applyMedia = (target: UploadTarget, mediaId: string, nextMedia = media) =>
+    assignFormImage(target, mediaId, nextMedia);
 
   const runUpload = async (file: File, target: UploadTarget) => {
     setError('');
     setUploading(target);
     try {
-      let title = file.name.replace(/\.[^.]+$/, '');
-      if (typeof target === 'number') title = forms[target] || `نموذج ${target + 1}`;
-      else if (target === 'card') title = 'كارنية';
-      else if (target === 'approval') title = 'موافقة';
+      const title = forms[target] || `نموذج ${target + 1}`;
 
       const item = await uploadImage(file, title);
       applyMedia(target, item.id, [...media, item]);
@@ -109,21 +88,16 @@ export default function CoachMediaEditor({ company, adminToken, onChange }: Coac
   const getFormMediaId = (index: number) =>
     formMediaByIndex[index] || formMediaMap[forms[index]] || '';
 
-  const cardMediaId = typeof stepMediaMap.card_check === 'string' ? stepMediaMap.card_check : '';
-  const approvalIds = stepMediaMap.approval_portal;
-  const approvalMediaId = Array.isArray(approvalIds) ? approvalIds[0] || '' : approvalIds || '';
-
   return (
     <div className="space-y-4">
       {error && <p className="text-xs text-red-400 rounded-lg bg-red-500/10 px-3 py-2">{error}</p>}
 
       <p className="text-xs text-muted leading-relaxed">
-        كل سطر في «طرق الصرف» = زر للصيدلي. ارفع صورة من <strong className="text-primary">الجهاز</strong> أو
-        اختر نموذجاً من <strong className="text-primary">صور المستند</strong> (معاينة مصغّرة — بدون قوائم نص طويل).
+        صورة النموذج اللي تظهر للصيدلي لما يختار كل نوع — ارفع من الجهاز أو اختر من صور الشركة.
       </p>
 
       {forms.length === 0 ? (
-        <p className="text-sm text-muted py-2">أضف طرق الصرف في الحقل أعلاه أولاً.</p>
+        <p className="text-sm text-muted py-2">أضف أنواع الروشتات في الحقل أعلاه أولاً.</p>
       ) : (
         <div className="space-y-3">
           {forms.map((form, index) => (
@@ -143,45 +117,12 @@ export default function CoachMediaEditor({ company, adminToken, onChange }: Coac
         </div>
       )}
 
-      <div className="grid sm:grid-cols-2 gap-3 pt-2 border-t border-white/10">
-        <ExtraImageRow
-          label="صورة الكارنية (اختياري)"
-          mediaId={cardMediaId}
-          media={media}
-          uploading={uploading === 'card'}
-          onUploadFromDevice={(file) => runUpload(file, 'card')}
-          onOpenPicker={() => setPickerFor('card')}
-          onPreview={setPreview}
-        />
-        <ExtraImageRow
-          label="صورة الموافقة (اختياري)"
-          mediaId={approvalMediaId}
-          media={media}
-          uploading={uploading === 'approval'}
-          onUploadFromDevice={(file) => runUpload(file, 'approval')}
-          onOpenPicker={() => setPickerFor('approval')}
-          onPreview={setPreview}
-        />
-      </div>
-
       {pickerFor !== null && (
         <ImagePickerModal
-          title={
-            typeof pickerFor === 'number'
-              ? `اختر صورة: ${forms[pickerFor] || `نموذج ${pickerFor + 1}`}`
-              : pickerFor === 'card'
-                ? 'اختر صورة الكارنية'
-                : 'اختر صورة الموافقة'
-          }
+          title={`اختر صورة: ${forms[pickerFor] || `نموذج ${pickerFor + 1}`}`}
           documentImages={pickable}
           uploadedImages={uploaded}
-          selectedId={
-            typeof pickerFor === 'number'
-              ? getFormMediaId(pickerFor)
-              : pickerFor === 'card'
-                ? cardMediaId
-                : approvalMediaId
-          }
+          selectedId={getFormMediaId(pickerFor)}
           onSelect={(id) => {
             applyMedia(pickerFor, id);
             setPickerFor(null);
@@ -293,68 +234,6 @@ function DocumentRow({
             </button>
           </>
         )}
-      </div>
-    </div>
-  );
-}
-
-function ExtraImageRow({
-  label,
-  mediaId,
-  media,
-  uploading,
-  onUploadFromDevice,
-  onOpenPicker,
-  onPreview,
-}: {
-  label: string;
-  mediaId: string;
-  media: CompanyMedia[];
-  uploading: boolean;
-  onUploadFromDevice: (file: File) => void;
-  onOpenPicker: () => void;
-  onPreview: (m: CompanyMedia) => void;
-}) {
-  const fileRef = useRef<HTMLInputElement>(null);
-  const selected = media.find((m) => m.id === mediaId);
-
-  return (
-    <div className="rounded-xl border border-theme bg-surface/30 p-3 space-y-2">
-      <p className="text-xs font-medium text-primary">{label}</p>
-      <div className="flex flex-wrap items-center gap-2">
-        {selected && (
-          <button type="button" onClick={() => onPreview(selected)} className="w-16 h-11 rounded overflow-hidden bg-black/20 shrink-0">
-            <img src={selected.url} alt="" className="w-full h-full object-contain" />
-          </button>
-        )}
-        <input
-          ref={fileRef}
-          type="file"
-          accept="image/png,image/jpeg,image/webp,image/*"
-          className="hidden"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) onUploadFromDevice(f);
-            e.target.value = '';
-          }}
-        />
-        <button
-          type="button"
-          disabled={uploading}
-          onClick={() => fileRef.current?.click()}
-          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-lotus-500/20 text-sm hover:bg-lotus-500/30 disabled:opacity-50"
-        >
-          {uploading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Upload className="w-3.5 h-3.5" />}
-          من الجهاز
-        </button>
-        <button
-          type="button"
-          onClick={onOpenPicker}
-          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 text-xs hover:bg-white/15"
-        >
-          <ImagePlus className="w-3.5 h-3.5" />
-          من المستند
-        </button>
       </div>
     </div>
   );

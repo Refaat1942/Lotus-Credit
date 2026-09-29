@@ -1,16 +1,16 @@
 import type { CoachPhase, Company, CompanyMedia } from '../types';
 import { pickApprovalMedia, pickMediaForForm } from './formMedia';
 
-export const COACH_STEP_CONFIG: {
-  id: CoachPhase;
-  labelAr: string;
-  hint: string;
-  multi?: boolean;
-}[] = [
-  { id: 'card_check', labelAr: '① فحص الكارنية', hint: 'صورة الكارنية الإلكترونية' },
-  { id: 'card_help', labelAr: '② مساعدة الكارنية', hint: 'عند وجود مشكلة في الكارنية' },
-  { id: 'approval_portal', labelAr: '③ الموافقة / البوابة', hint: 'صورة الموافقة أو شاشة النظام', multi: true },
-  { id: 'rules_tip', labelAr: '④ قبل إغلاق الفاتورة', hint: 'صورة مرجعية اختيارية' },
+export const COACH_STEP_CONFIG: { id: CoachPhase; labelAr: string }[] = [
+  { id: 'welcome', labelAr: 'الترحيب' },
+  { id: 'card_check', labelAr: 'فحص الكارنية' },
+  { id: 'card_help', labelAr: 'مشكلة الكارنية' },
+  { id: 'approval_check', labelAr: 'سؤال الموافقة' },
+  { id: 'approval_portal', labelAr: 'أخذ الموافقة' },
+  { id: 'rules_tip', labelAr: 'قبل ما تقفل الفاتورة' },
+  { id: 'prohibitions', labelAr: 'محظورات الصرف' },
+  { id: 'final_checks', labelAr: 'التأكيد النهائي' },
+  { id: 'done', labelAr: 'انتهاء الصرف' },
 ];
 
 export function mediaByIds(media: CompanyMedia[], ids?: string | string[] | null): CompanyMedia[] {
@@ -24,8 +24,8 @@ export function resolveStepMedia(
   media: CompanyMedia[],
   stepMediaMap?: Partial<Record<CoachPhase, string | string[]>>,
 ): CompanyMedia[] {
-  const mapped = mediaByIds(media, stepMediaMap?.[phase]);
-  if (mapped.length) return mapped;
+  // an explicit (even empty) list set by the admin always wins over the automatic pick
+  if (stepMediaMap && phase in stepMediaMap) return mediaByIds(media, stepMediaMap[phase]);
 
   if (phase === 'card_help' || phase === 'card_check') {
     const card = media.find((m) => m.type === 'card');
@@ -111,4 +111,23 @@ export function removeStepMediaId(
     delete next[phase];
   }
   return next;
+}
+
+/** Older data stored some step photos per answer button; they're shown with their step. */
+export const LEGACY_ANSWER_KEYS: Partial<Record<CoachPhase, string[]>> = {
+  card_help: ['card_bad', 'no_card'],
+  approval_portal: ['need_approval', 'approval_help'],
+};
+
+/** Every photo the pharmacist sees on a coach step, in order. */
+export function stepPhotos(company: Company, media: CompanyMedia[], phase: CoachPhase): CompanyMedia[] {
+  const list = [
+    ...(LEGACY_ANSWER_KEYS[phase] || []).flatMap((k) => resolveAnswerMedia(k, media, company.coachAnswerMedia)),
+    ...resolveStepMedia(phase, media, company.stepMediaMap),
+  ];
+  return list.filter((m, i) => list.findIndex((x) => x.id === m.id) === i);
+}
+
+export function cleanBullet(text: string): string {
+  return text.replace(/^\s*[-–•*]\s*/, '').trim();
 }

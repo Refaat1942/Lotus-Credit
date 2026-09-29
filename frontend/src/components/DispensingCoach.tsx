@@ -9,10 +9,10 @@ import type { CoachCopyBundle, Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import MediaLinks from './MediaLinks';
 import { galleryMedia } from '../utils/mediaFilters';
-import { resolveFormDoc, resolveStepMedia, resolveAnswerMedia } from '../utils/coachSteps';
+import { cleanBullet, resolveFormDoc, stepPhotos } from '../utils/coachSteps';
 import {
   buildFinalChecklistKeys,
-  formHintKey,
+  buildRulesTipBullets,
   useCoachCopy,
   type ChecklistKey,
 } from '../hooks/useCoachCopy';
@@ -26,10 +26,11 @@ type Phase =
   | 'approval_check'
   | 'approval_portal'
   | 'rules_tip'
+  | 'prohibitions'
   | 'final_checks'
   | 'done';
 
-export interface ChatLine {
+interface ChatLine {
   id: string;
   from: 'coach' | 'user';
   text: string;
@@ -114,6 +115,12 @@ export default function DispensingCoach({
   );
 
   const systemName = company.approvalSystem || 'النظام';
+  const prohibitions = (rules?.prohibitions || []).map(cleanBullet).filter(Boolean);
+
+  const photosFor = (p: Phase): Partial<ChatLine> => {
+    const list = stepPhotos(company, media, p);
+    return list.length ? { doc: list[0], ...(list.length > 1 ? { docs: list.slice(1) } : {}) } : {};
+  };
 
   const setPhaseActions = useCallback(
     (p: Phase, opts?: { doc?: CompanyMedia | null }) => {
@@ -180,6 +187,9 @@ export default function DispensingCoach({
         case 'rules_tip':
           setActions([{ id: 'rules_ok', label: btn('rulesOk'), primary: true }]);
           break;
+        case 'prohibitions':
+          setActions([{ id: 'prohibitions_ok', label: btn('prohibitionsOk'), primary: true }]);
+          break;
         case 'final_checks':
           setActions([{ id: 'finish', label: btn('finish'), primary: true }]);
           break;
@@ -199,7 +209,7 @@ export default function DispensingCoach({
     if (bootRef.current) return;
     bootRef.current = true;
     (async () => {
-      await coachSay(msg('welcome'));
+      await coachSay(msg('welcome'), photosFor('welcome'));
       setPhaseActions('welcome');
     })();
   }, [coachSay, msg, setPhaseActions]);
@@ -223,34 +233,23 @@ export default function DispensingCoach({
   };
 
   const showRulesTip = async (form: string | null) => {
-    const bullets: string[] = [];
-    if (rules?.copay) bullets.push(msg('rulesCopay', { copay: rules.copay }));
-    if (rules?.signatureRequired) bullets.push(msg('rulesSignature'));
-    if (rules?.stampRequired) bullets.push(msg('rulesStamp'));
-    if (rules?.diagnosisRequired) bullets.push(msg('rulesDiagnosis'));
-    if (rules?.alternativesPolicy) bullets.push(msg('rulesAlternatives', { policy: rules.alternativesPolicy }));
-    if (form) {
-      const hintKey = formHintKey(form);
-      if (hintKey) bullets.push(msg(hintKey));
-    }
-    if (rules?.importantNotes?.length) {
-      bullets.push(...rules.importantNotes.slice(0, 2));
-    }
-    const tipDocs = resolveStepMedia('rules_tip', media, company.stepMediaMap);
-    await coachSay(
-      bullets.length ? msg('rulesTipTitle') : msg('rulesTipEmpty'),
-      {
-        bullets,
-        ...(tipDocs[0] ? { doc: tipDocs[0] } : {}),
-      },
-    );
+    const bullets = buildRulesTipBullets(company, msg, form);
+    await coachSay(bullets.length ? msg('rulesTipTitle') : msg('rulesTipEmpty'), {
+      bullets,
+      ...photosFor('rules_tip'),
+    });
     setPhaseActions('rules_tip');
+  };
+
+  const showProhibitions = async () => {
+    await coachSay(msg('prohibitionsTitle'), { bullets: prohibitions, ...photosFor('prohibitions') });
+    setPhaseActions('prohibitions');
   };
 
   const showFinalChecks = async () => {
     const keys = buildFinalChecklistKeys(company);
     setFinalChecks(Object.fromEntries(keys.map((k) => [k, false])));
-    await coachSay(msg('finalChecksTitle'));
+    await coachSay(msg('finalChecksTitle'), photosFor('final_checks'));
     setPhaseActions('final_checks');
   };
 
@@ -260,8 +259,7 @@ export default function DispensingCoach({
 
     switch (action.id) {
       case 'start': {
-        const cardIntro = resolveStepMedia('card_check', media, company.stepMediaMap)[0];
-        await coachSay(msg('cardCheckIntro'), cardIntro ? { doc: cardIntro } : undefined);
+        await coachSay(msg('cardCheckIntro'), photosFor('card_check'));
         setPhaseActions('card_check');
         break;
       }
@@ -285,15 +283,7 @@ export default function DispensingCoach({
           action.id === 'no_card' && rules?.cardRequired
             ? msg('cardHelpNoCard')
             : msg('cardHelpProblem');
-        const helpDocs = [
-          ...resolveAnswerMedia(action.id, media, company.coachAnswerMedia),
-          ...resolveStepMedia('card_help', media, company.stepMediaMap),
-        ].filter((doc, i, arr) => arr.findIndex((d) => d.id === doc.id) === i);
-        await coachSay(intro, {
-          bullets: tips,
-          ...(helpDocs[0] ? { doc: helpDocs[0] } : {}),
-          ...(helpDocs.length > 1 ? { docs: helpDocs.slice(1) } : {}),
-        });
+        await coachSay(intro, { bullets: tips, ...photosFor('card_help') });
         setPhaseActions('card_help');
         break;
       }
@@ -319,7 +309,7 @@ export default function DispensingCoach({
           await showFormDoc(forms[idx], idx);
         } else if (action.id === 'doc_ok') {
           if (company.approvalPortal || rules?.priorApprovalRequired) {
-            await coachSay(msg('approvalCheckIntro', { system: systemName }));
+            await coachSay(msg('approvalCheckIntro', { system: systemName }), photosFor('approval_check'));
             setPhaseActions('approval_check');
           } else {
             await showRulesTip(selectedForm);
@@ -345,6 +335,9 @@ export default function DispensingCoach({
         } else if (action.id === 'approval_help') {
           await showApprovalHelp();
         } else if (action.id === 'rules_ok') {
+          if (prohibitions.length) await showProhibitions();
+          else await showFinalChecks();
+        } else if (action.id === 'prohibitions_ok') {
           await showFinalChecks();
         } else if (action.id === 'finish') {
           const keys = buildFinalChecklistKeys(company);
@@ -354,7 +347,7 @@ export default function DispensingCoach({
             setPhaseActions('final_checks');
             return;
           }
-          await coachSay(msg('finishSuccess'));
+          await coachSay(msg('finishSuccess'), photosFor('done'));
           setPhaseActions('done');
         } else if (action.id === 'restart') {
           setHistory([]);
@@ -373,11 +366,6 @@ export default function DispensingCoach({
   };
 
   const showApprovalStep = async () => {
-    const answerPhotos = resolveAnswerMedia('need_approval', media, company.coachAnswerMedia);
-    const approvalPhotos = [
-      ...answerPhotos,
-      ...resolveStepMedia('approval_portal', media, company.stepMediaMap),
-    ].filter((doc, i, arr) => arr.findIndex((d) => d.id === doc.id) === i);
     let text = msg('approvalStep', { system: systemName });
     if (rules?.approvalValidity) {
       text += `\n\n${msg('approvalStepValidity', { validity: rules.approvalValidity })}`;
@@ -387,28 +375,17 @@ export default function DispensingCoach({
       if (note) text += `\n\n💡 ${note}`;
     }
     text += `\n\n${msg('approvalStepFooter')}`;
-    await coachSay(text, {
-      ...(approvalPhotos[0] ? { doc: approvalPhotos[0] } : {}),
-      ...(approvalPhotos.length > 1 ? { docs: approvalPhotos.slice(1) } : {}),
-    });
+    await coachSay(text, photosFor('approval_portal'));
     setPhaseActions('approval_portal');
   };
 
   const showApprovalHelp = async () => {
-    const photos = [
-      ...resolveAnswerMedia('approval_help', media, company.coachAnswerMedia),
-      ...resolveStepMedia('approval_portal', media, company.stepMediaMap),
-    ].filter((doc, i, arr) => arr.findIndex((d) => d.id === doc.id) === i);
     const bullets = [
       company.approvalPortal ? msg('approvalHelpPortal', { system: systemName }) : '',
       msg('approvalHelpEnterMeds'),
       rules?.approvalValidity ? msg('approvalHelpValidity', { validity: rules.approvalValidity }) : '',
     ].filter(Boolean);
-    await coachSay(msg('approvalHelpTitle'), {
-      ...(photos[0] ? { doc: photos[0] } : {}),
-      ...(photos.length > 1 ? { docs: photos.slice(1) } : {}),
-      bullets,
-    });
+    await coachSay(msg('approvalHelpTitle'), { ...photosFor('approval_portal'), bullets });
     setPhaseActions('approval_portal');
   };
 
@@ -577,7 +554,7 @@ export default function DispensingCoach({
   );
 }
 
-export function ChatBubble({
+function ChatBubble({
   line,
   color,
   onZoom,
@@ -689,7 +666,7 @@ function PhaseProgress({
     { id: 'final_checks', labelKey: 'phaseConfirm' },
     { id: 'done', labelKey: 'phaseDone' },
   ];
-  const order: Phase[] = ['welcome', 'card_check', 'card_help', 'form_pick', 'form_doc', 'approval_check', 'approval_portal', 'rules_tip', 'final_checks', 'done'];
+  const order: Phase[] = ['welcome', 'card_check', 'card_help', 'form_pick', 'form_doc', 'approval_check', 'approval_portal', 'rules_tip', 'prohibitions', 'final_checks', 'done'];
   const idx = order.indexOf(phase);
 
   return (
