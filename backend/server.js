@@ -276,19 +276,9 @@ function stripMediaReferences(company, mediaId) {
   if (company.stepMediaMap) {
     for (const key of Object.keys(company.stepMediaMap)) {
       const val = company.stepMediaMap[key];
-      if (Array.isArray(val)) {
-        const filtered = val.filter((id) => id !== mediaId);
-        if (filtered.length) company.stepMediaMap[key] = filtered;
-        else delete company.stepMediaMap[key];
-      } else if (val === mediaId) {
-        delete company.stepMediaMap[key];
-      }
-    }
-    if (!Object.keys(company.stepMediaMap).length) delete company.stepMediaMap;
-  }
-  if (company.pathway && Array.isArray(company.pathway.steps)) {
-    for (const step of company.pathway.steps) {
-      if (Array.isArray(step.mediaIds)) step.mediaIds = step.mediaIds.filter((id) => id !== mediaId);
+      // an empty list is kept on purpose: it means "no photos", not "use the automatic one"
+      if (Array.isArray(val)) company.stepMediaMap[key] = val.filter((id) => id !== mediaId);
+      else if (val === mediaId) company.stepMediaMap[key] = [];
     }
   }
   return company;

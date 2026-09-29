@@ -4,7 +4,7 @@ import { CheckSquare, ChevronDown, ChevronUp, Loader2, Search, Square, Trash2, U
 import type { Company, CompanyMedia, RulesData } from '../../types';
 import CompanyLogo from '../CompanyLogo';
 import { getMediaUsage } from '../../utils/mediaUsage';
-import { stripMediaFromCompany } from '../../utils/pathway';
+import { stripMediaFromCompany } from '../../utils/companyMedia';
 import {
   deleteCompanyMedia,
   readAsDataUrl,

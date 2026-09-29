@@ -32,6 +32,26 @@ export function formHintKey(form: string): string | null {
   return null;
 }
 
+type MsgFn = (key: string, vars?: Record<string, string>) => string;
+
+/** Points shown under "before closing the invoice": the admin's own list, or built from the rules. */
+export function buildRulesTipBullets(company: Company, msg: MsgFn, form?: string | null): string[] {
+  if (company.rulesTipBullets) return company.rulesTipBullets.map((b) => b.trim()).filter(Boolean);
+  const rules = company.rules;
+  const bullets: string[] = [];
+  if (rules?.copay) bullets.push(msg('rulesCopay', { copay: rules.copay }));
+  if (rules?.signatureRequired) bullets.push(msg('rulesSignature'));
+  if (rules?.stampRequired) bullets.push(msg('rulesStamp'));
+  if (rules?.diagnosisRequired) bullets.push(msg('rulesDiagnosis'));
+  if (rules?.alternativesPolicy) bullets.push(msg('rulesAlternatives', { policy: rules.alternativesPolicy }));
+  if (form) {
+    const hintKey = formHintKey(form);
+    if (hintKey) bullets.push(msg(hintKey));
+  }
+  if (rules?.importantNotes?.length) bullets.push(...rules.importantNotes.slice(0, 2));
+  return bullets;
+}
+
 export function useCoachCopy(company: Company, globalCoach?: CoachCopyBundle) {
   const copy = useMemo(
     () => mergeCoachCopy(globalCoach, company.coachCopy),

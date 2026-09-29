@@ -87,6 +87,7 @@ export type CoachPhase =
   | 'approval_check'
   | 'approval_portal'
   | 'rules_tip'
+  | 'prohibitions'
   | 'final_checks'
   | 'done';
 
@@ -117,33 +118,10 @@ export interface Company {
   stepMediaMap?: Partial<Record<CoachPhase, string | string[]>>;
   rules?: CompanyRules;
   cardInstructions?: string[];
+  /** Admin-written "before closing the invoice" points; when unset they're built from the rules */
+  rulesTipBullets?: string[];
   media?: CompanyMedia[];
   links?: CompanyLink[];
-  /** Admin-designed dispensing pathway that replaces the default coach when enabled */
-  pathway?: CompanyPathway;
-}
-
-export interface PathwayOption {
-  id: string;
-  label: string;
-  /** Target step id; null ends the pathway */
-  next: string | null;
-}
-
-export interface PathwayStep {
-  id: string;
-  title: string;
-  message: string;
-  bullets?: string[];
-  mediaIds?: string[];
-  link?: { label: string; url: string };
-  options: PathwayOption[];
-}
-
-export interface CompanyPathway {
-  enabled: boolean;
-  startId: string;
-  steps: PathwayStep[];
 }
 
 export interface Branding {

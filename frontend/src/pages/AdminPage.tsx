@@ -6,15 +6,14 @@ import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import CompanyLogo from '../components/CompanyLogo';
 import CompanyLogoUpload from '../components/CompanyLogoUpload';
-import CoachMediaEditor from '../components/CoachMediaEditor';
-import CoachCopyEditor from '../components/CoachCopyEditor';
 import ContentAdminPanel from '../components/admin/ContentAdminPanel';
 import DocumentsAdminPanel, { CompanyDocuments } from '../components/admin/DocumentsAdminPanel';
-import PathwayEditor from '../components/admin/PathwayEditor';
+import CoachStepsEditor from '../components/admin/CoachStepsEditor';
+import LinesField from '../components/admin/LinesField';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
-import type { Branding, Company, CompanyLink, RulesData } from '../types';
+import type { Branding, CoachCopyBundle, Company, CompanyLink, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
 type AdminTab = 'companies' | 'branding' | 'content' | 'documents' | 'backups';
@@ -81,7 +80,11 @@ export default function AdminPage() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(editData),
+        // drop data left over from the removed pathway designer
+        body: JSON.stringify({
+          ...editData,
+          companies: editData.companies.map(({ pathway: _unused, ...c }: Company & { pathway?: unknown }) => c),
+        }),
       });
       if (!res.ok) throw new Error('Save failed');
       setMessage('تم الحفظ بنجاح ✓');
@@ -401,6 +404,7 @@ export default function AdminPage() {
               {selectedCompany ? (
                 <CompanyEditor
                   company={selectedCompany}
+                  globalCoach={editData?.coach}
                   adminToken={token}
                   onChange={updateCompany}
                   onPatch={(fn) => patchCompany(selectedCompany.id, fn)}
@@ -454,12 +458,14 @@ function BrandingEditor({
 
 function CompanyEditor({
   company,
+  globalCoach,
   adminToken,
   onChange,
   onPatch,
   onDelete,
 }: {
   company: Company;
+  globalCoach?: CoachCopyBundle;
   adminToken: string;
   onChange: (c: Company) => void;
   onPatch: (fn: (c: Company) => Company) => void;
@@ -508,25 +514,14 @@ function CompanyEditor({
         <CompanyDocuments key={company.id} company={company} adminToken={adminToken} onPatch={onPatch} embedded />
       </AdminSection>
 
-      <AdminSection title="مسار الصرف المخصص">
-        <PathwayEditor key={company.id} company={company} adminToken={adminToken} onPatch={onPatch} />
-      </AdminSection>
-
-      <AdminSection title="المرشد التفاعلي — النماذج والصور">
-        <Field
-          label="طرق الصرف (سطر لكل نوع — يظهر كزر للصيدلي)"
-          value={company.forms?.join('\n') || ''}
-          onChange={(v) => update('forms', v.split('\n').filter(Boolean))}
-          multiline
-        />
-        <CoachMediaEditor
+      <AdminSection title="المرشد التفاعلي — خطوة بخطوة">
+        <CoachStepsEditor
+          key={company.id}
           company={company}
+          globalCoach={globalCoach}
           adminToken={adminToken}
           onChange={onChange}
-        />
-        <CoachCopyEditor
-          copy={company.coachCopy}
-          onChange={(coachCopy) => onChange({ ...company, coachCopy })}
+          onPatch={onPatch}
         />
       </AdminSection>
 
@@ -548,54 +543,49 @@ function CompanyEditor({
           <BoolField label="ختم الطبيب مطلوب" checked={!!company.rules?.stampRequired} onChange={(v) => updateRule('stampRequired', v)} />
           <BoolField label="التشخيص مطلوب" checked={!!company.rules?.diagnosisRequired} onChange={(v) => updateRule('diagnosisRequired', v)} />
         </div>
-        <Field
+        <LinesField
+          key={`${company.id}-card`}
           label="تعليمات الكارنية (سطر لكل تعليمة)"
-          value={company.cardInstructions?.join('\n') || ''}
-          onChange={(v) => update('cardInstructions', v.split('\n').filter(Boolean))}
-          multiline
+          value={company.cardInstructions || []}
+          onChange={(v) => onPatch((c) => ({ ...c, cardInstructions: v }))}
         />
-        <Field
+        <LinesField
+          key={`${company.id}-notes`}
           label="ملاحظات هامة"
-          value={company.rules?.importantNotes?.join('\n') || ''}
-          onChange={(v) => updateRule('importantNotes', v.split('\n').filter(Boolean))}
-          multiline
+          value={company.rules?.importantNotes || []}
+          onChange={(v) => onPatch((c) => ({ ...c, rules: { ...c.rules, importantNotes: v } }))}
         />
-        <Field
-          label="محظورات"
-          value={company.rules?.prohibitions?.join('\n') || ''}
-          onChange={(v) => updateRule('prohibitions', v.split('\n').filter(Boolean))}
-          multiline
+        <LinesField
+          key={`${company.id}-prohibitions`}
+          label="محظورات الصرف (تظهر كخطوة في المرشد التفاعلي)"
+          value={company.rules?.prohibitions || []}
+          onChange={(v) => onPatch((c) => ({ ...c, rules: { ...c.rules, prohibitions: v } }))}
         />
       </AdminSection>
 
       <AdminSection title="جهات الاتصال (اختياري)">
-        <Field
+        <LinesField
+          key={`${company.id}-contacts`}
           label="سطر لكل جهة: النوع | القيمة"
-          value={(company.contacts || []).map((c) => `${c.type} | ${c.value}`).join('\n')}
-          onChange={(v) => {
-            const contacts = v.split('\n').map((line) => line.trim()).filter(Boolean).map((line) => {
+          value={(company.contacts || []).map((c) => `${c.type} | ${c.value}`)}
+          onChange={(lines) => {
+            const contacts = lines.map((line) => {
               const [type, ...rest] = line.split('|').map((p) => p.trim());
               return { type: type || 'phone', value: rest.join('|') || '' };
             });
-            update('contacts', contacts);
+            onPatch((c) => ({ ...c, contacts }));
           }}
-          multiline
         />
       </AdminSection>
 
       <AdminSection title="روابط مهمة">
         <p className="text-xs text-muted mb-2">سطر لكل رابط: العنوان | الرابط | النوع (portal/email/phone/website)</p>
-        <Field
+        <LinesField
+          key={`${company.id}-links`}
           label="الروابط"
-          value={(company.links || [])
-            .map((l) => `${l.label} | ${l.url} | ${l.type}`)
-            .join('\n')}
-          onChange={(v) => {
-            const links: CompanyLink[] = v
-              .split('\n')
-              .map((line) => line.trim())
-              .filter(Boolean)
-              .map((line, i) => {
+          value={(company.links || []).map((l) => `${l.label} | ${l.url} | ${l.type}`)}
+          onChange={(lines) => {
+            const links: CompanyLink[] = lines.map((line, i) => {
                 const parts = line.split('|').map((p) => p.trim());
                 const label = parts[0] || 'رابط';
                 const url = parts[1] || '';
@@ -607,9 +597,8 @@ function CompanyEditor({
                   type: ['portal', 'email', 'phone', 'website'].includes(type) ? type : 'portal',
                 };
               });
-            onChange({ ...company, links });
+            onPatch((c) => ({ ...c, links }));
           }}
-          multiline
         />
       </AdminSection>
     </div>
