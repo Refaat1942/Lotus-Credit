@@ -120,6 +120,8 @@ export interface Company {
   cardInstructions?: string[];
   /** Admin-written "before closing the invoice" points; when unset they're built from the rules */
   rulesTipBullets?: string[];
+  /** Admin-written numbered points under each step of the "خطوات الصرف" tab, keyed by step */
+  guideStepPoints?: Record<string, string[]>;
   media?: CompanyMedia[];
   links?: CompanyLink[];
 }
