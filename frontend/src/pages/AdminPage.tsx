@@ -10,10 +10,11 @@ import ContentAdminPanel from '../components/admin/ContentAdminPanel';
 import DocumentsAdminPanel, { CompanyDocuments } from '../components/admin/DocumentsAdminPanel';
 import CoachStepsEditor from '../components/admin/CoachStepsEditor';
 import LinesField from '../components/admin/LinesField';
+import GuideStepsEditor from '../components/admin/GuideStepsEditor';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
 import { useRules } from '../hooks/useRules';
 import { useTheme } from '../context/ThemeContext';
-import type { Branding, CoachCopyBundle, Company, CompanyLink, RulesData } from '../types';
+import type { AppCopyBundle, Branding, CoachCopyBundle, Company, CompanyLink, GuideCopyBundle, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
 type AdminTab = 'companies' | 'branding' | 'content' | 'documents' | 'backups';
@@ -405,6 +406,8 @@ export default function AdminPage() {
                 <CompanyEditor
                   company={selectedCompany}
                   globalCoach={editData?.coach}
+                  ui={editData?.ui}
+                  guide={editData?.guide}
                   adminToken={token}
                   onChange={updateCompany}
                   onPatch={(fn) => patchCompany(selectedCompany.id, fn)}
@@ -459,6 +462,8 @@ function BrandingEditor({
 function CompanyEditor({
   company,
   globalCoach,
+  ui,
+  guide,
   adminToken,
   onChange,
   onPatch,
@@ -466,6 +471,8 @@ function CompanyEditor({
 }: {
   company: Company;
   globalCoach?: CoachCopyBundle;
+  ui?: AppCopyBundle;
+  guide?: GuideCopyBundle;
   adminToken: string;
   onChange: (c: Company) => void;
   onPatch: (fn: (c: Company) => Company) => void;
@@ -523,6 +530,10 @@ function CompanyEditor({
           onChange={onChange}
           onPatch={onPatch}
         />
+      </AdminSection>
+
+      <AdminSection title="خطوات الصرف — النقاط تحت كل خطوة">
+        <GuideStepsEditor key={company.id} company={company} ui={ui} guide={guide} onPatch={onPatch} />
       </AdminSection>
 
       <AdminSection title="شروط الصرف">

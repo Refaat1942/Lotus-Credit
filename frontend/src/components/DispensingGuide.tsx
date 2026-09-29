@@ -13,6 +13,7 @@ import { RuleItem, NotesList } from './RuleDisplay';
 import { galleryMedia } from '../utils/mediaFilters';
 import { resolveFormDoc } from '../utils/coachSteps';
 import { useAppCopy } from '../hooks/useAppCopy';
+import { buildGuideSteps } from '../utils/guideSteps';
 
 type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'links';
 
@@ -52,21 +53,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
 
   const phases: Phase[] = ['start', 'steps', 'forms', 'rules', 'links'];
 
-  const dispensingSteps = [
-    { title: g('steps', 'stepCardTitle'), detail: g('steps', 'stepCardDetail'), tip: company.cardInstructions?.[0] },
-    ...(forms.map((f) => ({
-      title: g('steps', 'stepFormTitle'),
-      detail: f,
-      tip: undefined as string | undefined,
-      formName: f,
-    })) || []),
-    {
-      title: g('steps', 'stepApprovalTitle'),
-      detail: g('steps', 'stepApprovalDetail', { system: company.approvalSystem || g('steps', 'defaultSystem') }),
-      tip: company.approvalPortal ? g('steps', 'stepApprovalTip') : undefined,
-    },
-    { title: g('steps', 'stepDispenseTitle'), detail: g('steps', 'stepDispenseDetail'), tip: rules?.alternativesPolicy },
-  ];
+  const dispensingSteps = buildGuideSteps(company, g);
 
   const completedSteps = Object.values(stepDone).filter(Boolean).length;
 
@@ -200,7 +187,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
             <div className="space-y-3">
               {dispensingSteps.map((step, i) => {
                 const done = stepDone[i];
-                const hasForm = 'formName' in step && step.formName;
+                const hasForm = !!step.formName;
                 return (
                   <div
                     key={i}
@@ -223,6 +210,18 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-primary">{step.title}</p>
                         <p className="text-sm text-muted mt-1 leading-relaxed">{step.detail}</p>
+                        {step.points.length > 0 && (
+                          <ol className="mt-2 space-y-1.5">
+                            {step.points.map((p, n) => (
+                              <li key={n} className="flex items-start gap-2 text-sm text-primary leading-relaxed">
+                                <span className="w-5 h-5 mt-0.5 rounded-full bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 text-[11px] font-bold flex items-center justify-center shrink-0">
+                                  {n + 1}
+                                </span>
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ol>
+                        )}
                         {step.tip && <p className="text-xs text-lotus-600 dark:text-lotus-400 mt-2">💡 {step.tip}</p>}
                         {hasForm && (
                           <button
