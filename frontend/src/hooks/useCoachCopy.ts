@@ -12,15 +12,23 @@ export type ChecklistKey =
   | 'copay'
   | 'quantities';
 
-export function buildFinalChecklistKeys(company: Company): ChecklistKey[] {
+/** Final-checklist items an admin can switch on/off ('formComplete' covers both form wordings). */
+export const CHECKLIST_ITEMS: ChecklistKey[] = ['cardValid', 'formComplete', 'signature', 'stamp', 'diagnosis', 'copay', 'quantities'];
+
+export function checklistAuto(company: Company, key: ChecklistKey): boolean {
   const r = company.rules;
-  const keys: ChecklistKey[] = ['cardValid', 'formComplete'];
-  if (r?.signatureRequired) keys.push('signature');
-  if (r?.stampRequired) keys.push('stamp');
-  if (r?.diagnosisRequired) keys.push('diagnosis');
-  if (r?.copay) keys.push('copay');
-  keys.push('quantities');
-  return keys;
+  if (key === 'signature') return !!r?.signatureRequired;
+  if (key === 'stamp') return !!r?.stampRequired;
+  if (key === 'diagnosis') return !!r?.diagnosisRequired;
+  if (key === 'copay') return !!r?.copay;
+  return true;
+}
+
+/** Items the pharmacist must tick: built-in ones that are on, then the admin's extra items as `extra:<n>`. */
+export function buildFinalChecklistKeys(company: Company): string[] {
+  const builtIn = CHECKLIST_ITEMS.filter((k) => company.coachChecklist?.[k] ?? checklistAuto(company, k));
+  const extra = (company.coachChecklistExtra || []).map((t, i) => (t.trim() ? `extra:${i}` : '')).filter(Boolean);
+  return [...builtIn, ...extra];
 }
 
 export function formHintKey(form: string): string | null {

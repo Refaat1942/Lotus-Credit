@@ -122,6 +122,12 @@ export interface Company {
   cardInstructions?: string[];
   /** Admin-written "before closing the invoice" points; when unset they're built from the rules */
   rulesTipBullets?: string[];
+  /** Admin on/off per coach question step; unset = automatic (decided from the rules) */
+  coachSteps?: Partial<Record<CoachPhase, boolean>>;
+  /** Admin on/off per final-checklist item; unset = automatic */
+  coachChecklist?: Record<string, boolean>;
+  /** Extra items the pharmacist must tick in the final checklist */
+  coachChecklistExtra?: string[];
   /** Photos for the pharmacist's "أشكال الموافقات" tab, in order */
   approvalSamples?: string[];
   /** Admin-written numbered points under each step of the "خطوات الصرف" tab, keyed by step */

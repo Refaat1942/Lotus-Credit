@@ -145,3 +145,17 @@ export function stepPhotos(company: Company, media: CompanyMedia[], phase: Coach
 export function cleanBullet(text: string): string {
   return text.replace(/^\s*[-–•*]\s*/, '').trim();
 }
+
+/** Coach steps an admin can switch on/off per company (their follow-up steps go with them). */
+export const TOGGLEABLE_STEPS: CoachPhase[] = ['card_check', 'form_pick', 'approval_check', 'rules_tip', 'prohibitions', 'final_checks'];
+
+/** Whether a step shows when the admin hasn't chosen. */
+export function stepAuto(company: Company, phase: CoachPhase): boolean {
+  if (phase === 'approval_check') return !!(company.approvalPortal || company.rules?.priorApprovalRequired);
+  if (phase === 'prohibitions') return (company.rules?.prohibitions || []).some((p) => cleanBullet(p));
+  return true;
+}
+
+export function isStepOn(company: Company, phase: CoachPhase): boolean {
+  return company.coachSteps?.[phase] ?? stepAuto(company, phase);
+}

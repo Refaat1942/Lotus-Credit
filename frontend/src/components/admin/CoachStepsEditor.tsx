@@ -3,9 +3,9 @@ import { Camera, ChevronDown, ChevronUp, RotateCcw, X } from 'lucide-react';
 import type { CoachCopyBundle, CoachPhase, Company } from '../../types';
 import { COACH_FIELD_LABELS, DEFAULT_COACH, type CoachSection } from '../../data/coachDefaults';
 import { mergeCoachCopy, resolveCoachText } from '../../utils/coachCopy';
-import { LEGACY_ANSWER_KEYS, cleanBullet, stepPhotos } from '../../utils/coachSteps';
+import { LEGACY_ANSWER_KEYS, TOGGLEABLE_STEPS, cleanBullet, isStepOn, stepPhotos } from '../../utils/coachSteps';
 import { galleryMedia } from '../../utils/mediaFilters';
-import { buildRulesTipBullets } from '../../hooks/useCoachCopy';
+import { CHECKLIST_ITEMS, buildRulesTipBullets, checklistAuto } from '../../hooks/useCoachCopy';
 import CoachMediaEditor from '../CoachMediaEditor';
 import LinesField from './LinesField';
 import PhotoPicker from './PhotoPicker';
@@ -45,7 +45,7 @@ const STEPS: StepDef[] = [
   {
     phase: 'approval_check',
     title: 'سؤال الموافقة',
-    note: 'يظهر لو للشركة بوابة موافقات أو «موافقة مسبقة» مكتوبة في الشروط',
+    note: 'تلقائياً يظهر لو للشركة بوابة موافقات أو «موافقة مسبقة» في الشروط — تقدر تخليه مطلوب دايماً أو تقفله من المفتاح',
     messages: ['approvalCheckIntro', 'approvalNoWarning'],
     buttons: ['needApproval', 'noApproval'],
     photos: true,
@@ -70,7 +70,7 @@ const STEPS: StepDef[] = [
   {
     phase: 'final_checks',
     title: 'التأكيد النهائي',
-    note: 'بنود التوقيع / الختم / التشخيص / التحمل تظهر حسب اختيارات «شروط الصرف»',
+    note: 'تلقائياً بنود التوقيع / الختم / التشخيص / التحمل تظهر حسب «شروط الصرف» — تقدر تشغّل أو تقفل أي بند',
     messages: ['finalChecksTitle', 'finishIncomplete'],
     buttons: ['finish'],
     extra: 'checklist',
@@ -118,6 +118,14 @@ export default function CoachStepsEditor({ company, globalCoach, adminToken, onP
         stepMediaMap: { ...(c.stepMediaMap || {}), [phase]: fn(current) },
         coachAnswerMedia: Object.keys(answers).length ? answers : undefined,
       };
+    });
+
+  const setStepOn = (phase: CoachPhase, v: boolean | undefined) =>
+    onPatch((c) => {
+      const map = { ...(c.coachSteps || {}) };
+      if (v === undefined) delete map[phase];
+      else map[phase] = v;
+      return { ...c, coachSteps: Object.keys(map).length ? map : undefined };
     });
 
   // a render helper, not a component: keeps the same <input> between renders so typing keeps focus
@@ -219,10 +227,38 @@ export default function CoachStepsEditor({ company, globalCoach, adminToken, onP
         );
       case 'checklist':
         return (
-          <div className="grid sm:grid-cols-2 gap-3">
-            {Object.keys(DEFAULT_COACH.checklist).map((k) => (
-              copyField('checklist', k)
-            ))}
+          <div className="space-y-3">
+            <p className="text-[11px] text-muted">
+              شغّل البنود اللي الصيدلي لازم يعلّم عليها قبل ما يخلص، واقفل اللي مش مطلوبة للشركة دي.
+            </p>
+            {CHECKLIST_ITEMS.map((k) => {
+              const own = company.coachChecklist?.[k];
+              const on = own ?? checklistAuto(company, k);
+              return (
+                <div key={k} className={`rounded-lg p-3 space-y-2 ${on ? 'bg-white/5' : 'bg-white/[0.02] opacity-60'}`}>
+                  <RequiredSwitch
+                    on={on}
+                    automatic={own === undefined}
+                    onChange={(v) => onPatch((c) => ({ ...c, coachChecklist: { ...(c.coachChecklist || {}), [k]: v } }))}
+                    onReset={() =>
+                      onPatch((c) => {
+                        const map = { ...(c.coachChecklist || {}) };
+                        delete map[k];
+                        return { ...c, coachChecklist: Object.keys(map).length ? map : undefined };
+                      })
+                    }
+                  />
+                  {copyField('checklist', k)}
+                  {k === 'formComplete' && copyField('checklist', 'formCompleteGeneric')}
+                </div>
+              );
+            })}
+            <LinesField
+              label="بنود إضافية لازم الصيدلي يعلّم عليها (بند في كل سطر)"
+              value={company.coachChecklistExtra || []}
+              placeholder="مثال: صورة الكارنية مرفقة مع الفاتورة"
+              onChange={(v) => onPatch((c) => ({ ...c, coachChecklistExtra: v.length ? v : undefined }))}
+            />
           </div>
         );
     }
@@ -237,17 +273,20 @@ export default function CoachStepsEditor({ company, globalCoach, adminToken, onP
 
       {STEPS.map((step, i) => {
         const isOpen = open === step.phase;
+        const toggleable = TOGGLEABLE_STEPS.includes(step.phase);
+        const stepOn = isStepOn(company, step.phase);
         const photos = step.photos ? stepPhotos(company, media, step.phase) : [];
         const automatic = step.photos && !(company.stepMediaMap && step.phase in company.stepMediaMap) && photos.length > 0;
         const edited = [...step.messages.map((k) => ['messages', k]), ...step.buttons.map((k) => ['buttons', k])].some(
           ([s, k]) => company.coachCopy?.[s as CoachSection]?.[k] !== undefined,
         );
         return (
-          <div key={step.phase} className={`rounded-xl border ${isOpen ? 'border-lotus-500/40' : 'border-white/10'} overflow-hidden`}>
+          <div key={step.phase} className={`rounded-xl border ${isOpen ? 'border-lotus-500/40' : 'border-white/10'} overflow-hidden ${toggleable && !stepOn ? 'opacity-60' : ''}`}>
+            <div className="flex items-center bg-white/5">
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : step.phase)}
-              className="w-full flex items-center gap-3 px-3 py-2.5 bg-white/5 hover:bg-white/10 text-right"
+              className="flex-1 min-w-0 flex items-center gap-3 px-3 py-2.5 hover:bg-white/10 text-right"
             >
               <span className="w-7 h-7 rounded-full bg-lotus-500/25 text-lotus-300 text-sm font-bold flex items-center justify-center shrink-0">
                 {i + 1}
@@ -257,10 +296,26 @@ export default function CoachStepsEditor({ company, globalCoach, adminToken, onP
               {photos.length > 0 && <span className="text-[10px] text-muted">🖼 {photos.length}</span>}
               {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
+            {toggleable && (
+              <div className="px-3 shrink-0">
+                <RequiredSwitch
+                  on={stepOn}
+                  automatic={company.coachSteps?.[step.phase] === undefined}
+                  onChange={(v) => setStepOn(step.phase, v)}
+                  onReset={() => setStepOn(step.phase, undefined)}
+                />
+              </div>
+            )}
+            </div>
 
             {isOpen && (
               <div className="p-4 space-y-4">
                 {step.note && <p className="text-[11px] text-amber-300/80">{step.note}</p>}
+                {toggleable && !stepOn && (
+                  <p className="text-[11px] text-amber-300 rounded-lg bg-amber-500/10 px-3 py-2">
+                    الخطوة دي مقفولة للشركة دي — الصيدلي مش هيشوفها وهيروح على الخطوة اللي بعدها.
+                  </p>
+                )}
 
                 <div className="space-y-3">
                   <h5 className="text-xs font-bold text-lotus-300">💬 رسائل المرشد</h5>
@@ -334,6 +389,43 @@ export default function CoachStepsEditor({ company, globalCoach, adminToken, onP
           }
           onClose={() => setPickerFor(null)}
         />
+      )}
+    </div>
+  );
+}
+
+function RequiredSwitch({
+  on,
+  automatic,
+  onChange,
+  onReset,
+}: {
+  on: boolean;
+  automatic: boolean;
+  onChange: (v: boolean) => void;
+  onReset: () => void;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <button
+        type="button"
+        role="switch"
+        aria-checked={on}
+        title={on ? 'مطلوب — اضغط للإيقاف' : 'غير مطلوب — اضغط للتشغيل'}
+        onClick={() => onChange(!on)}
+        className="flex items-center gap-2"
+      >
+        <span className={`relative w-10 h-5 rounded-full transition-colors ${on ? 'bg-emerald-500' : 'bg-white/20'}`}>
+          <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all ${on ? 'right-0.5' : 'right-[22px]'}`} />
+        </span>
+        <span className={`text-xs font-medium ${on ? 'text-emerald-300' : 'text-muted'}`}>{on ? 'مطلوب' : 'غير مطلوب'}</span>
+      </button>
+      {automatic ? (
+        <span className="text-[10px] text-muted">(تلقائي)</span>
+      ) : (
+        <button type="button" onClick={onReset} title="رجوع للتلقائي" className="text-muted hover:text-amber-400">
+          <RotateCcw className="w-3 h-3" />
+        </button>
       )}
     </div>
   );
