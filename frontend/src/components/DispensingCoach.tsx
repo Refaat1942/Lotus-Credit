@@ -9,7 +9,7 @@ import type { CoachCopyBundle, Company, CompanyMedia } from '../types';
 import CompanyLogo from './CompanyLogo';
 import MediaLinks from './MediaLinks';
 import { galleryMedia } from '../utils/mediaFilters';
-import { cleanBullet, resolveFormDocs, stepPhotos } from '../utils/coachSteps';
+import { cleanBullet, isStepOn, resolveFormDocs, stepPhotos } from '../utils/coachSteps';
 import {
   buildFinalChecklistKeys,
   buildRulesTipBullets,
@@ -214,9 +214,43 @@ export default function DispensingCoach({
     })();
   }, [coachSay, msg, setPhaseActions]);
 
-  const goToFormPick = async () => {
+  // Each step hands over to the next one the admin left switched on.
+  const goCard = async () => {
+    if (!isStepOn(company, 'card_check')) return goForm();
+    await coachSay(msg('cardCheckIntro'), photosFor('card_check'));
+    setPhaseActions('card_check');
+  };
+
+  const goForm = async () => {
+    if (!isStepOn(company, 'form_pick')) return goApproval();
     await coachSay(msg('formPickIntro'));
     setPhaseActions('form_pick');
+  };
+
+  const goApproval = async () => {
+    if (!isStepOn(company, 'approval_check')) return goRules();
+    await coachSay(msg('approvalCheckIntro', { system: systemName }), photosFor('approval_check'));
+    setPhaseActions('approval_check');
+  };
+
+  const goRules = async () => {
+    if (!isStepOn(company, 'rules_tip')) return goProhibitions();
+    await showRulesTip(selectedForm);
+  };
+
+  const goProhibitions = async () => {
+    if (!isStepOn(company, 'prohibitions') || !prohibitions.length) return goFinal();
+    await showProhibitions();
+  };
+
+  const goFinal = async () => {
+    if (!isStepOn(company, 'final_checks') || !buildFinalChecklistKeys(company).length) return finishFlow();
+    await showFinalChecks();
+  };
+
+  const finishFlow = async () => {
+    await coachSay(msg('finishSuccess'), photosFor('done'));
+    setPhaseActions('done');
   };
 
   const showFormDoc = async (form: string, formIndex: number) => {
@@ -259,18 +293,16 @@ export default function DispensingCoach({
     pushUser(action.label);
 
     switch (action.id) {
-      case 'start': {
-        await coachSay(msg('cardCheckIntro'), photosFor('card_check'));
-        setPhaseActions('card_check');
+      case 'start':
+        await goCard();
         break;
-      }
 
       case 'ref':
         onOpenReference?.();
         break;
 
       case 'card_ok':
-        await goToFormPick();
+        await goForm();
         break;
 
       case 'card_bad':
@@ -290,7 +322,7 @@ export default function DispensingCoach({
       }
 
       case 'card_fixed':
-        await goToFormPick();
+        await goForm();
         break;
 
       case 'form_unsure':
@@ -309,12 +341,7 @@ export default function DispensingCoach({
           const idx = Number(action.id.replace('form-', ''));
           await showFormDoc(forms[idx], idx);
         } else if (action.id === 'doc_ok') {
-          if (company.approvalPortal || rules?.priorApprovalRequired) {
-            await coachSay(msg('approvalCheckIntro', { system: systemName }), photosFor('approval_check'));
-            setPhaseActions('approval_check');
-          } else {
-            await showRulesTip(selectedForm);
-          }
+          await goApproval();
         } else if (action.id === 'doc_zoom' && selectedDoc) {
           setLightbox(selectedDoc);
         } else if (action.id === 'form_again') {
@@ -330,16 +357,15 @@ export default function DispensingCoach({
               note: rules.priorApprovalRequired,
             }));
           }
-          await showRulesTip(selectedForm);
+          await goRules();
         } else if (action.id === 'got_approval') {
-          await showRulesTip(selectedForm);
+          await goRules();
         } else if (action.id === 'approval_help') {
           await showApprovalHelp();
         } else if (action.id === 'rules_ok') {
-          if (prohibitions.length) await showProhibitions();
-          else await showFinalChecks();
+          await goProhibitions();
         } else if (action.id === 'prohibitions_ok') {
-          await showFinalChecks();
+          await goFinal();
         } else if (action.id === 'finish') {
           const keys = buildFinalChecklistKeys(company);
           const allDone = keys.every((k) => finalChecks[k]);
@@ -348,8 +374,7 @@ export default function DispensingCoach({
             setPhaseActions('final_checks');
             return;
           }
-          await coachSay(msg('finishSuccess'), photosFor('done'));
-          setPhaseActions('done');
+          await finishFlow();
         } else if (action.id === 'restart') {
           setHistory([]);
           setSelectedForm(null);
@@ -393,14 +418,15 @@ export default function DispensingCoach({
   const finalChecklistKeys = buildFinalChecklistKeys(company);
   const allFinalDone = finalChecklistKeys.length > 0 && finalChecklistKeys.every((k) => finalChecks[k]);
 
-  const checklistLabel = (key: ChecklistKey) => {
+  const checklistLabel = (key: string) => {
+    if (key.startsWith('extra:')) return company.coachChecklistExtra?.[Number(key.slice(6))] ?? '';
     if (key === 'formComplete') {
       const label = formLabelByName(selectedForm);
       return label
         ? checklist('formComplete', { form: label })
         : checklist('formCompleteGeneric');
     }
-    return checklist(key);
+    return checklist(key as ChecklistKey);
   };
 
   return (
@@ -424,7 +450,7 @@ export default function DispensingCoach({
             {ui('reference')}
           </button>
         </div>
-        <PhaseProgress phase={phase} ui={ui} />
+        <PhaseProgress phase={phase} ui={ui} isOn={(p) => p === 'done' || isStepOn(company, p)} />
       </div>
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-1 py-4 space-y-4">
@@ -656,17 +682,20 @@ function FormattedText({ text, inline }: { text: string; inline?: boolean }) {
 function PhaseProgress({
   phase,
   ui,
+  isOn,
 }: {
   phase: Phase;
   ui: (key: string) => string;
+  isOn: (p: Phase) => boolean;
 }) {
-  const steps: { id: Phase; labelKey: string }[] = [
+  const allSteps: { id: Phase; labelKey: string }[] = [
     { id: 'card_check', labelKey: 'phaseCard' },
     { id: 'form_pick', labelKey: 'phaseForm' },
     { id: 'approval_check', labelKey: 'phaseApproval' },
     { id: 'final_checks', labelKey: 'phaseConfirm' },
     { id: 'done', labelKey: 'phaseDone' },
   ];
+  const steps = allSteps.filter((st) => isOn(st.id));
   const order: Phase[] = ['welcome', 'card_check', 'card_help', 'form_pick', 'form_doc', 'approval_check', 'approval_portal', 'rules_tip', 'prohibitions', 'final_checks', 'done'];
   const idx = order.indexOf(phase);
 
