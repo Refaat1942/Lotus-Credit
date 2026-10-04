@@ -1,15 +1,22 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Header from '../components/Header';
 import DispensingGuide from '../components/DispensingGuide';
 import { useRules } from '../hooks/useRules';
 import { useAppCopy } from '../hooks/useAppCopy';
+import { track } from '../utils/session';
 
 export default function CompanyPage() {
   const { id } = useParams<{ id: string }>();
   const { data, online, refetch, loading } = useRules();
   const { u } = useAppCopy(data?.ui);
   const company = data?.companies.find((c) => c.id === id);
+  const found = !!company;
+
+  useEffect(() => {
+    if (found && id) track('company_view', id);
+  }, [found, id]);
 
   if (!company && !loading) {
     return (

@@ -16,6 +16,7 @@ import {
   useCoachCopy,
   type ChecklistKey,
 } from '../hooks/useCoachCopy';
+import { track } from '../utils/session';
 
 type Phase =
   | 'welcome'
@@ -249,6 +250,7 @@ export default function DispensingCoach({
   };
 
   const finishFlow = async () => {
+    track('coach_finish', company.id);
     await coachSay(msg('finishSuccess'), photosFor('done'));
     setPhaseActions('done');
   };
@@ -294,6 +296,7 @@ export default function DispensingCoach({
 
     switch (action.id) {
       case 'start':
+        track('coach_start', company.id);
         await goCard();
         break;
 

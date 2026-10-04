@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
-import { Wifi, WifiOff, RefreshCw, Settings, Sun, Moon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Wifi, WifiOff, RefreshCw, Settings, Sun, Moon, LogIn, LogOut, Store } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import LotusLogo from './LotusLogo';
 import { useBranding } from '../hooks/useBranding';
 import { useTheme } from '../context/ThemeContext';
 import { useRules } from '../hooks/useRules';
 import { useAppCopy } from '../hooks/useAppCopy';
+import { setSession, useSession } from '../utils/session';
 
 interface HeaderProps {
   online: boolean;
@@ -18,6 +19,8 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
   const { data } = useRules();
   const { u } = useAppCopy(data?.ui);
+  const session = useSession();
+  const onAdmin = useLocation().pathname.startsWith('/admin');
 
   return (
     <motion.header
@@ -72,6 +75,27 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
               <Moon className="w-4 h-4 text-lotus-600" />
             )}
           </button>
+
+          {!onAdmin &&
+            (session ? (
+              <>
+                <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-lotus-500/15 text-lotus-600 dark:text-lotus-300 max-w-[160px]">
+                  <Store className="w-3 h-3 shrink-0" />
+                  <span className="truncate">{session.user.name}</span>
+                </span>
+                <button
+                  onClick={() => setSession(null)}
+                  className="p-2 rounded-lg hover:bg-surface transition-colors"
+                  title={`خروج (${session.user.name})`}
+                >
+                  <LogOut className="w-4 h-4 text-muted" />
+                </button>
+              </>
+            ) : (
+              <Link to="/login" className="p-2 rounded-lg hover:bg-surface transition-colors" title="دخول الفرع">
+                <LogIn className="w-4 h-4 text-muted" />
+              </Link>
+            ))}
 
           <Link to="/admin" state={{ requireLogin: true }}>
             <button className="p-2 rounded-lg hover:bg-surface transition-colors" title={u('header', 'admin')}>

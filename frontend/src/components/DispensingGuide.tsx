@@ -14,6 +14,7 @@ import { galleryMedia } from '../utils/mediaFilters';
 import { mediaByIds, resolveFormDocs } from '../utils/coachSteps';
 import { useAppCopy } from '../hooks/useAppCopy';
 import { buildGuideSteps } from '../utils/guideSteps';
+import { canUse, useSession } from '../utils/session';
 
 type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'approvals' | 'links';
 
@@ -40,6 +41,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
   const media = useMemo(() => galleryMedia(company.media || []), [company.media]);
   const cardDocs = useMemo(() => media.filter((m) => m.type === 'card'), [media]);
 
+  const coachAllowed = canUse(useSession(), 'coach');
   const [coachActive, setCoachActive] = useState(false);
   const [phase, setPhase] = useState<Phase>('start');
   const [stepDone, setStepDone] = useState<Record<number, boolean>>({});
@@ -154,13 +156,15 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
               )}
             </div>
 
-            <button
-              type="button"
-              onClick={() => setCoachActive(true)}
-              className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold text-base shadow-lg shadow-lotus-500/25 mb-3"
-            >
-              {g('start', 'startCoachBtn')}
-            </button>
+            {coachAllowed && (
+              <button
+                type="button"
+                onClick={() => setCoachActive(true)}
+                className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold text-base shadow-lg shadow-lotus-500/25 mb-3"
+              >
+                {g('start', 'startCoachBtn')}
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setPhase('steps')}
@@ -178,13 +182,15 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
                 <ListChecks className="w-5 h-5 text-lotus-500" />
                 {g('steps', 'heading')}
               </h2>
-              <button
-                type="button"
-                onClick={() => setCoachActive(true)}
-                className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30 whitespace-nowrap"
-              >
-                {g('common', 'interactiveBadge')}
-              </button>
+              {coachAllowed && (
+                <button
+                  type="button"
+                  onClick={() => setCoachActive(true)}
+                  className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30 whitespace-nowrap"
+                >
+                  {g('common', 'interactiveBadge')}
+                </button>
+              )}
             </div>
             <div className="space-y-3">
               {dispensingSteps.map((step, i) => {
@@ -257,13 +263,15 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
                   <FileImage className="w-5 h-5 text-lotus-500" />
                   {g('forms', 'heading')}
                 </h2>
-                <button
-                  type="button"
-                  onClick={() => setCoachActive(true)}
-                  className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30"
-                >
-                  {g('common', 'interactiveBadge')}
-                </button>
+                {coachAllowed && (
+                  <button
+                    type="button"
+                    onClick={() => setCoachActive(true)}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-400 border border-lotus-500/30"
+                  >
+                    {g('common', 'interactiveBadge')}
+                  </button>
+                )}
               </div>
               {forms.length === 0 ? (
                 <p className="text-muted text-sm">{g('forms', 'noForms')}</p>
