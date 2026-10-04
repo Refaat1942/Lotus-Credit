@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
 import { useRules } from '../hooks/useRules';
 import { useAppCopy } from '../hooks/useAppCopy';
+import { authHeader } from '../utils/session';
 
 interface ChatImage {
   url: string;
@@ -49,7 +50,7 @@ export default function SmartAssistant() {
     try {
       const res = await fetch('/api/assistant/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...authHeader() },
         body: JSON.stringify({ message: q }),
       });
       const responseData = await res.json();

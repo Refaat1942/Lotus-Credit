@@ -1,0 +1,12 @@
+# Live server data is mounted from the VPS at runtime (./data:/app/data); never bake it into the image
+data/backups
+data/logs
+data/users.json
+data/lotus.db
+data/lotus.db-journal
+data/tmp-*
+data/assets.incoming-*
+data/assets.old-*
+**/node_modules
+frontend/dist
+.git

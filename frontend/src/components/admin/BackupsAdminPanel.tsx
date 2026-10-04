@@ -13,6 +13,7 @@ const REASON_LABELS: Record<string, string> = {
   scheduled: 'تلقائي يومي',
   manual: 'يدوي',
   'before-restore': 'قبل استرجاع نسخة',
+  'before-import': 'قبل رفع ملف بيانات',
 };
 
 function formatSize(bytes: number) {

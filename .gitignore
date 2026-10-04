@@ -10,3 +10,10 @@ file_list.json
 dev-dist/
 .vite/
 data/backups/
+data/users.json
+data/logs/
+data/lotus.db
+data/lotus.db-journal
+data/tmp-*
+data/assets.incoming-*
+data/assets.old-*

@@ -1,7 +1,7 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown, Images, Database } from 'lucide-react';
+import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown, Images, Database, BarChart3, Users } from 'lucide-react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import CompanyLogo from '../components/CompanyLogo';
@@ -13,17 +13,36 @@ import LinesField from '../components/admin/LinesField';
 import GuideStepsEditor from '../components/admin/GuideStepsEditor';
 import ApprovalSamplesEditor from '../components/admin/ApprovalSamplesEditor';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
-import { useRules } from '../hooks/useRules';
+import SaveHistoryPanel from '../components/admin/SaveHistoryPanel';
+import MoveDataPanel from '../components/admin/MoveDataPanel';
+import UsersAdminPanel from '../components/admin/UsersAdminPanel';
+import DashboardPanel from '../components/admin/DashboardPanel';
+import type { Account } from '../utils/session';
 import { useTheme } from '../context/ThemeContext';
 import type { AppCopyBundle, Branding, CoachCopyBundle, Company, CompanyLink, GuideCopyBundle, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
-type AdminTab = 'companies' | 'branding' | 'content' | 'documents' | 'backups';
+type AdminTab = 'dashboard' | 'companies' | 'branding' | 'content' | 'documents' | 'backups' | 'users';
+
+const TABS: { id: AdminTab; label: string; icon: typeof Edit3 }[] = [
+  { id: 'dashboard', label: 'لوحة المتابعة', icon: BarChart3 },
+  { id: 'companies', label: 'شركات التأمين', icon: Edit3 },
+  { id: 'branding', label: 'الهوية والشعار', icon: Palette },
+  { id: 'content', label: 'المحتوى والنصوص', icon: Edit3 },
+  { id: 'documents', label: 'المستندات', icon: Images },
+  { id: 'backups', label: 'النسخ الاحتياطي', icon: Database },
+  { id: 'users', label: 'المستخدمون والفروع', icon: Users },
+];
+
+const canOpen = (user: Account, tab: AdminTab) =>
+  user.role === 'owner' || (tab !== 'users' && user.sections.includes(tab));
 
 export default function AdminPage() {
-  const { data, online, refetch, loading } = useRules();
+  const online = navigator.onLine;
   const { theme, toggleTheme } = useTheme();
   const [token, setToken] = useState('');
+  const [adminUser, setAdminUser] = useState<Account | null>(null);
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [editData, setEditData] = useState<RulesData | null>(null);
@@ -39,11 +58,7 @@ export default function AdminPage() {
     setPassword('');
   }, []);
 
-  useEffect(() => {
-    if (data && token && !editData) setEditData(data);
-  }, [data, token, editData]);
-
-  const isLoggedIn = !!token;
+  const isLoggedIn = !!token && !!adminUser;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,20 +67,35 @@ export default function AdminPage() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ username, password }),
       });
-      if (!res.ok) throw new Error('Invalid');
-      const { token: t } = await res.json();
+      if (res.status === 429) throw new Error('محاولات كتير — استنى دقيقة وجرب تاني');
+      if (!res.ok) throw new Error('اسم المستخدم أو كلمة المرور غير صحيحة');
+      const { token: t, user } = (await res.json()) as { token: string; user: Account };
+      const rulesRes = await fetch('/api/admin/rules', { headers: { Authorization: `Bearer ${t}` } });
+      if (!rulesRes.ok) throw new Error('تعذر تحميل البيانات');
+      setEditData((await rulesRes.json()) as RulesData);
       setToken(t);
+      setAdminUser(user);
+      setActiveTab(TABS.find((tab) => canOpen(user, tab.id))?.id ?? 'companies');
       setPassword('');
-      setEditData(data || null);
-    } catch {
-      setLoginError('كلمة المرور غير صحيحة');
+    } catch (err) {
+      setLoginError((err as Error).message);
+    }
+  };
+
+  // after rolling back a save, edit the restored data (so "حفظ الكل" can't bring the old copy back)
+  const reloadData = async () => {
+    const res = await fetch('/api/admin/rules', { headers: { Authorization: `Bearer ${token}` } });
+    if (res.ok) {
+      setEditData((await res.json()) as RulesData);
+      setMessage('تم الرجوع للحفظ المختار ✓');
     }
   };
 
   const handleLogout = () => {
     setToken('');
+    setAdminUser(null);
     setEditData(null);
     setSelectedId(null);
     setPassword('');
@@ -90,7 +120,6 @@ export default function AdminPage() {
       });
       if (!res.ok) throw new Error('Save failed');
       setMessage('تم الحفظ بنجاح ✓');
-      refetch();
     } catch {
       setMessage('فشل الحفظ - تحقق من الاتصال');
     } finally {
@@ -194,15 +223,23 @@ export default function AdminPage() {
               <Lock className="w-6 h-6 text-lotus-400" />
             </div>
             <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
-            <p className="text-slate-400 text-sm mt-1">أدخل كلمة المرور للمتابعة</p>
+            <p className="text-slate-400 text-sm mt-1">أدخل اسم المستخدم وكلمة المرور</p>
           </div>
 
+          <input
+            placeholder="اسم المستخدم (المالك: admin)"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoComplete="username"
+            className="w-full py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white mb-3 focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
+          />
           <input
             type="password"
             placeholder="كلمة المرور"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoFocus
+            autoComplete="current-password"
             className="w-full py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
           />
           {loginError && <p className="text-red-400 text-sm mb-4">{loginError}</p>}
@@ -225,6 +262,9 @@ export default function AdminPage() {
   }
 
   const branding = { ...DEFAULT_BRANDING, ...editData?.branding };
+  const user = adminUser!;
+  const canEdit = ['companies', 'branding', 'content', 'documents'].some((sec) => canOpen(user, sec as AdminTab));
+  const manageAllCompanies = user.role === 'owner' || (user.sections.includes('companies') && user.companies === 'all');
 
   return (
     <div className="min-h-screen">
@@ -234,9 +274,13 @@ export default function AdminPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-bold">لوحة الإدارة</h1>
-            <p className="text-slate-400 text-sm">تعديل الشركات، الهوية، النصوص، والمرشد التفاعلي</p>
+            <p className="text-slate-400 text-sm">
+              مرحباً، <span className="text-primary font-medium">{user.name}</span>
+              {user.role === 'owner' ? ' — صلاحيات كاملة' : ''}
+            </p>
           </div>
           <div className="flex gap-2">
+            {canEdit && (
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={handleSave}
@@ -246,6 +290,7 @@ export default function AdminPage() {
               <Save className="w-4 h-4" />
               {saving ? 'جاري الحفظ...' : 'حفظ الكل'}
             </motion.button>
+            )}
             <button
               onClick={handleLogout}
               className="flex items-center gap-2 px-4 py-2 rounded-xl glass hover:bg-white/10"
@@ -266,63 +311,26 @@ export default function AdminPage() {
           </motion.p>
         )}
 
-        <div className="flex gap-2 mb-6">
-          <button
-            onClick={() => setActiveTab('companies')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'companies'
-                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
-                : 'glass hover:bg-white/10'
-            }`}
-          >
-            <Edit3 className="w-4 h-4" />
-            شركات التأمين
-          </button>
-          <button
-            onClick={() => setActiveTab('branding')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'branding'
-                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
-                : 'glass hover:bg-white/10'
-            }`}
-          >
-            <Palette className="w-4 h-4" />
-            الهوية والشعار
-          </button>
-          <button
-            onClick={() => setActiveTab('content')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'content'
-                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
-                : 'glass hover:bg-white/10'
-            }`}
-          >
-            <Edit3 className="w-4 h-4" />
-            المحتوى والنصوص
-          </button>
-          <button
-            onClick={() => setActiveTab('documents')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'documents'
-                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
-                : 'glass hover:bg-white/10'
-            }`}
-          >
-            <Images className="w-4 h-4" />
-            المستندات
-          </button>
-          <button
-            onClick={() => setActiveTab('backups')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
-              activeTab === 'backups'
-                ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30'
-                : 'glass hover:bg-white/10'
-            }`}
-          >
-            <Database className="w-4 h-4" />
-            النسخ الاحتياطي
-          </button>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {TABS.filter((tab) => canOpen(user, tab.id)).map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              onClick={() => setActiveTab(id)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${
+                activeTab === id ? 'bg-lotus-500/20 text-lotus-300 border border-lotus-500/30' : 'glass hover:bg-white/10'
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              {label}
+            </button>
+          ))}
         </div>
+
+        {activeTab === 'dashboard' && <DashboardPanel adminToken={token} />}
+
+        {activeTab === 'users' && editData && (
+          <UsersAdminPanel adminToken={token} companies={editData.companies} />
+        )}
 
         {activeTab === 'content' && editData && (
           <ContentAdminPanel data={editData} onChange={setEditData} />
@@ -332,7 +340,13 @@ export default function AdminPage() {
           <DocumentsAdminPanel data={editData} adminToken={token} onPatchCompany={patchCompany} />
         )}
 
-        {activeTab === 'backups' && <BackupsAdminPanel adminToken={token} />}
+        {activeTab === 'backups' && (
+          <div className="space-y-4">
+            <SaveHistoryPanel adminToken={token} onRestored={reloadData} />
+            {user.role === 'owner' && <MoveDataPanel adminToken={token} />}
+            <BackupsAdminPanel adminToken={token} />
+          </div>
+        )}
 
         {activeTab === 'branding' && (
           <div className="glass-card p-6">
@@ -356,12 +370,14 @@ export default function AdminPage() {
             <div className="glass-card p-4 lg:sticky lg:top-20 lg:self-start">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-bold">الشركات</h2>
-                <button
-                  onClick={addCompany}
-                  className="p-2 rounded-lg bg-lotus-500/20 text-lotus-300 hover:bg-lotus-500/30"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
+                {manageAllCompanies && (
+                  <button
+                    onClick={addCompany}
+                    className="p-2 rounded-lg bg-lotus-500/20 text-lotus-300 hover:bg-lotus-500/30"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                )}
               </div>
               <div className="space-y-1 max-h-[70vh] overflow-y-auto">
                 {sortedCompanies.map((c, i) => (
@@ -412,7 +428,7 @@ export default function AdminPage() {
                   adminToken={token}
                   onChange={updateCompany}
                   onPatch={(fn) => patchCompany(selectedCompany.id, fn)}
-                  onDelete={() => deleteCompany(selectedCompany.id)}
+                  onDelete={manageAllCompanies ? () => deleteCompany(selectedCompany.id) : undefined}
                 />
               ) : (
                 <div className="glass-card p-12 text-center text-slate-400">
@@ -477,7 +493,7 @@ function CompanyEditor({
   adminToken: string;
   onChange: (c: Company) => void;
   onPatch: (fn: (c: Company) => Company) => void;
-  onDelete: () => void;
+  onDelete?: () => void;
 }) {
   const update = (field: keyof Company, value: unknown) => {
     onChange({ ...company, [field]: value });
@@ -495,9 +511,11 @@ function CompanyEditor({
       <div className="glass-card p-5">
         <div className="flex justify-between items-start mb-4">
           <h2 className="text-xl font-bold">{company.nameAr}</h2>
-          <button onClick={onDelete} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10">
-            <Trash2 className="w-4 h-4" />
-          </button>
+          {onDelete && (
+            <button onClick={onDelete} className="p-2 rounded-lg text-red-400 hover:bg-red-500/10">
+              <Trash2 className="w-4 h-4" />
+            </button>
+          )}
         </div>
 
         <CompanyLogoUpload
