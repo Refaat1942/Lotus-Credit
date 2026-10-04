@@ -13,6 +13,8 @@ import LinesField from '../components/admin/LinesField';
 import GuideStepsEditor from '../components/admin/GuideStepsEditor';
 import ApprovalSamplesEditor from '../components/admin/ApprovalSamplesEditor';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
+import SaveHistoryPanel from '../components/admin/SaveHistoryPanel';
+import MoveDataPanel from '../components/admin/MoveDataPanel';
 import UsersAdminPanel from '../components/admin/UsersAdminPanel';
 import DashboardPanel from '../components/admin/DashboardPanel';
 import type { Account } from '../utils/session';
@@ -79,6 +81,15 @@ export default function AdminPage() {
       setPassword('');
     } catch (err) {
       setLoginError((err as Error).message);
+    }
+  };
+
+  // after rolling back a save, edit the restored data (so "حفظ الكل" can't bring the old copy back)
+  const reloadData = async () => {
+    const res = await fetch('/api/admin/rules', { headers: { Authorization: `Bearer ${token}` } });
+    if (res.ok) {
+      setEditData((await res.json()) as RulesData);
+      setMessage('تم الرجوع للحفظ المختار ✓');
     }
   };
 
@@ -329,7 +340,13 @@ export default function AdminPage() {
           <DocumentsAdminPanel data={editData} adminToken={token} onPatchCompany={patchCompany} />
         )}
 
-        {activeTab === 'backups' && <BackupsAdminPanel adminToken={token} />}
+        {activeTab === 'backups' && (
+          <div className="space-y-4">
+            <SaveHistoryPanel adminToken={token} onRestored={reloadData} />
+            {user.role === 'owner' && <MoveDataPanel adminToken={token} />}
+            <BackupsAdminPanel adminToken={token} />
+          </div>
+        )}
 
         {activeTab === 'branding' && (
           <div className="glass-card p-6">

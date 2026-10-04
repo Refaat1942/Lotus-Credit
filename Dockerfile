@@ -1,12 +1,11 @@
-FROM node:20-alpine AS frontend-build
+FROM node:22-alpine AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend/ ./
-COPY data/ ../data/
 RUN npm run build
 
-FROM node:20-alpine
+FROM node:22-alpine
 WORKDIR /app
 COPY backend/package*.json ./backend/
 RUN cd backend && npm install --production
@@ -19,4 +18,4 @@ ENV PORT=3001
 EXPOSE 3001
 
 WORKDIR /app/backend
-CMD ["node", "server.js"]
+CMD ["node", "--disable-warning=ExperimentalWarning", "server.js"]

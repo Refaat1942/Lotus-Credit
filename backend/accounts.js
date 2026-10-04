@@ -1,23 +1,17 @@
-const fs = require('fs');
-const path = require('path');
 const crypto = require('crypto');
-
-const USERS_PATH = path.join(__dirname, '..', 'data', 'users.json');
+const db = require('./db');
 
 const ADMIN_SECTIONS = ['dashboard', 'companies', 'branding', 'content', 'documents', 'backups'];
 const BRANCH_FEATURES = ['coach', 'assistant'];
 
+/** Accounts and settings, stored in the database. */
 function loadStore() {
-  try {
-    const store = JSON.parse(fs.readFileSync(USERS_PATH, 'utf-8'));
-    return { settings: { requireLogin: false, ...(store.settings || {}) }, users: store.users || [] };
-  } catch {
-    return { settings: { requireLogin: false }, users: [] };
-  }
+  const { users, settings } = db.loadUsersAndSettings();
+  return { settings: { requireLogin: false, ...settings }, users };
 }
 
 function saveStore(store) {
-  fs.writeFileSync(USERS_PATH, JSON.stringify(store, null, 2), 'utf-8');
+  db.saveUsersAndSettings(store.users, store.settings);
 }
 
 function hashPassword(password) {
@@ -108,7 +102,6 @@ module.exports = {
   ADMIN_SECTIONS,
   BRANCH_FEATURES,
   OWNER,
-  USERS_PATH,
   loadStore,
   saveStore,
   hashPassword,

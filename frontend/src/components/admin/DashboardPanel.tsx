@@ -73,6 +73,9 @@ export const EVENT_LABELS: Record<string, string> = {
   user_update: 'تعديل مستخدم',
   user_delete: 'حذف مستخدم',
   settings_update: 'تغيير الإعدادات',
+  version_restore: 'رجوع لحفظ سابق',
+  data_export: 'تنزيل كل البيانات',
+  data_import: 'رفع ملف بيانات',
 };
 
 const ROLE_LABELS: Record<string, string> = { owner: 'المالك', admin: 'مدير', branch: 'فرع', guest: 'زائر', unknown: '—' };

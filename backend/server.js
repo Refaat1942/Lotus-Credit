@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'lotus-admin-2026';
 const JWT_SECRET = process.env.JWT_SECRET || 'lotus-credit-secret-key-change-in-production';
-const RULES_PATH = path.join(__dirname, '..', 'data', 'rules.json');
+const DATA_DIR = path.join(__dirname, '..', 'data');
 
 app.use(cors());
 app.use(express.json({ limit: '5mb' }));
@@ -29,13 +29,12 @@ const activity = require('./activity');
 const { OWNER, loadStore, saveStore, publicUser, canSeeCompany, hasSection, hasFeature } = accounts;
 const { logEvent, actorOf } = activity;
 
-function readRules() {
-  return JSON.parse(fs.readFileSync(RULES_PATH, 'utf-8'));
-}
+const db = require('./db');
+const tarball = require('./tarball');
 
-function writeRules(data) {
-  fs.writeFileSync(RULES_PATH, JSON.stringify(data, null, 2), 'utf-8');
-}
+/** Companies data lives in the database (every save kept as a version); rules.json is a readable copy. */
+const readRules = () => db.readRules();
+const writeRules = (data, savedBy, note) => db.writeRules(data, savedBy, note);
 
 const backupsDir = path.join(__dirname, '..', 'data', 'backups');
 if (!fs.existsSync(backupsDir)) fs.mkdirSync(backupsDir, { recursive: true });
@@ -55,14 +54,10 @@ function runBackup(reason = 'scheduled') {
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const dest = path.join(backupsDir, stamp);
   fs.mkdirSync(dest, { recursive: true });
-  if (fs.existsSync(RULES_PATH)) {
-    fs.cpSync(RULES_PATH, path.join(dest, 'rules.json'));
-  }
+  db.snapshotTo(path.join(dest, 'lotus.db'));
+  fs.writeFileSync(path.join(dest, 'rules.json'), JSON.stringify(db.readRules(), null, 2), 'utf-8');
   if (fs.existsSync(assetsPath)) {
     fs.cpSync(assetsPath, path.join(dest, 'assets'), { recursive: true });
-  }
-  if (fs.existsSync(accounts.USERS_PATH)) {
-    fs.cpSync(accounts.USERS_PATH, path.join(dest, 'users.json'));
   }
   const manifest = {
     name: stamp,
@@ -341,7 +336,7 @@ function mergeRulesForUser(current, incoming, user) {
 
 app.put('/api/admin/rules', requireAdmin('companies', 'branding', 'content', 'documents'), (req, res) => {
   try {
-    writeRules(mergeRulesForUser(readRules(), req.body, req.user));
+    writeRules(mergeRulesForUser(readRules(), req.body, req.user), req.user.name, 'حفظ التعديلات');
     logEvent({ type: 'admin_save', ...actorOf(req.user), detail: 'حفظ التعديلات' });
     res.json({ success: true, message: 'Rules updated successfully' });
   } catch {
@@ -356,7 +351,7 @@ app.put('/api/admin/companies/:id', requireAdmin('companies'), (req, res) => {
     const idx = data.companies.findIndex((c) => c.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Company not found' });
     data.companies[idx] = { ...data.companies[idx], ...req.body, id: req.params.id };
-    writeRules(data);
+    writeRules(data, req.user.name, 'تعديل شركة');
     res.json(data.companies[idx]);
   } catch {
     res.status(500).json({ error: 'Failed to update company' });
@@ -371,7 +366,7 @@ app.post('/api/admin/companies', requireAdmin('companies'), (req, res) => {
     const data = readRules();
     const company = { ...req.body, id: req.body.id || `company-${Date.now()}` };
     data.companies.push(company);
-    writeRules(data);
+    writeRules(data, req.user.name, 'إضافة شركة');
     res.status(201).json(company);
   } catch {
     res.status(500).json({ error: 'Failed to create company' });
@@ -383,7 +378,7 @@ app.delete('/api/admin/companies/:id', requireAdmin('companies'), (req, res) => 
   try {
     const data = readRules();
     data.companies = data.companies.filter((c) => c.id !== req.params.id);
-    writeRules(data);
+    writeRules(data, req.user.name, 'حذف شركة');
     res.json({ success: true });
   } catch {
     res.status(500).json({ error: 'Failed to delete company' });
@@ -416,7 +411,7 @@ app.post('/api/admin/companies/:id/logo', requireAdmin('companies'), (req, res) 
     const idx = data.companies.findIndex((c) => c.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Company not found' });
     data.companies[idx].logoUrl = logoUrl;
-    writeRules(data);
+    writeRules(data, req.user.name, 'رفع شعار');
     logEvent({ type: 'logo_upload', ...actorOf(req.user), companyId: req.params.id, companyName: data.companies[idx].nameAr });
     res.json({ logoUrl, company: data.companies[idx] });
   } catch (err) {
@@ -501,7 +496,7 @@ app.put('/api/admin/companies/:id/media/:mediaId', requireAdmin('companies', 'do
     }
 
     data.companies[cIdx] = company;
-    writeRules(data);
+    writeRules(data, req.user.name, 'تعديل صورة');
     logEvent({ type: 'media_update', ...actorOf(req.user), companyId: company.id, companyName: company.nameAr, detail: company.media[mIdx].title });
     res.json({ media: company.media[mIdx], company });
   } catch (err) {
@@ -523,7 +518,7 @@ app.delete('/api/admin/companies/:id/media/:mediaId', requireAdmin('companies', 
     company.media = company.media.filter((m) => m.id !== req.params.mediaId);
     stripMediaReferences(company, req.params.mediaId);
     data.companies[cIdx] = company;
-    writeRules(data);
+    writeRules(data, req.user.name, 'حذف صورة');
     logEvent({ type: 'media_delete', ...actorOf(req.user), companyId: company.id, companyName: company.nameAr, detail: item.title });
 
     if (item.url && item.url.startsWith('/assets/companies/')) {
@@ -581,7 +576,7 @@ app.post('/api/admin/companies/:id/media', requireAdmin('companies', 'documents'
     };
     company.media.push(mediaItem);
     data.companies[idx] = company;
-    writeRules(data);
+    writeRules(data, req.user.name, 'رفع صورة');
     logEvent({ type: 'media_upload', ...actorOf(req.user), companyId: cid, companyName: company.nameAr, detail: mediaItem.title });
     res.json({ media: mediaItem, company });
   } catch (err) {
@@ -589,6 +584,37 @@ app.post('/api/admin/companies/:id/media', requireAdmin('companies', 'documents'
     res.status(500).json({ error: 'Failed to upload media' });
   }
 });
+
+/**
+ * Puts the data from a backup/import folder in place: the database (or older JSON files), then photos.
+ * Everything is checked before anything is replaced, and photos are copied in full before the swap.
+ */
+function restoreDataFrom(dir) {
+  const dbFile = path.join(dir, 'lotus.db');
+  const rulesFile = path.join(dir, 'rules.json');
+  const usersFile = path.join(dir, 'users.json');
+  const assetsIn = path.join(dir, 'assets');
+
+  if (fs.existsSync(dbFile)) {
+    db.replaceWith(dbFile);
+  } else if (fs.existsSync(rulesFile)) {
+    const rules = JSON.parse(fs.readFileSync(rulesFile, 'utf-8'));
+    const users = fs.existsSync(usersFile) ? JSON.parse(fs.readFileSync(usersFile, 'utf-8')) : null;
+    db.writeRules(rules, 'النظام', 'استرجاع نسخة احتياطية');
+    if (users) saveStore({ users: users.users || [], settings: users.settings || {} });
+  } else {
+    throw new Error('لا توجد بيانات في الملف');
+  }
+
+  if (fs.existsSync(assetsIn)) {
+    const incoming = path.join(DATA_DIR, `assets.incoming-${Date.now()}`);
+    const old = path.join(DATA_DIR, `assets.old-${Date.now()}`);
+    fs.cpSync(assetsIn, incoming, { recursive: true });
+    if (fs.existsSync(assetsPath)) fs.renameSync(assetsPath, old);
+    fs.renameSync(incoming, assetsPath);
+    fs.rmSync(old, { recursive: true, force: true });
+  }
+}
 
 app.get('/api/admin/backups', requireAdmin('backups'), (_, res) => {
   try {
@@ -624,25 +650,80 @@ app.delete('/api/admin/backups/:name', requireAdmin('backups'), (req, res) => {
 app.post('/api/admin/backups/:name/restore', requireAdmin('backups'), (req, res) => {
   try {
     const dir = path.join(backupsDir, path.basename(req.params.name));
-    const rulesBackup = path.join(dir, 'rules.json');
-    const assetsBackup = path.join(dir, 'assets');
-    if (!fs.existsSync(dir) || !fs.existsSync(rulesBackup)) {
+    if (!fs.existsSync(path.join(dir, 'lotus.db')) && !fs.existsSync(path.join(dir, 'rules.json'))) {
       return res.status(404).json({ error: 'Backup not found' });
     }
 
     runBackup('before-restore');
-
-    fs.cpSync(rulesBackup, RULES_PATH);
-    if (fs.existsSync(assetsPath)) fs.rmSync(assetsPath, { recursive: true, force: true });
-    if (fs.existsSync(assetsBackup)) fs.cpSync(assetsBackup, assetsPath, { recursive: true });
-    const usersBackup = path.join(dir, 'users.json');
-    if (fs.existsSync(usersBackup)) fs.cpSync(usersBackup, accounts.USERS_PATH);
+    restoreDataFrom(dir);
     logEvent({ type: 'backup_restore', ...actorOf(req.user), detail: path.basename(req.params.name) });
 
     res.json({ success: true, restored: req.params.name });
   } catch (err) {
     console.error('Restore error:', err);
     res.status(500).json({ error: 'Failed to restore backup' });
+  }
+});
+
+app.get('/api/admin/versions', requireAdmin('backups'), (_, res) => {
+  res.json(db.listVersions(60));
+});
+
+app.post('/api/admin/versions/:id/restore', requireAdmin('backups'), (req, res) => {
+  const id = Number(req.params.id);
+  const data = Number.isInteger(id) ? db.getVersion(id) : null;
+  if (!data) return res.status(404).json({ error: 'Version not found' });
+  writeRules(data, req.user.name, `رجوع لحفظ رقم ${id}`);
+  logEvent({ type: 'version_restore', ...actorOf(req.user), detail: `حفظ رقم ${id}` });
+  res.json({ success: true });
+});
+
+/** All data in one file (database + photos + readable rules.json) for moving to another server. */
+app.get('/api/admin/export', requireOwner, async (req, res) => {
+  const tmp = fs.mkdtempSync(path.join(DATA_DIR, 'tmp-export-'));
+  try {
+    const dbCopy = path.join(tmp, 'lotus.db');
+    const rulesCopy = path.join(tmp, 'rules.json');
+    db.snapshotTo(dbCopy);
+    fs.writeFileSync(rulesCopy, JSON.stringify(db.readRules(), null, 2), 'utf-8');
+    const stamp = new Date().toISOString().slice(0, 10);
+    res.setHeader('Content-Type', 'application/gzip');
+    res.setHeader('Content-Disposition', `attachment; filename="lotus-data-${stamp}.tar.gz"`);
+    await tarball.writeTarGz(res, [
+      { name: 'lotus.db', file: dbCopy },
+      { name: 'rules.json', file: rulesCopy },
+      { name: 'assets', dir: assetsPath },
+    ]);
+    logEvent({ type: 'data_export', ...actorOf(req.user) });
+  } catch (err) {
+    console.error('Export error:', err);
+    if (!res.headersSent) res.status(500).json({ error: 'Failed to export' });
+    else res.destroy(err);
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
+/** Loads a file made by the export above (e.g. on a new server). The current data is backed up first. */
+app.post('/api/admin/import', requireOwner, async (req, res) => {
+  const tmp = fs.mkdtempSync(path.join(DATA_DIR, 'tmp-import-'));
+  try {
+    const archive = path.join(tmp, 'upload.tar.gz');
+    await tarball.saveUpload(req, archive, 4 * 1024 * 1024 * 1024);
+    const out = path.join(tmp, 'data');
+    tarball.extractTarGz(archive, out);
+    if (!fs.existsSync(path.join(out, 'lotus.db')) && !fs.existsSync(path.join(out, 'rules.json'))) {
+      return res.status(400).json({ error: 'الملف ده مش ملف بيانات لوتس' });
+    }
+    runBackup('before-import');
+    restoreDataFrom(out);
+    logEvent({ type: 'data_import', ...actorOf(req.user) });
+    res.json({ success: true, companies: db.readRules().companies.length, users: loadStore().users.length });
+  } catch (err) {
+    console.error('Import error:', err);
+    res.status(400).json({ error: err.message || 'Failed to import' });
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
   }
 });
 
@@ -753,6 +834,9 @@ const EVENT_LABELS = {
   user_update: 'تعديل مستخدم',
   user_delete: 'حذف مستخدم',
   settings_update: 'تغيير الإعدادات',
+  version_restore: 'رجوع لحفظ سابق',
+  data_export: 'تنزيل كل البيانات',
+  data_import: 'رفع ملف بيانات',
 };
 
 app.get('/api/admin/logs.csv', requireAdmin('dashboard'), (req, res) => {

@@ -1,21 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+const db = require('./db');
 
-const LOG_DIR = path.join(__dirname, '..', 'data', 'logs');
 const RETENTION_MONTHS = 24;
 const DAY = 24 * 60 * 60 * 1000;
-
-if (!fs.existsSync(LOG_DIR)) fs.mkdirSync(LOG_DIR, { recursive: true });
 
 /** Events pharmacists' browsers may report; everything else is logged by the server itself. */
 const CLIENT_EVENT_TYPES = ['company_view', 'coach_start', 'coach_finish'];
 
-const monthFile = (date) => path.join(LOG_DIR, `${date.toISOString().slice(0, 7)}.jsonl`);
-
 function logEvent(event) {
   try {
-    const entry = { t: new Date().toISOString(), ...event };
-    fs.appendFileSync(monthFile(new Date()), `${JSON.stringify(entry)}\n`, 'utf-8');
+    db.insertEvent({ t: new Date().toISOString(), ...event });
   } catch (err) {
     console.error('Activity log write failed:', err);
   }
@@ -44,27 +37,7 @@ function parseRange(from, to, tz) {
 }
 
 function readEvents({ start, end }) {
-  const events = [];
-  const cursor = new Date(start);
-  cursor.setUTCDate(1);
-  cursor.setUTCHours(0, 0, 0, 0);
-  while (cursor.getTime() < end) {
-    const file = monthFile(cursor);
-    if (fs.existsSync(file)) {
-      for (const line of fs.readFileSync(file, 'utf-8').split('\n')) {
-        if (!line) continue;
-        try {
-          const e = JSON.parse(line);
-          const ts = Date.parse(e.t);
-          if (ts >= start && ts < end) events.push(e);
-        } catch {
-          /* skip a damaged line */
-        }
-      }
-    }
-    cursor.setUTCMonth(cursor.getUTCMonth() + 1);
-  }
-  return events.sort((x, y) => (x.t < y.t ? 1 : -1));
+  return db.eventsBetween(new Date(start).toISOString(), new Date(end).toISOString());
 }
 
 function summarize(events, range, companyNames) {
@@ -147,10 +120,7 @@ function filterEvents(events, { type, user, q }) {
 function cleanupLogs() {
   const cutoff = new Date();
   cutoff.setUTCMonth(cutoff.getUTCMonth() - RETENTION_MONTHS);
-  const keepFrom = cutoff.toISOString().slice(0, 7);
-  for (const name of fs.readdirSync(LOG_DIR)) {
-    if (/^\d{4}-\d{2}\.jsonl$/.test(name) && name.slice(0, 7) < keepFrom) fs.rmSync(path.join(LOG_DIR, name));
-  }
+  db.deleteEventsBefore(cutoff.toISOString());
 }
 
 module.exports = { CLIENT_EVENT_TYPES, logEvent, actorOf, parseRange, readEvents, summarize, filterEvents, cleanupLogs };

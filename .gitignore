@@ -12,3 +12,8 @@ dev-dist/
 data/backups/
 data/users.json
 data/logs/
+data/lotus.db
+data/lotus.db-journal
+data/tmp-*
+data/assets.incoming-*
+data/assets.old-*
