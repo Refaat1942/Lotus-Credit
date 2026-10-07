@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Images, Loader2, Upload, X, ZoomIn } from 'lucide-react';
 import type { Company, CompanyMedia } from '../../types';
-import { uploadManyCompanyMedia } from '../../utils/mediaApi';
+import { IMAGE_ACCEPT, uploadManyCompanyMedia } from '../../utils/mediaApi';
 import PhotoPicker from './PhotoPicker';
 
 type Write = (fn: (ids: string[]) => string[], extra?: (c: Company) => Company) => void;
@@ -99,7 +99,7 @@ export default function MediaListEditor({
           ref={fileRef}
           type="file"
           multiple
-          accept="image/png,image/jpeg,image/webp"
+          accept={IMAGE_ACCEPT}
           className="hidden"
           onChange={(e) => {
             upload(Array.from(e.target.files || []));

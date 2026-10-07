@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Upload, Loader2 } from 'lucide-react';
 import CompanyLogo from './CompanyLogo';
 import type { Company } from '../types';
+import { IMAGE_ACCEPT, prepareLogo } from '../utils/mediaApi';
 
 interface CompanyLogoUploadProps {
   company: Pick<Company, 'id' | 'nameAr' | 'logoUrl' | 'color' | 'icon'>;
@@ -25,14 +26,6 @@ export default function CompanyLogoUpload({
   const preview = { ...company, logoUrl: logoUrl || company.logoUrl };
 
   const handleFile = async (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      setError('اختر ملف صورة (PNG, JPG, SVG)');
-      return;
-    }
-    if (file.size > 2 * 1024 * 1024) {
-      setError('الحد الأقصى 2MB');
-      return;
-    }
     setError('');
     setUploading(true);
     try {
@@ -40,7 +33,7 @@ export default function CompanyLogoUpload({
         const url = await onUpload(file);
         onLogoChange(url);
       } else if (adminToken) {
-        const dataUrl = await readAsDataUrl(file);
+        const dataUrl = await prepareLogo(file);
         const res = await fetch(`/api/admin/companies/${company.id}/logo`, {
           method: 'POST',
           headers: {
@@ -53,11 +46,10 @@ export default function CompanyLogoUpload({
         const { logoUrl: url } = await res.json();
         onLogoChange(url);
       } else {
-        const dataUrl = await readAsDataUrl(file);
-        onLogoChange(dataUrl);
+        onLogoChange(await prepareLogo(file));
       }
-    } catch {
-      setError('فشل رفع الصورة');
+    } catch (e) {
+      setError((e as Error).message.includes(':') ? (e as Error).message : 'فشل رفع الصورة');
     } finally {
       setUploading(false);
     }
@@ -79,7 +71,7 @@ export default function CompanyLogoUpload({
           <input
             ref={inputRef}
             type="file"
-            accept="image/png,image/jpeg,image/webp,image/svg+xml"
+            accept={IMAGE_ACCEPT}
             className="hidden"
             onChange={(e) => {
               const f = e.target.files?.[0];
@@ -103,11 +95,3 @@ export default function CompanyLogoUpload({
   );
 }
 
-function readAsDataUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result));
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
