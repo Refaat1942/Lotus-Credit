@@ -7,10 +7,10 @@ import { getMediaUsage } from '../../utils/mediaUsage';
 import { stripMediaFromCompany } from '../../utils/companyMedia';
 import {
   deleteCompanyMedia,
-  readAsDataUrl,
+  IMAGE_ACCEPT,
+  preparePhoto,
   updateCompanyMedia,
   uploadManyCompanyMedia,
-  validateImage,
 } from '../../utils/mediaApi';
 
 type CategoryFilter = 'all' | 'form' | 'card' | 'photo';
@@ -222,7 +222,7 @@ export function CompanyDocuments({
             ref={fileRef}
             type="file"
             multiple
-            accept="image/png,image/jpeg,image/webp"
+            accept={IMAGE_ACCEPT}
             className="hidden"
             onChange={(e) => {
               uploadFiles(Array.from(e.target.files || []));
@@ -345,17 +345,12 @@ function DocumentCard({
   };
 
   const replaceImage = async (file: File) => {
-    const invalid = validateImage(file);
-    if (invalid) {
-      setError(invalid);
-      return;
-    }
     setBusy(true);
     setError('');
     try {
-      replaceItem(await updateCompanyMedia(company.id, adminToken, item.id, { dataUrl: await readAsDataUrl(file) }));
-    } catch {
-      setError('فشل الاستبدال');
+      replaceItem(await updateCompanyMedia(company.id, adminToken, item.id, { dataUrl: await preparePhoto(file) }));
+    } catch (e) {
+      setError((e as Error).message.includes(':') ? (e as Error).message : 'فشل الاستبدال');
     } finally {
       setBusy(false);
     }
@@ -427,7 +422,7 @@ function DocumentCard({
         <input
           ref={fileRef}
           type="file"
-          accept="image/png,image/jpeg,image/webp"
+          accept={IMAGE_ACCEPT}
           className="hidden"
           onChange={(e) => {
             const f = e.target.files?.[0];

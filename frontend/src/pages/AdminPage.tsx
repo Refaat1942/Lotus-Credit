@@ -12,6 +12,7 @@ import CoachStepsEditor from '../components/admin/CoachStepsEditor';
 import LinesField from '../components/admin/LinesField';
 import GuideStepsEditor from '../components/admin/GuideStepsEditor';
 import ApprovalSamplesEditor from '../components/admin/ApprovalSamplesEditor';
+import BrandLogoUpload from '../components/admin/BrandLogoUpload';
 import BackupsAdminPanel from '../components/admin/BackupsAdminPanel';
 import SaveHistoryPanel from '../components/admin/SaveHistoryPanel';
 import MoveDataPanel from '../components/admin/MoveDataPanel';
@@ -361,7 +362,7 @@ export default function AdminPage() {
                 <p className="text-muted mt-1">{branding.subtitleAr}</p>
               </div>
             </div>
-            <BrandingEditor branding={branding} onChange={updateBranding} />
+            <BrandingEditor branding={branding} adminToken={token} onChange={updateBranding} />
           </div>
         )}
 
@@ -453,9 +454,11 @@ export default function AdminPage() {
 
 function BrandingEditor({
   branding,
+  adminToken,
   onChange,
 }: {
   branding: Branding;
+  adminToken: string;
   onChange: (b: Branding) => void;
 }) {
   const set = (field: keyof Branding, value: string) => {
@@ -464,7 +467,8 @@ function BrandingEditor({
 
   return (
     <div className="grid sm:grid-cols-2 gap-4">
-      <Field label="رابط الشعار" value={branding.logoUrl} onChange={(v) => set('logoUrl', v)} className="sm:col-span-2" />
+      <BrandLogoUpload logoUrl={branding.logoUrl} adminToken={adminToken} onChange={(url) => set('logoUrl', url)} />
+      <Field label="أو رابط الشعار (اختياري)" value={branding.logoUrl} onChange={(v) => set('logoUrl', v)} className="sm:col-span-2" />
       <Field label="الاسم (السطر الأول)" value={branding.titleAr} onChange={(v) => set('titleAr', v)} />
       <Field label="القسم / الفرع" value={branding.departmentAr} onChange={(v) => set('departmentAr', v)} />
       <Field label="العنوان الفرعي" value={branding.subtitleAr} onChange={(v) => set('subtitleAr', v)} />

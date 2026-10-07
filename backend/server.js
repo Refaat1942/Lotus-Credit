@@ -16,7 +16,15 @@ app.use(express.json({ limit: '5mb' }));
 const assetsPath = path.join(__dirname, '..', 'data', 'assets');
 const logosDir = path.join(assetsPath, 'logos');
 if (fs.existsSync(assetsPath)) {
-  app.use('/assets', express.static(assetsPath));
+  app.use(
+    '/assets',
+    express.static(assetsPath, {
+      // an uploaded SVG is shown as an image only; it can never run scripts if opened directly
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.svg')) res.setHeader('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'");
+      },
+    }),
+  );
 }
 if (!fs.existsSync(logosDir)) {
   fs.mkdirSync(logosDir, { recursive: true });
@@ -385,37 +393,55 @@ app.delete('/api/admin/companies/:id', requireAdmin('companies'), (req, res) => 
   }
 });
 
+const LOGO_TYPES = { png: 'png', jpg: 'jpg', jpeg: 'jpg', webp: 'webp', gif: 'gif', 'svg+xml': 'svg', svg: 'svg' };
+
+/** Saves an uploaded logo under a fresh name (so browsers never show a cached old one) and removes the previous file. */
+function saveLogo(dataUrl, baseName, previousUrl) {
+  if (!dataUrl || typeof dataUrl !== 'string') return { error: 'Missing image data' };
+  const match = dataUrl.match(/^data:image\/([\w.+-]+);base64,(.+)$/);
+  const ext = match && LOGO_TYPES[match[1].toLowerCase()];
+  if (!ext) return { error: 'Unsupported image type' };
+  const buffer = Buffer.from(match[2], 'base64');
+  if (buffer.length > 2 * 1024 * 1024) return { error: 'Image too large (max 2MB)' };
+  const filename = `${baseName}-${Date.now()}.${ext}`;
+  fs.writeFileSync(path.join(logosDir, filename), buffer);
+  if (typeof previousUrl === 'string' && previousUrl.startsWith('/assets/logos/')) {
+    const old = path.join(logosDir, path.basename(previousUrl.split('?')[0]));
+    if (old !== path.join(logosDir, filename)) fs.unlink(old, () => {});
+  }
+  return { url: `/assets/logos/${filename}` };
+}
+
 app.post('/api/admin/companies/:id/logo', requireAdmin('companies'), (req, res) => {
   if (!guardCompany(req, res)) return;
   try {
-    const { dataUrl } = req.body;
-    if (!dataUrl || typeof dataUrl !== 'string') {
-      return res.status(400).json({ error: 'Missing image data' });
-    }
-    const match = dataUrl.match(/^data:image\/(\w+);base64,(.+)$/);
-    if (!match) return res.status(400).json({ error: 'Invalid image format' });
-    let ext = match[1].toLowerCase();
-    if (ext === 'jpeg') ext = 'jpg';
-    if (!['png', 'jpg', 'webp', 'svg+xml', 'svg'].includes(ext)) {
-      return res.status(400).json({ error: 'Unsupported image type' });
-    }
-    const fileExt = ext.replace('+xml', '').replace('svg', 'svg');
-    const buffer = Buffer.from(match[2], 'base64');
-    if (buffer.length > 2 * 1024 * 1024) {
-      return res.status(400).json({ error: 'Image too large (max 2MB)' });
-    }
-    const filename = `${req.params.id}.${fileExt === 'svg' ? 'svg' : fileExt}`;
-    fs.writeFileSync(path.join(logosDir, filename), buffer);
-    const logoUrl = `/assets/logos/${filename}`;
     const data = readRules();
     const idx = data.companies.findIndex((c) => c.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Company not found' });
-    data.companies[idx].logoUrl = logoUrl;
+    const safeId = req.params.id.replace(/[^\w-]/g, '_');
+    const { url, error } = saveLogo(req.body.dataUrl, safeId, data.companies[idx].logoUrl);
+    if (error) return res.status(400).json({ error });
+    data.companies[idx].logoUrl = url;
     writeRules(data, req.user.name, 'رفع شعار');
     logEvent({ type: 'logo_upload', ...actorOf(req.user), companyId: req.params.id, companyName: data.companies[idx].nameAr });
-    res.json({ logoUrl, company: data.companies[idx] });
+    res.json({ logoUrl: url, company: data.companies[idx] });
   } catch (err) {
     console.error('Logo upload error:', err);
+    res.status(500).json({ error: 'Failed to upload logo' });
+  }
+});
+
+app.post('/api/admin/branding/logo', requireAdmin('branding'), (req, res) => {
+  try {
+    const data = readRules();
+    const { url, error } = saveLogo(req.body.dataUrl, 'app-logo', data.branding?.logoUrl);
+    if (error) return res.status(400).json({ error });
+    data.branding = { ...(data.branding || {}), logoUrl: url };
+    writeRules(data, req.user.name, 'رفع شعار التطبيق');
+    logEvent({ type: 'logo_upload', ...actorOf(req.user), detail: 'شعار التطبيق' });
+    res.json({ logoUrl: url });
+  } catch (err) {
+    console.error('App logo upload error:', err);
     res.status(500).json({ error: 'Failed to upload logo' });
   }
 });
@@ -476,7 +502,7 @@ app.put('/api/admin/companies/:id/media/:mediaId', requireAdmin('companies', 'do
       if (!match) return res.status(400).json({ error: 'Invalid image format' });
       let ext = match[1].toLowerCase();
       if (ext === 'jpeg') ext = 'jpg';
-      if (!['png', 'jpg', 'webp'].includes(ext)) {
+      if (!['png', 'jpg', 'webp', 'gif'].includes(ext)) {
         return res.status(400).json({ error: 'Unsupported image type' });
       }
       const buffer = Buffer.from(match[2], 'base64');
@@ -544,7 +570,7 @@ app.post('/api/admin/companies/:id/media', requireAdmin('companies', 'documents'
     if (!match) return res.status(400).json({ error: 'Invalid image format' });
     let ext = match[1].toLowerCase();
     if (ext === 'jpeg') ext = 'jpg';
-    if (!['png', 'jpg', 'webp'].includes(ext)) {
+    if (!['png', 'jpg', 'webp', 'gif'].includes(ext)) {
       return res.status(400).json({ error: 'Unsupported image type' });
     }
     const buffer = Buffer.from(match[2], 'base64');

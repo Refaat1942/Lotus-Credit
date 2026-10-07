@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Check, Loader2, Upload } from 'lucide-react';
 import type { Company } from '../../types';
-import { uploadManyCompanyMedia } from '../../utils/mediaApi';
+import { IMAGE_ACCEPT, uploadManyCompanyMedia } from '../../utils/mediaApi';
 
 /** Modal to toggle company photos on/off for one place, with upload from device. */
 export default function PhotoPicker({
@@ -47,7 +47,7 @@ export default function PhotoPicker({
             ref={fileRef}
             type="file"
             multiple
-            accept="image/png,image/jpeg,image/webp"
+            accept={IMAGE_ACCEPT}
             className="hidden"
             onChange={(e) => {
               upload(Array.from(e.target.files || []));
