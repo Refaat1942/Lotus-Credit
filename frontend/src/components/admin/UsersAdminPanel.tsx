@@ -212,7 +212,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
               active: d.active,
               companies: d.allCompanies ? 'all' : d.companies,
               sections: d.sections,
-              features: d.features,
+              features: d.role === 'admin' ? Object.keys(FEATURE_LABELS) : d.features,
               ...(d.password ? { password: d.password } : {}),
             };
             const res = await fetch(d.id ? `/api/admin/users/${d.id}` : '/api/admin/users', {
@@ -369,17 +369,19 @@ function UserForm({
           </div>
         )}
 
-        <div className="space-y-2">
-          <p className="text-sm font-medium">في تطبيق الصيدلي</p>
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(FEATURE_LABELS).map(([k, label]) => (
-              <label key={k} className={chip(d.features.includes(k))}>
-                <input type="checkbox" className="hidden" checked={d.features.includes(k)} onChange={() => toggleIn('features', k)} />
-                {label}
-              </label>
-            ))}
+        {d.role === 'branch' && (
+          <div className="space-y-2">
+            <p className="text-sm font-medium">في تطبيق الصيدلي</p>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(FEATURE_LABELS).map(([k, label]) => (
+                <label key={k} className={chip(d.features.includes(k))}>
+                  <input type="checkbox" className="hidden" checked={d.features.includes(k)} onChange={() => toggleIn('features', k)} />
+                  {label}
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <label className="flex items-center gap-2 text-sm cursor-pointer">
           <input type="checkbox" checked={d.active} onChange={(e) => set('active', e.target.checked)} />
