@@ -70,8 +70,8 @@ function summarize(events, range, companyNames) {
       if (e.type === 'coach_start') day.coachStarts += 1;
       if (e.type === 'assistant_question') day.assistantQuestions += 1;
     }
-    // a failed login is someone typing a name, not that account's activity
-    if (e.type === 'login_fail') continue;
+    // a failed login or a device still waiting for approval isn't that account's activity
+    if (e.type === 'login_fail' || e.type === 'device_pending') continue;
     const u = (users[e.user] ||= {
       user: e.user,
       name: e.userName,

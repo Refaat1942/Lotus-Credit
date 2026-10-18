@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { CalendarRange, Download, Loader2, Search, Table2 } from 'lucide-react';
+import PendingDevicesAlert from './PendingDevicesAlert';
 
 /** Single-series mark color: validated (lightness band, chroma, ≥3:1) on both the light and dark app surfaces. */
 const SERIES = '#0d9488';
@@ -76,6 +77,12 @@ export const EVENT_LABELS: Record<string, string> = {
   version_restore: 'رجوع لحفظ سابق',
   data_export: 'تنزيل كل البيانات',
   data_import: 'رفع ملف بيانات',
+  device_pending: 'جهاز جديد يطلب الدخول',
+  device_approve: 'الموافقة على جهاز',
+  device_block: 'حظر جهاز',
+  device_delete: 'حذف جهاز',
+  twofa_enable: 'تفعيل Google Authenticator',
+  twofa_disable: 'إلغاء Google Authenticator',
 };
 
 const ROLE_LABELS: Record<string, string> = { owner: 'المالك', admin: 'مدير', branch: 'فرع', guest: 'زائر', unknown: '—' };
@@ -105,7 +112,7 @@ const PRESETS: { id: string; label: string; range: () => [string, string] }[] = 
   { id: '90', label: 'آخر 90 يوم', range: () => [daysAgo(89), daysAgo(0)] },
 ];
 
-export default function DashboardPanel({ adminToken }: { adminToken: string }) {
+export default function DashboardPanel({ adminToken, isOwner }: { adminToken: string; isOwner?: boolean }) {
   const [preset, setPreset] = useState('7');
   const [[from, to], setRange] = useState<[string, string]>(PRESETS[1].range());
   const [report, setReport] = useState<Report | null>(null);
@@ -131,6 +138,8 @@ export default function DashboardPanel({ adminToken }: { adminToken: string }) {
 
   return (
     <div className="space-y-4">
+      {isOwner && <PendingDevicesAlert adminToken={adminToken} />}
+
       {/* filters: one row above everything they scope */}
       <div className="flex flex-wrap items-center gap-2">
         <CalendarRange className="w-4 h-4 text-muted" />

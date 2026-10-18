@@ -77,6 +77,21 @@ Access: **http://187.124.15.14:16346**
 - Edit company rules, forms, notes, and prohibitions
 - Changes persist to `data/rules.json`
 
+## Devices & Google Authenticator
+
+- Admin → «الأجهزة والأمان» (owner only).
+- **Device approval:** each account works only from devices the owner approved. A new device shows up on the dashboard
+  («جهاز جديد عايز يدخل») with its type (phone / tablet / computer, model, system, browser) and waits.
+  The first device of an account with no approved device is approved automatically.
+  Browsers can't read MAC addresses, so every browser gets a random secret ID (cookie + local storage).
+- **Google Authenticator:** the `admin` login asks for a 6-digit code, and a waiting device can be approved on the spot
+  by typing the owner's current code.
+- Lost the phone with the authenticator? On the server:
+
+  ```bash
+  docker exec lotus-credit node --disable-warning=ExperimentalWarning reset-2fa.js
+  ```
+
 ## Project Structure
 
 ```

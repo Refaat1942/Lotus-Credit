@@ -5,35 +5,37 @@ import { LogIn, Store } from 'lucide-react';
 import LotusLogo from '../components/LotusLogo';
 import { useBranding } from '../hooks/useBranding';
 import { setSession } from '../utils/session';
+import { useSignIn } from '../hooks/useSignIn';
+import { DeviceWaiting, OtpField } from '../components/SignInSteps';
 
 export default function BranchLoginPage({ required }: { required?: boolean }) {
   const branding = useBranding();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [busy, setBusy] = useState(false);
+  const auth = useSignIn('/api/auth/login', (s) => {
+    setSession(s);
+    navigate('/', { replace: true });
+  });
+  const { error, busy } = auth;
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setBusy(true);
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      if (res.status === 429) throw new Error('محاولات كتير — استنى دقيقة وجرب تاني');
-      if (!res.ok) throw new Error('اسم المستخدم أو كلمة المرور غير صحيحة');
-      setSession(await res.json());
-      navigate('/', { replace: true });
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setBusy(false);
-    }
+    auth.submit(username, password);
   };
+
+  if (auth.waiting) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="glass-card p-8 w-full max-w-md">
+          <div className="flex justify-center mb-6">
+            <LotusLogo size="md" />
+          </div>
+          <DeviceWaiting auth={auth} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -67,11 +69,12 @@ export default function BranchLoginPage({ required }: { required?: boolean }) {
           autoComplete="current-password"
           className="w-full py-3 px-4 rounded-xl input-theme mb-4 focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
         />
+        <OtpField auth={auth} />
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <button
           type="submit"
-          disabled={busy || !username || !password}
+          disabled={busy || !username || !password || (auth.otpNeeded && auth.otp.length !== 6)}
           className="w-full py-3 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold inline-flex items-center justify-center gap-2 disabled:opacity-50"
         >
           <LogIn className="w-5 h-5" />
