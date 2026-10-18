@@ -21,6 +21,8 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const { u } = useAppCopy(data?.ui);
   const session = useSession();
   const onAdmin = useLocation().pathname.startsWith('/admin');
+  // the admin-panel shortcut is only for admin accounts; branches and guests never see it
+  const isAdmin = session?.user.role === 'owner' || session?.user.role === 'admin';
 
   return (
     <motion.header
@@ -97,11 +99,13 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
               </Link>
             ))}
 
-          <Link to="/admin" state={{ requireLogin: true }}>
-            <button className="p-2 rounded-lg hover:bg-surface transition-colors" title={u('header', 'admin')}>
-              <Settings className="w-4 h-4 text-muted" />
-            </button>
-          </Link>
+          {(isAdmin || onAdmin) && (
+            <Link to="/admin" state={{ requireLogin: true }}>
+              <button className="p-2 rounded-lg hover:bg-surface transition-colors" title={u('header', 'admin')}>
+                <Settings className="w-4 h-4 text-muted" />
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </motion.header>
