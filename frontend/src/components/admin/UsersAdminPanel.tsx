@@ -46,6 +46,7 @@ const emptyDraft = (): Draft => ({
 export default function UsersAdminPanel({ adminToken, companies }: { adminToken: string; companies: Company[] }) {
   const [users, setUsers] = useState<Account[] | null>(null);
   const [requireLogin, setRequireLogin] = useState(false);
+  const [deviceApproval, setDeviceApproval] = useState(false);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [error, setError] = useState('');
   const auth = { Authorization: `Bearer ${adminToken}` };
@@ -59,6 +60,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
       const data = await res.json();
       setUsers(data.users);
       setRequireLogin(!!data.settings.requireLogin);
+      setDeviceApproval(!!data.settings.deviceApproval);
     } catch {
       setError('تعذر تحميل المستخدمين');
     }
@@ -73,8 +75,13 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
     if (next && !users?.some((u) => u.active && u.role === 'branch')) {
       if (!confirm('مفيش ولا حساب فرع مفعّل — الصيدليات مش هتقدر تدخل التطبيق. متأكد؟')) return;
     }
+    if (!next && deviceApproval && !confirm('قفل الدخول الإجباري هيقفل «موافقة الأجهزة الجديدة» كمان. متأكد؟')) return;
     const res = await fetch('/api/admin/settings', { method: 'PUT', headers: json, body: JSON.stringify({ requireLogin: next }) });
-    if (res.ok) setRequireLogin(next);
+    if (res.ok) {
+      const settings = await res.json();
+      setRequireLogin(!!settings.requireLogin);
+      setDeviceApproval(!!settings.deviceApproval);
+    }
   };
 
   const setActive = async (u: Account, active: boolean) => {

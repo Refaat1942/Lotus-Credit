@@ -39,6 +39,7 @@ const { logEvent, actorOf } = activity;
 
 const db = require('./db');
 const tarball = require('./tarball');
+const security = require('./security');
 
 /** Companies data lives in the database (every save kept as a version); rules.json is a readable copy. */
 const readRules = () => db.readRules();
@@ -132,19 +133,36 @@ function tokenOf(req) {
   return header.startsWith('Bearer ') ? header.slice(7) : '';
 }
 
-/** The signed-in account, re-read on every request so disabling or editing an account applies at once. */
-function resolveUser(req) {
+/**
+ * Whether the device a token was issued to may still be used: a blocked device never,
+ * and with device approval on, only a device the owner approved (removing it signs it out).
+ */
+function deviceAllowed(payload, settings) {
+  if (payload.sub === 'owner') return true;
+  if (!payload.dev) return !settings.deviceApproval;
+  const device = db.findDevice(payload.sub, payload.dev);
+  if (!device) return !settings.deviceApproval;
+  if (device.status === 'blocked') return false;
+  return device.status === 'approved' || !settings.deviceApproval;
+}
+
+/** The signed-in account and its token, re-read on every request so disabling an account or device applies at once. */
+function resolveSession(req) {
   const token = tokenOf(req);
   if (!token) return null;
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    if (payload.sub === 'owner') return OWNER;
-    const user = loadStore().users.find((u) => u.id === payload.sub);
-    return user && user.active ? publicUser(user) : null;
+    const store = loadStore();
+    if (!deviceAllowed(payload, store.settings)) return null;
+    if (payload.sub === 'owner') return { user: OWNER, payload };
+    const user = store.users.find((u) => u.id === payload.sub);
+    return user && user.active ? { user: publicUser(user), payload } : null;
   } catch {
     return null;
   }
 }
+
+const resolveUser = (req) => resolveSession(req)?.user ?? null;
 
 /** Admin-panel access; with sections, the account needs at least one of them. */
 function requireAdmin(...sections) {
@@ -193,46 +211,136 @@ function visibleRules(user) {
 const companyName = (id) => readRules().companies.find((c) => c.id === id)?.nameAr || id;
 
 const hits = new Map();
-function rateLimited(key, maxPerMinute) {
+/** Counts one hit for `key` and says whether it went over the limit for this minute (count: false only checks). */
+function rateLimited(key, maxPerMinute, count = true) {
   const now = Date.now();
   const w = hits.get(key) || { start: now, n: 0 };
   if (now - w.start > 60000) {
     w.start = now;
     w.n = 0;
   }
-  w.n += 1;
+  if (count) w.n += 1;
   hits.set(key, w);
-  return w.n > maxPerMinute;
+  return count ? w.n > maxPerMinute : w.n >= maxPerMinute;
 }
 
-function signToken(user, expiresIn) {
-  return jwt.sign({ sub: user.id, role: user.role }, JWT_SECRET, { expiresIn });
+function signToken(user, expiresIn, dev) {
+  return jwt.sign({ sub: user.id, role: user.role, dev }, JWT_SECRET, { expiresIn });
 }
 
-/** Checks username + password against the owner and the stored accounts; logs the attempt. */
+// ---- owner's Google Authenticator
+
+const TOTP_ISSUER = 'Lotus Credit';
+const ownerTotpSecret = () => db.getSecret('totpSecret');
+
+/** Accepts a current authenticator code once (the same code can't be used twice). */
+function acceptOwnerCode(code) {
+  const step = security.verifyTotp(ownerTotpSecret(), code, db.getSecret('totpLastStep') ?? -1);
+  if (step === null) return false;
+  db.setSecret('totpLastStep', step);
+  return true;
+}
+
+const deviceTitle = (d) => [d.kind, d.model, d.os, d.browser].filter(Boolean).join(' · ');
+
+/** Records the browser this login comes from; a new one waits for the owner when device approval is on. */
+function registerDevice(req, user, settings) {
+  const deviceId = security.deviceIdOf(req);
+  const keyHash = security.hashDeviceId(deviceId);
+  const info = security.describeDevice(req.headers['user-agent'], req.body?.device);
+  const now = new Date().toISOString();
+  let device = db.findDevice(user.id, keyHash);
+  if (!device) {
+    const approvedBy =
+      user.role === 'owner'
+        ? 'جهاز المالك'
+        : !settings.deviceApproval
+          ? 'قبل تفعيل موافقة الأجهزة'
+          : db.countDevices(user.id, 'approved') === 0
+            ? 'أول جهاز للحساب'
+            : null;
+    if (!approvedBy && db.countDevices(user.id, 'pending') >= 20) {
+      return { deviceId, keyHash, device: { ...info, status: 'pending' } };
+    }
+    device = {
+      id: `d-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
+      userId: user.id,
+      status: approvedBy ? 'approved' : 'pending',
+      label: '',
+      firstSeen: now,
+      ...(approvedBy ? { approvedAt: now, approvedBy } : {}),
+    };
+    if (!approvedBy) logEvent({ type: 'device_pending', ...actorOf(user), detail: deviceTitle(info) });
+  }
+  device = { ...device, ...info, ip: req.ip, lastSeen: now };
+  db.saveDevice(device, keyHash);
+  return { deviceId, keyHash, device };
+}
+
+const deviceSummary = (d) => ({ kind: d.kind, model: d.model, os: d.os, browser: d.browser });
+
+/** Checks username + password against the owner and the stored accounts, then the authenticator and the device. */
 function attemptLogin(req, res, { adminOnly }) {
-  if (rateLimited(`login:${req.ip}`, 10)) return res.status(429).json({ error: 'Too many attempts' });
+  // only wrong passwords count, so a new device re-checking its approval isn't slowed down
+  if (rateLimited(`login:${req.ip}`, 10, false)) return res.status(429).json({ error: 'Too many attempts' });
   const username = String(req.body.username || '').trim();
   const password = String(req.body.password || '');
+  const where = adminOnly ? 'لوحة الإدارة' : 'التطبيق';
+  const store = loadStore();
 
+  let user = null;
+  let found = null;
   if (!username || username.toLowerCase() === 'admin') {
-    if (accounts.safeEqual(password, ADMIN_PASSWORD)) {
-      logEvent({ type: 'login_ok', ...actorOf(OWNER), detail: adminOnly ? 'لوحة الإدارة' : 'التطبيق' });
-      return res.json({ token: signToken(OWNER, adminOnly ? '8h' : '30d'), user: OWNER });
-    }
+    if (accounts.safeEqual(password, ADMIN_PASSWORD)) user = OWNER;
   } else {
-    const store = loadStore();
-    const found = accounts.findUser(store, username);
+    found = accounts.findUser(store, username);
     if (found && found.active && accounts.verifyPassword(password, found) && (!adminOnly || found.role === 'admin')) {
-      found.lastLoginAt = new Date().toISOString();
-      saveStore(store);
-      const user = publicUser(found);
-      logEvent({ type: 'login_ok', ...actorOf(user), detail: adminOnly ? 'لوحة الإدارة' : 'التطبيق' });
-      return res.json({ token: signToken(user, adminOnly ? '8h' : '30d'), user });
+      user = publicUser(found);
     }
   }
-  logEvent({ type: 'login_fail', user: username || 'admin', userName: username || 'admin', role: 'unknown' });
-  return res.status(401).json({ error: 'Invalid credentials' });
+  if (!user) {
+    rateLimited(`login:${req.ip}`, 10);
+    logEvent({ type: 'login_fail', user: username || 'admin', userName: username || 'admin', role: 'unknown' });
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+
+  if (user.role === 'owner' && ownerTotpSecret()) {
+    const otp = req.body.otp;
+    if (!otp) return res.status(401).json({ error: 'otp_required' });
+    if (rateLimited('otp:owner', 5) || !acceptOwnerCode(otp)) {
+      logEvent({ type: 'login_fail', ...actorOf(OWNER), detail: 'كود Google Authenticator غلط' });
+      return res.status(401).json({ error: 'otp_required', wrong: true });
+    }
+  }
+
+  const { deviceId, keyHash, device } = registerDevice(req, user, store.settings);
+  security.setDeviceCookie(req, res, deviceId);
+  if (device.status === 'blocked') {
+    logEvent({ type: 'login_fail', ...actorOf(user), detail: `جهاز محظور: ${deviceTitle(device)}` });
+    return res.status(403).json({ error: 'device_blocked', deviceId });
+  }
+  if (device.status === 'pending' && store.settings.deviceApproval) {
+    const code = req.body.deviceCode;
+    if (code && device.id && ownerTotpSecret() && !rateLimited(`devcode:${user.id}`, 3) && acceptOwnerCode(code)) {
+      db.saveDevice({ ...device, status: 'approved', approvedAt: new Date().toISOString(), approvedBy: 'كود المدير (Google Authenticator)' }, keyHash);
+      logEvent({ type: 'device_approve', ...actorOf(user), detail: `بكود المدير: ${deviceTitle(device)}` });
+    } else {
+      return res.status(403).json({
+        error: 'device_pending',
+        deviceId,
+        device: deviceSummary(device),
+        codeAvailable: !!ownerTotpSecret(),
+        wrongCode: !!code,
+      });
+    }
+  }
+
+  if (found) {
+    found.lastLoginAt = new Date().toISOString();
+    saveStore(store);
+  }
+  logEvent({ type: 'login_ok', ...actorOf(user), detail: `${where} — ${deviceTitle(device)}` });
+  return res.json({ token: signToken(user, adminOnly ? '8h' : '30d', keyHash), user, deviceId });
 }
 
 app.get('/api/health', (_, res) => {
@@ -246,8 +354,14 @@ app.get('/api/public-config', (_, res) => {
 app.post('/api/auth/login', (req, res) => attemptLogin(req, res, { adminOnly: false }));
 
 app.get('/api/auth/me', (req, res) => {
-  const user = resolveUser(req);
-  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+  const session = resolveSession(req);
+  if (!session) return res.status(401).json({ error: 'Unauthorized' });
+  const { user, payload } = session;
+  // keep "last seen" of the device fresh (at most every 10 minutes)
+  const device = payload.dev ? db.findDevice(user.id, payload.dev) : null;
+  if (device && Date.now() - Date.parse(device.lastSeen || 0) > 10 * 60000) {
+    db.saveDevice({ ...device, lastSeen: new Date().toISOString(), ip: req.ip }, payload.dev);
+  }
   res.json({ user });
 });
 
@@ -801,16 +915,109 @@ app.delete('/api/admin/users/:id', requireOwner, (req, res) => {
   if (!found) return res.status(404).json({ error: 'User not found' });
   store.users = store.users.filter((u) => u.id !== req.params.id);
   saveStore(store);
+  db.deleteDevicesOf(req.params.id);
   logEvent({ type: 'user_delete', ...actorOf(req.user), detail: `${found.name} (${found.username})` });
   res.json({ success: true });
 });
 
 app.put('/api/admin/settings', requireOwner, (req, res) => {
   const store = loadStore();
-  store.settings = { ...store.settings, requireLogin: !!req.body.requireLogin };
+  const next = { ...store.settings };
+  const changes = [];
+  if ('requireLogin' in req.body) {
+    next.requireLogin = !!req.body.requireLogin;
+    changes.push(next.requireLogin ? 'تفعيل دخول الفروع الإجباري' : 'إلغاء دخول الفروع الإجباري');
+    // approving devices only means something when everyone has to sign in
+    if (!next.requireLogin) next.deviceApproval = false;
+  }
+  if ('deviceApproval' in req.body) {
+    next.deviceApproval = !!req.body.deviceApproval;
+    changes.push(next.deviceApproval ? 'تفعيل موافقة الأجهزة الجديدة' : 'إلغاء موافقة الأجهزة الجديدة');
+    if (next.deviceApproval) next.requireLogin = true;
+  }
+  store.settings = next;
   saveStore(store);
-  logEvent({ type: 'settings_update', ...actorOf(req.user), detail: store.settings.requireLogin ? 'تفعيل دخول الفروع الإجباري' : 'إلغاء دخول الفروع الإجباري' });
+  logEvent({ type: 'settings_update', ...actorOf(req.user), detail: changes.join('، ') });
   res.json(store.settings);
+});
+
+// ---- devices & Google Authenticator (owner only)
+
+app.get('/api/admin/devices', requireOwner, (req, res) => {
+  const store = loadStore();
+  const names = Object.fromEntries(store.users.map((u) => [u.id, { name: u.name, username: u.username, role: u.role }]));
+  names.owner = { name: OWNER.name, username: OWNER.username, role: 'owner' };
+  const order = { pending: 0, approved: 1, blocked: 2 };
+  const devices = db
+    .listDevices()
+    .filter((d) => req.query.status !== 'pending' || d.status === 'pending')
+    .map((d) => ({ ...d, account: names[d.userId] || { name: 'حساب محذوف', username: '', role: 'branch' } }))
+    .sort((a, b) => order[a.status] - order[b.status] || String(b.lastSeen).localeCompare(String(a.lastSeen)));
+  res.json({
+    deviceApproval: !!store.settings.deviceApproval,
+    requireLogin: !!store.settings.requireLogin,
+    totpEnabled: !!ownerTotpSecret(),
+    devices,
+  });
+});
+
+app.put('/api/admin/devices/:id', requireOwner, (req, res) => {
+  const device = db.getDevice(req.params.id);
+  if (!device) return res.status(404).json({ error: 'Device not found' });
+  const { keyHash, ...current } = device;
+  const next = { ...current };
+  if (typeof req.body.label === 'string') next.label = req.body.label.trim().slice(0, 60);
+  if (['approved', 'blocked'].includes(req.body.status) && req.body.status !== current.status) {
+    if (current.userId === 'owner') return res.status(400).json({ error: 'أجهزة المالك مش بتتحظر — احذفها بدل كده' });
+    next.status = req.body.status;
+    if (next.status === 'approved') {
+      next.approvedAt = new Date().toISOString();
+      next.approvedBy = req.user.name;
+    }
+    logEvent({
+      type: next.status === 'approved' ? 'device_approve' : 'device_block',
+      ...actorOf(req.user),
+      detail: `${deviceTitle(current)}${current.userId !== 'owner' ? ` — ${loadStore().users.find((u) => u.id === current.userId)?.name || ''}` : ''}`,
+    });
+  }
+  db.saveDevice(next, keyHash);
+  res.json(next);
+});
+
+app.delete('/api/admin/devices/:id', requireOwner, (req, res) => {
+  const device = db.getDevice(req.params.id);
+  if (!device) return res.status(404).json({ error: 'Device not found' });
+  db.deleteDevice(device.id);
+  logEvent({ type: 'device_delete', ...actorOf(req.user), detail: deviceTitle(device) });
+  res.json({ success: true });
+});
+
+app.post('/api/admin/2fa/setup', requireOwner, (_, res) => {
+  const secret = security.newTotpSecret();
+  db.setSecret('totpPending', secret);
+  res.json({ secret, uri: security.totpUri(secret, 'admin', TOTP_ISSUER) });
+});
+
+app.post('/api/admin/2fa/enable', requireOwner, (req, res) => {
+  const pending = db.getSecret('totpPending');
+  const step = pending ? security.verifyTotp(pending, req.body.code) : null;
+  if (step === null) return res.status(400).json({ error: 'الكود غلط — اكتب الكود الظاهر دلوقتي في التطبيق' });
+  db.setSecret('totpSecret', pending);
+  db.setSecret('totpLastStep', step);
+  db.setSecret('totpPending', null);
+  logEvent({ type: 'twofa_enable', ...actorOf(req.user) });
+  res.json({ totpEnabled: true });
+});
+
+app.post('/api/admin/2fa/disable', requireOwner, (req, res) => {
+  if (!ownerTotpSecret()) return res.json({ totpEnabled: false });
+  if (rateLimited('otp:owner', 5) || !acceptOwnerCode(req.body.code)) {
+    return res.status(400).json({ error: 'الكود غلط — اكتب الكود الظاهر دلوقتي في التطبيق' });
+  }
+  db.setSecret('totpSecret', null);
+  db.setSecret('totpLastStep', null);
+  logEvent({ type: 'twofa_disable', ...actorOf(req.user) });
+  res.json({ totpEnabled: false });
 });
 
 /** Events an admin may see: a company-restricted admin only sees events for their companies. */
@@ -863,6 +1070,12 @@ const EVENT_LABELS = {
   version_restore: 'رجوع لحفظ سابق',
   data_export: 'تنزيل كل البيانات',
   data_import: 'رفع ملف بيانات',
+  device_pending: 'جهاز جديد يطلب الدخول',
+  device_approve: 'الموافقة على جهاز',
+  device_block: 'حظر جهاز',
+  device_delete: 'حذف جهاز',
+  twofa_enable: 'تفعيل Google Authenticator',
+  twofa_disable: 'إلغاء Google Authenticator',
 };
 
 app.get('/api/admin/logs.csv', requireAdmin('dashboard'), (req, res) => {

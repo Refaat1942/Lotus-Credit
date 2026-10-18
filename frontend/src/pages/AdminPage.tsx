@@ -1,7 +1,7 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown, Images, Database, BarChart3, Users } from 'lucide-react';
+import { Lock, Save, LogOut, ArrowRight, Edit3, Trash2, Plus, Palette, Sun, Moon, ChevronUp, ChevronDown, Images, Database, BarChart3, Users, ShieldCheck } from 'lucide-react';
 import Header from '../components/Header';
 import LotusLogo from '../components/LotusLogo';
 import CompanyLogo from '../components/CompanyLogo';
@@ -19,11 +19,14 @@ import MoveDataPanel from '../components/admin/MoveDataPanel';
 import UsersAdminPanel from '../components/admin/UsersAdminPanel';
 import DashboardPanel from '../components/admin/DashboardPanel';
 import type { Account } from '../utils/session';
+import { useSignIn } from '../hooks/useSignIn';
+import { DeviceWaiting, OtpField } from '../components/SignInSteps';
+import DevicesSecurityPanel from '../components/admin/DevicesSecurityPanel';
 import { useTheme } from '../context/ThemeContext';
 import type { AppCopyBundle, Branding, CoachCopyBundle, Company, CompanyLink, GuideCopyBundle, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
 
-type AdminTab = 'dashboard' | 'companies' | 'branding' | 'content' | 'documents' | 'backups' | 'users';
+type AdminTab = 'dashboard' | 'companies' | 'branding' | 'content' | 'documents' | 'backups' | 'users' | 'devices';
 
 const TABS: { id: AdminTab; label: string; icon: typeof Edit3 }[] = [
   { id: 'dashboard', label: 'لوحة المتابعة', icon: BarChart3 },
@@ -33,10 +36,13 @@ const TABS: { id: AdminTab; label: string; icon: typeof Edit3 }[] = [
   { id: 'documents', label: 'المستندات', icon: Images },
   { id: 'backups', label: 'النسخ الاحتياطي', icon: Database },
   { id: 'users', label: 'المستخدمون والفروع', icon: Users },
+  { id: 'devices', label: 'الأجهزة والأمان', icon: ShieldCheck },
 ];
 
+const OWNER_TABS: AdminTab[] = ['users', 'devices'];
+
 const canOpen = (user: Account, tab: AdminTab) =>
-  user.role === 'owner' || (tab !== 'users' && user.sections.includes(tab));
+  user.role === 'owner' || (!OWNER_TABS.includes(tab) && user.sections.includes(tab));
 
 export default function AdminPage() {
   const online = navigator.onLine;
@@ -45,7 +51,6 @@ export default function AdminPage() {
   const [adminUser, setAdminUser] = useState<Account | null>(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState('');
   const [editData, setEditData] = useState<RulesData | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<AdminTab>('companies');
@@ -61,28 +66,21 @@ export default function AdminPage() {
 
   const isLoggedIn = !!token && !!adminUser;
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const auth = useSignIn('/api/admin/login', async ({ token: t, user }) => {
+    const rulesRes = await fetch('/api/admin/rules', { headers: { Authorization: `Bearer ${t}` } });
+    if (!rulesRes.ok) throw new Error('تعذر تحميل البيانات');
+    setEditData((await rulesRes.json()) as RulesData);
+    setToken(t);
+    setAdminUser(user);
+    setActiveTab(TABS.find((tab) => canOpen(user, tab.id))?.id ?? 'companies');
+    setPassword('');
+    auth.reset();
+  });
+  const loginError = auth.error;
+
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoginError('');
-    try {
-      const res = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      if (res.status === 429) throw new Error('محاولات كتير — استنى دقيقة وجرب تاني');
-      if (!res.ok) throw new Error('اسم المستخدم أو كلمة المرور غير صحيحة');
-      const { token: t, user } = (await res.json()) as { token: string; user: Account };
-      const rulesRes = await fetch('/api/admin/rules', { headers: { Authorization: `Bearer ${t}` } });
-      if (!rulesRes.ok) throw new Error('تعذر تحميل البيانات');
-      setEditData((await rulesRes.json()) as RulesData);
-      setToken(t);
-      setAdminUser(user);
-      setActiveTab(TABS.find((tab) => canOpen(user, tab.id))?.id ?? 'companies');
-      setPassword('');
-    } catch (err) {
-      setLoginError((err as Error).message);
-    }
+    auth.submit(username, password);
   };
 
   // after rolling back a save, edit the restored data (so "حفظ الكل" can't bring the old copy back)
@@ -210,6 +208,11 @@ export default function AdminPage() {
         >
           {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-lotus-600" />}
         </button>
+        {auth.waiting ? (
+          <div className="glass-card p-8 w-full max-w-md">
+            <DeviceWaiting auth={auth} />
+          </div>
+        ) : (
         <motion.form
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -243,21 +246,24 @@ export default function AdminPage() {
             autoComplete="current-password"
             className="w-full py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-lotus-500/50"
           />
+          <OtpField auth={auth} />
           {loginError && <p className="text-red-400 text-sm mb-4">{loginError}</p>}
 
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold"
+            disabled={auth.busy || (auth.otpNeeded && auth.otp.length !== 6)}
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-lotus-500 to-lotus-600 text-white font-bold disabled:opacity-50"
           >
-            دخول
+            {auth.busy ? 'جاري الدخول...' : 'دخول'}
           </motion.button>
 
           <Link to="/" className="block text-center text-slate-400 text-sm mt-4 hover:text-lotus-400">
             العودة للتطبيق
           </Link>
         </motion.form>
+        )}
       </div>
     );
   }
@@ -327,7 +333,9 @@ export default function AdminPage() {
           ))}
         </div>
 
-        {activeTab === 'dashboard' && <DashboardPanel adminToken={token} />}
+        {activeTab === 'dashboard' && <DashboardPanel adminToken={token} isOwner={user.role === 'owner'} />}
+
+        {activeTab === 'devices' && <DevicesSecurityPanel adminToken={token} />}
 
         {activeTab === 'users' && editData && (
           <UsersAdminPanel adminToken={token} companies={editData.companies} />

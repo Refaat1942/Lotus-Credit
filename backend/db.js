@@ -36,6 +36,14 @@ function open() {
       note TEXT NOT NULL,
       data TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS devices (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      key_hash TEXT NOT NULL,
+      status TEXT NOT NULL,
+      data TEXT NOT NULL,
+      UNIQUE (user_id, key_hash)
+    );
   `);
   rulesCache = null;
   importLegacyFiles();
@@ -179,6 +187,57 @@ function saveUsersAndSettings(users, settings) {
   });
 }
 
+/** Server-only values (e.g. the authenticator secret); never sent with the settings. */
+function getSecret(key) {
+  const row = db.prepare('SELECT value FROM settings WHERE key = ?').get(`_${key}`);
+  return row ? JSON.parse(row.value) : null;
+}
+
+function setSecret(key, value) {
+  if (value === null || value === undefined) db.prepare('DELETE FROM settings WHERE key = ?').run(`_${key}`);
+  else
+    db.prepare(
+      'INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value',
+    ).run(`_${key}`, JSON.stringify(value));
+}
+
+// ---- devices (one row per account + browser)
+
+const deviceRow = (r) => (r ? { ...JSON.parse(r.data), id: r.id, userId: r.user_id, status: r.status } : null);
+
+function findDevice(userId, keyHash) {
+  return deviceRow(db.prepare('SELECT * FROM devices WHERE user_id = ? AND key_hash = ?').get(userId, keyHash));
+}
+
+function getDevice(id) {
+  const r = db.prepare('SELECT * FROM devices WHERE id = ?').get(id);
+  return r ? { ...deviceRow(r), keyHash: r.key_hash } : null;
+}
+
+function listDevices() {
+  return db.prepare('SELECT * FROM devices').all().map(deviceRow);
+}
+
+function countDevices(userId, status) {
+  return db.prepare('SELECT COUNT(*) AS n FROM devices WHERE user_id = ? AND status = ?').get(userId, status).n;
+}
+
+function saveDevice(device, keyHash) {
+  const { id, userId, status, ...data } = device;
+  db.prepare(
+    `INSERT INTO devices (id, user_id, key_hash, status, data) VALUES (?, ?, ?, ?, ?)
+     ON CONFLICT(id) DO UPDATE SET status = excluded.status, data = excluded.data`,
+  ).run(id, userId, keyHash, status, JSON.stringify(data));
+}
+
+function deleteDevice(id) {
+  db.prepare('DELETE FROM devices WHERE id = ?').run(id);
+}
+
+function deleteDevicesOf(userId) {
+  db.prepare('DELETE FROM devices WHERE user_id = ?').run(userId);
+}
+
 // ---- activity log
 
 function insertEvent(entry) {
@@ -231,6 +290,15 @@ module.exports = {
   getVersion,
   loadUsersAndSettings,
   saveUsersAndSettings,
+  getSecret,
+  setSecret,
+  findDevice,
+  getDevice,
+  listDevices,
+  countDevices,
+  saveDevice,
+  deleteDevice,
+  deleteDevicesOf,
   insertEvent,
   eventsBetween,
   deleteEventsBefore,
