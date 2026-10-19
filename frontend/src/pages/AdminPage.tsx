@@ -20,7 +20,7 @@ import UsersAdminPanel from '../components/admin/UsersAdminPanel';
 import DashboardPanel from '../components/admin/DashboardPanel';
 import type { Account } from '../utils/session';
 import { useSignIn } from '../hooks/useSignIn';
-import { splitLinkLine } from '../utils/links';
+import { opensInNewTab, resolveLink, splitLinkLine } from '../utils/links';
 import { DeviceWaiting, OtpField } from '../components/SignInSteps';
 import DevicesSecurityPanel from '../components/admin/DevicesSecurityPanel';
 import { useTheme } from '../context/ThemeContext';
@@ -651,6 +651,26 @@ function CompanyEditor({
             onPatch((c) => ({ ...c, links }));
           }}
         />
+        {(company.links || []).length > 0 && (
+          <div className="space-y-1 text-xs">
+            <p className="text-muted">هتظهر للفروع كده:</p>
+            {(company.links || []).map((l) => {
+              const r = resolveLink(l);
+              return (
+                <p key={l.id} className={r.href ? 'text-muted' : 'text-red-400'}>
+                  {r.href ? '✓' : '⚠'} <span className="text-primary">{r.label}</span>{' '}
+                  {r.href ? (
+                    <a href={r.href} target={opensInNewTab(r.href) ? '_blank' : undefined} rel="noopener noreferrer" dir="ltr" className="underline break-all">
+                      {r.href}
+                    </a>
+                  ) : (
+                    '— مفيش لينك في السطر ده، مش هيفتح'
+                  )}
+                </p>
+              );
+            })}
+          </div>
+        )}
       </AdminSection>
     </div>
   );
