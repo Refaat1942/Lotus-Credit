@@ -4,7 +4,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import type { CompanyLink } from '../types';
-import { linkHref, opensInNewTab } from '../utils/links';
+import { opensInNewTab, resolveLink } from '../utils/links';
 
 interface CompanyLinksProps {
   links: CompanyLink[];
@@ -50,11 +50,11 @@ export default function CompanyLinks({
       </h2>
       <div className="grid sm:grid-cols-2 gap-3">
         {links.map((link, i) => {
-          const Icon = typeIcons[link.type] || ExternalLink;
-          const href = linkHref(link.url, link.type);
+          const { href, type, label, text } = resolveLink(link);
+          const Icon = typeIcons[type as CompanyLink['type']] || ExternalLink;
           const isExternal = opensInNewTab(href);
-          const isMail = link.type === 'email';
-          const isPhone = link.type === 'phone';
+          const isMail = href.startsWith('mailto:');
+          const isPhone = href.startsWith('tel:');
 
           return (
             <motion.div
@@ -77,9 +77,9 @@ export default function CompanyLinks({
                   <Icon className="w-5 h-5" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-primary truncate">{link.label}</p>
+                  <p className="text-sm font-medium text-primary truncate">{label}</p>
                   <p className="text-xs text-muted truncate dir-ltr text-left">
-                    {link.url.replace(/^mailto:/, '').replace(/^tel:/, '')}
+                    {text.replace(/^mailto:/, '').replace(/^tel:/, '')}
                   </p>
                 </div>
                 {isExternal && <ExternalLink className="w-4 h-4 text-muted flex-shrink-0" />}
@@ -87,7 +87,7 @@ export default function CompanyLinks({
               {(isMail || isPhone) && (
                 <button
                   type="button"
-                  onClick={() => copy(link.url, link.id)}
+                  onClick={() => copy(text, link.id)}
                   className="px-3 border-r border-theme hover:bg-surface-hover transition-colors"
                   title={copyLabel}
                 >

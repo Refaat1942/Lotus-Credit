@@ -24,3 +24,33 @@ export function splitLinkLine(line: string): [string, string, string] {
   if (!m) return [line.trim(), '', ''];
   return [line.replace(m[0], '').trim(), m[0], ''];
 }
+
+const LINK_IN_TEXT = /(https?:\/\/\S+|www\.\S+|[^\s@:|]+@[^\s@|]+\.[a-z]{2,}|[a-z0-9-]+(\.[a-z0-9-]+)+\/\S*)/i;
+const TYPE_WORDS = ['portal', 'email', 'phone', 'website'];
+
+const friendlyName = (href: string) =>
+  /drive\.google\./i.test(href) ? 'Google Drive' : /youtu\.?be/i.test(href) ? 'YouTube' : href.startsWith('mailto:') ? 'بريد' : 'فتح الرابط';
+
+/**
+ * What a saved link really points to. Older lines were sometimes saved with the address in the title
+ * (no | separator) or with a type word in the link box; the address is then taken from the title.
+ */
+export function resolveLink(link: { label: string; url: string; type: string }) {
+  let url = String(link.url || '').trim();
+  let label = String(link.label || '').trim();
+  let type = link.type;
+  if (TYPE_WORDS.includes(url.toLowerCase())) {
+    type = url.toLowerCase();
+    url = '';
+  }
+  if (!url) {
+    const m = label.match(LINK_IN_TEXT);
+    if (m) {
+      url = m[0];
+      label = label.replace(m[0], '').replace(/[\s:|،,-]+$/, '').trim();
+      if (url.includes('@') && !url.includes('/')) type = 'email';
+    }
+  }
+  const href = linkHref(url, type);
+  return { href, type, label: label || (href ? friendlyName(href) : 'رابط'), text: url };
+}
