@@ -16,15 +16,6 @@ export function linkHref(raw: string | undefined, type?: string): string {
 /** Web pages open in a new tab; phone and e-mail links don't. */
 export const opensInNewTab = (href: string) => /^https?:/i.test(href);
 
-/** One admin line "title | link | type"; a line with just a title and a link (no |) still works. */
-export function splitLinkLine(line: string): [string, string, string] {
-  const parts = line.split('|').map((p) => p.trim());
-  if (parts.length > 1) return [parts[0], parts[1] || '', parts[2] || ''];
-  const m = line.match(/(https?:\/\/\S+|www\.\S+|[a-z0-9-]+(\.[a-z0-9-]+)+\/\S*)/i);
-  if (!m) return [line.trim(), '', ''];
-  return [line.replace(m[0], '').trim(), m[0], ''];
-}
-
 const LINK_IN_TEXT = /(https?:\/\/\S+|www\.\S+|[^\s@:|]+@[^\s@|]+\.[a-z]{2,}|[a-z0-9-]+(\.[a-z0-9-]+)+\/\S*)/i;
 const TYPE_WORDS = ['portal', 'email', 'phone', 'website'];
 
