@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import type { CompanyLink } from '../types';
+import { linkHref, opensInNewTab } from '../utils/links';
 
 interface CompanyLinksProps {
   links: CompanyLink[];
@@ -50,8 +51,8 @@ export default function CompanyLinks({
       <div className="grid sm:grid-cols-2 gap-3">
         {links.map((link, i) => {
           const Icon = typeIcons[link.type] || ExternalLink;
-          const href = link.url;
-          const isExternal = link.type === 'portal' || link.type === 'website';
+          const href = linkHref(link.url, link.type);
+          const isExternal = opensInNewTab(href);
           const isMail = link.type === 'email';
           const isPhone = link.type === 'phone';
 
@@ -64,7 +65,7 @@ export default function CompanyLinks({
               className="flex items-stretch gap-2 rounded-xl border border-theme overflow-hidden bg-surface/50"
             >
               <a
-                href={href}
+                href={href || undefined}
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
                 className="flex-1 flex items-center gap-3 p-3 hover:bg-surface-hover transition-colors min-w-0"

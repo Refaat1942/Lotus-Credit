@@ -15,6 +15,7 @@ import { mediaByIds, resolveFormDocs } from '../utils/coachSteps';
 import { useAppCopy } from '../hooks/useAppCopy';
 import { buildGuideSteps } from '../utils/guideSteps';
 import { canUse, useSession } from '../utils/session';
+import { linkHref } from '../utils/links';
 
 type Phase = 'start' | 'steps' | 'forms' | 'rules' | 'approvals' | 'links';
 
@@ -145,7 +146,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
               )}
               {company.approvalPortal && (
                 <a
-                  href={company.approvalPortal}
+                  href={linkHref(company.approvalPortal)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-lotus-500/15 text-lotus-700 dark:text-lotus-300 border border-lotus-500/30 text-sm font-medium"

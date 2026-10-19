@@ -17,6 +17,7 @@ import {
   type ChecklistKey,
 } from '../hooks/useCoachCopy';
 import { track } from '../utils/session';
+import { linkHref } from '../utils/links';
 
 type Phase =
   | 'welcome'
@@ -177,7 +178,7 @@ export default function DispensingCoach({
               ? [{
                   id: 'open_portal',
                   label: btn('openPortal', { system: systemName }),
-                  href: company.approvalPortal,
+                  href: linkHref(company.approvalPortal),
                   external: true,
                   primary: true,
                 }]
