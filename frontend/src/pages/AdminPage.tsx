@@ -20,6 +20,7 @@ import UsersAdminPanel from '../components/admin/UsersAdminPanel';
 import DashboardPanel from '../components/admin/DashboardPanel';
 import type { Account } from '../utils/session';
 import { useSignIn } from '../hooks/useSignIn';
+import { splitLinkLine } from '../utils/links';
 import { DeviceWaiting, OtpField } from '../components/SignInSteps';
 import DevicesSecurityPanel from '../components/admin/DevicesSecurityPanel';
 import { useTheme } from '../context/ThemeContext';
@@ -624,17 +625,22 @@ function CompanyEditor({
       </AdminSection>
 
       <AdminSection title="روابط مهمة">
-        <p className="text-xs text-muted mb-2">سطر لكل رابط: العنوان | الرابط | النوع (portal/email/phone/website)</p>
+        <p className="text-xs text-muted mb-2">
+          سطر لكل رابط: العنوان | الرابط | النوع (portal/email/phone/website) — مثال:{' '}
+          <span dir="ltr" className="font-mono">فيديوهات الصرف | https://drive.google.com/... | website</span>
+        </p>
+        <p className="text-[11px] text-muted mb-2">
+          لينك جوجل درايف لازم يكون متشارك «أي حد معاه اللينك» (Anyone with the link) عشان الفروع تقدر تفتحه.
+        </p>
         <LinesField
           key={`${company.id}-links`}
           label="الروابط"
           value={(company.links || []).map((l) => `${l.label} | ${l.url} | ${l.type}`)}
           onChange={(lines) => {
             const links: CompanyLink[] = lines.map((line, i) => {
-                const parts = line.split('|').map((p) => p.trim());
-                const label = parts[0] || 'رابط';
-                const url = parts[1] || '';
-                const type = (parts[2] || 'portal') as CompanyLink['type'];
+                const [title, url, rawType] = splitLinkLine(line);
+                const label = title || 'رابط';
+                const type = (rawType || 'portal') as CompanyLink['type'];
                 return {
                   id: `${company.id}-link-${i}`,
                   label,

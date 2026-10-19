@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, Link2, X, ExternalLink, ChevronDown } from 'lucide-react';
 import type { AppCopyBundle } from '../types';
 import { useAppCopy } from '../hooks/useAppCopy';
+import { linkHref } from '../utils/links';
 
 interface QuickReferencePanelProps {
   cardChecklist: string[];
@@ -124,8 +125,8 @@ export default function QuickReferencePanel({
                     {approvalLinks.map((url, i) => (
                       <li key={i}>
                         <a
-                          href={url}
-                          target="_blank"
+                          href={linkHref(url)}
+                          target={linkHref(url).startsWith('http') ? '_blank' : undefined}
                           rel="noopener noreferrer"
                           className="flex items-center gap-3 p-3 rounded-xl border border-theme bg-surface/50 hover:bg-surface hover:border-lotus-500/40 transition-colors group"
                         >
