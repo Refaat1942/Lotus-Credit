@@ -7,6 +7,7 @@ import BranchLoginPage from './pages/BranchLoginPage';
 
 import SmartAssistant from './components/SmartAssistant';
 import DocumentTitle from './components/DocumentTitle';
+import ScreenGuard from './components/ScreenGuard';
 import { authHeader, canUse, getSession, setSession, useSession } from './utils/session';
 
 /** The pharmacist side: asks for a branch login first when the owner made it mandatory. */
@@ -52,6 +53,7 @@ export default function App() {
   return (
     <>
       <DocumentTitle />
+      <ScreenGuard />
       <Routes>
         <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<PublicApp />} />
