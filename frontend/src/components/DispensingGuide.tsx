@@ -45,7 +45,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
   const cardDocs = useMemo(() => media.filter((m) => m.type === 'card'), [media]);
 
   const coachAllowed = canUse(useSession(), 'coach');
-  const myLogins = useMyLogins().filter((l) => l.companyId === company.id);
+  const myLogins = useMyLogins().logins.filter((l) => l.companyId === company.id);
   const [coachActive, setCoachActive] = useState(false);
   const [phase, setPhase] = useState<Phase>('start');
   const [stepDone, setStepDone] = useState<Record<number, boolean>>({});

@@ -106,6 +106,9 @@ export function PortalLoginsModal({ logins, companies, onClose }: { logins: Port
         </div>
         <p className="text-xs text-muted">بيانات خاصة بفرعك من الإدارة — ماتشاركهاش مع حد.</p>
         <div className="space-y-3">
+          {logins.length === 0 && (
+            <p className="text-sm text-muted text-center py-6">لسه الإدارة ماضافتش بيانات دخول لفرعك.</p>
+          )}
           {logins.map((l) => (
             <PortalLoginCard key={l.id} login={l} company={byId[l.companyId]} />
           ))}

@@ -26,7 +26,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const onAdmin = useLocation().pathname.startsWith('/admin');
   // the admin-panel shortcut is only for admin accounts; branches and guests never see it
   const isAdmin = session?.user.role === 'owner' || session?.user.role === 'admin';
-  const logins = useMyLogins();
+  const { logins, reload: reloadLogins } = useMyLogins();
   const [loginsOpen, setLoginsOpen] = useState(false);
 
   return (
@@ -71,9 +71,12 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
             </button>
           )}
 
-          {!onAdmin && logins.length > 0 && (
+          {!onAdmin && session && session.user.role !== 'owner' && (
             <button
-              onClick={() => setLoginsOpen(true)}
+              onClick={() => {
+                reloadLogins();
+                setLoginsOpen(true);
+              }}
               className="inline-flex items-center gap-1 p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-300 text-xs font-medium hover:bg-lotus-500/25"
               title="بيانات دخول البوابات"
             >
