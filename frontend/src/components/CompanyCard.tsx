@@ -23,6 +23,7 @@ export default function CompanyCard({ company, index, ui }: CompanyCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 0.4 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className="min-w-0"
     >
       <Link to={`/company/${company.id}`} className="block">
         <div className="glass-card p-5 h-full relative overflow-hidden group">

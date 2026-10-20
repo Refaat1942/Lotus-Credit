@@ -50,6 +50,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
   const [deviceApproval, setDeviceApproval] = useState(false);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [loginsFor, setLoginsFor] = useState<Account | null>(null);
+  const [flash, setFlash] = useState('');
   const [error, setError] = useState('');
   const auth = { Authorization: `Bearer ${adminToken}` };
   const json = { ...auth, 'Content-Type': 'application/json' };
@@ -159,6 +160,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
         </div>
 
         {error && <p className="text-xs text-red-400">{error}</p>}
+        {flash && <p className="text-sm p-3 rounded-xl bg-emerald-500/15 text-emerald-300">{flash}</p>}
 
         {users === null ? (
           <p className="text-sm text-muted py-6 text-center">جاري التحميل...</p>
@@ -191,10 +193,10 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
                     type="button"
                     onClick={() => setLoginsFor(u)}
                     className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-300 hover:bg-lotus-500/25"
-                    title="يوزر وباسورد بوابات الشركات لهذا الحساب"
+                    title="يوزر وباسورد روابط الشركات لهذا الحساب"
                   >
                     <KeyRound className="w-3.5 h-3.5" />
-                    بيانات البوابات
+                    بيانات دخول الروابط
                   </button>
                   <button
                     type="button"
@@ -224,6 +226,11 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
           companies={companies}
           adminToken={adminToken}
           onClose={() => setLoginsFor(null)}
+          onSaved={(n) => {
+            setFlash(`تم حفظ بيانات دخول الروابط لـ «${loginsFor.name}» (${n}) ✓ — هتظهر عند الفرع على طول`);
+            setLoginsFor(null);
+            setTimeout(() => setFlash(''), 6000);
+          }}
         />
       )}
 
