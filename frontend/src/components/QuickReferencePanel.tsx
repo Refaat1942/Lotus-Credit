@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, Link2, X, ExternalLink, ChevronDown } from 'lucide-react';
 import type { AppCopyBundle } from '../types';
@@ -6,6 +6,7 @@ import { useAppCopy } from '../hooks/useAppCopy';
 import { linkHref } from '../utils/links';
 
 interface QuickReferencePanelProps {
+  extra?: ReactNode;
   cardChecklist: string[];
   electronicCardRules?: string[];
   approvalLinks: string[];
@@ -28,6 +29,7 @@ export default function QuickReferencePanel({
   electronicCardRules = [],
   approvalLinks,
   ui,
+  extra,
 }: QuickReferencePanelProps) {
   const { u } = useAppCopy(ui);
   const [modal, setModal] = useState<'card' | 'links' | null>(null);
@@ -53,6 +55,7 @@ export default function QuickReferencePanel({
           {u('quickRef', 'linksButton')}
           <span className="text-xs text-muted">({approvalLinks.length})</span>
         </button>
+        {extra}
       </div>
 
       <AnimatePresence>

@@ -438,7 +438,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
               <section className="glass-card p-6 mb-6 space-y-3">
                 <h2 className="text-xl font-bold flex items-center gap-2">
                   <KeyRound className="w-6 h-6 text-lotus-400" />
-                  بيانات دخولك على البوابة
+                  بيانات دخول الروابط
                 </h2>
                 {myLogins.map((l) => (
                   <PortalLoginCard key={l.id} login={l} company={company} />

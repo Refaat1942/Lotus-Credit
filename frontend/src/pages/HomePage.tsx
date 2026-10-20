@@ -4,6 +4,7 @@ import { Search } from 'lucide-react';
 import Header from '../components/Header';
 import CompanyCard from '../components/CompanyCard';
 import QuickReferencePanel from '../components/QuickReferencePanel';
+import { MyLoginsButton } from '../components/PortalLogins';
 import { useRules } from '../hooks/useRules';
 import { useBranding } from '../hooks/useBranding';
 import { useAppCopy } from '../hooks/useAppCopy';
@@ -73,6 +74,7 @@ export default function HomePage() {
                 electronicCardRules={data.general.electronicCardRules}
                 approvalLinks={data.general.approvalLinks}
                 ui={data.ui}
+                extra={<MyLoginsButton companies={data.companies} variant="home" />}
               />
             )}
           </div>

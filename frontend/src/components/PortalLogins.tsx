@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Check, Copy, ExternalLink, Eye, EyeOff, KeyRound, X } from 'lucide-react';
+import { Check, Copy, ExternalLink, Eye, EyeOff, KeyRound, Search, X } from 'lucide-react';
 import type { Company } from '../types';
-import type { PortalLogin } from '../utils/portalLogins';
+import { useMyLogins, type PortalLogin } from '../utils/portalLogins';
+import { useSession } from '../utils/session';
 import { linkHref } from '../utils/links';
 import CompanyLogo from './CompanyLogo';
 
@@ -56,7 +57,7 @@ export function PortalLoginCard({ login, company }: { login: PortalLogin; compan
             className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-300 text-xs font-medium shrink-0"
           >
             <ExternalLink className="w-3.5 h-3.5" />
-            فتح البوابة
+            فتح الرابط
           </a>
         )}
       </div>
@@ -86,9 +87,18 @@ export function PortalLoginCard({ login, company }: { login: PortalLogin; compan
   );
 }
 
-/** The branch's whole list, opened from the header. */
+/** The branch's whole list. */
 export function PortalLoginsModal({ logins, companies, onClose }: { logins: PortalLogin[]; companies: Company[]; onClose: () => void }) {
   const byId = Object.fromEntries(companies.map((c) => [c.id, c]));
+  const [q, setQ] = useState('');
+  const shown = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    if (!needle) return logins;
+    return logins.filter((l) => {
+      const c = byId[l.companyId];
+      return `${l.label} ${c?.nameAr || ''} ${c?.nameEn || ''} ${l.url}`.toLowerCase().includes(needle);
+    });
+  }, [logins, q]);
   return createPortal(
     <div className="fixed inset-0 z-[150] bg-black/70 flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={onClose}>
       <div
@@ -98,23 +108,75 @@ export function PortalLoginsModal({ logins, companies, onClose }: { logins: Port
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-primary flex items-center gap-2">
             <KeyRound className="w-5 h-5 text-lotus-500" />
-            بيانات دخول البوابات
+            بيانات دخول الروابط
           </h2>
           <button type="button" onClick={onClose} className="p-2 rounded-lg hover:bg-surface">
             <X className="w-5 h-5" />
           </button>
         </div>
-        <p className="text-xs text-muted">بيانات خاصة بفرعك من الإدارة — ماتشاركهاش مع حد.</p>
+        <div className="rounded-xl bg-lotus-500/10 border border-lotus-500/20 p-3 text-xs text-primary leading-relaxed">
+          اضغط <b>«فتح الرابط»</b> ← انسخ <b>اسم المستخدم</b> ← انسخ <b>كلمة المرور</b> (الزرار 👁 بيظهرها).
+          <span className="block text-muted mt-1">البيانات دي خاصة بفرعك من الإدارة — ماتشاركهاش مع حد.</span>
+        </div>
+        {logins.length > 5 && (
+          <div className="relative">
+            <Search className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-muted" />
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="ابحث باسم الشركة…"
+              className="w-full py-2.5 pr-9 pl-3 rounded-xl input-theme text-sm focus:outline-none focus:ring-2 focus:ring-lotus-500/40"
+            />
+          </div>
+        )}
         <div className="space-y-3">
           {logins.length === 0 && (
             <p className="text-sm text-muted text-center py-6">لسه الإدارة ماضافتش بيانات دخول لفرعك.</p>
           )}
-          {logins.map((l) => (
+          {shown.map((l) => (
             <PortalLoginCard key={l.id} login={l} company={byId[l.companyId]} />
           ))}
         </div>
       </div>
     </div>,
     document.body,
+  );
+}
+
+/** Opens the signed-in branch's logins: a small button in the header, or a big one on the home page. */
+export function MyLoginsButton({ companies, variant }: { companies: Company[]; variant: 'header' | 'home' }) {
+  const session = useSession();
+  const { logins, reload } = useMyLogins();
+  const [open, setOpen] = useState(false);
+  if (!session || session.user.role === 'owner') return null;
+  const openList = () => {
+    reload();
+    setOpen(true);
+  };
+  return (
+    <>
+      {variant === 'header' ? (
+        <button
+          type="button"
+          onClick={openList}
+          className="inline-flex items-center gap-1.5 p-2 sm:px-3 sm:py-1.5 rounded-lg bg-lotus-500 text-white text-xs font-semibold hover:bg-lotus-600 shadow-sm"
+          title="بيانات دخول الروابط"
+        >
+          <KeyRound className="w-4 h-4" />
+          <span className="hidden sm:inline">بيانات دخول الروابط</span>
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={openList}
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-lotus-500 text-white text-sm font-semibold hover:bg-lotus-600 shadow-sm"
+        >
+          <KeyRound className="w-4 h-4" />
+          بيانات دخول الروابط
+          <span className="text-xs bg-white/20 rounded-full px-2">{logins.length}</span>
+        </button>
+      )}
+      {open && <PortalLoginsModal logins={logins} companies={companies} onClose={() => setOpen(false)} />}
+    </>
   );
 }

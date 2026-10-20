@@ -193,10 +193,10 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
                     type="button"
                     onClick={() => setLoginsFor(u)}
                     className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-300 hover:bg-lotus-500/25"
-                    title="يوزر وباسورد بوابات الشركات لهذا الحساب"
+                    title="يوزر وباسورد روابط الشركات لهذا الحساب"
                   >
                     <KeyRound className="w-3.5 h-3.5" />
-                    بيانات البوابات
+                    بيانات دخول الروابط
                   </button>
                   <button
                     type="button"
@@ -227,7 +227,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
           adminToken={adminToken}
           onClose={() => setLoginsFor(null)}
           onSaved={(n) => {
-            setFlash(`تم حفظ بيانات البوابات لـ «${loginsFor.name}» (${n}) ✓ — هتظهر عند الفرع على طول`);
+            setFlash(`تم حفظ بيانات دخول الروابط لـ «${loginsFor.name}» (${n}) ✓ — هتظهر عند الفرع على طول`);
             setLoginsFor(null);
             setTimeout(() => setFlash(''), 6000);
           }}
