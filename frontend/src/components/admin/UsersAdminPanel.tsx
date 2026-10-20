@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { KeyRound, Loader2, Pencil, Plus, Search, ShieldCheck, Store, Trash2, X } from 'lucide-react';
 import type { Company } from '../../types';
 import type { Account } from '../../utils/session';
+import PortalLoginsEditor from './PortalLoginsEditor';
 
 const SECTION_LABELS: Record<string, string> = {
   dashboard: 'لوحة المتابعة والتقارير',
@@ -48,6 +49,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
   const [requireLogin, setRequireLogin] = useState(false);
   const [deviceApproval, setDeviceApproval] = useState(false);
   const [draft, setDraft] = useState<Draft | null>(null);
+  const [loginsFor, setLoginsFor] = useState<Account | null>(null);
   const [error, setError] = useState('');
   const auth = { Authorization: `Bearer ${adminToken}` };
   const json = { ...auth, 'Content-Type': 'application/json' };
@@ -187,6 +189,15 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
                 <div className="flex items-center gap-1">
                   <button
                     type="button"
+                    onClick={() => setLoginsFor(u)}
+                    className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-lotus-500/15 text-lotus-300 hover:bg-lotus-500/25"
+                    title="يوزر وباسورد بوابات الشركات لهذا الحساب"
+                  >
+                    <KeyRound className="w-3.5 h-3.5" />
+                    بيانات البوابات
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => setActive(u, !u.active)}
                     className={`text-xs px-3 py-1.5 rounded-lg ${u.active ? 'bg-emerald-500/15 text-emerald-300' : 'bg-white/10 text-muted'}`}
                     title={u.active ? 'اضغط للإيقاف' : 'اضغط للتفعيل'}
@@ -205,6 +216,16 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
           </div>
         )}
       </div>
+
+      {loginsFor && (
+        <PortalLoginsEditor
+          user={loginsFor}
+          users={users || []}
+          companies={companies}
+          adminToken={adminToken}
+          onClose={() => setLoginsFor(null)}
+        />
+      )}
 
       {draft && (
         <UserForm
