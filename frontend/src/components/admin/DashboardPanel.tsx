@@ -77,6 +77,7 @@ export const EVENT_LABELS: Record<string, string> = {
   version_restore: 'رجوع لحفظ سابق',
   data_export: 'تنزيل كل البيانات',
   data_import: 'رفع ملف بيانات',
+  logins_update: 'تعديل بيانات دخول البوابات',
   device_pending: 'جهاز جديد يطلب الدخول',
   device_approve: 'الموافقة على جهاز',
   device_block: 'حظر جهاز',

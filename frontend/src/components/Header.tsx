@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Wifi, WifiOff, RefreshCw, Settings, Sun, Moon, LogIn, LogOut, Store } from 'lucide-react';
+import { Wifi, WifiOff, RefreshCw, Settings, Sun, Moon, LogIn, LogOut, Store, KeyRound } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import LotusLogo from './LotusLogo';
 import { useBranding } from '../hooks/useBranding';
@@ -7,6 +8,8 @@ import { useTheme } from '../context/ThemeContext';
 import { useRules } from '../hooks/useRules';
 import { useAppCopy } from '../hooks/useAppCopy';
 import { setSession, useSession } from '../utils/session';
+import { useMyLogins } from '../utils/portalLogins';
+import { PortalLoginsModal } from './PortalLogins';
 
 interface HeaderProps {
   online: boolean;
@@ -23,6 +26,8 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
   const onAdmin = useLocation().pathname.startsWith('/admin');
   // the admin-panel shortcut is only for admin accounts; branches and guests never see it
   const isAdmin = session?.user.role === 'owner' || session?.user.role === 'admin';
+  const logins = useMyLogins();
+  const [loginsOpen, setLoginsOpen] = useState(false);
 
   return (
     <motion.header
@@ -63,6 +68,17 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
               title={u('header', 'refresh')}
             >
               <RefreshCw className={`w-4 h-4 text-muted ${loading ? 'animate-spin' : ''}`} />
+            </button>
+          )}
+
+          {!onAdmin && logins.length > 0 && (
+            <button
+              onClick={() => setLoginsOpen(true)}
+              className="inline-flex items-center gap-1 p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-lotus-500/15 text-lotus-600 dark:text-lotus-300 text-xs font-medium hover:bg-lotus-500/25"
+              title="بيانات دخول البوابات"
+            >
+              <KeyRound className="w-4 h-4" />
+              <span className="hidden sm:inline">بيانات الدخول</span>
             </button>
           )}
 
@@ -108,6 +124,7 @@ export default function Header({ online, onRefresh, loading }: HeaderProps) {
           )}
         </div>
       </div>
+      {loginsOpen && <PortalLoginsModal logins={logins} companies={data?.companies || []} onClose={() => setLoginsOpen(false)} />}
     </motion.header>
   );
 }

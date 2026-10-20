@@ -916,8 +916,48 @@ app.delete('/api/admin/users/:id', requireOwner, (req, res) => {
   store.users = store.users.filter((u) => u.id !== req.params.id);
   saveStore(store);
   db.deleteDevicesOf(req.params.id);
+  db.setPortalLogins(req.params.id, []);
   logEvent({ type: 'user_delete', ...actorOf(req.user), detail: `${found.name} (${found.username})` });
   res.json({ success: true });
+});
+
+// ---- portal usernames & passwords kept for each branch (the owner fills them in, the branch only reads them)
+
+const clipText = (v, n) => (typeof v === 'string' ? v.trim().slice(0, n) : '');
+
+function sanitizePortalLogins(input) {
+  if (!Array.isArray(input)) return [];
+  return input.slice(0, 100).map((l, i) => ({
+    id: clipText(l?.id, 60) || `pl-${Date.now().toString(36)}-${i}`,
+    companyId: clipText(l?.companyId, 80),
+    label: clipText(l?.label, 80),
+    url: clipText(l?.url, 500),
+    username: clipText(l?.username, 120),
+    password: clipText(l?.password, 200),
+    note: clipText(l?.note, 300),
+  }));
+}
+
+app.get('/api/my/logins', (req, res) => {
+  const user = resolveUser(req);
+  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+  res.setHeader('Cache-Control', 'no-store');
+  res.json(db.getPortalLogins(user.id));
+});
+
+app.get('/api/admin/users/:id/logins', requireOwner, (req, res) => {
+  if (!loadStore().users.some((u) => u.id === req.params.id)) return res.status(404).json({ error: 'User not found' });
+  res.setHeader('Cache-Control', 'no-store');
+  res.json(db.getPortalLogins(req.params.id));
+});
+
+app.put('/api/admin/users/:id/logins', requireOwner, (req, res) => {
+  const found = loadStore().users.find((u) => u.id === req.params.id);
+  if (!found) return res.status(404).json({ error: 'User not found' });
+  const list = sanitizePortalLogins(req.body?.logins);
+  db.setPortalLogins(found.id, list);
+  logEvent({ type: 'logins_update', ...actorOf(req.user), detail: `${found.name} — ${list.length} حساب` });
+  res.json(list);
 });
 
 app.put('/api/admin/settings', requireOwner, (req, res) => {
@@ -1070,6 +1110,7 @@ const EVENT_LABELS = {
   version_restore: 'رجوع لحفظ سابق',
   data_export: 'تنزيل كل البيانات',
   data_import: 'رفع ملف بيانات',
+  logins_update: 'تعديل بيانات دخول البوابات',
   device_pending: 'جهاز جديد يطلب الدخول',
   device_approve: 'الموافقة على جهاز',
   device_block: 'حظر جهاز',

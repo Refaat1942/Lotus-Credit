@@ -36,6 +36,7 @@ function open() {
       note TEXT NOT NULL,
       data TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS portal_logins (user_id TEXT PRIMARY KEY, data TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS devices (
       id TEXT PRIMARY KEY,
       user_id TEXT NOT NULL,
@@ -238,6 +239,21 @@ function deleteDevicesOf(userId) {
   db.prepare('DELETE FROM devices WHERE user_id = ?').run(userId);
 }
 
+// ---- each branch's saved logins for the companies' portals
+
+function getPortalLogins(userId) {
+  const row = db.prepare('SELECT data FROM portal_logins WHERE user_id = ?').get(userId);
+  return row ? JSON.parse(row.data) : [];
+}
+
+function setPortalLogins(userId, list) {
+  if (!list.length) db.prepare('DELETE FROM portal_logins WHERE user_id = ?').run(userId);
+  else
+    db.prepare(
+      'INSERT INTO portal_logins (user_id, data) VALUES (?, ?) ON CONFLICT(user_id) DO UPDATE SET data = excluded.data',
+    ).run(userId, JSON.stringify(list));
+}
+
 // ---- activity log
 
 function insertEvent(entry) {
@@ -299,6 +315,8 @@ module.exports = {
   saveDevice,
   deleteDevice,
   deleteDevicesOf,
+  getPortalLogins,
+  setPortalLogins,
   insertEvent,
   eventsBetween,
   deleteEventsBefore,

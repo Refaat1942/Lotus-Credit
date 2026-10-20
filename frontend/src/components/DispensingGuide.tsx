@@ -2,11 +2,13 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   PlayCircle, ListChecks, FileImage, AlertTriangle, Link2, FileCheck,
-  Phone, ExternalLink, Check, ZoomIn, X, Sparkles,
+  Phone, ExternalLink, Check, ZoomIn, X, Sparkles, KeyRound,
 } from 'lucide-react';
 import type { AppCopyBundle, CoachCopyBundle, Company, CompanyMedia, GuideCopyBundle } from '../types';
 import CompanyLogo from './CompanyLogo';
 import CompanyLinks from './CompanyLinks';
+import { PortalLoginCard } from './PortalLogins';
+import { useMyLogins } from '../utils/portalLogins';
 import MediaLinks from './MediaLinks';
 import DispensingCoach from './DispensingCoach';
 import { RuleItem, NotesList } from './RuleDisplay';
@@ -43,6 +45,7 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
   const cardDocs = useMemo(() => media.filter((m) => m.type === 'card'), [media]);
 
   const coachAllowed = canUse(useSession(), 'coach');
+  const myLogins = useMyLogins().filter((l) => l.companyId === company.id);
   const [coachActive, setCoachActive] = useState(false);
   const [phase, setPhase] = useState<Phase>('start');
   const [stepDone, setStepDone] = useState<Record<number, boolean>>({});
@@ -429,9 +432,20 @@ export default function DispensingGuide({ company, globalCoach, ui, guide }: Dis
           </motion.div>
         )}
 
-        {phase === 'links' && company.links && company.links.length > 0 && (
+        {phase === 'links' && (
           <motion.div key="links" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            <CompanyLinks links={company.links} accentColor={color} linksTitle={u('ruleLabels', 'importantLinks')} copyLabel={u('ruleLabels', 'copyLink')} />
+            {myLogins.length > 0 && (
+              <section className="glass-card p-6 mb-6 space-y-3">
+                <h2 className="text-xl font-bold flex items-center gap-2">
+                  <KeyRound className="w-6 h-6 text-lotus-400" />
+                  بيانات دخولك على البوابة
+                </h2>
+                {myLogins.map((l) => (
+                  <PortalLoginCard key={l.id} login={l} company={company} />
+                ))}
+              </section>
+            )}
+            <CompanyLinks links={company.links || []} accentColor={color} linksTitle={u('ruleLabels', 'importantLinks')} copyLabel={u('ruleLabels', 'copyLink')} />
           </motion.div>
         )}
       </AnimatePresence>
