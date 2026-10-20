@@ -50,6 +50,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
   const [deviceApproval, setDeviceApproval] = useState(false);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [loginsFor, setLoginsFor] = useState<Account | null>(null);
+  const [flash, setFlash] = useState('');
   const [error, setError] = useState('');
   const auth = { Authorization: `Bearer ${adminToken}` };
   const json = { ...auth, 'Content-Type': 'application/json' };
@@ -159,6 +160,7 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
         </div>
 
         {error && <p className="text-xs text-red-400">{error}</p>}
+        {flash && <p className="text-sm p-3 rounded-xl bg-emerald-500/15 text-emerald-300">{flash}</p>}
 
         {users === null ? (
           <p className="text-sm text-muted py-6 text-center">جاري التحميل...</p>
@@ -224,6 +226,11 @@ export default function UsersAdminPanel({ adminToken, companies }: { adminToken:
           companies={companies}
           adminToken={adminToken}
           onClose={() => setLoginsFor(null)}
+          onSaved={(n) => {
+            setFlash(`تم حفظ بيانات البوابات لـ «${loginsFor.name}» (${n}) ✓ — هتظهر عند الفرع على طول`);
+            setLoginsFor(null);
+            setTimeout(() => setFlash(''), 6000);
+          }}
         />
       )}
 

@@ -22,17 +22,26 @@ export default function PortalLoginsEditor({
   companies,
   adminToken,
   onClose,
+  onSaved,
 }: {
   user: Account;
   users: Account[];
   companies: Company[];
   adminToken: string;
   onClose: () => void;
+  onSaved: (count: number) => void;
 }) {
   const [rows, setRows] = useState<PortalLogin[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [copyFrom, setCopyFrom] = useState('');
+  const [saved, setSaved] = useState('[]');
+  const dirty = rows !== null && JSON.stringify(rows) !== saved;
+  // closing never throws away typed logins without asking
+  const close = () => {
+    if (dirty && !confirm('في بيانات لسه ماتحفظتش. تقفل من غير حفظ؟')) return;
+    onClose();
+  };
   const auth = { Authorization: `Bearer ${adminToken}` };
   const sorted = [...companies].sort((a, b) => (a.order || 0) - (b.order || 0));
   const byId = Object.fromEntries(companies.map((c) => [c.id, c]));
@@ -45,7 +54,10 @@ export default function PortalLoginsEditor({
 
   useEffect(() => {
     fetchList(user.id)
-      .then(setRows)
+      .then((list) => {
+        setRows(list);
+        setSaved(JSON.stringify(list));
+      })
       .catch((e) => setError((e as Error).message));
   }, [user.id]);
 
@@ -72,8 +84,8 @@ export default function PortalLoginsEditor({
         headers: { ...auth, 'Content-Type': 'application/json' },
         body: JSON.stringify({ logins }),
       });
-      if (!res.ok) throw new Error('فشل الحفظ');
-      onClose();
+      if (!res.ok) throw new Error('فشل الحفظ — جرّب تاني');
+      onSaved(logins.length);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -86,7 +98,7 @@ export default function PortalLoginsEditor({
   const others = users.filter((u) => u.id !== user.id);
 
   return createPortal(
-    <div className="fixed inset-0 z-[150] bg-black/80 flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[150] bg-black/80 flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={close}>
       <div
         onClick={(e) => e.stopPropagation()}
         className="w-full sm:max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl bg-[var(--color-bg-start)] border border-theme p-5 space-y-4"
@@ -101,7 +113,7 @@ export default function PortalLoginsEditor({
               الفرع بيشوفها ثابتة (يفتح البوابة وينسخ اليوزر والباسورد) ومايقدرش يعدّل فيها. التعديل والحذف من هنا بس.
             </p>
           </div>
-          <button type="button" onClick={onClose} className="p-2 rounded-lg hover:bg-white/10">
+          <button type="button" onClick={close} className="p-2 rounded-lg hover:bg-white/10">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -187,8 +199,9 @@ export default function PortalLoginsEditor({
 
             {error && <p className="text-sm text-red-400">{error}</p>}
 
-            <div className="flex gap-2 justify-end">
-              <button type="button" onClick={onClose} className="px-4 py-2 rounded-xl bg-white/10 text-sm">
+            <div className="sticky -bottom-5 -mx-5 -mb-5 px-5 py-3 bg-[var(--color-bg-start)] border-t border-theme flex items-center gap-2 justify-end">
+              {dirty && <span className="text-xs text-amber-400 ml-auto">في تعديلات لسه ماتحفظتش</span>}
+              <button type="button" onClick={close} className="px-4 py-2 rounded-xl bg-white/10 text-sm">
                 إلغاء
               </button>
               <button
