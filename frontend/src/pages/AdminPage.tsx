@@ -23,6 +23,7 @@ import { useSignIn } from '../hooks/useSignIn';
 import LinksEditor from '../components/admin/LinksEditor';
 import { DeviceWaiting, OtpField } from '../components/SignInSteps';
 import DevicesSecurityPanel from '../components/admin/DevicesSecurityPanel';
+import AttentionCenter from '../components/admin/AttentionCenter';
 import { useTheme } from '../context/ThemeContext';
 import type { AppCopyBundle, Branding, CoachCopyBundle, Company, GuideCopyBundle, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
@@ -288,6 +289,11 @@ export default function AdminPage() {
             </p>
           </div>
           <div className="flex gap-2">
+            <AttentionCenter
+              adminToken={token}
+              canOpenTab={(tab) => TABS.some((t) => t.id === tab) && canOpen(user, tab as AdminTab)}
+              onOpenTab={(tab) => setActiveTab(tab as AdminTab)}
+            />
             {canEdit && (
             <motion.button
               whileHover={{ scale: 1.05 }}

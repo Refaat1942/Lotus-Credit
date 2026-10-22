@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { CalendarRange, Download, Loader2, Search, Table2 } from 'lucide-react';
+import { CalendarRange, Download, FileSpreadsheet, Loader2, Search, Table2 } from 'lucide-react';
 import PendingDevicesAlert from './PendingDevicesAlert';
 
 /** Single-series mark color: validated (lightness band, chroma, ≥3:1) on both the light and dark app surfaces. */
@@ -98,6 +98,20 @@ const daysAgo = (n: number) => {
 const fmt = (n: number) => n.toLocaleString('en-US');
 const tz = () => -new Date().getTimezoneOffset();
 
+/** Downloads a file the server builds (needs the admin token, so it can't be a plain link). */
+async function downloadFile(url: string, token: string, name: string) {
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+  if (!res.ok) throw new Error('فشل التنزيل');
+  const href = URL.createObjectURL(await res.blob());
+  const a = document.createElement('a');
+  a.href = href;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(href), 1000);
+}
+
 const PRESETS: { id: string; label: string; range: () => [string, string] }[] = [
   { id: 'today', label: 'اليوم', range: () => [daysAgo(0), daysAgo(0)] },
   { id: '7', label: 'آخر 7 أيام', range: () => [daysAgo(6), daysAgo(0)] },
@@ -119,7 +133,19 @@ export default function DashboardPanel({ adminToken, isOwner }: { adminToken: st
   const [report, setReport] = useState<Report | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [exporting, setExporting] = useState(false);
   const auth = { Authorization: `Bearer ${adminToken}` };
+
+  const exportExcel = async () => {
+    setExporting(true);
+    try {
+      await downloadFile(`/api/admin/reports.xlsx?from=${from}&to=${to}&tz=${tz()}`, adminToken, `lotus-report-${from}_${to}.xlsx`);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setExporting(false);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -184,6 +210,16 @@ export default function DashboardPanel({ adminToken, isOwner }: { adminToken: st
           />
           {loading && <Loader2 className="w-4 h-4 animate-spin" />}
         </span>
+        <button
+          type="button"
+          onClick={exportExcel}
+          disabled={exporting || !report}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 disabled:opacity-50"
+          title="ملف Excel فيه: الملخص، الأيام، الشركات، الفروع، وسجل النشاط"
+        >
+          {exporting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <FileSpreadsheet className="w-3.5 h-3.5" />}
+          تنزيل التقرير Excel
+        </button>
       </div>
 
       {error && <p className="text-sm text-red-400">{error}</p>}
@@ -508,7 +544,10 @@ function UsersTable({ rows }: { rows: UserRow[] }) {
   );
 }
 
-function ActivityLog({ adminToken, from, to, users }: { adminToken: string; from: string; to: string; users: UserRow[] }) {
+function ActivityLog({ adminToken, from: reportFrom, to: reportTo, users }: { adminToken: string; from: string; to: string; users: UserRow[] }) {
+  // the log has its own dates; they follow the report's dates until changed here
+  const [[from, to], setRange] = useState<[string, string]>([reportFrom, reportTo]);
+  useEffect(() => setRange([reportFrom, reportTo]), [reportFrom, reportTo]);
   const [type, setType] = useState('');
   const [user, setUser] = useState('');
   const [q, setQ] = useState('');
@@ -546,13 +585,9 @@ function ActivityLog({ adminToken, from, to, users }: { adminToken: string; from
   const download = async () => {
     setDownloading(true);
     try {
-      const res = await fetch(`/api/admin/logs.csv?${query}`, { headers: auth });
-      const url = URL.createObjectURL(await res.blob());
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `lotus-logs-${from}_${to}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
+      await downloadFile(`/api/admin/logs.xlsx?${query}`, adminToken, `lotus-activity-log-${from}_${to}.xlsx`);
+    } catch {
+      /* the button simply stays available */
     } finally {
       setDownloading(false);
     }
@@ -564,6 +599,17 @@ function ActivityLog({ adminToken, from, to, users }: { adminToken: string; from
     <div className="glass-card p-4 space-y-3">
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="font-bold text-sm ml-2">سجل النشاط ({fmt(total)})</h3>
+        <span className="flex items-center gap-1 text-xs text-muted">
+          من
+          <input type="date" value={from} max={to} onChange={(e) => setRange([e.target.value || from, to])} className={select} />
+          إلى
+          <input type="date" value={to} min={from} onChange={(e) => setRange([from, e.target.value || to])} className={select} />
+          {(from !== reportFrom || to !== reportTo) && (
+            <button type="button" onClick={() => setRange([reportFrom, reportTo])} className="text-lotus-400 hover:underline">
+              زي فترة التقرير
+            </button>
+          )}
+        </span>
         <select value={type} onChange={(e) => setType(e.target.value)} className={select}>
           <option value="">كل الأنواع</option>
           {Object.entries(EVENT_LABELS).map(([k, label]) => (
@@ -591,7 +637,7 @@ function ActivityLog({ adminToken, from, to, users }: { adminToken: string; from
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 text-xs hover:bg-white/15 disabled:opacity-40"
         >
           {downloading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
-          تنزيل Excel (CSV)
+          تنزيل السجل Excel
         </button>
       </div>
 
