@@ -40,6 +40,7 @@ const { logEvent, actorOf } = activity;
 const db = require('./db');
 const tarball = require('./tarball');
 const security = require('./security');
+const excel = require('./excel');
 
 /** Companies data lives in the database (every save kept as a version); rules.json is a readable copy. */
 const readRules = () => db.readRules();
@@ -1135,6 +1136,119 @@ app.get('/api/admin/logs.csv', requireAdmin('dashboard'), (req, res) => {
   res.setHeader('Content-Type', 'text/csv; charset=utf-8');
   res.setHeader('Content-Disposition', `attachment; filename="lotus-logs-${range.from}_${range.to}.csv"`);
   res.send(`\uFEFF${lines.join('\r\n')}`);
+});
+
+const sendXlsx = (res, name, buffer) => {
+  res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  res.setHeader('Content-Disposition', `attachment; filename="${name}"`);
+  res.send(Buffer.from(buffer));
+};
+
+/** The dashboard for the chosen dates as an Excel file (summary, days, companies, branches, activity log). */
+app.get('/api/admin/reports.xlsx', requireAdmin('dashboard'), async (req, res) => {
+  try {
+    const { range, events } = eventsFor(req);
+    const names = Object.fromEntries(readRules().companies.map((c) => [c.id, c.nameAr]));
+    const report = activity.summarize(events, range, names);
+    const logRows = activity.filterEvents(events, req.query);
+    const buffer = await excel.reportWorkbook({ report, events: logRows, range, labels: EVENT_LABELS, title: 'صيدليات لوتس' });
+    sendXlsx(res, `lotus-report-${range.from}_${range.to}.xlsx`, buffer);
+  } catch (err) {
+    console.error('Excel report error:', err);
+    res.status(500).json({ error: 'Failed to build Excel' });
+  }
+});
+
+app.get('/api/admin/logs.xlsx', requireAdmin('dashboard'), async (req, res) => {
+  try {
+    const { range, events } = eventsFor(req);
+    const rows = activity.filterEvents(events, req.query);
+    sendXlsx(res, `lotus-logs-${range.from}_${range.to}.xlsx`, await excel.logWorkbook({ events: rows, range, labels: EVENT_LABELS, title: 'صيدليات لوتس' }));
+  } catch (err) {
+    console.error('Excel log error:', err);
+    res.status(500).json({ error: 'Failed to build Excel' });
+  }
+});
+
+/** Things waiting on the admin, shown as a notice when the admin panel opens. */
+app.get('/api/admin/attention', requireAdmin(), (req, res) => {
+  const user = req.user;
+  const owner = user.role === 'owner';
+  const items = [];
+  const settings = loadStore().settings;
+
+  if (owner) {
+    const pending = db.listDevices().filter((d) => d.status === 'pending').length;
+    if (pending) {
+      items.push({
+        id: 'devices',
+        level: 'urgent',
+        title: pending === 1 ? 'جهاز جديد مستني موافقتك' : `${pending} أجهزة جديدة مستنية موافقتك`,
+        detail: 'فرع حاول يدخل من جهاز جديد — وافق أو احظر.',
+        tab: 'devices',
+      });
+    }
+    if (!process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD === 'lotus-admin-2026' || !process.env.JWT_SECRET) {
+      items.push({
+        id: 'default-password',
+        level: 'urgent',
+        title: 'كلمة سر الأدمن لسه الافتراضية',
+        detail: 'الكود منشور على GitHub، فأي حد ممكن يعرفها. لازم تتغير من ملف .env على السيرفر.',
+      });
+    }
+  }
+
+  if (hasSection(user, 'dashboard')) {
+    const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const fails = db.eventsBetween(since, new Date(Date.now() + 60000).toISOString()).filter((e) => e.type === 'login_fail');
+    if (fails.length >= 5) {
+      const names = [...new Set(fails.map((e) => e.userName || e.user))].slice(0, 4).join('، ');
+      items.push({
+        id: 'failed-logins',
+        level: 'warn',
+        title: `${fails.length} محاولة دخول فاشلة آخر 24 ساعة`,
+        detail: `على: ${names}. راجع سجل النشاط — لو مش من الفروع، غيّر كلمات المرور.`,
+        tab: 'dashboard',
+      });
+    }
+  }
+
+  if (hasSection(user, 'backups')) {
+    const last = listBackups()[0];
+    const age = last ? Date.now() - Date.parse(last.createdAt) : Infinity;
+    if (age > 48 * 60 * 60 * 1000) {
+      items.push({
+        id: 'backup',
+        level: 'warn',
+        title: 'مفيش نسخة احتياطية من أكتر من يومين',
+        detail: 'اعمل نسخة دلوقتي من «النسخ الاحتياطي».',
+        tab: 'backups',
+      });
+    }
+  }
+
+  if (owner) {
+    if (!settings.requireLogin) {
+      items.push({
+        id: 'open-app',
+        level: 'tip',
+        title: 'البرنامج مفتوح لأي حد معاه اللينك',
+        detail: 'فعّل «الدخول إجباري» من المستخدمون والفروع.',
+        tab: 'users',
+      });
+    }
+    if (!ownerTotpSecret()) {
+      items.push({
+        id: 'totp',
+        level: 'tip',
+        title: 'Google Authenticator مش مفعّل',
+        detail: 'فعّله عشان محدش يدخل لوحة الإدارة حتى لو عرف كلمة السر.',
+        tab: 'devices',
+      });
+    }
+  }
+
+  res.json({ items });
 });
 
 const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
