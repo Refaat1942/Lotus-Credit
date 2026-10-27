@@ -30,7 +30,7 @@ if (!fs.existsSync(logosDir)) {
   fs.mkdirSync(logosDir, { recursive: true });
 }
 
-const { chat } = require('./assistant');
+const assistant = require('./assistant');
 const accounts = require('./accounts');
 const activity = require('./activity');
 
@@ -414,16 +414,108 @@ app.post('/api/assistant/chat', async (req, res) => {
   if (user === undefined) return;
   if (!hasFeature(user, 'assistant')) return res.status(403).json({ error: 'Forbidden', answer: 'المساعد غير متاح لحسابك.' });
   try {
-    const { message } = req.body;
+    const { message, history, companyId } = req.body || {};
+    if (rateLimited(`assistant:${req.ip}`, 30)) return res.status(429).json({ answer: 'أسئلة كتير ورا بعض — استنى دقيقة 🙏' });
     if (typeof message === 'string' && message.trim()) {
       logEvent({ type: 'assistant_question', ...actorOf(user), detail: message.trim().slice(0, 300) });
     }
     const rules = visibleRules(user);
-    const result = await chat(message, rules);
+    const result = await assistant.chat(
+      { message, history: Array.isArray(history) ? history : [], companyId: typeof companyId === 'string' ? companyId : undefined },
+      rules,
+      assistantOptions(rules),
+    );
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: 'Assistant failed', answer: 'معلش حصل خطأ، جرب تاني.' });
   }
+});
+
+// ---- smart assistant settings (owner): the AI key, the model, and reading the text inside the pictures
+
+const OPENAI_MODELS = ['gpt-4o-mini', 'gpt-4.1-mini', 'gpt-4o', 'gpt-4.1'];
+
+function assistantKey() {
+  return db.getSecret('openaiKey') || process.env.OPENAI_API_KEY || '';
+}
+
+function assistantModel() {
+  return loadStore().settings.assistantModel || process.env.OPENAI_MODEL || assistant.DEFAULT_MODEL;
+}
+
+/** Picture text for the companies in `rules`, by media id. */
+function mediaTextFor(rules) {
+  const byUrl = db.getMediaTexts();
+  const out = {};
+  for (const c of rules.companies || []) for (const m of c.media || []) if (byUrl[m.url]) out[m.id] = byUrl[m.url];
+  return out;
+}
+
+const assistantOptions = (rules) => ({ apiKey: assistantKey(), model: assistantModel(), mediaText: mediaTextFor(rules) });
+
+function allMedia() {
+  return readRules().companies.flatMap((c) => (c.media || []).map((m) => ({ ...m, companyId: c.id, companyName: c.nameAr })));
+}
+
+app.get('/api/admin/assistant', requireOwner, (_, res) => {
+  const key = assistantKey();
+  const texts = db.getMediaTexts();
+  const media = allMedia();
+  res.json({
+    hasKey: !!key,
+    keySource: db.getSecret('openaiKey') ? 'panel' : key ? 'server' : null,
+    keyHint: key ? `…${key.slice(-4)}` : '',
+    model: assistantModel(),
+    models: OPENAI_MODELS,
+    mediaTotal: media.length,
+    mediaRead: media.filter((m) => texts[m.url]).length,
+    unread: media.filter((m) => !texts[m.url]).map((m) => ({ id: m.id, companyId: m.companyId, title: m.title })),
+  });
+});
+
+app.put('/api/admin/assistant', requireOwner, async (req, res) => {
+  const { apiKey, model, removeKey } = req.body || {};
+  if (removeKey) db.setSecret('openaiKey', null);
+  if (typeof apiKey === 'string' && apiKey.trim()) {
+    const key = apiKey.trim();
+    // check the key before keeping it
+    const check = await fetch(`${assistant.API_BASE}/models`, { headers: { Authorization: `Bearer ${key}` } }).catch(() => null);
+    if (!check || !check.ok) return res.status(400).json({ error: 'المفتاح ده مش شغال — اتأكد إنك نسخته كامل من OpenAI' });
+    db.setSecret('openaiKey', key);
+  }
+  if (typeof model === 'string' && model.trim()) {
+    const store = loadStore();
+    store.settings = { ...store.settings, assistantModel: model.trim().slice(0, 60) };
+    saveStore(store);
+  }
+  logEvent({ type: 'settings_update', ...actorOf(req.user), detail: 'إعدادات المساعد الذكي' });
+  res.json({ ok: true });
+});
+
+/** Reads the text in one picture with the AI and keeps it for the assistant. */
+app.post('/api/admin/assistant/read-media/:mediaId', requireOwner, async (req, res) => {
+  const key = assistantKey();
+  if (!key) return res.status(400).json({ error: 'حط مفتاح OpenAI الأول' });
+  const m = allMedia().find((x) => x.id === req.params.mediaId);
+  if (!m) return res.status(404).json({ error: 'Media not found' });
+  try {
+    const file = path.join(assetsPath, String(m.url).replace(/^\/assets\//, ''));
+    if (!file.startsWith(assetsPath) || !fs.existsSync(file)) return res.status(404).json({ error: 'الصورة مش موجودة' });
+    const ext = path.extname(file).slice(1).toLowerCase().replace('jpg', 'jpeg');
+    const dataUrl = `data:image/${ext === 'svg' ? 'svg+xml' : ext};base64,${fs.readFileSync(file).toString('base64')}`;
+    const text = (await assistant.readImageText({ apiKey: key, model: assistantModel(), dataUrl, title: m.title })).slice(0, 8000);
+    db.setMediaText(m.url, text);
+    res.json({ id: m.id, chars: text.length });
+  } catch (err) {
+    console.error('Read media error:', err.message);
+    res.status(502).json({ error: 'تعذر قراءة الصورة — جرّب تاني' });
+  }
+});
+
+/** Try a question as the owner (shows which engine answered). */
+app.post('/api/admin/assistant/test', requireOwner, async (req, res) => {
+  const rules = readRules();
+  res.json(await assistant.chat({ message: req.body?.message, companyId: req.body?.companyId }, rules, assistantOptions(rules)));
 });
 
 app.post('/api/admin/login', (req, res) => attemptLogin(req, res, { adminOnly: true }));

@@ -36,6 +36,7 @@ function open() {
       note TEXT NOT NULL,
       data TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS media_text (url TEXT PRIMARY KEY, text TEXT NOT NULL, read_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS portal_logins (user_id TEXT PRIMARY KEY, data TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS devices (
       id TEXT PRIMARY KEY,
@@ -254,6 +255,18 @@ function setPortalLogins(userId, list) {
     ).run(userId, JSON.stringify(list));
 }
 
+// ---- text read from the companies' pictures (keyed by the picture's address, so a replaced picture is read again)
+
+function getMediaTexts() {
+  return Object.fromEntries(db.prepare('SELECT url, text FROM media_text').all().map((r) => [r.url, r.text]));
+}
+
+function setMediaText(url, text) {
+  db.prepare(
+    'INSERT INTO media_text (url, text, read_at) VALUES (?, ?, ?) ON CONFLICT(url) DO UPDATE SET text = excluded.text, read_at = excluded.read_at',
+  ).run(url, text, new Date().toISOString());
+}
+
 // ---- activity log
 
 function insertEvent(entry) {
@@ -315,6 +328,8 @@ module.exports = {
   saveDevice,
   deleteDevice,
   deleteDevicesOf,
+  getMediaTexts,
+  setMediaText,
   getPortalLogins,
   setPortalLogins,
   insertEvent,
