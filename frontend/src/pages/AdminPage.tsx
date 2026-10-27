@@ -24,6 +24,7 @@ import LinksEditor from '../components/admin/LinksEditor';
 import { DeviceWaiting, OtpField } from '../components/SignInSteps';
 import DevicesSecurityPanel from '../components/admin/DevicesSecurityPanel';
 import AttentionCenter from '../components/admin/AttentionCenter';
+import AssistantSettings from '../components/admin/AssistantSettings';
 import { useTheme } from '../context/ThemeContext';
 import type { AppCopyBundle, Branding, CoachCopyBundle, Company, GuideCopyBundle, RulesData } from '../types';
 import { DEFAULT_BRANDING } from '../types';
@@ -349,7 +350,10 @@ export default function AdminPage() {
         )}
 
         {activeTab === 'content' && editData && (
-          <ContentAdminPanel data={editData} onChange={setEditData} />
+          <>
+            {user.role === 'owner' && <AssistantSettings adminToken={token} />}
+            <ContentAdminPanel data={editData} onChange={setEditData} />
+          </>
         )}
 
         {activeTab === 'documents' && editData && (

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
+import { matchPath, useLocation } from 'react-router-dom';
 import { useRules } from '../hooks/useRules';
 import { useAppCopy } from '../hooks/useAppCopy';
 import { authHeader } from '../utils/session';
@@ -23,6 +24,8 @@ export default function SmartAssistant() {
   const welcome = u('assistant', 'welcome');
 
   const [open, setOpen] = useState(false);
+  // the company page the pharmacist has open, so "how do I dispense?" means this company
+  const companyId = matchPath('/company/:id', useLocation().pathname)?.params.id;
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([{ role: 'assistant', content: welcome }]);
@@ -45,13 +48,15 @@ export default function SmartAssistant() {
     const q = input.trim();
     if (!q || loading) return;
     setInput('');
+    // the conversation so far (without the greeting), so follow-up questions are understood
+    const history = messages.slice(1).slice(-8).map(({ role, content }) => ({ role, content }));
     setMessages((m) => [...m, { role: 'user', content: q }]);
     setLoading(true);
     try {
       const res = await fetch('/api/assistant/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...authHeader() },
-        body: JSON.stringify({ message: q }),
+        body: JSON.stringify({ message: q, history, companyId }),
       });
       const responseData = await res.json();
       setMessages((m) => [
